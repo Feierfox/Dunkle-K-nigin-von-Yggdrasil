@@ -35,6 +35,7 @@ Alle müssen im selben Durchlauf erfüllt sein:
 2. **`impuls_ueberlebt`:** Der Held hat den Impuls mindestens einmal überstanden.
 3. **Die Tür:** Während einer Abwesenheit des Helden (ab der zweiten Quest) geht die Königin zum Eingang links und bleibt dort stehen, bis er zurückkommt. In der Abwesenheit geschieht weiterhin bewusst nichts; es gibt keinen Hinweis, dass man das tun kann. Erst bei seiner Rückkehr zeigt sich die Folge.
 4. **`einfluss ≤ 3`:** Sonst lässt die Verderbnis das Gespräch an der Tür nicht zu.
+5. **Kein Opfer:** `opfer = 0`. Wer den Helden einmal durch das Portal geschickt hat, bekommt den Guide nicht in die Hand: „Nein. Nicht dir. Nicht nach dem Portal.“
 
 ### Szene an der Tür (G4b)
 
@@ -54,13 +55,13 @@ Alle müssen im selben Durchlauf erfüllt sein:
 
 Merker `letzte_seite_gesucht` wird gesetzt. Der Kampf läuft danach normal weiter.
 
-### Bei G8 — eine vierte Antwort
+### Bei G8 — eine andere dritte Antwort
 
-Wenn `letzte_seite_gesucht` gesetzt ist, erscheint beim Zögern eine zusätzliche Antwort:
+Jedes Gespräch hat höchstens drei Antworten. Wenn `letzte_seite_gesucht` gesetzt ist, ersetzt beim Zögern diese Zeile die Antwort „Nimm sie. Die Krone.“:
 
-| Antwort der Königin | Folge |
-| --- | --- |
-| „Ich weiß, was auf der letzten Seite steht.“ | Ende E7 |
+| | Antwort der Königin | Folge |
+| --- | --- | --- |
+| [Nähe] | „Ich weiß, was auf der letzten Seite steht.“ | Ende E7 |
 
 > **Königin:** „Auf der letzten Seite stand: Brich nicht mich. Brich, was in der Krone wohnt. Ich halte still.“
 > ***Stimme:*** *„Du hast es vergessen. Ich habe dafür gesorgt.“*

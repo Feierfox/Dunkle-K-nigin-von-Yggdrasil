@@ -380,6 +380,7 @@ Jede Datei kommt mit einer gleichnamigen `.json` für die Bildpositionen im Atla
 
 ## Offene Punkte
 
+- Animationen für das Totenritual (magisches Feuer, In-den-Arm-nehmen, lila Portal), Umfang siehe [DIALOGE.md](DIALOGE.md#umsetzung-des-totenrituals).
 - Konkrete Bildzahlen nach ersten Tests auf dem Gerät anpassen.
 - Gegenmaßnahmen des Helden (Ausweichen, Schild, Amulett) mit der Questreihe abstimmen.
 - Animationen für die Enden, sobald die Zweige der Geschichte stehen.

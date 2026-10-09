@@ -10,7 +10,7 @@ Planung, Figurenkonzept und erste Grafikentwürfe für ein kompaktes Fantasy-Bos
 - Nach jeder Niederlage kehrt der Held in den Thronsaal zurück, kommentiert knapp den letzten Versuch und lernt die Angriffe der Königin. Ein Treffer kostet ein Herz. Er beginnt mit 1 Herz und erreicht über eine Questreihe mit besserer Ausrüstung bis zu 5 Herzen. Während seiner Quests steht die Königin allein im Thronsaal, und es geschieht bewusst nichts.
 - Der Held spricht wie ein Spieler, der Guides liest, Mechaniken verinnerlicht und durch gescheiterte Versuche das Timing und die einzelnen Phasen lernt.
 - Der Humor entsteht aus diesem Lernprozess und dem Gegensatz zur würdevollen Königin. Moderne Alltagsgegenstände wie Handy oder Powerbank gehören nicht zum Konzept.
-- Zwischen den Kämpfen gibt es Gespräche mit Antwortauswahl. Die Geschichte verzweigt sich in viele mögliche Wege und Enden.
+- Zwischen den Kämpfen gibt es Gespräche mit zwei oder drei Antworten; eine davon ist immer die Rolle des Endbosses, die anderen führen zu verschiedenen Enden. Nach jedem Sieg wählt der Spieler ein Totenritual: magisches Feuer, später den Helden in den Arm nehmen und verbrennen, oder ihn durch ein lila Portal Yggdrasil opfern.
 - Darstellung: **2D-Pixel-Art** in fester Seitenansicht in einem Thronsaal.
 - Zielplattform ist die **PSP-1000** (als Homebrew-Spiel).
 
