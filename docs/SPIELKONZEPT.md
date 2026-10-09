@@ -2,57 +2,94 @@
 
 ## Ausgangspunkt
 
-„Dunkle Königin von Yggdrasil“ verbindet eine ernsthafte dunkle Fantasywelt mit den knappen Kommentaren einer festen Spielfigur, die wie ein lernender Spieler spricht.
+„Dunkle Königin von Yggdrasil“ ist ein kompaktes Bosskampf-Spiel in dunkler Fantasywelt. **Der Spieler steuert die Königin**, den Endgegner. Der Held ist der Herausforderer, der immer wieder in den Thronsaal zurückkehrt und mit jedem Versuch besser wird.
 
-Die Königin trägt die majestätische, geheimnisvolle Seite des Konzepts. Der Held verkörpert den Prozess, Guides und Strategien zu verstehen, Timing einzuüben und Mechaniken praktisch zu beherrschen.
+Der Kern ist ein Souls-artiger Bosskampf aus umgekehrter Sicht: Nicht der Spieler lernt die Muster des Bosses, sondern der Held lernt die Muster des Spielers.
 
-## Festgelegte Lernschleife
+Die Königin trägt die majestätische, ernste Seite des Konzepts. Der Held bringt mit seinen knappen Kommentaren die Sprache eines lernenden Spielers mit: Guides, Timing, Combos, Phasen.
 
-1. Der Spieler erlebt einen Angriff, eine Mechanik oder eine neue Phase.
-2. Er versucht, das Muster zu verstehen und eine passende Strategie anzuwenden.
-3. Ein gescheiterter Versuch liefert Erfahrung für den nächsten Anlauf.
-4. Nach dem Tod kehrt der Held in den Thronsaal zurück.
-5. Der Held kann den letzten Versuch knapp kommentieren.
-6. Der nächste Versuch setzt das Gelernte praktisch um.
+## Referenz und Abgrenzung
 
-Scheitern gehört zum Lernen. Jeder Versuch muss trotzdem spielerisch ernst genommen werden; Niederlagen dienen nicht lediglich als Anlass für einen Witz.
+Das Spiel orientiert sich bewusst an **„The Dark Queen of Mortholme“**: Spieler als Boss, ein zurückkehrender Held, fester Bildausschnitt in einem Thronsaal, Dialoge zwischen den Kämpfen. Es soll keine Kopie werden. Eigene Elemente sind:
+
+- **Welt und Motive:** Yggdrasil, Wurzeln, Erinnerungen und Schwüre statt einer fremden Welt; eigene Figuren, eigene Namen, eigene Grafiken.
+- **Der Held spricht wie ein Spieler.** Seine Rückkehrkommentare über Timing, Combos und Guides sind ein eigener Humoransatz.
+- **Die Geschichte verzweigt sich stark.** Sie ist nicht nur ein Weg mit wenigen Enden, sondern ein Geflecht vieler Zweige (siehe unten).
+- **Zielplattform PSP-1000** mit den daraus folgenden Grenzen.
+
+Texte, Grafiken, Musik und Namen des Referenzspiels werden nicht übernommen.
+
+## Festgelegte Kampfschleife
+
+1. Der Held betritt den Thronsaal.
+2. Der Spieler kämpft als Königin mit ihren Angriffen gegen ihn.
+3. Der Held stirbt und kehrt in den Thronsaal zurück.
+4. Er kommentiert knapp den letzten Versuch.
+5. Beim nächsten Versuch weicht er den Angriffen, die er bereits kennt, besser aus.
+6. Zwischen einzelnen Abschnitten führen Königin und Held Gespräche.
+
+Der Held wird mit jedem Versuch spürbar besser. Wie stark sich die Königin dagegen verändert, ist noch offen (siehe „Offene Entscheidungen“).
+
+## Lernen des Helden — Planungsmaßstab
+
+- Der Held merkt sich, welche Angriffe ihn getroffen haben, und weicht ihnen später häufiger oder früher aus.
+- Er lernt nur, was er erlebt hat. Ein Angriff, den die Königin noch nie eingesetzt hat, trifft ihn unvorbereitet.
+- Sein Fortschritt muss für den Spieler sichtbar sein: Ausweichen, das vorher nicht gelang, neue Ausrüstung oder ein veränderter Kampfstil.
+- Sein Lernen bleibt nachvollziehbar und berechenbar. Es soll kein Zufall sein, wenn er einem Angriff ausweicht.
+
+Die konkrete Umsetzung der Helden-KI ist noch nicht festgelegt.
 
 ## Ton und Dialogplanung
 
-Der Humor bleibt auf den Lernprozess des Helden bezogen. Die Welt und die Königin behalten ihre Würde. Kommentare sind kurz, variieren und verraten keine unbekannten Mechaniken.
+Der Humor entsteht aus dem Lernprozess des Helden und dem Gegensatz zur würdevollen Königin. Die Welt und die Königin behalten ihre Würde. Kommentare sind kurz und variieren.
 
-Für die spätere Dialogplanung können folgende Kategorien genutzt werden:
+Rückkehrkommentare des Helden lassen sich nach diesen Kategorien planen:
 
 | Kategorie | Beispiel | Voraussetzung |
 | --- | --- | --- |
-| Timingfehler | „Ahh. Wieder falsches Timing.“ | Ein entsprechender Fehler ist erkennbar |
-| Ungeeignete Strategie | „Diese Combo hilft mir hier nicht weiter.“ | Die Strategie wurde tatsächlich ausprobiert |
+| Timingfehler | „Ahh. Wieder falsches Timing.“ | Er ist einem bekannten Angriff zu früh oder zu spät ausgewichen |
+| Ungeeignete Strategie | „Diese Combo hilft mir hier nicht weiter.“ | Seine Angriffsfolge wurde unterbrochen |
 | Theorie gegen Praxis | „Im Guide sah das deutlich einfacher aus.“ | Allgemeiner Rückkehrkommentar, sparsam einsetzen |
-| Bekannte Phase | „Erste Phase sitzt. Jetzt muss ich nur noch den Rest überleben.“ | Fortschritt in einer bereits erlebten Phase |
-| Unklare Niederlage | „Okay. Noch mal.“ | Keine verlässliche konkrete Fehlerzuordnung |
+| Neuer Angriff | „Okay, *das* kannte ich noch nicht.“ | Die Königin hat einen neuen Angriff eingesetzt |
+| Bekannte Phase | „Erste Phase sitzt. Jetzt muss ich nur noch den Rest überleben.“ | Er hat eine bekannte Phase überstanden |
+| Unklare Niederlage | „Okay. Noch mal.“ | Keine eindeutige Zuordnung |
 
-Die Kategorien sind ein Planungswerkzeug, keine bereits implementierte Fehlererkennung. Konkrete Dialogbedingungen hängen von den später festgelegten Kämpfen ab.
+Die Kategorien sind ein Planungswerkzeug, keine bereits umgesetzte Fehlererkennung.
 
-## Gestaltung der Begegnungen — Planungsmaßstab
+## Verzweigte Geschichte
 
-Angriffe und Phasen sollen unterscheidbare Signale besitzen. Verzögerungen, Kombinationen und sichere Gelegenheiten müssen durch Beobachtung lernbar sein. Ein bereits gelerntes Muster bildet eine Grundlage; neue Phasen dürfen die gewohnte Strategie nachvollziehbar verändern.
+Die Geschichte soll **einer von vielen möglichen Zweigen** sein. Jeder Durchlauf zeigt nur einen Teil davon.
 
-Noch nicht festgelegt sind Anzahl und Länge der Phasen, konkrete Gegner, Schwierigkeitswerte, Waffen und Fähigkeiten. Es wird an dieser Stelle kein vollständiges Kampfsystem behauptet.
+- Zwischen Kampfabschnitten wählt der Spieler in Gesprächen die Antworten der Königin.
+- Entscheidungen verändern die Beziehung zwischen Königin und Held, die Gespräche danach und das Ende.
+- Mögliche Richtungen, als Vorschlag: Die Königin hält an ihrer Herrschaft fest; sie versteht das Anliegen des Helden; sie löst ihre Bindung an Yggdrasil; der Held gibt auf; beide finden einen dritten Weg.
+- Ein Durchlauf bleibt kurz und in einer Sitzung spielbar. Die Vielfalt entsteht durch Wiederholen mit anderen Entscheidungen.
+
+Die Vorgeschichte der Königin in [KOENIGIN.md](KOENIGIN.md) (Hüterin der Erinnerungen, Bindung an die Wurzeln, Angst vor dem Vergessen) bietet dafür die erzählerische Grundlage.
+
+## Gestaltung der Angriffe — Planungsmaßstab
+
+Die Königin besitzt zu Beginn wenige, wuchtige Angriffe. Später kommen weitere hinzu. Jeder Angriff braucht eine deutlich erkennbare Ankündigung, damit auch der Spieler sieht, wann der Held ausweicht und warum.
+
+Anzahl und Art der Angriffe, Phasen und Schwierigkeitswerte sind noch nicht festgelegt.
+
+## Darstellung
+
+**Festgelegt:** 2D-Pixel-Art in fester Seitenansicht. Der ganze Kampf spielt in einem Thronsaal, der auf einen Bildschirm passt. Der Eingang liegt links, der Thron rechts. Entwürfe liegen in [assets/](../assets/README.md).
 
 ## Offene Entscheidungen
 
-- Welche Rolle spielt die Königin während der Kämpfe und im Rückkehr-Thronsaal?
-- Wie wird die Rückkehr des Helden innerhalb der Welt dargestellt?
-- Welche Kämpfe und Phasen bilden die konkrete Lernfolge?
-- Wie häufig werden Rückkehrkommentare verwendet und wie werden Wiederholungen vermieden?
-- Welche visuelle Darstellungsform trägt das Spiel?
-- Die Plattform ist entschieden: PSP-1000. Technische Details stehen in [PSP1000.md](PSP1000.md).
-
-Diese Fragen sind dokumentiert, ohne die abgestimmte Figurenidee durch unbesprochene Festlegungen zu verändern.
+- Bleiben die Werte und Angriffe der Königin gleich, während der Held stärker wird, oder entwickelt auch sie sich?
+- Wie genau lernt der Held, und wie wird sein Fortschritt sichtbar?
+- Welche Angriffe besitzt die Königin, und wann kommen neue hinzu?
+- Wie viele Gesprächsabschnitte und Enden gibt es?
+- Wie wird die Rückkehr des Helden innerhalb der Welt erklärt?
+- Wie häufig kommentiert der Held, und wie werden Wiederholungen vermieden?
 
 ## Reihenfolge der weiteren Planung
 
-1. Rolle der Königin und Aufbau des Thronsaals präzisieren.
-2. Eine konkrete Begegnung mit nachvollziehbaren Phasen schriftlich ausarbeiten.
-3. Passende Rückkehrkommentare dieser Begegnung zuordnen.
-4. Erst danach Umfang, Darstellung und technische Umsetzung planen.
+1. Die ersten drei Angriffe der Königin mit Ankündigung und Wirkung beschreiben.
+2. Das Lernverhalten des Helden für diese Angriffe festlegen.
+3. Den ersten Gesprächsabschnitt mit zwei bis drei Antwortmöglichkeiten schreiben.
+4. Die Hauptzweige der Geschichte und ihre Enden skizzieren.
+5. Danach die technische Umsetzung für die PSP-1000 beginnen ([PSP1000.md](PSP1000.md)).

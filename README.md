@@ -1,26 +1,35 @@
 # Dunkle Königin von Yggdrasil
 
-Planung und Figurenkonzept für ein Fantasyspiel. Dieses Repository enthält ausschließlich Beschreibungen und Planungsdokumente, keine Spielimplementierung.
+Planung, Figurenkonzept und erste Grafikentwürfe für ein kompaktes Fantasy-Bosskampfspiel. Dieses Repository enthält Beschreibungen, Planungsdokumente und Konzeptgrafiken, noch keine Spielimplementierung.
 
 ## Festgelegte Grundlage
 
 - Der Titel bleibt **Dunkle Königin von Yggdrasil**.
-- Die Königin besitzt eine ernsthafte, majestätische Präsenz in einer dunklen Fantasywelt mit Yggdrasil-, Wurzel- und gotischen Motiven.
-- **Der Held** ist die festgelegte Spielfigur. Er erhält keine ausgearbeitete Vorgeschichte und keine persönliche Rettungsgeschichte.
+- **Der Spieler steuert die Königin**, den Endgegner. Sie besitzt eine ernsthafte, majestätische Präsenz in einer dunklen Fantasywelt mit Yggdrasil-, Wurzel- und gotischen Motiven. Sie kämpft mit einem langen Schwert.
+- **Der Held** ist ihr Herausforderer und wird vom Spiel gesteuert. Er erhält keine ausgearbeitete Vorgeschichte und keine persönliche Rettungsgeschichte.
+- Nach jeder Niederlage kehrt der Held in den Thronsaal zurück, kommentiert knapp den letzten Versuch und lernt die Angriffe der Königin.
 - Der Held spricht wie ein Spieler, der Guides liest, Mechaniken verinnerlicht und durch gescheiterte Versuche das Timing und die einzelnen Phasen lernt.
-- Nach seinem Tod kehrt er in den Thronsaal zurück und kommentiert knapp den letzten Versuch.
 - Der Humor entsteht aus diesem Lernprozess und dem Gegensatz zur würdevollen Königin. Moderne Alltagsgegenstände wie Handy oder Powerbank gehören nicht zum Konzept.
+- Zwischen den Kämpfen gibt es Gespräche mit Antwortauswahl. Die Geschichte verzweigt sich in viele mögliche Wege und Enden.
+- Darstellung: **2D-Pixel-Art** in fester Seitenansicht in einem Thronsaal.
 - Zielplattform ist die **PSP-1000** (als Homebrew-Spiel).
+
+## Referenz
+
+Das Spiel orientiert sich bewusst an **„The Dark Queen of Mortholme“** (Spieler als Boss, zurückkehrender Held, ein Thronsaal). Es soll keine Kopie werden: Welt, Figuren, Texte und Grafiken sind eigenständig. Die Abgrenzung steht in [SPIELKONZEPT.md](docs/SPIELKONZEPT.md#referenz-und-abgrenzung).
 
 ## Dokumente
 
+- [Spielkonzept: Kampfschleife, lernender Held, verzweigte Geschichte](docs/SPIELKONZEPT.md)
 - [Die Königin: Gestaltung, Persönlichkeit und erzählerische Vorschläge](docs/KOENIGIN.md)
-- [Der Held: feste Spielfigur, Spielersprache und Dialoge](docs/HELD.md)
-- [Spielkonzept: Lernschleife, Ton und offene Planungsentscheidungen](docs/SPIELKONZEPT.md)
+- [Der Held: Herausforderer, Spielersprache und Dialoge](docs/HELD.md)
 - [PSP-1000-Version: technische Planungsgrundlage](docs/PSP1000.md)
+- [Grafikentwürfe und Prompts](assets/README.md)
 
 ## Stand
 
-Abgestimmte Konzeptgrundlage vom 09.10.2026. Verbindliche Entscheidungen und noch offene Ausgestaltungen werden in den Dokumenten getrennt gekennzeichnet. Die zuvor vorgeschlagene Herkunft des Helden, seine Schwester Mara und die Rettungsgeschichte wurden verworfen.
+Abgestimmte Konzeptgrundlage vom 09.10.2026. Verbindliche Entscheidungen und noch offene Ausgestaltungen werden in den Dokumenten getrennt gekennzeichnet.
 
-Die fünf im Gespräch bereitgestellten Bilder dienen als visuelle Referenzen. Sie sind nicht Bestandteil dieses Repositories; Urheberschaft und Nutzungsrechte sind hier nicht dokumentiert. Eigene Grafiken, Animationen und Spielcode sind noch nicht ausgearbeitet. Die technischen Grundlagen der PSP-1000-Version sind als Planung dokumentiert.
+Verworfen wurden: der Name „Arvid“, die Herkunft des Helden mit seiner Schwester Mara und der Rettungsgeschichte, der Held als Spielfigur sowie die Stangenwaffe der Königin.
+
+Die Konzeptgrafiken in `assets/konzept/` sind generierte Entwürfe und noch keine fertigen PSP-Sprites. Animationen und Spielcode sind noch nicht ausgearbeitet.

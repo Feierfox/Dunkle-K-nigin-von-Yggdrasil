@@ -1,5 +1,7 @@
 # Die Dunkle Königin von Yggdrasil
 
+**Die Königin ist die Spielfigur.** Der Spieler steuert sie im Kampf gegen den zurückkehrenden Held und wählt ihre Antworten in den Gesprächen (siehe [SPIELKONZEPT.md](SPIELKONZEPT.md)).
+
 ## Gestalterische Leitidee
 
 Eine gepanzerte Königin auf einem Wurzelthron, eingerahmt von einem gotischen Bogen aus den Ästen Yggdrasils. Schwarze Rüstung, astförmige Krone und eisblaues Haar bilden die zentrale Erscheinung. Ihre Haltung ist ruhig, aufrecht und kontrolliert.
@@ -8,7 +10,7 @@ Die Referenzen verbinden drei Motive: eine monumentale Rüstungsfigur, eine kön
 
 ## Erscheinungsbild
 
-Die Königin wirkt groß und beinahe statuenhaft. Ihr Alter lässt sich nicht bestimmen. Ihr Gesicht ist blass und klar gezeichnet, mit schmalen dunklen Linien unter den Augen, die an feine Risse in Porzellan erinnern.
+Die Königin wirkt groß und beinahe statuenhaft. Ihr Alter lässt sich nicht bestimmen. Ihr Gesicht ist dunkel und beinahe schattenhaft; vor dem eisblauen Haar zeichnet es sich als klare Silhouette ab.
 
 Langes eisblaues Haar fällt in wenigen deutlich lesbaren Strähnen über die Schultern. In ruhigen Szenen hängt es schwer; beim Wirken von Magie bewegt es sich langsam wie unter Wasser. Die Augen leuchten schwach türkis, behalten aber sichtbare Pupillen und einen menschlichen Ausdruck.
 
@@ -27,14 +29,17 @@ Zwischen wenigen Platten wachsen kleine violette Blüten. Sie markieren die Verb
 | Hauptfarben | Schwarz und Mitternachtsviolett |
 | Haar und Magie | Eisblau und schwaches Türkis |
 | Einzelne Akzente | Magenta an Kristallen und Blüten |
+| Waffenbeschläge | Mattes Gold an Parierstange und Griff |
 | Gegenlicht | Optional warmes Kupferlicht im Thronmotiv |
 | Materialien | Geschwärztes Metall, dunkles Wurzelholz und Kristall |
 
-Die Akzentfarben bleiben begrenzt, damit Gesicht, Krone und Hände auch in kleinen Darstellungen klar lesbar sind. Eine genaue Palette und die endgültige Darstellungstechnik stehen noch aus.
+Die Akzentfarben bleiben begrenzt, damit Krone, Haar und Hände auch in kleinen Darstellungen klar lesbar sind. Die Darstellung ist Pixel-Art; eine genaue Palette steht noch aus.
 
-## Waffe und Symbol — Konzeptvorschlag
+## Waffe und Symbol
 
-Ihre lange Stangenwaffe trägt den vorgeschlagenen Namen **Wurzelrichter**. Die dunkle Schneide ähnelt einem aufgebrochenen Ast; ein magentafarbener Kristall sitzt nahe dem Schaft. Die Waffe dient zugleich als Herrschaftsstab und Verbindung zum Baum. Bei Audienzen steht sie neben dem Thron.
+**Festgelegt:** Die Königin kämpft mit einem langen Schwert. Die gerade, schmal zulaufende Klinge ist blass lavendelfarben mit einem violetten Mittelstreifen. Die Parierstange in mattem Gold verzweigt sich wie Äste. Darüber sitzt ein großer violetter Kristall. Der lange dunkle Griff trägt zwei breite Goldbänder, am Knauf sitzt ein kleiner violetter Kristall.
+
+Als Name des Schwerts wird weiterhin **Wurzelrichter** vorgeschlagen. Es dient zugleich als Herrschaftszeichen und Verbindung zum Baum.
 
 Ihr persönliches Symbol zeigt einen gespaltenen Baum innerhalb eines Spitzbogens: eine Hälfte trägt Blätter, die andere kahle Äste. Beide werden von derselben geschlossenen Wurzel getragen.
 
@@ -68,7 +73,7 @@ Als Symbolik können die fünf Kronenspitzen für Bewahren, Erinnern, Schützen,
 
 Sie kann Tote nicht wirklich zurückbringen. Erinnerungserscheinungen besitzen kein vollständiges neues Leben. Große Magie lässt die Risse ihres Körpers aufleuchten und Teile der Rüstung zu Holz verhärten. Je stärker sie eingreift, desto enger wird ihre Bindung an den Baum.
 
-Diese Kräfte beschreiben die Figur. Daraus sind noch keine fertigen Angriffe oder Kampfphasen abgeleitet.
+Diese Kräfte beschreiben die Figur und bilden die Grundlage für ihre spielbaren Angriffe. Konkrete Angriffe und Kampfphasen sind noch nicht festgelegt.
 
 ## Thron, Reich und Gefolge
 
@@ -83,14 +88,14 @@ Ein mögliches Gefolge besteht aus ehemaligen Hütern und schwurgebundenen Ritte
 1. **Charakterporträt:** Frontal und aufrecht unter einem Wurzelbogen; Blick und Rüstung stehen im Mittelpunkt.
 2. **Thronmotiv:** Ruhige Sitzhaltung mit geöffneten Händen auf den Armlehnen. Äste bilden hinter ihr eine zweite Krone.
 3. **Titelmotiv:** Gotische Glasfenster-Komposition mit dem Weltenbaum im Hintergrund. Der Titel steht lesbar in zwei Zeilen: „Dunkle Königin“ / „von Yggdrasil“.
+4. **Spielfigur:** Pixel-Art in Seitenansicht mit Blick nach links, das Schwert aufrecht in der Hand. Aktueller Entwurf: [koenigin-idle-schwert-v4](../assets/konzept/koenigin-idle-schwert-v4.webp).
 
 Ein gemeinsames Titelbild kann den Helden klein im Vordergrund und die Königin erhöht auf dem Thron zeigen. Eine leuchtende Wurzel verbindet die beiden Bildbereiche. Der Held erhält dabei keine modernen Gegenstände.
 
 ## Noch offen
 
-- Rolle der Königin im konkreten Spielablauf: Gegnerin, Gegenüber im Thronsaal oder eine Verbindung beider Rollen.
+- Konkrete Angriffe der Königin und ob sie sich im Lauf des Spiels verändern.
 - Verbindung zwischen ihrem Reich und der Rückkehr des Helden nach dem Tod.
-- Konkrete Angriffe, Phasen, Begegnungen und Schluss.
-- Endgültige Visualisierung: Illustration, Pixel-Art oder eine Kombination.
+- Gesprächsabschnitte, Zweige der Geschichte und Enden.
 
-Die frühere Rettungsgeschichte um die Schwester des Helden wird nicht verwendet. Ein Ausgang, in dem die Königin ihre Bindung an Yggdrasil löst, bleibt lediglich eine mögliche erzählerische Richtung.
+Die frühere Rettungsgeschichte um die Schwester des Helden wird nicht verwendet. Ein Ausgang, in dem die Königin ihre Bindung an Yggdrasil löst, ist einer von mehreren möglichen Zweigen.

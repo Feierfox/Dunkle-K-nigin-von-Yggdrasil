@@ -2,7 +2,7 @@
 
 ## Verbindliche Beschreibung
 
-**Der Held ist die festgelegte Spielfigur.** Der Mensch vor dem Bildschirm ist der Spieler; der Held spiegelt dessen Lernprozess durch seine Sprache und Reaktionen.
+**Der Held ist der Herausforderer der Königin und wird vom Spiel gesteuert.** Der Spieler steuert die Königin. Der Held kehrt nach jeder Niederlage zurück, lernt ihre Angriffe und spricht dabei wie ein Spieler, der einen schweren Bosskampf übt.
 
 Er gehört optisch zur Fantasywelt. Er benötigt keine ausgearbeitete Herkunft, Familie, Berufslaufbahn oder persönliche Rettungsgeschichte. Die zuvor vorgeschlagenen Figurenbezüge zu Mara und die Suche nach einer Schwester entfallen.
 
@@ -12,7 +12,7 @@ Der Held besitzt kein Handy, keine Powerbank und keine sonstigen modernen Alltag
 
 Der Held ist konzentriert, lernfähig und gelegentlich selbstüberschätzend. Er probiert Strategien aus, merkt sich Abläufe und stellt fest, wenn ein vermeintlich guter Plan nicht funktioniert.
 
-Nach Niederlagen ist er kurz frustriert, bleibt aber bereit für den nächsten Versuch. Seine Kommentare begleiten die Erfahrung des Spielers. Sie erklären nicht nachträglich jeden Fehler und ersetzen das eigenständige Lernen nicht.
+Nach Niederlagen ist er kurz frustriert, bleibt aber bereit für den nächsten Versuch. Seine Kommentare machen seinen Lernfortschritt für den Spieler hörbar. Sie erklären nicht jeden Fehler und nehmen dem Spieler nicht die Beobachtung ab, wie der Held sich verbessert.
 
 ## Sprache
 
@@ -45,10 +45,10 @@ Er darf Fortschritte erkennen, ohne einen Sieg zu behaupten: „Bis dahin passt 
 
 ## Grenzen seines Wissens
 
-- Der Held kommentiert nur Mechaniken und Phasen, die der Spieler bereits erlebt hat.
-- Seine Kommentare geben keine zukünftigen Phasen oder unbekannten Lösungen vorweg.
+- Der Held kommentiert nur Angriffe und Phasen, die er bereits erlebt hat.
+- Seine Kommentare geben keine zukünftigen Phasen oder Angriffe der Königin vorweg.
 - Ein Guide-Verweis beschreibt seine Spielerhaltung; eine echte Website oder ein reales Guide-System ist nicht vorgesehen.
-- Bei unklarer Todesursache bleibt der Kommentar allgemein. Ein falscher konkreter Hinweis soll den Spieler nicht irreführen.
+- Bei unklarer Todesursache bleibt der Kommentar allgemein. Ein falscher konkreter Kommentar soll den Spieler nicht irreführen.
 - Wiederholungen werden begrenzt. Nicht jeder Tod benötigt einen Spruch.
 
 ## Verhältnis zur Königin
@@ -58,14 +58,15 @@ Die Königin bleibt würdevoll und ernst. Die Sprache des Helden bildet dazu den
 > **Königin:** „Du kehrst mit bemerkenswerter Beharrlichkeit zurück.“  
 > **Held:** „Ja. Diesmal hab ich die zweite Phase verstanden.“
 
-Dieser Austausch passt erst, sobald eine zweite Phase erlebt wurde. Er legt weder die Rolle der Königin als Gegnerin noch ein vollständiges Kampfsystem fest.
+Dieser Austausch passt erst, sobald der Held eine zweite Phase erlebt hat. In Gesprächsabschnitten wählt der Spieler die Antworten der Königin; die Antworten des Helden hängen davon ab (siehe [SPIELKONZEPT.md](SPIELKONZEPT.md)).
 
 Eine Romanze oder eine vorgegebene persönliche Beziehung ist nicht Teil der abgestimmten Grundlage.
 
-## Visuelle Richtung — noch auszuarbeiten
+## Visuelle Richtung
 
 Der Held erhält eine feste, innerhalb der Fantasywelt glaubwürdige Erscheinung. Eine kompakte, bewegliche Silhouette bildet den Gegenpol zur hohen, monumentalen Königin. Der Held trägt einen grünen Kapuzenumhang, das Gesicht liegt vollständig im Dunkeln. Haare und Gesichtszüge sind verborgen, die Silhouette bleibt geschlechtsneutral.
 
+Aktueller Entwurf: [held-idle-hood-v3](../assets/konzept/held-idle-hood-v3.webp), Pixel-Art in Seitenansicht mit Blick nach rechts, Schwert, Lederstiefel, Arm- und Schulterschutz aus Stahl.
 
 ## Entfallene Entwürfe
 
@@ -73,5 +74,6 @@ Der Held erhält eine feste, innerhalb der Fantasywelt glaubwürdige Erscheinung
 - Die erfundene Herkunft und die Rettungsgeschichte um Mara wurden verworfen.
 - Moderne Gegenstände und entsprechende Gags wurden verworfen.
 - Ein festgelegter persönlicher Entwicklungsbogen ersetzt nicht die Spielererfahrung.
+- Der Held ist nicht mehr die Spielfigur. Seit dem 09.10.2026 steuert der Spieler die Königin.
 
-Der Kern bleibt: **Der Held lernt durch Scheitern und spricht dabei wie der Spieler.**
+Der Kern bleibt: **Der Held lernt durch Scheitern und spricht dabei wie ein Spieler.**
