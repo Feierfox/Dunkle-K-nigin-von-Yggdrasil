@@ -10,11 +10,15 @@ Ausgabe in `assets/sprites/cutout/`: Sprite-Streifen (`.png`), Bildpositionen (`
 | `koenigin_p2_idle` | koenigin-p2-helmbruch-v1 | 10, schwebend |
 | `held_idle` | held-idle-hood-v3 | 6 |
 | `koenigin_p1_atk_richtschlag` | koenigin-idle-sense-helm-v5, Cut-out (`angriffe.py`) | 10, 128 × 128 |
+| `koenigin_p1_atk_sensenzug` | dto. | 14, 128 × 128 |
+| `koenigin_p1_atk_kreisschnitt` | dto., Körper in der Drehung kurz gespiegelt | 14, 128 × 128 |
 
 ```
 pip install pillow numpy
 python tools/cutout/verformen.py   # Ruheposen
-python tools/cutout/angriffe.py    # Angriffe
+python tools/cutout/angriffe.py    # Angriffe (oder einzeln: angriffe.py sensenzug)
+python tools/cutout/thronsaal.py   # Thronsaal Phase 2 und 3
+python tools/cutout/ausruestung.py # Ausrüstungsstufen, Nebel-Mockup
 ```
 
 `angriffe.py` schneidet Sense, Hand und Unterarm aus dem Entwurf aus, füllt die verdeckte Stelle am Körper mit den angrenzenden Rüstungsfarben und dreht das Teil je Bild um den Ellbogen. Der Arm hebt sich beim Ausholen zusätzlich an.

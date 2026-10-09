@@ -69,15 +69,20 @@ def zu_sprite(bild, palette):
 
 
 def bild_zusammensetzen(leinwand, ursprung, koerper, teil, gelenk, pose):
-    """pose: (winkel, koerper_dx, koerper_dy, teil_dx, teil_dy).
+    """pose: (winkel, koerper_dx, koerper_dy, teil_dx, teil_dy[, spiegeln]).
 
     Winkel in Grad, positiv = gegen den Uhrzeigersinn. Das Teil dreht sich um
     das Gelenk und wird danach zusätzlich verschoben (Arm heben/senken).
     """
-    winkel, kdx, kdy, tdx, tdy = pose
+    winkel, kdx, kdy, tdx, tdy = pose[:5]
+    spiegeln = len(pose) > 5 and pose[5]
     fl = Image.new("RGBA", leinwand)
     ox, oy = ursprung[0] + kdx, ursprung[1] + kdy
-    fl.alpha_composite(koerper, (ox, oy))
+    if spiegeln:
+        # Körper kurz gespiegelt: sie hat sich während der Drehung umgewandt
+        fl.alpha_composite(koerper.transpose(Image.Transpose.FLIP_LEFT_RIGHT), (ox, oy))
+    else:
+        fl.alpha_composite(koerper, (ox, oy))
     gx, gy = gelenk
     # Teil auf eine größere Fläche legen, damit beim Drehen nichts abgeschnitten wird
     rand = 1200
@@ -153,5 +158,65 @@ def richtschlag():
     speichere("koenigin_p1_atk_richtschlag", bilder, palette, quelle)
 
 
+def _vorbereiten():
+    quelle = "koenigin-idle-sense-helm-v5.webp"
+    bild = lade(quelle)
+    koerper, teil = zerlege(bild, SENSE_ARM, UNTERARM)
+    palette = palette_von(bild, (bild.width // MASSSTAB, bild.height // MASSSTAB))
+    leinwand = (2048, 2048)
+    ursprung = (820, leinwand[1] - bild.height - 32)
+    return quelle, koerper, teil, palette, leinwand, ursprung
+
+
+def sensenzug():
+    """Wurf nach vorn (trifft nicht), Treffer beim Zurückziehen, bodennah."""
+    quelle, koerper, teil, palette, leinwand, ursprung = _vorbereiten()
+    posen = [
+        (10, -10, 4, -40, 30),       # 1 Ausfallschritt
+        (25, -18, 8, -90, 60),       # 2
+        (60, -22, 10, -220, 150),    # 3 Wurf: Blatt fliegt nach vorn
+        (82, -24, 12, -380, 230),    # 4
+        (88, -24, 12, -450, 250),    # 5 weiteste Stelle, bodennah
+        (88, -24, 12, -450, 250),    # 6 kurzes Halten (Signal)
+        (86, -22, 12, -330, 240),    # 7 Zurückziehen: Treffer
+        (84, -20, 10, -200, 220),    # 8 Treffer
+        (78, -16, 8, -100, 180),     # 9 Treffer
+        (55, -10, 6, -50, 110),      # 10 Erholung
+        (35, -6, 4, -20, 60),        # 11
+        (20, -4, 2, -10, 30),        # 12
+        (8, -2, 0, 0, 10),           # 13
+        (0, 0, 0, 0, 0),             # 14
+    ]
+    bilder = [bild_zusammensetzen(leinwand, ursprung, koerper, teil, ELLBOGEN, p) for p in posen]
+    speichere("koenigin_p1_atk_sensenzug", bilder, palette, quelle)
+
+
+def kreisschnitt():
+    """Die Sense kreist einmal um die Königin; mitten in der Drehung wendet sie sich um."""
+    quelle, koerper, teil, palette, leinwand, ursprung = _vorbereiten()
+    mitte = (560, 900)  # Körpermitte im Entwurf
+    posen = [
+        (0, 0, 0, 0, 0),             # 1 Ruhe
+        (-10, 4, 0, 40, 40),         # 2 Signal: Sense waagerecht
+        (-25, 6, 2, 80, 80),         # 3
+        (-35, 8, 2, 100, 100),       # 4
+        (-40, 8, 2, 110, 110),       # 5
+        (60, 0, 0, 0, 0),            # 6 Drehung: Treffer
+        (150, 0, 0, 0, 0, True),     # 7 umgewandt
+        (240, 0, 0, 0, 0, True),     # 8
+        (320, 0, 0, 0, 0),           # 9
+        (350, 4, 6, 0, 10),          # 10 Erholung, leicht taumelnd
+        (355, -4, 4, 0, 6),          # 11
+        (358, 2, 2, 0, 2),           # 12
+        (0, 0, 0, 0, 0),             # 13
+        (0, 0, 0, 0, 0),             # 14
+    ]
+    bilder = [bild_zusammensetzen(leinwand, ursprung, koerper, teil, mitte, p) for p in posen]
+    speichere("koenigin_p1_atk_kreisschnitt", bilder, palette, quelle)
+
+
 if __name__ == "__main__":
-    richtschlag()
+    import sys
+    nur = sys.argv[1:] or ["richtschlag", "sensenzug", "kreisschnitt"]
+    for name in nur:
+        globals()[name]()

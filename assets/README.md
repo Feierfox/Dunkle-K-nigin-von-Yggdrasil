@@ -25,6 +25,9 @@ Die Entwürfe verkleinert auf echte PSP-Auflösung, um Lesbarkeit und Aufteilung
 | [psp/koenigin-p2-helmbruch-64x96.png](konzept/psp/koenigin-p2-helmbruch-64x96.png) | Königin Phase 2 automatisch auf 65 × 96 verkleinert, 24 Farben |
 | [psp/held-32x48.png](konzept/psp/held-32x48.png) | Held automatisch auf 37 × 48 verkleinert, 16 Farben |
 | [psp/paletten-phasen.png](konzept/psp/paletten-phasen.png) | Farbpaletten der Phasen 1–3 |
+| [psp/thronsaal-p2.png](konzept/psp/thronsaal-p2.png) (+ `-2x`) | Thronsaal Phase 2: Fackeln brennen türkis (Farbtausch aus Pixel v2) |
+| [psp/thronsaal-p3.png](konzept/psp/thronsaal-p3.png) (+ `-2x`) | Thronsaal Phase 3: dunkler, leuchtende Bodenrisse, Wurzeln, Deckenrisse mit Nachthimmel (einfacher Entwurf) |
+| [psp/mockup-impuls2-amulett.png](konzept/psp/mockup-impuls2-amulett.png) (+ `-2x`) | Impuls beim Wechsel zu Phase 3: lila Nebel, goldener Amulett-Schild |
 
 Die verkleinerten Figuren sind automatisch erzeugt und nur ein Test. Echte Sprites müssen von Hand in nativer Größe gezeichnet werden. Das Phase-2-Mockup zeigt die Königin mit gerissenem Helm, 5 px schwebend. **Erkenntnis:** Bei 96 px Höhe gehen die feinen türkisen Risse und die magentafarbenen Adern beim automatischen Verkleinern fast verloren. Im nativen Sprite müssen sie als wenige, kräftige Linien gezeichnet werden.
 
