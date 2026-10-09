@@ -36,13 +36,22 @@ Der Held wird mit jedem Versuch spürbar besser. **Die Werte der Königin bleibe
 
 **Lebensbalken:** Die Königin hat einen Lebensbalken aus **drei übereinanderliegenden Leisten**. Ist die oberste Leiste leer, beginnt die nächste Phase mit der darunterliegenden Leiste. Ist die dritte Leiste leer, ist die Königin besiegt. Jede Leiste ist gleich lang, und zu Beginn jedes Kampfes sind alle drei wieder voll.
 
-| Phase | Inhalt |
-| --- | --- |
-| 1 | Noch festzulegen |
-| 2 | Noch festzulegen |
-| 3 | Noch festzulegen |
+| Phase | Leiste | Angriffe |
+| --- | --- | --- |
+| 1 | **Rot** | Eigene Angriffe der ersten Phase |
+| 2 | **Orange** | Eigene Angriffe der zweiten Phase, zusätzlich Flächenschaden (AOE) |
+| 3 | **Lila** | Eigene Angriffe der dritten Phase, zusätzlich Flächenschaden (AOE) |
 
-Was sich in jeder Phase ändert, ist noch offen. Ein naheliegender Vorschlag: Jede Phase schaltet neue Angriffe frei, ohne die bisherigen stärker zu machen.
+- Jede Phase hat **eigene Angriffe**. Die konkreten Angriffe sind noch festzulegen.
+- Ab Phase 2 kommt **Flächenschaden** hinzu: Angriffe, die einen Bereich des Thronsaals treffen und dem Helden weniger Ausweichraum lassen.
+
+### Phasenwechsel
+
+- Jeder Phasenwechsel beginnt mit einer **sichtbaren Veränderung der Königin**.
+- Dabei setzt sie einen **magischen Impuls** frei. Trifft er den Helden, stirbt dieser **sofort**, unabhängig von seinen Herzen.
+- Der Held kann lernen, dem Impuls auszuweichen. Gerade dieser Moment eignet sich für Rückkehrkommentare wie „Okay, beim Phasenwechsel muss ich weg.“
+
+**Vorschlag für die Veränderung:** Die Fähigkeiten in [KOENIGIN.md](KOENIGIN.md) liefern sie bereits: Große Magie lässt die Risse ihres Körpers aufleuchten und Teile der Rüstung zu Holz verhärten. In Phase 2 leuchten die Risse, in Phase 3 sind Teile der Rüstung zu Wurzelholz geworden.
 
 ## Herzen und Ausrüstung des Helden
 
@@ -51,13 +60,17 @@ Was sich in jeder Phase ändert, ist noch offen. Ein naheliegender Vorschlag: Je
 - Der Held beginnt mit **1 Herz**. Im Lauf des Spiels steigt die Zahl auf **bis zu 5 Herzen**.
 - Neue Herzen und bessere Ausrüstung holt er sich über eine **Questreihe** außerhalb des Thronsaals.
 - Während er diese Quests erledigt, bleibt er dem Thronsaal länger fern als nach einer gewöhnlichen Niederlage.
+- **Ein Treffer der Königin kostet ein Herz.** Ausnahme: Der magische Impuls beim Phasenwechsel tötet sofort.
 - Sein Fortschritt kommt also aus zwei Quellen: Er lernt die Angriffe der Königin, und er wird durch Ausrüstung und Herzen widerstandsfähiger.
+
+### Abwesenheit des Helden
+
+Während der Held auf Quest ist, sieht der Spieler die **Königin allein im Thronsaal**. Dabei geschieht **bewusst nichts**: kein Gegner, kein Dialog, keine Aufgabe. Die Stille ist gewollt und zeigt, wie leer ihre Herrschaft ohne den Herausforderer ist.
 
 Noch offen:
 
-- Wie viel hält ein Herz aus, ein Treffer oder mehr?
 - Wann bricht er zu einer Quest auf, und wie viele Herzen bringt er jeweils mit zurück?
-- Wie erlebt der Spieler die Abwesenheit des Helden: als Zeitsprung, als Szene mit der Königin allein im Thronsaal oder als Bericht bei seiner Rückkehr?
+- Kann der Spieler die Königin in dieser Szene bewegen, und wie lange dauert sie?
 - Welche Ausrüstungsteile gibt es, und wie sieht man sie am Sprite?
 
 ## Lernen des Helden — Planungsmaßstab
@@ -109,8 +122,8 @@ Anzahl und Art der Angriffe sowie ihre Verteilung auf die drei Phasen sind noch 
 
 ## Offene Entscheidungen
 
-- Was ändert sich in jeder der drei Phasen?
-- Ablauf der Questreihe des Helden und Darstellung seiner Abwesenheit.
+- Welche konkreten Angriffe hat jede der drei Phasen?
+- Ablauf der Questreihe des Helden und Dauer seiner Abwesenheit.
 - Wie genau lernt der Held, und wie wird sein Fortschritt sichtbar?
 - Welche Angriffe besitzt die Königin in welcher Phase?
 - Wie viele Gesprächsabschnitte und Enden gibt es?
@@ -119,7 +132,7 @@ Anzahl und Art der Angriffe sowie ihre Verteilung auf die drei Phasen sind noch 
 
 ## Reihenfolge der weiteren Planung
 
-1. Die drei Phasen festlegen und die Angriffe der ersten Phase mit Ankündigung und Wirkung beschreiben.
+1. Die Angriffe der ersten Phase mit Ankündigung und Wirkung beschreiben.
 2. Das Lernverhalten des Helden für diese Angriffe festlegen.
 3. Den ersten Gesprächsabschnitt mit zwei bis drei Antwortmöglichkeiten schreiben.
 4. Die Hauptzweige der Geschichte und ihre Enden skizzieren.

@@ -1,6 +1,6 @@
 # Die Dunkle Königin von Yggdrasil
 
-**Die Königin ist die Spielfigur.** Der Spieler steuert sie im Kampf gegen den zurückkehrenden Held und wählt ihre Antworten in den Gesprächen (siehe [SPIELKONZEPT.md](SPIELKONZEPT.md)).
+**Die Königin ist die Spielfigur.** Der Spieler steuert sie im Kampf gegen den zurückkehrenden Helden und wählt ihre Antworten in den Gesprächen (siehe [SPIELKONZEPT.md](SPIELKONZEPT.md)).
 
 ## Gestalterische Leitidee
 
@@ -73,7 +73,7 @@ Als Symbolik können die fünf Kronenspitzen für Bewahren, Erinnern, Schützen,
 
 Sie kann Tote nicht wirklich zurückbringen. Erinnerungserscheinungen besitzen kein vollständiges neues Leben. Große Magie lässt die Risse ihres Körpers aufleuchten und Teile der Rüstung zu Holz verhärten. Je stärker sie eingreift, desto enger wird ihre Bindung an den Baum.
 
-Diese Kräfte beschreiben die Figur und bilden die Grundlage für ihre spielbaren Angriffe. Ihre Kampfwerte bleiben immer gleich. Sie kämpft in drei Phasen; konkrete Angriffe und deren Verteilung auf die Phasen sind noch nicht festgelegt.
+Diese Kräfte beschreiben die Figur und bilden die Grundlage für ihre spielbaren Angriffe. Ihre Kampfwerte bleiben immer gleich. Sie kämpft in drei Phasen mit jeweils eigenen Angriffen, ab Phase 2 zusätzlich mit Flächenschaden. Jeder Phasenwechsel verändert ihr Aussehen und setzt einen magischen Impuls frei, der den Helden sofort töten kann. **Vorschlag:** In Phase 2 leuchten die Risse ihres Körpers auf, in Phase 3 sind Teile der Rüstung zu Wurzelholz verhärtet (siehe [SPIELKONZEPT.md](SPIELKONZEPT.md#phasenwechsel)).
 
 ## Thron, Reich und Gefolge
 
@@ -94,7 +94,7 @@ Ein gemeinsames Titelbild kann den Helden klein im Vordergrund und die Königin 
 
 ## Noch offen
 
-- Konkrete Angriffe der Königin und ihre Verteilung auf die drei Phasen.
+- Konkrete Angriffe der Königin in den drei Phasen.
 - Verbindung zwischen ihrem Reich und der Rückkehr des Helden nach dem Tod.
 - Gesprächsabschnitte, Zweige der Geschichte und Enden.
 

@@ -5,9 +5,9 @@ Planung, Figurenkonzept und erste Grafikentwürfe für ein kompaktes Fantasy-Bos
 ## Festgelegte Grundlage
 
 - Der Titel bleibt **Dunkle Königin von Yggdrasil**.
-- **Der Spieler steuert die Königin**, den Endgegner. Sie besitzt eine ernsthafte, majestätische Präsenz in einer dunklen Fantasywelt mit Yggdrasil-, Wurzel- und gotischen Motiven. Sie kämpft mit einem langen Schwert. Ihr Lebensbalken besteht aus drei übereinanderliegenden Leisten, jede leere Leiste startet die nächste von drei Phasen. Ihre Werte bleiben immer gleich.
+- **Der Spieler steuert die Königin**, den Endgegner. Sie besitzt eine ernsthafte, majestätische Präsenz in einer dunklen Fantasywelt mit Yggdrasil-, Wurzel- und gotischen Motiven. Sie kämpft mit einem langen Schwert. Ihr Lebensbalken besteht aus drei übereinanderliegenden Leisten, rot, orange und lila. Jede leere Leiste startet die nächste von drei Phasen mit eigenen Angriffen, ab Phase 2 mit Flächenschaden. Jeder Phasenwechsel setzt einen magischen Impuls frei, der den Helden sofort töten kann. Ihre Werte bleiben immer gleich.
 - **Der Held** ist ihr Herausforderer und wird vom Spiel gesteuert. Er erhält keine ausgearbeitete Vorgeschichte und keine persönliche Rettungsgeschichte.
-- Nach jeder Niederlage kehrt der Held in den Thronsaal zurück, kommentiert knapp den letzten Versuch und lernt die Angriffe der Königin. Er beginnt mit 1 Herz und erreicht über eine Questreihe mit besserer Ausrüstung bis zu 5 Herzen.
+- Nach jeder Niederlage kehrt der Held in den Thronsaal zurück, kommentiert knapp den letzten Versuch und lernt die Angriffe der Königin. Ein Treffer kostet ein Herz. Er beginnt mit 1 Herz und erreicht über eine Questreihe mit besserer Ausrüstung bis zu 5 Herzen. Während seiner Quests steht die Königin allein im Thronsaal, und es geschieht bewusst nichts.
 - Der Held spricht wie ein Spieler, der Guides liest, Mechaniken verinnerlicht und durch gescheiterte Versuche das Timing und die einzelnen Phasen lernt.
 - Der Humor entsteht aus diesem Lernprozess und dem Gegensatz zur würdevollen Königin. Moderne Alltagsgegenstände wie Handy oder Powerbank gehören nicht zum Konzept.
 - Zwischen den Kämpfen gibt es Gespräche mit Antwortauswahl. Die Geschichte verzweigt sich in viele mögliche Wege und Enden.
