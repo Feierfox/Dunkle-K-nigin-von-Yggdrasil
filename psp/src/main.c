@@ -23,14 +23,15 @@ extern int demo_held_tot(void);
 extern int demo_abstand(void);
 extern int demo_koenigin_x(void);
 extern int demo_leiche_x(void);
+extern void demo_zustand(int t);
 static unsigned int demo_eingabe(int t)
 {
     if (demo_held_tot()) {
         int d = demo_leiche_x() - demo_koenigin_x();
-        if (d < -20) return PSP_CTRL_LEFT;
-        if (d > 20 && d < 200) return PSP_CTRL_RIGHT;
-        if ((t % 20) == 0) return PSP_CTRL_CROSS;
-        return PSP_CTRL_RIGHT;
+        if (d > 200) return PSP_CTRL_RIGHT;          /* verbrannt: zurück nach rechts */
+        if (d < -25) return PSP_CTRL_LEFT;
+        if (d > 25) return PSP_CTRL_RIGHT;
+        return (t % 10 == 0) ? PSP_CTRL_CROSS : 0;
     }
     if (demo_abstand() > 70) return PSP_CTRL_LEFT;
     if ((t % 75) == 0) {
@@ -112,7 +113,7 @@ int main(int argc, char *argv[])
 #ifdef DEMO
         pad.Buttons = demo_eingabe(demo_t);
         pad.Lx = 128;
-        if (demo_t % 90 == 0) demo_foto(basis, demo_t);
+        if (demo_t % 90 == 0) { demo_foto(basis, demo_t); demo_zustand(demo_t); }
         if (++demo_t > DEMO) break;
 #endif
         Eingabe e;

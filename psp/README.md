@@ -28,11 +28,22 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 - Thronsaal, Königin mit Ruhepose und drei Angriffen (Trefferzonen nach `docs/ANGRIFFE.md`), drei Lebensleisten.
 - Held mit Lern-KI: weicht einem Angriff erst aus, nachdem er davon getroffen wurde; zuerst zu früh, ab dem dritten Mal richtig (Rolle bzw. Sprung).
 - Tod, Stille, die Königin geht zum Körper, ✕ verbrennt ihn mit eisblauem Feuer, der Held kehrt zurück, sobald sie wieder rechts im Saal steht.
-- Rückkehrworte der Königin und erste Kommentare des Helden.
+- Rückkehrworte der Königin und erste Kommentare des Helden, oben mittig.
+- Die Lebensleiste erscheint nur im aktiven Kampf.
 - Nach dem 5. und 11. Tod eine Quest: Abwesenheit (es geschieht nichts), danach neue Umhangfarbe (Palettentausch) und ein Herz mehr.
 - Rote Leiste leer: Verwandlung mit Ringwelle; der Held lernt, darüberzuspringen. Phase 2 selbst folgt später.
 
 **Noch nicht enthalten:** Gehen-Animationen (Figuren gleiten), Phase 2 und 3, Umarmen und Opfern, Gespräche mit Auswahl, Musik und Ton.
+
+## Getestet
+
+Im Emulator PPSSPP (ohne Oberfläche) mit einer Demo-Variante, in der ein Skript die Königin steuert (`-DDEMO=<Schritte>`, siehe `src/main.c`): sechs Minuten Spielzeit mit 14 Toden des Helden, Ritual, zwei Quests und Lernfortschritt laufen ohne Absturz durch. Bildschirmfotos aus dem Emulator:
+
+![Kampf](bilder/emulator-kampf-lernender-held.png)
+![Ritual](bilder/emulator-ritual-feuer.png)
+![Rückkehr nach der Quest](bilder/emulator-rueckkehr-nach-quest.png)
+
+Auf einer echten PSP-1000 ist die Szene noch nicht getestet.
 
 ## Bauen
 

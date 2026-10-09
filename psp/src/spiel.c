@@ -12,6 +12,8 @@
 #define TICKS_JE_BILD 5          /* Animationen mit 12 Bildern pro Sekunde */
 #define K_MIN 140
 #define K_MAX 380
+#define K_FREI_MIN 20          /* nach dem Tod des Helden darf sie durch den ganzen Saal gehen */
+#define K_FREI_MAX 460
 #define H_MIN 40
 #define H_MAX 440
 #define LEISTE 60                /* Lebenspunkte je Leiste */
@@ -24,7 +26,7 @@ enum { H_KOMMT, H_KAMPF, H_HIEBT, H_ROLLT, H_SPRINGT, H_GETROFFEN, H_TOT, H_WEG 
 enum { L_KAMPF, L_RITUAL, L_ABWESEND };
 
 typedef struct {
-    int x, zustand, tick, angriff, phase;
+    int x, zustand, tick, angriff, phase, blick;   /* blick: -1 links, 1 rechts */
     int lp[3];                    /* drei Leisten: rot, orange, lila */
     int getroffen_in_schwung;
 } Koenigin;
@@ -84,6 +86,7 @@ void spiel_start(void)
     memset(&K, 0, sizeof K);
     memset(&H, 0, sizeof H);
     K.x = 330;
+    K.blick = -1;
     K.lp[0] = K.lp[1] = K.lp[2] = LEISTE;
     H.x = -20;
     H.zustand = H_KOMMT;
@@ -247,6 +250,7 @@ static void koenigin_schritt(const Eingabe *e)
     switch (K.zustand) {
     case K_BEREIT:
         K.x += laufen;
+        if (laufen) K.blick = laufen;
         if (lage == L_KAMPF && H.zustand != H_KOMMT && H.zustand != H_WEG) {
             int neu = -1;
             if (e->neu & PSP_CTRL_SQUARE) neu = ANG_RICHTSCHLAG;
@@ -280,8 +284,9 @@ static void koenigin_schritt(const Eingabe *e)
         }
         break;
     }
-    if (K.x < K_MIN) K.x = K_MIN;
-    if (K.x > K_MAX) K.x = K_MAX;
+    int frei = (lage != L_KAMPF);
+    if (K.x < (frei ? K_FREI_MIN : K_MIN)) K.x = frei ? K_FREI_MIN : K_MIN;
+    if (K.x > (frei ? K_FREI_MAX : K_MAX)) K.x = frei ? K_FREI_MAX : K_MAX;
 
     /* Leiste leer: Verwandlung mit Impuls */
     if (K.zustand != K_VERWANDLUNG && K.phase == 0 && K.lp[0] <= 0 && lage == L_KAMPF) {
@@ -297,6 +302,8 @@ static void koenigin_schritt(const Eingabe *e)
 static void rueckkehr(void)
 {
     runde++;
+    if (K.x < K_MIN) K.x = K_MIN;
+    if (K.x > K_MAX) K.x = K_MAX;
     H.zustand = H_KOMMT;
     H.x = -20;
     H.herzen = H.max_herzen;
@@ -372,16 +379,30 @@ static void herz(int x, int y, int voll)
             if (m[yy][xx] == '1') rechteck(x + xx, y + yy, 1, 1, f);
 }
 
+static int text_breite(const char *s)
+{
+    int n = 0;
+    for (; *s; s++) if ((*s & 0xC0) != 0x80) n++;   /* UTF-8-Zeichen zählen */
+    return n * SCHRIFT_ZW;
+}
+
+static int im_kampf(void)
+{
+    return lage == L_KAMPF && H.zustand != H_KOMMT && H.zustand != H_WEG;
+}
+
 static void hud(void)
 {
     static const unsigned int farbe[3] = {0xFF2828D6, 0xFF1E8CF0, 0xFFFF6EBA};  /* rot, orange, lila */
     int x = 140, y = 10, w = 200, h = 8;
+    if (im_kampf()) {   /* Lebensleiste nur im aktiven Kampf */
     rechteck(x - 2, y - 2, w + 4, h + 4, 0xFF100608);
     int p = K.phase;
     rechteck(x, y, w, h, p < 2 ? farbe[p + 1] : 0xFF281A1E);
     int lp = K.lp[p] < 0 ? 0 : K.lp[p];
     rechteck(x, y, w * lp / LEISTE, h, farbe[p]);
     for (int i = 0; i < 3; i++) rechteck(x + w + 8 + i * 9, y + 1, 6, 6, i >= p ? farbe[i] : 0xFF403038);
+    }
     for (int i = 0; i < H.max_herzen; i++) herz(10 + i * 10, 254, i < H.herzen && H.zustand != H_TOT);
 }
 
@@ -395,10 +416,17 @@ static void ring(void)
 static void textbox(void)
 {
     if (text_tick <= 0 || !text_zeile[0]) return;
-    rechteck(8, 200, 464, 30, 0xC0100608);
-    rechteck(8, 200, 464, 1, 0xFF6E4E5A);
-    text(text_zeile[0], 14, 203, text_farbe[0]);
-    if (text_zeile[1]) text(text_zeile[1], 14, 216, text_farbe[1]);
+    /* oben unter der Lebensleiste, dort verdeckt die Box keine Figur */
+    /* oben mittig; die Box ist so breit wie die längere Zeile */
+    int b0 = text_breite(text_zeile[0]);
+    int b1 = text_zeile[1] ? text_breite(text_zeile[1]) : 0;
+    int b = (b0 > b1 ? b0 : b1) + 12;
+    int x = (BILD_B - b) / 2;
+    int h = (b1 > 0) ? 30 : 17;
+    rechteck(x, 24, b, h, 0xC0100608);
+    rechteck(x, 24 + h - 1, b, 1, 0xFF6E4E5A);
+    text(text_zeile[0], (BILD_B - b0) / 2, 27, text_farbe[0]);
+    if (b1 > 0) text(text_zeile[1], (BILD_B - b1) / 2, 40, text_farbe[1]);
 }
 
 void spiel_zeichnen(void)
@@ -412,7 +440,7 @@ void spiel_zeichnen(void)
     if (K.zustand == K_ANGRIFF) { k_anim = ANGRIFF_ANIM[K.angriff]; k_bild = K.tick / TICKS_JE_BILD; }
     else if (K.phase >= 1 || K.zustand == K_VERWANDLUNG) { k_anim = Q_P2_IDLE; k_bild = (lage_tick / TICKS_JE_BILD) % 10; }
     else { k_anim = Q_P1_IDLE; k_bild = (lage_tick / TICKS_JE_BILD / 2) % 6; }
-    if (lage == L_ABWESEND || lage == L_RITUAL) k_spiegel = 0;
+    if (lage == L_ABWESEND || lage == L_RITUAL) k_spiegel = K.blick > 0;
 
     /* Held */
     int h_spiegel = H.x > K.x;
@@ -442,6 +470,12 @@ void spiel_zeichnen(void)
 }
 
 #ifdef DEMO
+#include <stdio.h>
+void demo_zustand(int t)
+{
+    printf("t=%d lage=%d K.x=%d K.z=%d H.z=%d H.x=%d leiche=%d verbrannt=%d feuer=%d tode=%d\n",
+           t, lage, K.x, K.zustand, H.zustand, (int)H.x, H.leiche_x, H.verbrannt, H.feuer_tick, H.tode);
+}
 int demo_held_tot(void) { return lage == L_RITUAL; }
 int demo_abstand(void) { return abstand(); }
 int demo_koenigin_x(void) { return K.x; }
