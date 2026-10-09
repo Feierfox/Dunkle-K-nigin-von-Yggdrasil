@@ -56,6 +56,3 @@ Diese Fragen sind dokumentiert, ohne die abgestimmte Figurenidee durch unbesproc
 2. Eine konkrete Begegnung mit nachvollziehbaren Phasen schriftlich ausarbeiten.
 3. Passende Rückkehrkommentare dieser Begegnung zuordnen.
 4. Erst danach Umfang, Darstellung und technische Umsetzung planen.
-
-## Umfang dieses Repositories
-
