@@ -38,7 +38,7 @@ Der Held wird mit jedem Versuch spürbar besser. **Die Werte der Königin bleibe
 
 | Phase | Leiste | Angriffe |
 | --- | --- | --- |
-| 1 | **Rot** | Schwertangriffe (Vorschlag: Richtschlag, Wurzelstoß, Kreisschnitt) |
+| 1 | **Rot** | Sensenangriffe (Vorschlag: Richtschlag, Sensenzug, Kreisschnitt) |
 | 2 | **Orange** | Magische Angriffe mit Flächenschaden (Vorschlag: Sternschauer, Windklinge, Todesurteil) |
 | 3 | **Lila** | Wurzel- und Erinnerungsangriffe mit Flächenschaden (Vorschlag: Ranken, Erinnerungsriss, Weltgericht) |
 
@@ -55,7 +55,9 @@ Vor Phase 1 sitzt die Königin auf dem Thron („Phase 0“, ohne Kampf). Ausseh
 - Der Impuls kommt am **Ende der Verwandlung**. Während der Verwandlung **greift der Held nicht an und bleibt stehen**.
 - Er überlebt den Impuls erst, wenn er eine Gegenmaßnahme gelernt oder erworben hat, zum Beispiel Ausweichen, Schildblock oder ein Amulett aus der Questreihe. Gerade dieser Moment eignet sich für Rückkehrkommentare wie „Okay, beim Phasenwechsel muss ich weg.“
 
-**Veränderung (Vorschlag):** In Phase 2 leuchten die Risse ihres Körpers türkis und sie schwebt leicht. In Phase 3 sind Teile der Rüstung zu Wurzelholz geworden, und Flügel aus Wurzeln tragen sie.
+**Helmbruch (festgelegt):** Beim Wechsel zu Phase 2 zerbricht der Helm der Königin. In ihm wohnt ein Teil Yggdrasils, der durch ihre lange Wacht verdorben wurde und sie beeinflusst. Das ist der Wendepunkt der Geschichte (siehe [KOENIGIN.md](KOENIGIN.md#der-verdorbene-yggdrasil--wendepunkt)).
+
+**Veränderung (Vorschlag):** In Phase 2 leuchten die Risse ihres Körpers türkis, verdorbene Wurzeln wachsen aus den Helmresten, und sie schwebt leicht. In Phase 3 sind Teile der Rüstung zu Wurzelholz geworden, und Flügel aus Wurzeln tragen sie.
 
 ## Herzen und Ausrüstung des Helden
 
@@ -109,10 +111,11 @@ Die Geschichte soll **einer von vielen möglichen Zweigen** sein. Jeder Durchlau
 
 - Zwischen Kampfabschnitten wählt der Spieler in Gesprächen die Antworten der Königin.
 - Entscheidungen verändern die Beziehung zwischen Königin und Held, die Gespräche danach und das Ende.
-- Mögliche Richtungen, als Vorschlag: Die Königin hält an ihrer Herrschaft fest; sie versteht das Anliegen des Helden; sie löst ihre Bindung an Yggdrasil; der Held gibt auf; beide finden einen dritten Weg.
+- **Wendepunkt (festgelegt):** Beim ersten Helmbruch wird sichtbar, dass der verdorbene Yggdrasil die Königin beeinflusst. Ab hier stellt sich die Frage, wie viel ihres Handelns ihr eigener Wille ist.
+- Mögliche Richtungen, als Vorschlag: Die Königin hält an ihrer Herrschaft fest; die Verderbnis siegt endgültig; der Held befreit sie von der Verderbnis; sie löst sich selbst und ihre Bindung an Yggdrasil; sie versteht das Anliegen des Helden; der Held gibt auf; beide finden einen dritten Weg.
 - Ein Durchlauf bleibt kurz und in einer Sitzung spielbar. Die Vielfalt entsteht durch Wiederholen mit anderen Entscheidungen.
 
-Die Vorgeschichte der Königin in [KOENIGIN.md](KOENIGIN.md) (Hüterin der Erinnerungen, Bindung an die Wurzeln, Angst vor dem Vergessen) bietet dafür die erzählerische Grundlage.
+Die Vorgeschichte der Königin in [KOENIGIN.md](KOENIGIN.md) (Hüterin der Erinnerungen, Bindung an die Wurzeln, Angst vor dem Vergessen, der verdorbene Yggdrasil im Helm) bietet dafür die erzählerische Grundlage.
 
 ## Gestaltung der Angriffe — Planungsmaßstab
 

@@ -2,7 +2,19 @@
 
 Prompts für den Bildgenerator von ChatGPT, 09.10.2026. Die Texte sind unverändert übernommen, nur der frühere Name „Arvid“ wurde durch „hero“ bzw. „held“ ersetzt. Einige Angaben sind durch spätere Entscheidungen überholt; das ist jeweils vermerkt.
 
-Der Prompt für `koenigin-idle-schwert-v3` (erster Austausch der Stangenwaffe gegen ein Schwert) lag nicht vor.
+Der Prompt für `koenigin-idle-schwert-v3` (erster Austausch der Stangenwaffe gegen ein Schwert) lag nicht vor. Die Vorschläge `koenigin-v5` und `koenigin-p2-v1` stammen aus diesem Repository und sind noch nicht erzeugt.
+
+## koenigin-v5 — Vorschlag: Sense und Helm
+
+Noch nicht erzeugt. Bearbeitung von `koenigin-idle-schwert-v4`, entworfen in diesem Repository nach den Entscheidungen vom 09.10.2026.
+
+> Use case: precise-object-edit. Edit the attached pixel-art Queen asset. Make exactly two changes and keep everything else unchanged. 1) Replace the sword with a long war scythe held upright in the same hand: long slightly twisted shaft of dark root wood with two broad muted-gold bands and one small purple crystal at the bottom end; at the top the wood splits into short branch shapes that hold one large purple diamond crystal where the blade attaches; a long curved blade in pale lavender with one plain violet stripe along the cutting edge, the blade curving forward over her head toward the left. 2) Give her a fully closed black helmet that hides the entire face; only two small turquoise glowing eyes are visible in a narrow eye slit. The five tall irregular black branch points of her crown grow directly out of the top of the helmet, central point highest, tiny magenta crystals at the tips. Long ice-blue hair still flows from under the back of the helmet. Keep her pose facing left, armor, flowers, midnight-violet cloak, proportions and the SAME coarse pixel scale: large uniform square pixel clusters, no thin lines, no fine filigree, scythe drawn at the same chunky pixel density as her gauntlet and boots, at most 8 colors for the scythe. Entire figure and the whole scythe visible. Genuine transparent background. No scenery, no floor, no text, no border.
+
+## koenigin-p2-v1 — Vorschlag: nach dem Helmbruch
+
+Noch nicht erzeugt. Bearbeitung von `koenigin-v5`.
+
+> Use case: precise-object-edit. Edit the attached pixel-art Queen asset to show her second combat phase. The closed black helmet is shattered: large parts have broken away, revealing a dark shadowy face with two turquoise-white glowing eyes without pupils; jagged helmet remnants remain at the sides and back, the five branch crown points still rise from the remnants. From the cracks of the helmet grow a few thin black roots with glowing magenta veins. Thin turquoise glowing crack lines run across her armor. Dark roots from the scythe shaft wind around her forearm, binding hand and scythe together. She floats a few pixels above the ground, her cloak lifted upward and backward as if underwater. Keep pose facing left, scythe, hair, armor, flowers, proportions and the same coarse pixel scale with large uniform square pixel clusters. Genuine transparent background. No scenery, no floor, no text, no border.
 
 ## thronsaal-pixel-v2 — aktueller Thronsaal
 

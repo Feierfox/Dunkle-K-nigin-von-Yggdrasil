@@ -2,7 +2,7 @@
 
 Sprite-Spezifikation der Königin für den Pixel-Artist. Grundlage ist ein eingereichter Vorschlag vom 09.10.2026, angepasst an die festgelegten Entscheidungen und an die Grenzen der PSP-1000.
 
-**Verbindlich** sind: das Aussehen nach Entwurf v4, die drei Kampfphasen mit den Lebensleisten Rot, Orange und Lila, der magische Impuls bei jedem Phasenwechsel, das Verhalten des Helden während der Verwandlung und das Kampftempo. Alles andere, also Angriffsnamen, Bildzahlen, Paletten der Phasen 2 und 3 und Effekte, ist ein **Vorschlag**.
+**Verbindlich** sind: das Aussehen nach Entwurf v4 mit **Sense statt Schwert** und **geschlossenem Helm mit Krone**, der Helmbruch beim Wechsel zu Phase 2, die drei Kampfphasen mit den Lebensleisten Rot, Orange und Lila, der magische Impuls bei jedem Phasenwechsel, das Verhalten des Helden während der Verwandlung und das Kampftempo. Alles andere, also Angriffsnamen, Bildzahlen, Paletten der Phasen 2 und 3 und Effekte, ist ein **Vorschlag**.
 
 ## Eckdaten
 
@@ -10,7 +10,7 @@ Sprite-Spezifikation der Königin für den Pixel-Artist. Grundlage ist ein einge
 | --- | --- |
 | Software | Aseprite (empfohlen) |
 | Bildschirm | 480 × 272 Pixel (PSP-1000) |
-| Sprite Phase 0–2 | 64 × 96 Pixel |
+| Sprite Phase 0–2 | 64 × 96 Pixel; Angriffe mit der Sense 96 × 96, weil das Sensenblatt weit ausholt |
 | Sprite Phase 3 | 80 × 112 Pixel Körper, Flügel als eigene Ebene (gesamt etwa 160 × 112) |
 | Farbmodus | Indiziert, eine Palette pro Phase, höchstens 32 genutzte Farben |
 | Animationen | 12 Bilder pro Sekunde. Die Spiellogik läuft mit 60 Bildern pro Sekunde, ein Animationsbild steht also 5 Logikbilder lang |
@@ -26,13 +26,14 @@ Ein Bildkonzept in echter PSP-Auflösung liegt in [assets/konzept/psp/](../asset
 | Lebensleiste | – | **Rot** | **Orange** | **Lila** |
 | Zustand | Intro, Dialoge, Warten, Abwesenheit des Helden | Kampf | Kampf | Kampf |
 | Bewegung | Sitzt auf dem Thron | Schreitet, läuft | Gleitet, 5 px über dem Boden | Schwebt, 20 px über dem Boden |
-| Aussehen | Wie Entwurf v4 | Wie Entwurf v4 | Risse leuchten türkis, Augen ohne Pupille | Teile der Rüstung zu Wurzelholz, Flügel aus Wurzeln |
+| Aussehen | Wie Entwurf v4, mit geschlossenem Helm | Wie Phase 0 | **Helm zerbrochen**, Gesicht sichtbar, Risse leuchten türkis, verdorbene Wurzeln aus den Helmresten | Teile der Rüstung zu Wurzelholz, Flügel aus Wurzeln |
+| Sense | In der Hand | In der Hand | Wurzeln umschlingen den Unterarm | Mit dem Arm verschmolzen, Stielwurzeln gehen in die Flügel über |
 | Aura | Keine | Keine | Wenige eisblaue Partikel | Blätter, Licht, Wurzeln im Saal |
-| Angriffe | – | 3 Schwertangriffe | 3 magische Angriffe mit Flächenschaden | 3 Wurzel- und Erinnerungsangriffe mit Flächenschaden |
+| Angriffe | – | 3 Sensenangriffe | 3 magische Angriffe mit Flächenschaden | 3 Wurzel- und Erinnerungsangriffe mit Flächenschaden |
 | Sprite | 64 × 96 | 64 × 96 | 64 × 96 | 80 × 112 + Flügel |
 | Thronsaal | Normal | Normal | Fackeln brennen türkis | Boden bricht auf, Wurzeln leuchten, Decke zeigt Risse |
 
-Die Farben der Magie folgen [KOENIGIN.md](KOENIGIN.md): **Eisblau und Türkis**. Lila bleibt der Lebensleiste von Phase 3 und den Kristallen vorbehalten, damit sich Effekte vom dunkelvioletten Saal abheben. Die Krone bleibt in allen Phasen aus schwarzen Ästen; in Phase 3 wachsen ihr Blätter.
+Die Farben der Magie folgen [KOENIGIN.md](KOENIGIN.md): **Eisblau und Türkis**. Lila bleibt der Lebensleiste von Phase 3 und den Kristallen vorbehalten, damit sich Effekte vom dunkelvioletten Saal abheben. Die **Verderbnis** Yggdrasils erscheint als schwarze Wurzeln mit **magentafarbenen Adern** und bleibt so von ihrer eigenen Magie unterscheidbar. Die Krone bleibt in allen Phasen aus schwarzen Ästen; nach dem Helmbruch sitzt sie auf den Resten des Helms, in Phase 3 wachsen ihr Blätter.
 
 ## Kampftempo
 
@@ -67,7 +68,7 @@ Jeder neue Versuch beginnt wieder in Phase 1 mit vollen Leisten. Der Held muss f
 
 ## Phase 0 — Die Thronende
 
-Die Königin sitzt auf ihrem Thron. Kalt, ruhig, erhaben. Nur der Atem und gelegentlich ein Tippen der Finger auf der Armlehne. Keine Magie, keine Aura. Ihre Existenz ist die Drohung.
+Die Königin sitzt auf ihrem Thron, das Gesicht hinter dem geschlossenen Helm, nur die türkisen Augen im Sehschlitz. Die Sense lehnt an der Armlehne. Kalt, ruhig, erhaben. Nur der Atem und gelegentlich ein Tippen der Finger auf der Armlehne. Keine Magie, keine Aura. Ihre Existenz ist die Drohung.
 
 Phase 0 zeigt sie auch in der Szene, in der der Held auf Quest ist und **bewusst nichts geschieht**.
 
@@ -80,31 +81,31 @@ Phase 0 zeigt sie auch in der Szene, in der der Held auf Quest ist und **bewusst
 
 Pixel-Art kennt keine halben Pixel: Atembewegungen sind 1 px groß oder entstehen durch einen Wechsel der Schattenfarbe.
 
-**Ebenen in Aseprite** (von unten nach oben): CAPE_BACK, BODY_BASE, ARMOR_DETAIL, ARMOR_SHINE, HANDS, HEAD, HAIR, CROWN, SWORD, CAPE_FRONT. Der Thron gehört zum Hintergrund, nicht zum Sprite.
+**Ebenen in Aseprite** (von unten nach oben): CAPE_BACK, SCYTHE_BACK, BODY_BASE, ARMOR_DETAIL, ARMOR_SHINE, HANDS, HEAD (Gesicht, für Phase 2), HAIR, HELMET, CROWN, SCYTHE_FRONT, CAPE_FRONT. Helm und Sense liegen auf eigenen Ebenen, damit Helmbruch und Verschmelzung getrennt animiert werden können. Der Thron gehört zum Hintergrund, nicht zum Sprite.
 
 ## Phase 1 — Die Kämpfende (rote Leiste)
 
-Die Königin erhebt sich und betritt das Kampffeld. Schwer, kraftvoll, beherrschend. Gleiche Farben wie Phase 0, keine Aura, keine Magie. Ihre Waffe ist das **lange Schwert**.
+Die Königin erhebt sich und betritt das Kampffeld. Schwer, kraftvoll, beherrschend. Gleiche Farben wie Phase 0, keine Aura, keine Magie. Ihre Waffe ist die **Sense**.
 
 ### Angriffe — Vorschlag
 
-Die drei Angriffe aus dem ursprünglichen Vorschlag (Thronschlag mit der Faust, Schattengreifer, Dunkelring) wurden zu Schwertangriffen umgebaut. So bleiben sie erkennbar und passen zur Figur:
+Die drei Angriffe aus dem ursprünglichen Vorschlag (Thronschlag mit der Faust, Schattengreifer, Dunkelring) wurden zu Sensenangriffen umgebaut. So bleiben sie erkennbar und nutzen die Form der Sense:
 
 | Angriff | Bilder | Wirkung | Treffer aktiv |
 | --- | --- | --- | --- |
-| **Richtschlag** | 10 | Schwert senkrecht über den Kopf, Schlag nach unten direkt vor ihr. Kurze Reichweite, viel Wucht | Bild 6–7 |
-| **Wurzelstoß** | 12 | Ausfallschritt mit gestrecktem Stich nach vorn, etwa 80 px Reichweite | Bild 7–9 |
-| **Kreisschnitt** | 14 | Drehung um sich selbst, das Schwert trifft auf beiden Seiten. Nur Nahbereich, kein Flächenschaden | Bild 8–10 |
+| **Richtschlag** | 10 | Sense hoch über den Kopf, das Blatt fährt in einem Bogen vor ihr in den Boden. Kurze Reichweite, viel Wucht | Bild 6–7 |
+| **Sensenzug** | 14 | Sie wirft das Blatt weit nach vorn und zieht es zurück. Getroffen wird erst beim **Zurückziehen**; die Verzögerung muss der Held lernen | Bild 9–11 |
+| **Kreisschnitt** | 14 | Sie dreht die Sense einmal um sich selbst, das Blatt trifft auf beiden Seiten. Nur Nahbereich, kein Flächenschaden | Bild 8–10 |
 
 Jeder Angriff beginnt mit einer deutlichen **Ausholbewegung ohne Trefferzone**. Daran lernt der Held.
 
 Beispiel Richtschlag:
 
 ```
-Bild 1–3:  Schwert hebt sich über den Kopf (Warnung)
+Bild 1–3:  Sense hebt sich über den Kopf (Warnung)
 Bild 4–5:  Höchster Punkt, kurzes Halten
-Bild 6–7:  TREFFER AKTIV, Klinge schlägt auf den Boden
-Bild 8–10: Erholung, Schwert zurück in Kampfhaltung
+Bild 6–7:  TREFFER AKTIV, das Blatt schlägt in den Boden
+Bild 8–10: Erholung, Blatt wird aus dem Boden gezogen, zurück in Kampfhaltung
 ```
 
 ### Animationen
@@ -116,7 +117,7 @@ Bild 8–10: Erholung, Schwert zurück in Kampfhaltung
 | p1_run | 8 | ja | Schneller Schritt, Mantel fliegt hinter ihr |
 | p1_turn | 4 | nein | Dreht sich zum Helden |
 | p1_atk_richtschlag | 10 | nein | Siehe oben |
-| p1_atk_wurzelstoss | 12 | nein | Siehe oben |
+| p1_atk_sensenzug | 14 | nein | Siehe oben |
 | p1_atk_kreisschnitt | 14 | nein | Siehe oben |
 | p1_hit | 4 | nein | Leichtes Zurückweichen, kaum sichtbar |
 | p1_recover | 3 | nein | Zurück in Kampfhaltung |
@@ -148,37 +149,42 @@ Bild 5–8:   Oberkörper lehnt sich nach vorn
 Bild 9–12:  Sie erhebt sich
 Bild 13–16: Steht aufrecht, kurze Pause
 Bild 17–20: Schulterplatten setzen sich, Mantel fällt neu
-Bild 21–24: Zieht das Schwert in Kampfhaltung
+Bild 21–24: Greift die Sense und nimmt Kampfhaltung ein
 → p1_idle
 ```
 
-## Verwandlung 1 → 2 — Das Erwachen (rote Leiste leer)
+## Verwandlung 1 → 2 — Der Helmbruch (rote Leiste leer)
 
-Etwa 4 Sekunden (48 Bilder). Der Held steht still.
+Etwa 4 Sekunden (48 Bilder). Der Held steht still. **Wendepunkt der Geschichte:** Im Helm wohnt der verdorbene Teil Yggdrasils (siehe [KOENIGIN.md](KOENIGIN.md#der-verdorbene-yggdrasil--wendepunkt)).
 
 ```
-Bild 1–8:   Krone pulsiert, Kristalle leuchten magenta
-Bild 9–16:  Augen werden türkis leuchtend, Pupillen verschwinden
-Bild 17–24: Dunkler Rauch steigt von den Schulterplatten
-Bild 25–32: Feine Risse auf Rüstung und Haut leuchten nacheinander türkis auf
-Bild 33–40: Sie hebt 5 px vom Boden ab, der Mantel weht nach oben
+Bild 1–8:   Krone pulsiert, Kristalle leuchten magenta. Sie greift sich mit der freien Hand an den Helm
+Bild 9–16:  Erste Risse laufen über den Helm, magentafarbenes Licht dringt heraus
+Bild 17–24: Der Helm zerbricht, Splitter fallen ab. Ihr dunkles Gesicht wird sichtbar,
+            die Augen leuchten türkis, ohne Pupillen
+Bild 25–32: Schwarze Wurzeln mit magentafarbenen Adern wachsen aus den Helmresten;
+            feine Risse auf Rüstung und Haut leuchten türkis auf
+Bild 33–40: Wurzeln aus dem Sensenstiel umschlingen ihren Unterarm.
+            Sie hebt 5 px vom Boden ab, der Mantel weht nach oben
 Bild 41–44: Sammeln: Licht zieht sich in ihrer Brust zusammen
-Bild 45–48: IMPULS: Ring aus eisblauem Licht breitet sich über den Saal aus
+Bild 45–48: IMPULS: Ring aus eisblauem Licht mit magentafarbenem Rand breitet sich über den Saal aus
 → p2_idle
 ```
+
+**Beim ersten Helmbruch** folgt nach dem Impuls ein kurzer Erkenntnismoment (Dialog oder Kommentar des Helden). Bei späteren Versuchen läuft nur die gekürzte Verwandlung.
 
 Thronsaal: Die Fackeln wechseln von Orange zu Türkis (eigene Hintergrundebene).
 
 ## Phase 2 — Die Erwachte (orange Leiste)
 
-Sie gleitet, statt zu laufen. Der Mantel weht magisch nach oben und hinten. Die Risse ihres Körpers leuchten türkis; das ist der Preis ihrer Magie (siehe [KOENIGIN.md](KOENIGIN.md)).
+Sie gleitet, statt zu laufen. Der Mantel weht magisch nach oben und hinten. Der Helm ist zerbrochen, ihr Gesicht sichtbar; aus den Helmresten wachsen verdorbene Wurzeln. Die Risse ihres Körpers leuchten türkis; das ist der Preis ihrer Magie (siehe [KOENIGIN.md](KOENIGIN.md)). Sense und Unterarm sind durch Wurzeln verbunden.
 
 ### Angriffe — Vorschlag, mit Flächenschaden
 
 | Angriff | Bilder | Wirkung |
 | --- | --- | --- |
 | **Sternschauer** | 20 | Beide Arme heben sich, Licht sammelt sich. Geschosse fallen auf mehrere markierte Stellen des Bodens |
-| **Windklinge** | 14 | Waagerechter Schwerthieb, eine Sichel aus Licht fliegt über den ganzen Boden. Der Held muss springen |
+| **Windklinge** | 14 | Waagerechter Sensenhieb, eine Sichel aus Licht in der Form des Sensenblatts fliegt über den ganzen Boden. Der Held muss springen |
 | **Todesurteil** | 8 + 12 | Sie zeigt auf den Boden, eine Rune erscheint unter dem Helden. Kurz darauf schlägt sie zu, die ganze Runenfläche wird getroffen |
 
 ### Animationen
@@ -190,13 +196,14 @@ Sie gleitet, statt zu laufen. Der Mantel weht magisch nach oben und hinten. Die 
 | p2_atk_sternschauer | 20 | nein | Siehe oben |
 | p2_atk_windklinge | 14 | nein | Siehe oben |
 | p2_atk_todesurteil_mark | 8 | nein | Zeigefinger senkt sich, Rune erscheint |
-| p2_atk_todesurteil_hit | 12 | nein | Schwert schlägt nach unten, Einschlag |
+| p2_atk_todesurteil_hit | 12 | nein | Sense fährt nach unten, Einschlag |
 | p2_hit | 4 | nein | Kurzes Zurückgleiten, weniger Reaktion als in Phase 1 |
 
 ### Effekte
 
 - **Leuchtende Risse:** eigene Ebene über der Rüstung, 1 px breite türkise Linien, im Wechsel hell und dunkel.
 - **Augen:** 2 × 1 px türkis-weiß, ohne Pupille, mit 1 px schwachem Schein.
+- **Verdorbene Wurzeln:** wenige schwarze Ranken an den Helmresten, magentafarbene Adern pulsieren langsamer als die türkisen Risse.
 - **Partikel:** 6–8 eisblaue Punkte (1 × 1 oder 2 × 2 px) auf langsamen Kreisbahnen, 6–10 Sekunden pro Umlauf.
 
 ## Verwandlung 2 → 3 — Die Wurzelgestalt erwacht (orange Leiste leer)
@@ -208,9 +215,10 @@ Bild 1–12:  Der Boden bebt (Hintergrund ±2 px)
 Bild 13–24: Wurzeln Yggdrasils brechen durch den Boden, Steinsplitter fliegen
 Bild 25–36: Sie hebt die Arme, Wurzeln winden sich um sie. Wechsel zur Palette von Phase 3.
             Sprite wächst von 64 auf 80 px Breite
-Bild 37–48: Teile der Rüstung verhärten zu dunklem Wurzelholz
+Bild 37–48: Teile der Rüstung verhärten zu dunklem Wurzelholz.
+            Die Sense verschmilzt mit ihrem Arm, das Blatt wächst aus dem Unterarm
             Der Krone wachsen neue Äste und Blätter
-Bild 49–60: Flügel aus verschlungenen Wurzeln wachsen aus den Schultern
+Bild 49–60: Flügel aus verschlungenen Wurzeln wachsen aus den Schultern; die Wurzeln des Sensenstiels gehen in sie über
 Bild 61–72: Sprite wächst von 96 auf 112 px Höhe, sie schwebt 20 px über dem Boden
 Bild 73–84: Blätter leuchten auf, Licht dringt aus den Rissen
 Bild 85–92: Sammeln: Die Flügel öffnen sich vollständig
@@ -299,11 +307,11 @@ Grundlage ist der Entwurf [koenigin-idle-schwert-v4](../assets/konzept/koenigin-
 | Eisweiß | `#dbd7ea` | Haar Glanz |
 | Türkis | `#59c3c3` | Augen |
 | Magenta | `#ee20fb` | Kronenkristalle |
-| Kristallviolett | `#cc32f2` | Schwertkristalle, Blüten |
-| Gold dunkel | `#805e45` | Parierstange, Griffbänder |
+| Kristallviolett | `#cc32f2` | Sensenkristalle, Blüten |
+| Gold dunkel | `#805e45` | Bänder am Sensenstiel |
 | Gold hell | `#dbb176` | Gold Glanz |
-| Klinge | `#c4bce2` | Schwertklinge |
-| Klingenstreifen | `#6004c7` | Mittelstreifen der Klinge |
+| Sensenblatt | `#c4bce2` | Sensenblatt |
+| Schneidenstreifen | `#6004c7` | Streifen entlang der Schneide |
 | Blattgrün | `#49bcbb` | Blätter an den Blüten |
 | Blütenmitte | `#e16366` | Blütenmitte |
 
@@ -315,6 +323,8 @@ Grundlage ist der Entwurf [koenigin-idle-schwert-v4](../assets/konzept/koenigin-
 | Rissglanz | `#e8fffb` | Hellste Punkte, Augen |
 | Türkis dunkel | `#2a8f9a` | Schein um die Risse |
 | Eisblau hell | `#7fd8ff` | Partikel, Fackeln |
+| Verderbnis | `#ee20fb` | Adern der verdorbenen Wurzeln (gleiche Farbe wie die Kronenkristalle) |
+| Verderbnis dunkel | `#3a0640` | Verdorbene Wurzeln, Helmsplitter-Schatten |
 
 ### Phase 3 — zusätzlich
 
@@ -351,13 +361,13 @@ Gegenüber dem ursprünglichen Vorschlag gibt es drei wichtige Änderungen:
 | Effekte (Impuls, Geschosse, Runen) | – | – | etwa 0,3 MB |
 | **Summe** | | | **etwa 4,1 MB** |
 
-Das passt in das Budget von 6 MB für alle Figuren in [PSP1000.md](PSP1000.md), lässt aber nur etwa 2 MB für den Held mit seinen Ausrüstungsstufen. Wird es eng, können gekürzte Verwandlungen und weniger Bilder bei langen Angriffen (Ranken, Verwandlung 2→3) helfen.
+Die breiteren Sensenangriffe (96 × 96) kommen mit etwa 0,3 MB hinzu, zusammen also **etwa 4,4 MB**. Das passt in das Budget von 6 MB für alle Figuren in [PSP1000.md](PSP1000.md), lässt aber nur etwa 2 MB für den Held mit seinen Ausrüstungsstufen. Wird es eng, können gekürzte Verwandlungen und weniger Bilder bei langen Angriffen (Ranken, Verwandlung 2→3) helfen.
 
 ### Dateinamen
 
 ```
 queen_p0_idle.png, queen_p0_finger_tap.png, …
-queen_p1_atk_richtschlag.png, queen_p1_atk_wurzelstoss.png, queen_p1_atk_kreisschnitt.png
+queen_p1_atk_richtschlag.png, queen_p1_atk_sensenzug.png, queen_p1_atk_kreisschnitt.png
 queen_p2_atk_sternschauer.png, queen_p2_atk_windklinge.png, queen_p2_atk_todesurteil_mark.png, …
 queen_p3_atk_ranken.png, queen_p3_atk_erinnerungsriss.png, queen_p3_atk_weltgericht_charge.png, …
 queen_p3_wings_loop.png

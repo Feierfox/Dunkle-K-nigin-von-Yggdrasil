@@ -4,19 +4,21 @@
 
 ## Gestalterische Leitidee
 
-Eine gepanzerte Königin auf einem Wurzelthron, eingerahmt von einem gotischen Bogen aus den Ästen Yggdrasils. Schwarze Rüstung, astförmige Krone und eisblaues Haar bilden die zentrale Erscheinung. Ihre Haltung ist ruhig, aufrecht und kontrolliert.
+Eine gepanzerte Königin auf einem Wurzelthron, eingerahmt von einem gotischen Bogen aus den Ästen Yggdrasils. Schwarze Rüstung, ein geschlossener Helm mit astförmiger Krone, eisblaues Haar und eine lange Sense bilden die zentrale Erscheinung. Ihre Haltung ist ruhig, aufrecht und kontrolliert.
 
 Die Referenzen verbinden drei Motive: eine monumentale Rüstungsfigur, eine königliche Thronpose und die Rahmung eines gotischen Glasfensters. Der Name aus den Referenzbildern wird nicht übernommen. Der deutsche Titel lautet unverändert **Dunkle Königin von Yggdrasil**.
 
 ## Erscheinungsbild
 
-Die Königin wirkt groß und beinahe statuenhaft. Ihr Alter lässt sich nicht bestimmen. Ihr Gesicht ist dunkel und beinahe schattenhaft; vor dem eisblauen Haar zeichnet es sich als klare Silhouette ab.
+Die Königin wirkt groß und beinahe statuenhaft. Ihr Alter lässt sich nicht bestimmen. In Phase 0 und 1 verbirgt ein geschlossener Helm ihr Gesicht; nur die türkis leuchtenden Augen sind im Sehschlitz zu erkennen. Erst wenn der Helm zerbricht (siehe unten), wird ihr Gesicht sichtbar: dunkel und beinahe schattenhaft, vor dem eisblauen Haar als klare Silhouette.
 
-Langes eisblaues Haar fällt in wenigen deutlich lesbaren Strähnen über die Schultern. In ruhigen Szenen hängt es schwer; beim Wirken von Magie bewegt es sich langsam wie unter Wasser. Die Augen leuchten schwach türkis, behalten aber sichtbare Pupillen und einen menschlichen Ausdruck.
+Langes eisblaues Haar fällt unter dem Helm in wenigen deutlich lesbaren Strähnen über die Schultern. In ruhigen Szenen hängt es schwer; beim Wirken von Magie bewegt es sich langsam wie unter Wasser. Die Augen leuchten schwach türkis, behalten aber sichtbare Pupillen und einen menschlichen Ausdruck.
 
-## Krone, Rüstung und Mantel
+## Helm, Krone, Rüstung und Mantel
 
-Die Krone besitzt fünf hohe, unregelmäßige Astspitzen. Die mittlere Spitze bildet die Hauptachse ihrer Silhouette. Kleine magentafarbene Kristalle sitzen sparsam an den Enden.
+**Festgelegt:** Die Königin trägt einen **geschlossenen schwarzen Helm**. Aus ihm wachsen die fünf hohen, unregelmäßigen Astspitzen der Krone. Die mittlere Spitze bildet die Hauptachse ihrer Silhouette. Kleine magentafarbene Kristalle sitzen sparsam an den Enden.
+
+Im Helm wohnt ein Teil Yggdrasils. Beim Wechsel von Phase 1 zu Phase 2 bekommt er Risse und zerbricht (siehe „Der verdorbene Yggdrasil“).
 
 Die Rüstung besteht aus geschwärztem Metall. Brustplatte und Armschienen sind geschlossen; die Formen verbinden Schutz und königliche Würde. Ausgeprägte Schulterplatten laufen in kurze Dornen aus. Gravierte Wurzellinien verbinden die einzelnen Rüstungsteile.
 
@@ -29,17 +31,29 @@ Zwischen wenigen Platten wachsen kleine violette Blüten. Sie markieren die Verb
 | Hauptfarben | Schwarz und Mitternachtsviolett |
 | Haar und Magie | Eisblau und schwaches Türkis |
 | Einzelne Akzente | Magenta an Kristallen und Blüten |
-| Waffenbeschläge | Mattes Gold an Parierstange und Griff |
+| Waffenbeschläge | Mattes Gold an den Bändern des Sensenstiels |
 | Gegenlicht | Optional warmes Kupferlicht im Thronmotiv |
 | Materialien | Geschwärztes Metall, dunkles Wurzelholz und Kristall |
 
-Die Akzentfarben bleiben begrenzt, damit Krone, Haar und Hände auch in kleinen Darstellungen klar lesbar sind. Die Darstellung ist Pixel-Art; eine genaue Palette steht noch aus.
+Die Akzentfarben bleiben begrenzt, damit Helm, Krone, Haar und Hände auch in kleinen Darstellungen klar lesbar sind. Die Darstellung ist Pixel-Art; eine genaue Palette steht noch aus.
 
 ## Waffe und Symbol
 
-**Festgelegt:** Die Königin kämpft mit einem langen Schwert. Die gerade, schmal zulaufende Klinge ist blass lavendelfarben mit einem violetten Mittelstreifen. Die Parierstange in mattem Gold verzweigt sich wie Äste. Darüber sitzt ein großer violetter Kristall. Der lange dunkle Griff trägt zwei breite Goldbänder, am Knauf sitzt ein kleiner violetter Kristall.
+**Festgelegt:** Die Königin kämpft mit einer **Sense**. Sie ersetzt das frühere Schwert.
 
-Als Name des Schwerts wird weiterhin **Wurzelrichter** vorgeschlagen. Es dient zugleich als Herrschaftszeichen und Verbindung zum Baum.
+- **Stiel:** lang, aus dunklem Wurzelholz, leicht gewunden, mit zwei breiten Bändern in mattem Gold. Am unteren Ende sitzt ein kleiner violetter Kristall.
+- **Blatt:** lang und geschwungen, blass lavendelfarben mit einem violetten Streifen entlang der Schneide.
+- **Übergang:** Wo Blatt und Stiel sich treffen, verzweigt sich das Holz wie Äste und hält einen großen violetten Kristall.
+
+Als Name wird weiterhin **Wurzelrichter** vorgeschlagen. Die Sense ist Herrschaftszeichen und Verbindung zum Baum zugleich.
+
+**Verschmelzung:** Mit jeder Phase wächst die Sense weiter in die Königin hinein.
+
+| Phase | Zustand der Sense (Vorschlag) |
+| --- | --- |
+| 0–1 | Eigenständige Waffe in ihrer Hand |
+| 2 | Wurzeln aus dem Stiel umschlingen ihren Unterarm; Hand und Stiel lassen sich nicht mehr trennen |
+| 3 | Die Sense ist Teil ihres Körpers: Das Blatt wächst aus ihrem Unterarm, die Wurzeln des Stiels gehen in die Flügel über |
 
 Ihr persönliches Symbol zeigt einen gespaltenen Baum innerhalb eines Spitzbogens: eine Hälfte trägt Blätter, die andere kahle Äste. Beide werden von derselben geschlossenen Wurzel getragen.
 
@@ -60,6 +74,21 @@ Früher war sie die Hüterin dieses Gedächtnisses. Während einer Katastrophe v
 Ihr zentraler Konflikt lautet: Sie schützt die Welt mit einer Macht, die ihr zugleich die Zukunft nimmt. Ihre größte Schwäche ist die Angst vor dem Vergessen. Diese Hintergrundgeschichte ist ein ausgearbeiteter Vorschlag; ihre genaue Einbindung in das Spiel bleibt offen.
 
 Als Symbolik können die fünf Kronenspitzen für Bewahren, Erinnern, Schützen, Urteilen und Loslassen stehen. Die Spitze des letzten Schwurs ist beschädigt.
+
+## Der verdorbene Yggdrasil — Wendepunkt
+
+**Festgelegt:**
+
+- Ein Teil Yggdrasils **wohnt im Helm** der Königin.
+- Durch ihre lange Wacht hat sich ihr eigentliches Ziel verdreht. Yggdrasil selbst ist dabei **verdorben** worden und **beeinflusst sie**.
+- Beim Wechsel von Phase 1 zu Phase 2 bekommt der Helm Risse und zerbricht. Damit wird sichtbar, was sie die ganze Zeit gelenkt hat.
+
+**Vorschlag zur Ausgestaltung:**
+
+- Aus den Rissen des Helms dringen schwarze Wurzeln mit magentafarbenen Adern. Sie stehen für die Verderbnis und unterscheiden sich vom reinen eisblau-türkisen Licht ihrer eigenen Magie.
+- Beim **ersten** Helmbruch folgt ein kurzer Moment der Erkenntnis, zum Beispiel ein Satz der Königin, der nicht nach ihr klingt, oder ein Kommentar des Helden: „Moment. Das ist gar nicht sie.“ Bei späteren Versuchen bleibt es bei der sichtbaren Verwandlung.
+- Die Frage, wie viel ihres Handelns ihr eigener Wille ist, öffnet neue Zweige der Geschichte: Der Held kann sie von der Verderbnis befreien, sie kann sich selbst lösen, oder die Verderbnis siegt endgültig.
+- Aus dem Wendepunkt ergibt sich auch die Erklärung für „aus dem Bewahren wurde ein Festhalten“: Nicht nur Angst, sondern der verdorbene Baum hat sie dorthin getrieben.
 
 ## Kräfte und Grenzen — Konzeptvorschlag
 
@@ -88,7 +117,7 @@ Ein mögliches Gefolge besteht aus ehemaligen Hütern und schwurgebundenen Ritte
 1. **Charakterporträt:** Frontal und aufrecht unter einem Wurzelbogen; Blick und Rüstung stehen im Mittelpunkt.
 2. **Thronmotiv:** Ruhige Sitzhaltung mit geöffneten Händen auf den Armlehnen. Äste bilden hinter ihr eine zweite Krone.
 3. **Titelmotiv:** Gotische Glasfenster-Komposition mit dem Weltenbaum im Hintergrund. Der Titel steht lesbar in zwei Zeilen: „Dunkle Königin“ / „von Yggdrasil“.
-4. **Spielfigur:** Pixel-Art in Seitenansicht mit Blick nach links, das Schwert aufrecht in der Hand. Aktueller Entwurf: [koenigin-idle-schwert-v4](../assets/konzept/koenigin-idle-schwert-v4.webp).
+4. **Spielfigur:** Pixel-Art in Seitenansicht mit Blick nach links, Helm mit Krone, die Sense in der Hand. Der aktuelle Entwurf [koenigin-idle-schwert-v4](../assets/konzept/koenigin-idle-schwert-v4.webp) zeigt noch Schwert und offenes Gesicht und muss überarbeitet werden (Prompt in [PROMPTS.md](../assets/PROMPTS.md#koenigin-v5--vorschlag-sense-und-helm)).
 
 Ein gemeinsames Titelbild kann den Helden klein im Vordergrund und die Königin erhöht auf dem Thron zeigen. Eine leuchtende Wurzel verbindet die beiden Bildbereiche. Der Held erhält dabei keine modernen Gegenstände.
 

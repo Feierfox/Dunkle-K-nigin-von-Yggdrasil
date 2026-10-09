@@ -5,7 +5,7 @@ Planung, Figurenkonzept und erste Grafikentwürfe für ein kompaktes Fantasy-Bos
 ## Festgelegte Grundlage
 
 - Der Titel bleibt **Dunkle Königin von Yggdrasil**.
-- **Der Spieler steuert die Königin**, den Endgegner. Sie besitzt eine ernsthafte, majestätische Präsenz in einer dunklen Fantasywelt mit Yggdrasil-, Wurzel- und gotischen Motiven. Sie kämpft mit einem langen Schwert. Ihr Lebensbalken besteht aus drei übereinanderliegenden Leisten, rot, orange und lila. Jede leere Leiste startet die nächste von drei Phasen mit eigenen Angriffen, ab Phase 2 mit Flächenschaden. Jeder Phasenwechsel setzt einen magischen Impuls frei, der den Helden sofort töten kann. Ihre Werte bleiben immer gleich.
+- **Der Spieler steuert die Königin**, den Endgegner. Sie besitzt eine ernsthafte, majestätische Präsenz in einer dunklen Fantasywelt mit Yggdrasil-, Wurzel- und gotischen Motiven. Sie trägt einen geschlossenen Helm mit Krone und kämpft mit einer Sense, die mit jeder Phase weiter mit ihr verschmilzt. Ihr Lebensbalken besteht aus drei übereinanderliegenden Leisten, rot, orange und lila. Jede leere Leiste startet die nächste von drei Phasen mit eigenen Angriffen, ab Phase 2 mit Flächenschaden. Jeder Phasenwechsel setzt einen magischen Impuls frei, der den Helden sofort töten kann. Beim Wechsel zu Phase 2 zerbricht ihr Helm: Darin wohnt ein verdorbener Teil Yggdrasils, der sie beeinflusst. Ihre Werte bleiben immer gleich.
 - **Der Held** ist ihr Herausforderer und wird vom Spiel gesteuert. Er erhält keine ausgearbeitete Vorgeschichte und keine persönliche Rettungsgeschichte.
 - Nach jeder Niederlage kehrt der Held in den Thronsaal zurück, kommentiert knapp den letzten Versuch und lernt die Angriffe der Königin. Ein Treffer kostet ein Herz. Er beginnt mit 1 Herz und erreicht über eine Questreihe mit besserer Ausrüstung bis zu 5 Herzen. Während seiner Quests steht die Königin allein im Thronsaal, und es geschieht bewusst nichts.
 - Der Held spricht wie ein Spieler, der Guides liest, Mechaniken verinnerlicht und durch gescheiterte Versuche das Timing und die einzelnen Phasen lernt.
@@ -31,6 +31,6 @@ Das Spiel orientiert sich bewusst an **„The Dark Queen of Mortholme“** (Spie
 
 Abgestimmte Konzeptgrundlage vom 09.10.2026. Verbindliche Entscheidungen und noch offene Ausgestaltungen werden in den Dokumenten getrennt gekennzeichnet.
 
-Verworfen wurden: der Name „Arvid“, die Herkunft des Helden mit seiner Schwester Mara und der Rettungsgeschichte, der Held als Spielfigur sowie die Stangenwaffe der Königin.
+Verworfen wurden: der Name „Arvid“, die Herkunft des Helden mit seiner Schwester Mara und der Rettungsgeschichte, der Held als Spielfigur sowie Stangenwaffe und Schwert der Königin.
 
 Die Konzeptgrafiken in `assets/konzept/` sind generierte Entwürfe und noch keine fertigen PSP-Sprites. Animationen und Spielcode sind noch nicht ausgearbeitet.

@@ -8,7 +8,7 @@ Die Dateien hier sind **komprimierte WebP-Kopien** zur Ansicht. Die PNG-Original
 
 | Datei | Größe | Inhalt |
 | --- | --- | --- |
-| [konzept/koenigin-idle-schwert-v4.webp](konzept/koenigin-idle-schwert-v4.webp) | 1024 × 1536, transparent | Königin in Ruhepose, Seitenansicht, Blick nach links, langes Schwert |
+| [konzept/koenigin-idle-schwert-v4.webp](konzept/koenigin-idle-schwert-v4.webp) | 1024 × 1536, transparent | Königin in Ruhepose, Seitenansicht, Blick nach links. **Teilweise überholt:** zeigt Schwert statt Sense und offenes Gesicht statt Helm |
 | [konzept/held-idle-hood-v3.webp](konzept/held-idle-hood-v3.webp) | 1024 × 1536, transparent | Held in Ruhepose, Seitenansicht, Blick nach rechts, grüner Kapuzenumhang, Gesicht im Schatten |
 | [konzept/thronsaal-pixel-v2.webp](konzept/thronsaal-pixel-v2.webp) | 1672 × 941, deckend | Thronsaal in fester Seitenansicht: Eingang links, erhöhter leerer Thron rechts, gotische Fenster |
 
@@ -34,7 +34,7 @@ Die verkleinerten Figuren sind automatisch erzeugt und nur ein Test. Echte Sprit
 
 ## Abgleich mit den Dokumenten
 
-- **Königin:** passt zu [KOENIGIN.md](../docs/KOENIGIN.md): fünf Kronenspitzen mit violetten Kristallen, eisblaues Haar, dunkle Rüstung, Blüten, violetter Mantel, langes Schwert, dunkles Gesicht.
+- **Königin:** passt zu [KOENIGIN.md](../docs/KOENIGIN.md) bei Kronenspitzen, Kristallen, eisblauem Haar, Rüstung, Blüten und Mantel. **Weicht ab:** Statt der Sense trägt sie noch das Schwert, und statt des geschlossenen Helms ist ihr Gesicht offen. Ein Prompt für die Überarbeitung steht in [PROMPTS.md](PROMPTS.md#koenigin-v5--vorschlag-sense-und-helm).
 - **Held:** passt zu [HELD.md](../docs/HELD.md): grüner Kapuzenumhang, Gesicht vollständig verschattet, geschlechtsneutrale Silhouette.
 - **Thronsaal Pixel v2:** Der Thron ist hell und astförmig. Das eisblaue Licht durch einen Spalt im Stamm hinter dem Thron aus [KOENIGIN.md](../docs/KOENIGIN.md) fehlt noch.
 
