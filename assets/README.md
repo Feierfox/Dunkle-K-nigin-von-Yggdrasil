@@ -26,7 +26,7 @@ Die Entwürfe verkleinert auf echte PSP-Auflösung, um Lesbarkeit und Aufteilung
 | [psp/held-32x48.png](konzept/psp/held-32x48.png) | Held automatisch auf 37 × 48 verkleinert, 16 Farben |
 | [psp/paletten-phasen.png](konzept/psp/paletten-phasen.png) | Farbpaletten der Phasen 1–3 |
 
-Die verkleinerten Figuren sind automatisch erzeugt und nur ein Test. Echte Sprites müssen von Hand in nativer Größe gezeichnet werden. Das Phase-2-Mockup zeigt die Königin nach dem Helmbruch, 5 px schwebend. **Erkenntnis:** Bei 96 px Höhe gehen die feinen türkisen Risse und die magentafarbenen Adern beim automatischen Verkleinern fast verloren. Im nativen Sprite müssen sie als wenige, kräftige Linien gezeichnet werden.
+Die verkleinerten Figuren sind automatisch erzeugt und nur ein Test. Echte Sprites müssen von Hand in nativer Größe gezeichnet werden. Das Phase-2-Mockup zeigt die Königin mit gerissenem Helm, 5 px schwebend. **Erkenntnis:** Bei 96 px Höhe gehen die feinen türkisen Risse und die magentafarbenen Adern beim automatischen Verkleinern fast verloren. Im nativen Sprite müssen sie als wenige, kräftige Linien gezeichnet werden.
 
 ## Ältere Entwürfe
 
@@ -38,7 +38,7 @@ Die verkleinerten Figuren sind automatisch erzeugt und nur ein Test. Echte Sprit
 ## Abgleich mit den Dokumenten
 
 - **Königin v5:** passt zu [KOENIGIN.md](../docs/KOENIGIN.md): geschlossener Helm, nur türkise Augen im Sehschlitz, fünf Kronenspitzen mit Kristallen, eisblaues Haar, Sense mit Wurzelstiel, Goldbändern und Kristallen. Kleine Abweichung: drei statt zwei Goldbänder am Stiel.
-- **Königin Phase 2:** passt weitgehend zu [VISUAL_KOENIGIN.md](../docs/VISUAL_KOENIGIN.md). Abweichung: Der Helm ist gerissen und von Wurzeln durchbrochen, aber nicht in großen Teilen abgebrochen; das Gesicht bleibt ein dunkler Schatten. Die magentafarbenen Adern laufen auch durch die Wurzeln am Sensenstiel, die Verderbnis erfasst also schon die Sense.
+- **Königin Phase 2:** passt zu [VISUAL_KOENIGIN.md](../docs/VISUAL_KOENIGIN.md): Der Helm ist gerissen und von Wurzeln durchbrochen, das Gesicht bleibt verborgen; es wird erst in Phase 3 sichtbar. Die magentafarbenen Adern laufen auch durch die Wurzeln am Sensenstiel, die Verderbnis erfasst also schon die Sense.
 - **Held:** passt zu [HELD.md](../docs/HELD.md): grüner Kapuzenumhang, Gesicht vollständig verschattet, geschlechtsneutrale Silhouette.
 - **Thronsaal Pixel v2:** Der Thron ist hell und astförmig. Das eisblaue Licht durch einen Spalt im Stamm hinter dem Thron aus [KOENIGIN.md](../docs/KOENIGIN.md) fehlt noch.
 

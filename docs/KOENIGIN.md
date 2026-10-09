@@ -10,7 +10,7 @@ Die Referenzen verbinden drei Motive: eine monumentale Rüstungsfigur, eine kön
 
 ## Erscheinungsbild
 
-Die Königin wirkt groß und beinahe statuenhaft. Ihr Alter lässt sich nicht bestimmen. In Phase 0 und 1 verbirgt ein geschlossener Helm ihr Gesicht; nur die türkis leuchtenden Augen sind im Sehschlitz zu erkennen. Erst wenn der Helm zerbricht (siehe unten), wird ihr Gesicht sichtbar: dunkel und beinahe schattenhaft, vor dem eisblauen Haar als klare Silhouette.
+Die Königin wirkt groß und beinahe statuenhaft. Ihr Alter lässt sich nicht bestimmen. In Phase 0 bis 2 verbirgt der Helm ihr Gesicht; nur die türkis leuchtenden Augen sind im Sehschlitz zu erkennen. **Ihr Gesicht wird erst in Phase 3 sichtbar**, wenn der Helm vollständig zerfällt: dunkel und beinahe schattenhaft, vor dem eisblauen Haar als klare Silhouette.
 
 Langes eisblaues Haar fällt unter dem Helm in wenigen deutlich lesbaren Strähnen über die Schultern. In ruhigen Szenen hängt es schwer; beim Wirken von Magie bewegt es sich langsam wie unter Wasser. Die Augen leuchten schwach türkis, behalten aber sichtbare Pupillen und einen menschlichen Ausdruck.
 
@@ -18,7 +18,7 @@ Langes eisblaues Haar fällt unter dem Helm in wenigen deutlich lesbaren Strähn
 
 **Festgelegt:** Die Königin trägt einen **geschlossenen schwarzen Helm**. Aus ihm wachsen die fünf hohen, unregelmäßigen Astspitzen der Krone. Die mittlere Spitze bildet die Hauptachse ihrer Silhouette. Kleine magentafarbene Kristalle sitzen sparsam an den Enden.
 
-Im Helm wohnt ein Teil Yggdrasils. Beim Wechsel von Phase 1 zu Phase 2 bekommt er Risse und zerbricht (siehe „Der verdorbene Yggdrasil“).
+Im Helm wohnt ein Teil Yggdrasils. Beim Wechsel zu Phase 2 **reißt** er, bleibt aber geschlossen; beim Wechsel zu Phase 3 **zerfällt** er und gibt ihr Gesicht frei (siehe „Der verdorbene Yggdrasil“).
 
 Die Rüstung besteht aus geschwärztem Metall. Brustplatte und Armschienen sind geschlossen; die Formen verbinden Schutz und königliche Würde. Ausgeprägte Schulterplatten laufen in kurze Dornen aus. Gravierte Wurzellinien verbinden die einzelnen Rüstungsteile.
 
@@ -81,12 +81,13 @@ Als Symbolik können die fünf Kronenspitzen für Bewahren, Erinnern, Schützen,
 
 - Ein Teil Yggdrasils **wohnt im Helm** der Königin.
 - Durch ihre lange Wacht hat sich ihr eigentliches Ziel verdreht. Yggdrasil selbst ist dabei **verdorben** worden und **beeinflusst sie**.
-- Beim Wechsel von Phase 1 zu Phase 2 bekommt der Helm Risse und zerbricht. Damit wird sichtbar, was sie die ganze Zeit gelenkt hat.
+- Beim Wechsel von Phase 1 zu Phase 2 bekommt der Helm Risse, aus denen die Verderbnis dringt. Damit wird sichtbar, was sie die ganze Zeit gelenkt hat. Das Gesicht bleibt noch verborgen.
+- Beim Wechsel von Phase 2 zu Phase 3 zerfällt der Helm. Zum ersten Mal ist ihr Gesicht zu sehen.
 
 **Vorschlag zur Ausgestaltung:**
 
 - Aus den Rissen des Helms dringen schwarze Wurzeln mit magentafarbenen Adern. Sie stehen für die Verderbnis und unterscheiden sich vom reinen eisblau-türkisen Licht ihrer eigenen Magie.
-- Beim **ersten** Helmbruch folgt ein kurzer Moment der Erkenntnis, zum Beispiel ein Satz der Königin, der nicht nach ihr klingt, oder ein Kommentar des Helden: „Moment. Das ist gar nicht sie.“ Bei späteren Versuchen bleibt es bei der sichtbaren Verwandlung.
+- Wenn der Helm **zum ersten Mal** reißt, folgt ein kurzer Moment der Erkenntnis, zum Beispiel ein Satz der Königin, der nicht nach ihr klingt, oder ein Kommentar des Helden: „Moment. Das ist gar nicht sie.“ Wenn ihr Gesicht in Phase 3 zum ersten Mal sichtbar wird, folgt ein zweiter solcher Moment. Bei späteren Versuchen bleibt es bei der sichtbaren Verwandlung.
 - Die Frage, wie viel ihres Handelns ihr eigener Wille ist, öffnet neue Zweige der Geschichte: Der Held kann sie von der Verderbnis befreien, sie kann sich selbst lösen, oder die Verderbnis siegt endgültig.
 - Aus dem Wendepunkt ergibt sich auch die Erklärung für „aus dem Bewahren wurde ein Festhalten“: Nicht nur Angst, sondern der verdorbene Baum hat sie dorthin getrieben.
 
@@ -117,7 +118,7 @@ Ein mögliches Gefolge besteht aus ehemaligen Hütern und schwurgebundenen Ritte
 1. **Charakterporträt:** Frontal und aufrecht unter einem Wurzelbogen; Blick und Rüstung stehen im Mittelpunkt.
 2. **Thronmotiv:** Ruhige Sitzhaltung mit geöffneten Händen auf den Armlehnen. Äste bilden hinter ihr eine zweite Krone.
 3. **Titelmotiv:** Gotische Glasfenster-Komposition mit dem Weltenbaum im Hintergrund. Der Titel steht lesbar in zwei Zeilen: „Dunkle Königin“ / „von Yggdrasil“.
-4. **Spielfigur:** Pixel-Art in Seitenansicht mit Blick nach links, Helm mit Krone, die Sense in der Hand. Aktuelle Entwürfe: [Phase 0/1](../assets/konzept/koenigin-idle-sense-helm-v5.webp) und [Phase 2 nach dem Helmbruch](../assets/konzept/koenigin-p2-helmbruch-v1.webp).
+4. **Spielfigur:** Pixel-Art in Seitenansicht mit Blick nach links, Helm mit Krone, die Sense in der Hand. Aktuelle Entwürfe: [Phase 0/1](../assets/konzept/koenigin-idle-sense-helm-v5.webp) und [Phase 2 mit gerissenem Helm](../assets/konzept/koenigin-p2-helmbruch-v1.webp).
 
 Ein gemeinsames Titelbild kann den Helden klein im Vordergrund und die Königin erhöht auf dem Thron zeigen. Eine leuchtende Wurzel verbindet die beiden Bildbereiche. Der Held erhält dabei keine modernen Gegenstände.
 

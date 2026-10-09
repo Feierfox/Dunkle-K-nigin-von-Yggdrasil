@@ -2,7 +2,7 @@
 
 Sprite-Spezifikation der Königin für den Pixel-Artist. Grundlage ist ein eingereichter Vorschlag vom 09.10.2026, angepasst an die festgelegten Entscheidungen und an die Grenzen der PSP-1000.
 
-**Verbindlich** sind: das Aussehen nach den Entwürfen [v5](../assets/konzept/koenigin-idle-sense-helm-v5.webp) (Phase 0/1, **Sense** und **geschlossener Helm mit Krone**) und [Phase 2](../assets/konzept/koenigin-p2-helmbruch-v1.webp), der Helmbruch beim Wechsel zu Phase 2, die drei Kampfphasen mit den Lebensleisten Rot, Orange und Lila, der magische Impuls bei jedem Phasenwechsel, das Verhalten des Helden während der Verwandlung und das Kampftempo. Alles andere, also Angriffsnamen, Bildzahlen, Paletten der Phasen 2 und 3 und Effekte, ist ein **Vorschlag**.
+**Verbindlich** sind: das Aussehen nach den Entwürfen [v5](../assets/konzept/koenigin-idle-sense-helm-v5.webp) (Phase 0/1, **Sense** und **geschlossener Helm mit Krone**) und [Phase 2](../assets/konzept/koenigin-p2-helmbruch-v1.webp), der gerissene Helm ab Phase 2, **das Gesicht erst ab Phase 3**, die drei Kampfphasen mit den Lebensleisten Rot, Orange und Lila, der magische Impuls bei jedem Phasenwechsel, das Verhalten des Helden während der Verwandlung und das Kampftempo. Alles andere, also Angriffsnamen, Bildzahlen, Paletten der Phasen 2 und 3 und Effekte, ist ein **Vorschlag**.
 
 ## Eckdaten
 
@@ -26,14 +26,14 @@ Ein Bildkonzept in echter PSP-Auflösung liegt in [assets/konzept/psp/](../asset
 | Lebensleiste | – | **Rot** | **Orange** | **Lila** |
 | Zustand | Intro, Dialoge, Warten, Abwesenheit des Helden | Kampf | Kampf | Kampf |
 | Bewegung | Sitzt auf dem Thron | Schreitet, läuft | Gleitet, 5 px über dem Boden | Schwebt, 20 px über dem Boden |
-| Aussehen | Wie Entwurf v5 | Wie Phase 0 | **Helm zerbrochen**, Gesicht sichtbar, Risse leuchten türkis, verdorbene Wurzeln aus den Helmresten | Teile der Rüstung zu Wurzelholz, Flügel aus Wurzeln |
+| Aussehen | Wie Entwurf v5 | Wie Phase 0 | **Helm gerissen, aber geschlossen**, Gesicht weiter verborgen, Augen leuchten türkis-weiß, Risse auf der Rüstung leuchten türkis, verdorbene Wurzeln aus den Helmrissen | **Helm zerfallen, Gesicht sichtbar**, Teile der Rüstung zu Wurzelholz, Flügel aus Wurzeln |
 | Sense | In der Hand | In der Hand | Wurzeln umschlingen den Unterarm | Mit dem Arm verschmolzen, Stielwurzeln gehen in die Flügel über |
 | Aura | Keine | Keine | Wenige eisblaue Partikel | Blätter, Licht, Wurzeln im Saal |
 | Angriffe | – | 3 Sensenangriffe | 3 magische Angriffe mit Flächenschaden | 3 Wurzel- und Erinnerungsangriffe mit Flächenschaden |
 | Sprite | 64 × 96 | 64 × 96 | 64 × 96 | 80 × 112 + Flügel |
 | Thronsaal | Normal | Normal | Fackeln brennen türkis | Boden bricht auf, Wurzeln leuchten, Decke zeigt Risse |
 
-Die Farben der Magie folgen [KOENIGIN.md](KOENIGIN.md): **Eisblau und Türkis**. Lila bleibt der Lebensleiste von Phase 3 und den Kristallen vorbehalten, damit sich Effekte vom dunkelvioletten Saal abheben. Die **Verderbnis** Yggdrasils erscheint als schwarze Wurzeln mit **magentafarbenen Adern** und bleibt so von ihrer eigenen Magie unterscheidbar. Die Krone bleibt in allen Phasen aus schwarzen Ästen; nach dem Helmbruch sitzt sie auf den Resten des Helms, in Phase 3 wachsen ihr Blätter.
+Die Farben der Magie folgen [KOENIGIN.md](KOENIGIN.md): **Eisblau und Türkis**. Lila bleibt der Lebensleiste von Phase 3 und den Kristallen vorbehalten, damit sich Effekte vom dunkelvioletten Saal abheben. Die **Verderbnis** Yggdrasils erscheint als schwarze Wurzeln mit **magentafarbenen Adern** und bleibt so von ihrer eigenen Magie unterscheidbar. Die Krone bleibt in allen Phasen aus schwarzen Ästen; in Phase 2 sitzt sie auf dem gerissenen Helm, in Phase 3 trägt sie sie direkt über dem freigelegten Gesicht, und es wachsen ihr Blätter.
 
 ## Kampftempo
 
@@ -81,7 +81,7 @@ Phase 0 zeigt sie auch in der Szene, in der der Held auf Quest ist und **bewusst
 
 Pixel-Art kennt keine halben Pixel: Atembewegungen sind 1 px groß oder entstehen durch einen Wechsel der Schattenfarbe.
 
-**Ebenen in Aseprite** (von unten nach oben): CAPE_BACK, SCYTHE_BACK, BODY_BASE, ARMOR_DETAIL, ARMOR_SHINE, HANDS, HEAD (Gesicht, für Phase 2), HAIR, HELMET, CROWN, SCYTHE_FRONT, CAPE_FRONT. Helm und Sense liegen auf eigenen Ebenen, damit Helmbruch und Verschmelzung getrennt animiert werden können. Der Thron gehört zum Hintergrund, nicht zum Sprite.
+**Ebenen in Aseprite** (von unten nach oben): CAPE_BACK, SCYTHE_BACK, BODY_BASE, ARMOR_DETAIL, ARMOR_SHINE, HANDS, HEAD (Gesicht, erst für Phase 3), HAIR, HELMET, CROWN, SCYTHE_FRONT, CAPE_FRONT. Helm und Sense liegen auf eigenen Ebenen, damit Helmbruch und Verschmelzung getrennt animiert werden können. Der Thron gehört zum Hintergrund, nicht zum Sprite.
 
 ## Phase 1 — Die Kämpfende (rote Leiste)
 
@@ -153,16 +153,16 @@ Bild 21–24: Greift die Sense und nimmt Kampfhaltung ein
 → p1_idle
 ```
 
-## Verwandlung 1 → 2 — Der Helmbruch (rote Leiste leer)
+## Verwandlung 1 → 2 — Der Helm reißt (rote Leiste leer)
 
 Etwa 4 Sekunden (48 Bilder). Der Held steht still. **Wendepunkt der Geschichte:** Im Helm wohnt der verdorbene Teil Yggdrasils (siehe [KOENIGIN.md](KOENIGIN.md#der-verdorbene-yggdrasil--wendepunkt)).
 
 ```
 Bild 1–8:   Krone pulsiert, Kristalle leuchten magenta. Sie greift sich mit der freien Hand an den Helm
 Bild 9–16:  Erste Risse laufen über den Helm, magentafarbenes Licht dringt heraus
-Bild 17–24: Der Helm zerbricht, Splitter fallen ab. Ihr dunkles Gesicht wird sichtbar,
-            die Augen leuchten türkis, ohne Pupillen
-Bild 25–32: Schwarze Wurzeln mit magentafarbenen Adern wachsen aus den Helmresten;
+Bild 17–24: Die Risse werden breiter, kleine Splitter fallen ab, der Helm bleibt aber geschlossen.
+            Die Augen im Sehschlitz leuchten heller, türkis-weiß
+Bild 25–32: Schwarze Wurzeln mit magentafarbenen Adern wachsen aus den Helmrissen;
             feine Risse auf Rüstung und Haut leuchten türkis auf
 Bild 33–40: Wurzeln aus dem Sensenstiel umschlingen ihren Unterarm.
             Sie hebt 5 px vom Boden ab, der Mantel weht nach oben
@@ -171,13 +171,13 @@ Bild 45–48: IMPULS: Ring aus eisblauem Licht mit magentafarbenem Rand breitet 
 → p2_idle
 ```
 
-**Beim ersten Helmbruch** folgt nach dem Impuls ein kurzer Erkenntnismoment (Dialog oder Kommentar des Helden). Bei späteren Versuchen läuft nur die gekürzte Verwandlung.
+**Wenn der Helm zum ersten Mal reißt,** folgt nach dem Impuls ein kurzer Erkenntnismoment (Dialog oder Kommentar des Helden). Bei späteren Versuchen läuft nur die gekürzte Verwandlung.
 
 Thronsaal: Die Fackeln wechseln von Orange zu Türkis (eigene Hintergrundebene).
 
 ## Phase 2 — Die Erwachte (orange Leiste)
 
-Sie gleitet, statt zu laufen. Der Mantel weht magisch nach oben und hinten. Der Helm ist zerbrochen, ihr Gesicht sichtbar; aus den Helmresten wachsen verdorbene Wurzeln. Die Risse ihres Körpers leuchten türkis; das ist der Preis ihrer Magie (siehe [KOENIGIN.md](KOENIGIN.md)). Sense und Unterarm sind durch Wurzeln verbunden.
+Sie gleitet, statt zu laufen. Der Mantel weht magisch nach oben und hinten. Der Helm ist gerissen, aber noch geschlossen; ihr Gesicht bleibt verborgen. Aus den Rissen wachsen verdorbene Wurzeln. Die Risse ihres Körpers leuchten türkis; das ist der Preis ihrer Magie (siehe [KOENIGIN.md](KOENIGIN.md)). Sense und Unterarm sind durch Wurzeln verbunden.
 
 ### Angriffe — Vorschlag, mit Flächenschaden
 
@@ -203,7 +203,7 @@ Sie gleitet, statt zu laufen. Der Mantel weht magisch nach oben und hinten. Der 
 
 - **Leuchtende Risse:** eigene Ebene über der Rüstung, 1 px breite türkise Linien, im Wechsel hell und dunkel.
 - **Augen:** 2 × 1 px türkis-weiß, ohne Pupille, mit 1 px schwachem Schein.
-- **Verdorbene Wurzeln:** wenige schwarze Ranken an den Helmresten, magentafarbene Adern pulsieren langsamer als die türkisen Risse.
+- **Verdorbene Wurzeln:** wenige schwarze Ranken an den Helmrissen, magentafarbene Adern pulsieren langsamer als die türkisen Risse.
 - **Partikel:** 6–8 eisblaue Punkte (1 × 1 oder 2 × 2 px) auf langsamen Kreisbahnen, 6–10 Sekunden pro Umlauf.
 
 ## Verwandlung 2 → 3 — Die Wurzelgestalt erwacht (orange Leiste leer)
@@ -215,7 +215,8 @@ Bild 1–12:  Der Boden bebt (Hintergrund ±2 px)
 Bild 13–24: Wurzeln Yggdrasils brechen durch den Boden, Steinsplitter fliegen
 Bild 25–36: Sie hebt die Arme, Wurzeln winden sich um sie. Wechsel zur Palette von Phase 3.
             Sprite wächst von 64 auf 80 px Breite
-Bild 37–48: Teile der Rüstung verhärten zu dunklem Wurzelholz.
+Bild 37–48: Der Helm zerfällt in Splitter und gibt zum ersten Mal ihr dunkles Gesicht frei;
+            die Krone bleibt über ihrem Kopf. Teile der Rüstung verhärten zu dunklem Wurzelholz.
             Die Sense verschmilzt mit ihrem Arm, das Blatt wächst aus dem Unterarm
             Der Krone wachsen neue Äste und Blätter
 Bild 49–60: Flügel aus verschlungenen Wurzeln wachsen aus den Schultern; die Wurzeln des Sensenstiels gehen in sie über
@@ -324,7 +325,7 @@ Grundlage sind die Entwürfe v4 und v5 (gleiche Rüstungs-, Haar- und Mantelfarb
 | Türkis dunkel | `#2a8f9a` | Schein um die Risse |
 | Eisblau hell | `#7fd8ff` | Partikel, Fackeln |
 | Verderbnis | `#ee20fb` | Adern der verdorbenen Wurzeln (gleiche Farbe wie die Kronenkristalle) |
-| Verderbnis dunkel | `#3a0640` | Verdorbene Wurzeln, Helmsplitter-Schatten |
+| Verderbnis dunkel | `#3a0640` | Verdorbene Wurzeln, Schatten in den Helmrissen |
 
 ### Phase 3 — zusätzlich
 
