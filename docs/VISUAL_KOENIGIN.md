@@ -385,4 +385,4 @@ Jede Datei kommt mit einer gleichnamigen `.json` für die Bildpositionen im Atla
 - Animationen für das Totenritual (magisches Feuer, In-den-Arm-nehmen, lila Portal), Umfang siehe [DIALOGE.md](DIALOGE.md#umsetzung-des-totenrituals).
 - Konkrete Bildzahlen nach ersten Tests auf dem Gerät anpassen.
 - Animationen für die Enden, sobald die Zweige der Geschichte stehen.
-- Thronsaal Phase 2 und 3: erste Entwürfe in `assets/konzept/psp/thronsaal-p2.png` und `thronsaal-p3.png`; die Wurzeln in Phase 3 sollten von Hand nachgezeichnet werden.
+- Thronsaal Phase 3 mit Wurzeln und Rissen: Prompt `thronsaal-p3-v1` in [assets/PROMPTS.md](../assets/PROMPTS.md); Phase 2 liegt als `assets/konzept/psp/thronsaal-p2.png` vor.
