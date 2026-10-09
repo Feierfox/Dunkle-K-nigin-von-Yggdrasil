@@ -40,9 +40,9 @@ Ihr persönliches Symbol zeigt einen gespaltenen Baum innerhalb eines Spitzbogen
 
 ## Persönlichkeit und Auftreten
 
-Die Königin spricht ruhig, präzise und selten. Ihre Autorität entsteht aus Erfahrung und Selbstbeherrschung. Sie respektiert Mut, eingehaltene Versprechen und Verantwortung. Sie bleibt auch gegenüber Arvids Spielerkommentaren ernst und majestätisch.
+Die Königin spricht ruhig, präzise und selten. Ihre Autorität entsteht aus Erfahrung und Selbstbeherrschung. Sie respektiert Mut, eingehaltene Versprechen und Verantwortung. Sie bleibt auch gegenüber den Spielerkommentaren des Helden ernst und majestätisch.
 
-Ein leiser, trockener Humor ist möglich. Sie übernimmt jedoch nicht Arvids Sprache über Combos, Timing oder Guides. Ihre Antworten entstehen aus ihrer eigenen Sicht auf Beharrlichkeit, Scheitern und Lernen.
+Ein leiser, trockener Humor ist möglich. Sie übernimmt jedoch nicht die Sprache des Helden über Combos, Timing oder Guides. Ihre Antworten entstehen aus ihrer eigenen Sicht auf Beharrlichkeit, Scheitern und Lernen.
 
 Bewegungen sind langsam und bewusst. Ihre Stimme wird tief, klar und zurückhaltend gedacht. Lange Dialoge sollen wiederholte Versuche nicht unterbrechen.
 
@@ -84,13 +84,13 @@ Ein mögliches Gefolge besteht aus ehemaligen Hütern und schwurgebundenen Ritte
 2. **Thronmotiv:** Ruhige Sitzhaltung mit geöffneten Händen auf den Armlehnen. Äste bilden hinter ihr eine zweite Krone.
 3. **Titelmotiv:** Gotische Glasfenster-Komposition mit dem Weltenbaum im Hintergrund. Der Titel steht lesbar in zwei Zeilen: „Dunkle Königin“ / „von Yggdrasil“.
 
-Ein gemeinsames Titelbild kann Arvid klein im Vordergrund und die Königin erhöht auf dem Thron zeigen. Eine leuchtende Wurzel verbindet die beiden Bildbereiche. Arvid erhält dabei keine modernen Gegenstände.
+Ein gemeinsames Titelbild kann den Helden klein im Vordergrund und die Königin erhöht auf dem Thron zeigen. Eine leuchtende Wurzel verbindet die beiden Bildbereiche. Der Held erhält dabei keine modernen Gegenstände.
 
 ## Noch offen
 
 - Rolle der Königin im konkreten Spielablauf: Gegnerin, Gegenüber im Thronsaal oder eine Verbindung beider Rollen.
-- Verbindung zwischen ihrem Reich und Arvids Rückkehr nach dem Tod.
+- Verbindung zwischen ihrem Reich und der Rückkehr des Helden nach dem Tod.
 - Konkrete Angriffe, Phasen, Begegnungen und Schluss.
 - Endgültige Visualisierung: Illustration, Pixel-Art oder eine Kombination.
 
-Die frühere Rettungsgeschichte um Arvids Schwester wird nicht verwendet. Ein Ausgang, in dem die Königin ihre Bindung an Yggdrasil löst, bleibt lediglich eine mögliche erzählerische Richtung.
+Die frühere Rettungsgeschichte um die Schwester des Helden wird nicht verwendet. Ein Ausgang, in dem die Königin ihre Bindung an Yggdrasil löst, bleibt lediglich eine mögliche erzählerische Richtung.

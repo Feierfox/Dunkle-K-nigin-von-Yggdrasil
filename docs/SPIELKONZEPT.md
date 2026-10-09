@@ -4,7 +4,7 @@
 
 „Dunkle Königin von Yggdrasil“ verbindet eine ernsthafte dunkle Fantasywelt mit den knappen Kommentaren einer festen Spielfigur, die wie ein lernender Spieler spricht.
 
-Die Königin trägt die majestätische, geheimnisvolle Seite des Konzepts. Arvid verkörpert den Prozess, Guides und Strategien zu verstehen, Timing einzuüben und Mechaniken praktisch zu beherrschen.
+Die Königin trägt die majestätische, geheimnisvolle Seite des Konzepts. Der Held verkörpert den Prozess, Guides und Strategien zu verstehen, Timing einzuüben und Mechaniken praktisch zu beherrschen.
 
 ## Festgelegte Lernschleife
 
@@ -19,7 +19,7 @@ Scheitern gehört zum Lernen. Jeder Versuch muss trotzdem spielerisch ernst geno
 
 ## Ton und Dialogplanung
 
-Der Humor bleibt auf des Helden Lernprozess bezogen. Die Welt und die Königin behalten ihre Würde. Kommentare sind kurz, variieren und verraten keine unbekannten Mechaniken.
+Der Humor bleibt auf den Lernprozess des Helden bezogen. Die Welt und die Königin behalten ihre Würde. Kommentare sind kurz, variieren und verraten keine unbekannten Mechaniken.
 
 Für die spätere Dialogplanung können folgende Kategorien genutzt werden:
 
@@ -46,7 +46,7 @@ Noch nicht festgelegt sind Anzahl und Länge der Phasen, konkrete Gegner, Schwie
 - Welche Kämpfe und Phasen bilden die konkrete Lernfolge?
 - Wie häufig werden Rückkehrkommentare verwendet und wie werden Wiederholungen vermieden?
 - Welche visuelle Darstellungsform trägt das Spiel?
-- Welche Plattform und technische Grundlage werden später gewählt?
+- Die Plattform ist entschieden: PSP-1000. Technische Details stehen in [PSP1000.md](PSP1000.md).
 
 Diese Fragen sind dokumentiert, ohne die abgestimmte Figurenidee durch unbesprochene Festlegungen zu verändern.
 

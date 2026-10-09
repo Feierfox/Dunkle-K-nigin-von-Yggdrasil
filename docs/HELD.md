@@ -2,7 +2,7 @@
 
 ## Verbindliche Beschreibung
 
-**Der Held ist die festgelegte Spielfigur.** Der Mensch vor dem Bildschirm ist der Spieler; Dieser spiegelt dessen Lernprozess durch seine Sprache und Reaktionen.
+**Der Held ist die festgelegte Spielfigur.** Der Mensch vor dem Bildschirm ist der Spieler; der Held spiegelt dessen Lernprozess durch seine Sprache und Reaktionen.
 
 Er gehört optisch zur Fantasywelt. Er benötigt keine ausgearbeitete Herkunft, Familie, Berufslaufbahn oder persönliche Rettungsgeschichte. Die zuvor vorgeschlagenen Figurenbezüge zu Mara und die Suche nach einer Schwester entfallen.
 
@@ -22,7 +22,7 @@ Sein Humor entsteht aus konkreten Fehlschlägen und dem Unterschied zwischen the
 
 ### Rückkehr in den Thronsaal
 
-Nach seinem Tod kehrt Der Held in den Thronsaal zurück. Mögliche kurze Kommentare:
+Nach seinem Tod kehrt der Held in den Thronsaal zurück. Mögliche kurze Kommentare:
 
 - „Ahh. Wieder falsches Timing.“
 - „Mmh, verdammt. Diese Combo hilft mir hier nicht weiter.“
