@@ -45,7 +45,21 @@ Er darf Fortschritte erkennen, ohne einen Sieg zu behaupten: „Bis dahin passt 
 
 ## Herzen und Ausrüstung
 
-Der Held beginnt mit einem Herz und kann im Lauf des Spiels bis zu fünf erreichen. Ein Treffer der Königin kostet ein Herz; der magische Impuls bei ihrem Phasenwechsel tötet ihn sofort. Während ihrer Verwandlung bleibt er stehen und greift nicht an; den Impuls übersteht er erst mit einer Gegenmaßnahme wie Ausweichen, Schildblock oder einem Amulett. Neue Herzen und bessere Ausrüstung holt er sich über eine Questreihe; in dieser Zeit bleibt er dem Thronsaal länger fern. Einzelheiten stehen in [SPIELKONZEPT.md](SPIELKONZEPT.md#herzen-und-ausrüstung-des-helden).
+Der Held beginnt mit einem Herz und kann im Lauf des Spiels bis zu fünf erreichen. Ein Treffer der Königin kostet ein Herz; der magische Impuls bei ihrem Phasenwechsel tötet ihn sofort. Während ihrer Verwandlung bleibt er stehen und greift nicht an; den ersten Impuls (Wechsel zu Phase 2) überspringt er, sobald er das Timing kennt; gegen den lila Nebel des zweiten Impulses (Wechsel zu Phase 3) schützt ihn nur der goldene Schild seines Amuletts. Neue Herzen und bessere Ausrüstung holt er sich über eine Questreihe; in dieser Zeit bleibt er dem Thronsaal länger fern. Einzelheiten stehen in [SPIELKONZEPT.md](SPIELKONZEPT.md#herzen-und-ausrüstung-des-helden).
+
+### Ausrüstungsstufen — sichtbar an Umhang und Schwert
+
+Neue Ausrüstung zeigt sich vor allem an der **Farbe des Umhangs**. Am Ende wird das **Schwert golden** und damit legendär. Auf der PSP ist das ein reiner Palettentausch: dasselbe Sprite, nur andere Farben.
+
+| Stufe | Herzen | Umhang | Besonderes |
+| --- | --- | --- | --- |
+| 1 | 1 | Waldgrün (Start) | – |
+| 2 | 2 | Tannengrün, kühler | Saum silbergrau |
+| 3 | 3 | Smaragd, kräftiger | Saum silbergrau |
+| 4 | 4 | Smaragd | Goldsaum, **Amulett** auf der Brust (Schild gegen den zweiten Impuls) |
+| 5 | 5 | Tiefes Königsgrün | Goldsaum, Amulett, **legendäres goldenes Schwert** |
+
+Vorschau: [held_stufen_vorschau.png](../assets/sprites/cutout/held_stufen_vorschau.png). Beim Amulett-Schild leuchtet der Held golden.
 
 ## Grenzen seines Wissens
 

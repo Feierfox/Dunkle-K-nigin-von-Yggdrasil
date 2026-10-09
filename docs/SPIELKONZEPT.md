@@ -53,7 +53,7 @@ Vor Phase 1 sitzt die Königin auf dem Thron („Phase 0“, ohne Kampf). Ausseh
 - Jeder Phasenwechsel beginnt mit einer **sichtbaren Veränderung der Königin**.
 - Dabei setzt sie einen **magischen Impuls** frei. Trifft er den Helden, stirbt dieser **sofort**, unabhängig von seinen Herzen.
 - Der Impuls kommt am **Ende der Verwandlung**. Während der Verwandlung **greift der Held nicht an und bleibt stehen**.
-- Er überlebt den Impuls erst, wenn er eine Gegenmaßnahme gelernt oder erworben hat, zum Beispiel Ausweichen, Schildblock oder ein Amulett aus der Questreihe. Gerade dieser Moment eignet sich für Rückkehrkommentare wie „Okay, beim Phasenwechsel muss ich weg.“
+- **Gegenmaßnahmen (festgelegt):** Den Impuls beim Wechsel zu Phase 2 überspringt der Held, sobald er das Timing gelernt hat. Beim Wechsel zu Phase 3 flutet lila Nebel den Bildschirm; nur ein goldener Schild aus seinem **Amulett** schützt den Bereich, in dem er steht. Gerade dieser Moment eignet sich für Rückkehrkommentare wie „Okay, beim Phasenwechsel muss ich weg.“
 
 **Helm (festgelegt):** Beim Wechsel zu Phase 2 reißt der Helm der Königin, beim Wechsel zu Phase 3 zerfällt er, und erst dann ist ihr Gesicht zu sehen. In ihm wohnt ein Teil Yggdrasils, der durch ihre lange Wacht verdorben wurde und sie beeinflusst. Das ist der Wendepunkt der Geschichte (siehe [KOENIGIN.md](KOENIGIN.md#der-verdorbene-yggdrasil--wendepunkt)).
 

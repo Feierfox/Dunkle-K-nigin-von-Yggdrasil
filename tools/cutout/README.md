@@ -19,4 +19,6 @@ python tools/cutout/angriffe.py    # Angriffe
 
 `angriffe.py` schneidet Sense, Hand und Unterarm aus dem Entwurf aus, füllt die verdeckte Stelle am Körper mit den angrenzenden Rüstungsfarben und dreht das Teil je Bild um den Ellbogen. Der Arm hebt sich beim Ausholen zusätzlich an.
 
+`ausruestung.py` erzeugt die fünf Ausrüstungsstufen des Helden als Farbtausch (`held_stufen.png`) und das Mockup des Amulett-Schilds im lila Nebel (`assets/konzept/psp/mockup-impuls2-amulett*.png`).
+
 **Grenze:** Verformung reicht für ruhige Bewegungen. Gehen, Angriffe und Rituale brauchen bewegliche Einzelteile (Cut-out mit Gelenken). Die Sense mit dem vorderen Arm lässt sich aus dem Bild ausschneiden; verdeckte Stellen wie die Beine unter dem Mantel brauchen zusätzliche Teile-Bilder.

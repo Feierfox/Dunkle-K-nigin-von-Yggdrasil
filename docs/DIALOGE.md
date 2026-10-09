@@ -55,6 +55,8 @@ Nach jedem Tod kehrt der Held in den Thronsaal zurück. **Nicht jeder Tod brauch
 | Erster Tod durch Impuls | „Ich hab nichts gemacht. Ich hab nur *gewartet*.“ |
 | Weitere Tode durch Impuls | „Okay, beim Phasenwechsel muss ich weg.“ · „Das Leuchten heißt nicht ‚schön‘. Das Leuchten heißt ‚lauf‘.“ · „Das braucht kein Timing. Das braucht einen Schild.“ |
 | Impuls überlebt, danach gestorben | „Den Impuls hab ich. Den Rest noch nicht.“ |
+| Erster Tod im lila Nebel (ohne Amulett) | „Drüberspringen geht hier nicht. Da ist kein Drüber.“ |
+| Erstes Mal mit Amulett-Schild überlebt | „Okay, das Amulett kann *das*? Gold steht mir.“ |
 
 ### Phase 2 (orange Leiste)
 
@@ -71,7 +73,7 @@ Nach jedem Tod kehrt der Held in den Thronsaal zurück. **Nicht jeder Tod brauch
 | --- | --- |
 | Ranken | „Der Boden selbst ist ein Angriff. Fair.“ |
 | Erinnerungsriss | „Ich hab kurz was gesehen. Eine Stadt? Dann war ich tot.“ |
-| Weltgericht | „Das kann man nicht ausweichen. Das muss man aushalten.“ · „Ich brauch was Besseres als einen Schild.“ |
+| Weltgericht | „Das kann man nicht ausweichen. Das muss man aushalten.“ · „Ohne das Amulett brauch ich hier gar nicht anfangen.“ |
 | Allgemein | „Dritte Phase. Im Guide steht hier nur: ‚Viel Glück.‘“ |
 
 ### Allgemein und ohne klare Ursache
@@ -157,9 +159,9 @@ Danach folgt die **Abwesenheit**: Die Königin steht allein im Thronsaal, und es
 
 ### G4 — Die Rückkehr
 
-**Auslöser:** Rückkehr von der ersten Quest, mit 2 Herzen und Schild.
+**Auslöser:** Rückkehr von der ersten Quest, mit 2 Herzen und neuem Umhang.
 
-> **Held:** „Neuer Schild. Zwei Herzen. Diesmal hab ich einen Plan.“
+> **Held:** „Neuer Umhang. Zwei Herzen. Diesmal hab ich einen Plan.“
 > **Königin:** „Die Halle war still, während du fort warst.“
 
 | | Antwort der Königin | Antwort des Helden | Wirkung |

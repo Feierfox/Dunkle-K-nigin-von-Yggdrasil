@@ -59,10 +59,11 @@ Jeder neue Versuch beginnt wieder in Phase 1 mit vollen Leisten. Der Held muss f
 
 - Während der Verwandlung **greift der Held nicht an und bleibt stehen**.
 - Jede Verwandlung endet mit dem **magischen Impuls**. Trifft er den Helden, stirbt dieser sofort, unabhängig von seinen Herzen.
-- Der Held überlebt den Impuls erst, wenn er gelernt hat, ihm zu begegnen. **Vorschlag:** drei Stufen, die er nacheinander erwirbt:
-  1. **Ausweichen:** Er erkennt das Signal und springt im richtigen Moment.
-  2. **Schildblock:** ein Schild aus der Questreihe hält den Impuls ab.
-  3. **Amulett:** ein Schutzamulett aus der Questreihe übersteht auch den stärkeren Impuls der Phase 3.
+- Der Held überlebt den Impuls erst, wenn er ihm begegnen kann. **Festgelegt:**
+  1. **Impuls beim Wechsel zu Phase 2: Sprung.** Er erkennt das Signal und springt im richtigen Moment über die Welle. Das lernt er, dafür braucht er keine Ausrüstung.
+  2. **Impuls beim Wechsel zu Phase 3: Amulett-Schild.** Ein Amulett aus der Questreihe erzeugt einen Schild, der ihn golden leuchten lässt. **Lila Nebel flutet den ganzen Bildschirm**, nur der Bereich, in dem der Held steht, bleibt frei, geschützt vom Schild. Ohne Amulett stirbt er im Nebel.
+
+Mockup: [mockup-impuls2-amulett-2x.png](../assets/konzept/psp/mockup-impuls2-amulett-2x.png).
 
 **Vorschlag zur Dauer:** Beim ersten Mal läuft die volle Sequenz (1→2 etwa 4 Sekunden, 2→3 etwa 8 Sekunden). Bei späteren Versuchen wird sie gekürzt (etwa 2 und 3 Sekunden), damit Wiederholungen flüssig bleiben. Der Impuls selbst bleibt immer gleich lang, damit der Held ihn lernen kann.
 
@@ -223,7 +224,8 @@ Bild 49–60: Flügel aus verschlungenen Wurzeln wachsen aus den Schultern; die 
 Bild 61–72: Sprite wächst von 96 auf 112 px Höhe, sie schwebt 20 px über dem Boden
 Bild 73–84: Blätter leuchten auf, Licht dringt aus den Rissen
 Bild 85–92: Sammeln: Die Flügel öffnen sich vollständig
-Bild 93–96: IMPULS: stärker als in Phase 2, eisblau-weiße Welle über den ganzen Saal
+Bild 93–96: IMPULS: Lila Nebel flutet den ganzen Bildschirm. Nur der Schild des Helden (falls er das Amulett trägt)
+            bleibt als goldene Blase frei
 → p3_idle
 ```
 
@@ -265,7 +267,7 @@ Bild 9–16:  Helligkeit klingt ab, neue Risse im Saal
 Bild 17–24: Sie sinkt 1–2 px ab, Flügel hängen kurz, dann zurück zu p3_idle
 ```
 
-Der Held übersteht das Weltgericht nur mit einer erlernten Gegenmaßnahme, zum Beispiel dem Amulett.
+Der Held übersteht das Weltgericht nur mit dem Amulett-Schild, wie den Impuls beim Wechsel zu Phase 3.
 
 **Helligkeit:** Kein voller weißer Blitz. Die Aufhellung bleibt bei höchstens etwa 50 % Deckkraft und dauert länger als 2 Animationsbilder. Das ist angenehmer und verträglicher für lichtempfindliche Spieler.
 
@@ -382,6 +384,6 @@ Jede Datei kommt mit einer gleichnamigen `.json` für die Bildpositionen im Atla
 
 - Animationen für das Totenritual (magisches Feuer, In-den-Arm-nehmen, lila Portal), Umfang siehe [DIALOGE.md](DIALOGE.md#umsetzung-des-totenrituals).
 - Konkrete Bildzahlen nach ersten Tests auf dem Gerät anpassen.
-- Gegenmaßnahmen des Helden (Ausweichen, Schild, Amulett) mit der Questreihe abstimmen.
+- Zeitpunkt in der Questreihe, an dem der Held das Amulett bekommt (spätestens bevor er Phase 3 erreichen kann).
 - Animationen für die Enden, sobald die Zweige der Geschichte stehen.
 - Hintergrundebenen des Thronsaals für die Phasen 2 und 3.
