@@ -69,6 +69,17 @@ Vor Phase 1 sitzt die Königin auf dem Thron („Phase 0“, ohne Kampf). Ausseh
 - **Ein Treffer der Königin kostet ein Herz.** Ausnahme: Der magische Impuls beim Phasenwechsel tötet sofort.
 - Sein Fortschritt kommt also aus zwei Quellen: Er lernt die Angriffe der Königin, und er wird durch Ausrüstung und Herzen widerstandsfähiger.
 
+### Die Amulett-Quest
+
+**Festgelegt:** Der Held holt das Amulett erst, **nachdem er am zweiten Impuls gescheitert ist**:
+
+1. Der Held erreicht zum ersten Mal das Ende von Phase 2. Die Königin verwandelt sich, lila Nebel flutet den Bildschirm.
+2. Er versucht, dem Impuls wie beim ersten **durch einen Sprung auszuweichen**, und stirbt im Nebel.
+3. Nach seiner Rückkehr bricht er zur **Amulett-Quest** auf. Es folgt wieder eine Abwesenheit: Die Königin steht allein im Thronsaal, und es geschieht bewusst nichts.
+4. Er kehrt mit dem Amulett (Stufe 4, 4 Herzen) zurück und **überlebt den Impuls diesmal mit dem goldenen Schild**.
+
+Damit sieht der Spieler zuerst, dass das Gelernte nicht mehr reicht, und danach, wie die neue Ausrüstung das Problem löst.
+
 ### Abwesenheit des Helden
 
 Während der Held auf Quest ist, sieht der Spieler die **Königin allein im Thronsaal**. Dabei geschieht **bewusst nichts**: kein Gegner, kein Dialog, keine Aufgabe. Die Stille ist gewollt und zeigt, wie leer ihre Herrschaft ohne den Herausforderer ist.

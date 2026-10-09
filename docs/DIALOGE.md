@@ -55,7 +55,8 @@ Nach jedem Tod kehrt der Held in den Thronsaal zurück. **Nicht jeder Tod brauch
 | Erster Tod durch Impuls | „Ich hab nichts gemacht. Ich hab nur *gewartet*.“ |
 | Weitere Tode durch Impuls | „Okay, beim Phasenwechsel muss ich weg.“ · „Das Leuchten heißt nicht ‚schön‘. Das Leuchten heißt ‚lauf‘.“ · „Das braucht kein Timing. Das braucht einen Schild.“ |
 | Impuls überlebt, danach gestorben | „Den Impuls hab ich. Den Rest noch nicht.“ |
-| Erster Tod im lila Nebel (ohne Amulett) | „Drüberspringen geht hier nicht. Da ist kein Drüber.“ |
+| Erster Tod im lila Nebel (ohne Amulett) | „Ich bin gesprungen. Wie beim letzten Mal. Drüberspringen geht hier nicht. Da ist kein Drüber.“ |
+| Aufbruch zur Amulett-Quest (direkt danach) | „Okay. Springen reicht nicht mehr. Ich brauch was, das mich *schützt*. Bin bald zurück. Also, relativ bald.“ |
 | Erstes Mal mit Amulett-Schild überlebt | „Okay, das Amulett kann *das*? Gold steht mir.“ |
 
 ### Phase 2 (orange Leiste)

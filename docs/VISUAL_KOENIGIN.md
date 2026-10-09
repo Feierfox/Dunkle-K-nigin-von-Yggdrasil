@@ -61,7 +61,7 @@ Jeder neue Versuch beginnt wieder in Phase 1 mit vollen Leisten. Der Held muss f
 - Jede Verwandlung endet mit dem **magischen Impuls**. Trifft er den Helden, stirbt dieser sofort, unabhängig von seinen Herzen.
 - Der Held überlebt den Impuls erst, wenn er ihm begegnen kann. **Festgelegt:**
   1. **Impuls beim Wechsel zu Phase 2: Sprung.** Er erkennt das Signal und springt im richtigen Moment über die Welle. Das lernt er, dafür braucht er keine Ausrüstung.
-  2. **Impuls beim Wechsel zu Phase 3: Amulett-Schild.** Ein Amulett aus der Questreihe erzeugt einen Schild, der ihn golden leuchten lässt. **Lila Nebel flutet den ganzen Bildschirm**, nur der Bereich, in dem der Held steht, bleibt frei, geschützt vom Schild. Ohne Amulett stirbt er im Nebel.
+  2. **Impuls beim Wechsel zu Phase 3: Amulett-Schild.** Beim ersten Mal versucht der Held zu springen und stirbt im Nebel; danach holt er in einer eigenen Quest das Amulett ([SPIELKONZEPT.md](SPIELKONZEPT.md#die-amulett-quest)). Das Amulett erzeugt einen Schild, der ihn golden leuchten lässt. **Lila Nebel flutet den ganzen Bildschirm**, nur der Bereich, in dem der Held steht, bleibt frei, geschützt vom Schild. Ohne Amulett stirbt er im Nebel.
 
 Mockup: [mockup-impuls2-amulett-2x.png](../assets/konzept/psp/mockup-impuls2-amulett-2x.png).
 
@@ -384,6 +384,5 @@ Jede Datei kommt mit einer gleichnamigen `.json` für die Bildpositionen im Atla
 
 - Animationen für das Totenritual (magisches Feuer, In-den-Arm-nehmen, lila Portal), Umfang siehe [DIALOGE.md](DIALOGE.md#umsetzung-des-totenrituals).
 - Konkrete Bildzahlen nach ersten Tests auf dem Gerät anpassen.
-- Zeitpunkt in der Questreihe, an dem der Held das Amulett bekommt (spätestens bevor er Phase 3 erreichen kann).
 - Animationen für die Enden, sobald die Zweige der Geschichte stehen.
 - Hintergrundebenen des Thronsaals für die Phasen 2 und 3.

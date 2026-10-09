@@ -56,7 +56,7 @@ Neue Ausrüstung zeigt sich vor allem an der **Farbe des Umhangs**. Am Ende wird
 | 1 | 1 | Waldgrün (Start) | – |
 | 2 | 2 | Tannengrün, kühler | Saum silbergrau |
 | 3 | 3 | Smaragd, kräftiger | Saum silbergrau |
-| 4 | 4 | Smaragd | Goldsaum, **Amulett** auf der Brust (Schild gegen den zweiten Impuls) |
+| 4 | 4 | Smaragd | Goldsaum, **Amulett** auf der Brust (Schild gegen den zweiten Impuls). Diese Quest beginnt, nachdem er am zweiten Impuls gescheitert ist |
 | 5 | 5 | Tiefes Königsgrün | Goldsaum, Amulett, **legendäres goldenes Schwert** |
 
 Vorschau: [held_stufen_vorschau.png](../assets/sprites/cutout/held_stufen_vorschau.png). Beim Amulett-Schild leuchtet der Held golden.
