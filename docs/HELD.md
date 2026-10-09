@@ -43,6 +43,10 @@ Eine gescheiterte Übertragung einer Strategie kann er so kommentieren: „Die C
 
 Er darf Fortschritte erkennen, ohne einen Sieg zu behaupten: „Bis dahin passt es. Danach verliere ich den Rhythmus.“
 
+## Herzen und Ausrüstung
+
+Der Held beginnt mit einem Herz und kann im Lauf des Spiels bis zu fünf erreichen. Neue Herzen und bessere Ausrüstung holt er sich über eine Questreihe; in dieser Zeit bleibt er dem Thronsaal länger fern. Einzelheiten stehen in [SPIELKONZEPT.md](SPIELKONZEPT.md#herzen-und-ausrüstung-des-helden).
+
 ## Grenzen seines Wissens
 
 - Der Held kommentiert nur Angriffe und Phasen, die er bereits erlebt hat.

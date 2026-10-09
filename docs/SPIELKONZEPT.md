@@ -32,7 +32,9 @@ Der Held wird mit jedem Versuch spürbar besser. **Die Werte der Königin bleibe
 
 ## Die drei Phasen der Königin
 
-**Festgelegt:** Die Königin besitzt **drei Phasen**. Ihre Werte, also Schaden, Tempo und Lebenspunkte, ändern sich dabei nicht.
+**Festgelegt:** Die Königin besitzt **drei Phasen** innerhalb eines Kampfes. Ihre Werte, also Schaden, Tempo und Lebenspunkte, ändern sich dabei nicht.
+
+**Lebensbalken:** Die Königin hat einen Lebensbalken aus **drei übereinanderliegenden Leisten**. Ist die oberste Leiste leer, beginnt die nächste Phase mit der darunterliegenden Leiste. Ist die dritte Leiste leer, ist die Königin besiegt. Jede Leiste ist gleich lang, und zu Beginn jedes Kampfes sind alle drei wieder voll.
 
 | Phase | Inhalt |
 | --- | --- |
@@ -40,7 +42,23 @@ Der Held wird mit jedem Versuch spürbar besser. **Die Werte der Königin bleibe
 | 2 | Noch festzulegen |
 | 3 | Noch festzulegen |
 
-Was eine neue Phase auslöst und was sich darin ändert, ist noch offen. Ein naheliegender Vorschlag: Jede Phase schaltet neue Angriffe frei, ohne die bisherigen stärker zu machen.
+Was sich in jeder Phase ändert, ist noch offen. Ein naheliegender Vorschlag: Jede Phase schaltet neue Angriffe frei, ohne die bisherigen stärker zu machen.
+
+## Herzen und Ausrüstung des Helden
+
+**Festgelegt:**
+
+- Der Held beginnt mit **1 Herz**. Im Lauf des Spiels steigt die Zahl auf **bis zu 5 Herzen**.
+- Neue Herzen und bessere Ausrüstung holt er sich über eine **Questreihe** außerhalb des Thronsaals.
+- Während er diese Quests erledigt, bleibt er dem Thronsaal länger fern als nach einer gewöhnlichen Niederlage.
+- Sein Fortschritt kommt also aus zwei Quellen: Er lernt die Angriffe der Königin, und er wird durch Ausrüstung und Herzen widerstandsfähiger.
+
+Noch offen:
+
+- Wie viel hält ein Herz aus, ein Treffer oder mehr?
+- Wann bricht er zu einer Quest auf, und wie viele Herzen bringt er jeweils mit zurück?
+- Wie erlebt der Spieler die Abwesenheit des Helden: als Zeitsprung, als Szene mit der Königin allein im Thronsaal oder als Bericht bei seiner Rückkehr?
+- Welche Ausrüstungsteile gibt es, und wie sieht man sie am Sprite?
 
 ## Lernen des Helden — Planungsmaßstab
 
@@ -91,7 +109,8 @@ Anzahl und Art der Angriffe sowie ihre Verteilung auf die drei Phasen sind noch 
 
 ## Offene Entscheidungen
 
-- Was löst einen Phasenwechsel aus, und was ändert sich in jeder der drei Phasen?
+- Was ändert sich in jeder der drei Phasen?
+- Ablauf der Questreihe des Helden und Darstellung seiner Abwesenheit.
 - Wie genau lernt der Held, und wie wird sein Fortschritt sichtbar?
 - Welche Angriffe besitzt die Königin in welcher Phase?
 - Wie viele Gesprächsabschnitte und Enden gibt es?
