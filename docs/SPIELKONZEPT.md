@@ -133,7 +133,7 @@ Anzahl und Art der Angriffe sowie ihre Verteilung auf die drei Phasen sind noch 
 - Ablauf der Questreihe des Helden und Dauer seiner Abwesenheit.
 - Wie genau lernt der Held, und wie wird sein Fortschritt sichtbar?
 - Welche Angriffe besitzt die Königin in welcher Phase?
-- Wie viele Gesprächsabschnitte und Enden gibt es?
+- Gesprächsabschnitte und Enden: erster Entwurf in [DIALOGE.md](DIALOGE.md) (acht Gespräche, sechs Enden plus ein verborgenes).
 - Wie wird die Rückkehr des Helden innerhalb der Welt erklärt?
 - Wie häufig kommentiert der Held, und wie werden Wiederholungen vermieden?
 

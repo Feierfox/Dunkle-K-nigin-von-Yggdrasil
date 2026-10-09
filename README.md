@@ -23,6 +23,7 @@ Das Spiel orientiert sich bewusst an **„The Dark Queen of Mortholme“** (Spie
 - [Spielkonzept: Kampfschleife, lernender Held, verzweigte Geschichte](docs/SPIELKONZEPT.md)
 - [Die Königin: Gestaltung, Persönlichkeit und erzählerische Vorschläge](docs/KOENIGIN.md)
 - [Der Held: Herausforderer, Spielersprache und Dialoge](docs/HELD.md)
+- [Dialoge: Rückkehrkommentare, Gesprächsabschnitte, Enden](docs/DIALOGE.md) (ein weiteres Ende liegt als Spoiler in `docs/geheim/`)
 - [Visuelles Designdokument der Königin: Phasen, Animationen, Paletten](docs/VISUAL_KOENIGIN.md)
 - [PSP-1000-Version: technische Planungsgrundlage](docs/PSP1000.md)
 - [Grafikentwürfe und Prompts](assets/README.md)
