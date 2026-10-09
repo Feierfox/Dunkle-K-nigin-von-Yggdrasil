@@ -1,20 +1,24 @@
 # Die Dunkle Königin von Yggdrasil
 
+**Die Königin ist die Spielfigur.** Der Spieler steuert sie im Kampf gegen den zurückkehrenden Helden und wählt ihre Antworten in den Gesprächen (siehe [SPIELKONZEPT.md](SPIELKONZEPT.md)).
+
 ## Gestalterische Leitidee
 
-Eine gepanzerte Königin auf einem Wurzelthron, eingerahmt von einem gotischen Bogen aus den Ästen Yggdrasils. Schwarze Rüstung, astförmige Krone und eisblaues Haar bilden die zentrale Erscheinung. Ihre Haltung ist ruhig, aufrecht und kontrolliert.
+Eine gepanzerte Königin auf einem Wurzelthron, eingerahmt von einem gotischen Bogen aus den Ästen Yggdrasils. Schwarze Rüstung, ein geschlossener Helm mit astförmiger Krone, eisblaues Haar und eine lange Sense bilden die zentrale Erscheinung. Ihre Haltung ist ruhig, aufrecht und kontrolliert.
 
 Die Referenzen verbinden drei Motive: eine monumentale Rüstungsfigur, eine königliche Thronpose und die Rahmung eines gotischen Glasfensters. Der Name aus den Referenzbildern wird nicht übernommen. Der deutsche Titel lautet unverändert **Dunkle Königin von Yggdrasil**.
 
 ## Erscheinungsbild
 
-Die Königin wirkt groß und beinahe statuenhaft. Ihr Alter lässt sich nicht bestimmen. Ihr Gesicht ist blass und klar gezeichnet, mit schmalen dunklen Linien unter den Augen, die an feine Risse in Porzellan erinnern.
+Die Königin wirkt groß und beinahe statuenhaft. Ihr Alter lässt sich nicht bestimmen. In Phase 0 bis 2 verbirgt der Helm ihr Gesicht; nur die türkis leuchtenden Augen sind im Sehschlitz zu erkennen. **Ihr Gesicht wird erst in Phase 3 sichtbar**, wenn der Helm vollständig zerfällt: dunkel und beinahe schattenhaft, vor dem eisblauen Haar als klare Silhouette.
 
-Langes eisblaues Haar fällt in wenigen deutlich lesbaren Strähnen über die Schultern. In ruhigen Szenen hängt es schwer; beim Wirken von Magie bewegt es sich langsam wie unter Wasser. Die Augen leuchten schwach türkis, behalten aber sichtbare Pupillen und einen menschlichen Ausdruck.
+Langes eisblaues Haar fällt unter dem Helm in wenigen deutlich lesbaren Strähnen über die Schultern. In ruhigen Szenen hängt es schwer; beim Wirken von Magie bewegt es sich langsam wie unter Wasser. Die Augen leuchten schwach türkis, behalten aber sichtbare Pupillen und einen menschlichen Ausdruck.
 
-## Krone, Rüstung und Mantel
+## Helm, Krone, Rüstung und Mantel
 
-Die Krone besitzt fünf hohe, unregelmäßige Astspitzen. Die mittlere Spitze bildet die Hauptachse ihrer Silhouette. Kleine magentafarbene Kristalle sitzen sparsam an den Enden.
+**Festgelegt:** Die Königin trägt einen **geschlossenen schwarzen Helm**. Aus ihm wachsen die fünf hohen, unregelmäßigen Astspitzen der Krone. Die mittlere Spitze bildet die Hauptachse ihrer Silhouette. Kleine magentafarbene Kristalle sitzen sparsam an den Enden.
+
+Im Helm wohnt ein Teil Yggdrasils. Beim Wechsel zu Phase 2 **reißt** er, bleibt aber geschlossen; beim Wechsel zu Phase 3 **zerfällt** er und gibt ihr Gesicht frei (siehe „Der verdorbene Yggdrasil“).
 
 Die Rüstung besteht aus geschwärztem Metall. Brustplatte und Armschienen sind geschlossen; die Formen verbinden Schutz und königliche Würde. Ausgeprägte Schulterplatten laufen in kurze Dornen aus. Gravierte Wurzellinien verbinden die einzelnen Rüstungsteile.
 
@@ -27,22 +31,37 @@ Zwischen wenigen Platten wachsen kleine violette Blüten. Sie markieren die Verb
 | Hauptfarben | Schwarz und Mitternachtsviolett |
 | Haar und Magie | Eisblau und schwaches Türkis |
 | Einzelne Akzente | Magenta an Kristallen und Blüten |
+| Waffenbeschläge | Mattes Gold an den Bändern des Sensenstiels |
 | Gegenlicht | Optional warmes Kupferlicht im Thronmotiv |
 | Materialien | Geschwärztes Metall, dunkles Wurzelholz und Kristall |
 
-Die Akzentfarben bleiben begrenzt, damit Gesicht, Krone und Hände auch in kleinen Darstellungen klar lesbar sind. Eine genaue Palette und die endgültige Darstellungstechnik stehen noch aus.
+Die Akzentfarben bleiben begrenzt, damit Helm, Krone, Haar und Hände auch in kleinen Darstellungen klar lesbar sind. Die Darstellung ist Pixel-Art; eine genaue Palette steht noch aus.
 
-## Waffe und Symbol — Konzeptvorschlag
+## Waffe und Symbol
 
-Ihre lange Stangenwaffe trägt den vorgeschlagenen Namen **Wurzelrichter**. Die dunkle Schneide ähnelt einem aufgebrochenen Ast; ein magentafarbener Kristall sitzt nahe dem Schaft. Die Waffe dient zugleich als Herrschaftsstab und Verbindung zum Baum. Bei Audienzen steht sie neben dem Thron.
+**Festgelegt:** Die Königin kämpft mit einer **Sense**. Sie ersetzt das frühere Schwert.
+
+- **Stiel:** lang, aus dunklem Wurzelholz, leicht gewunden, mit zwei breiten Bändern in mattem Gold. Am unteren Ende sitzt ein kleiner violetter Kristall.
+- **Blatt:** lang und geschwungen, blass lavendelfarben mit einem violetten Streifen entlang der Schneide.
+- **Übergang:** Wo Blatt und Stiel sich treffen, verzweigt sich das Holz wie Äste und hält einen großen violetten Kristall.
+
+Als Name wird weiterhin **Wurzelrichter** vorgeschlagen. Die Sense ist Herrschaftszeichen und Verbindung zum Baum zugleich.
+
+**Verschmelzung:** Mit jeder Phase wächst die Sense weiter in die Königin hinein.
+
+| Phase | Zustand der Sense (Vorschlag) |
+| --- | --- |
+| 0–1 | Eigenständige Waffe in ihrer Hand |
+| 2 | Wurzeln aus dem Stiel umschlingen ihren Unterarm; Hand und Stiel lassen sich nicht mehr trennen |
+| 3 | Die Sense ist Teil ihres Körpers: Das Blatt wächst aus ihrem Unterarm, die Wurzeln des Stiels gehen in die Flügel über |
 
 Ihr persönliches Symbol zeigt einen gespaltenen Baum innerhalb eines Spitzbogens: eine Hälfte trägt Blätter, die andere kahle Äste. Beide werden von derselben geschlossenen Wurzel getragen.
 
 ## Persönlichkeit und Auftreten
 
-Die Königin spricht ruhig, präzise und selten. Ihre Autorität entsteht aus Erfahrung und Selbstbeherrschung. Sie respektiert Mut, eingehaltene Versprechen und Verantwortung. Sie bleibt auch gegenüber Arvids Spielerkommentaren ernst und majestätisch.
+Die Königin spricht ruhig, präzise und selten. Ihre Autorität entsteht aus Erfahrung und Selbstbeherrschung. Sie respektiert Mut, eingehaltene Versprechen und Verantwortung. Sie bleibt auch gegenüber den Spielerkommentaren des Helden ernst und majestätisch.
 
-Ein leiser, trockener Humor ist möglich. Sie übernimmt jedoch nicht Arvids Sprache über Combos, Timing oder Guides. Ihre Antworten entstehen aus ihrer eigenen Sicht auf Beharrlichkeit, Scheitern und Lernen.
+Ein leiser, trockener Humor ist möglich. Sie übernimmt jedoch nicht die Sprache des Helden über Combos, Timing oder Guides. Ihre Antworten entstehen aus ihrer eigenen Sicht auf Beharrlichkeit, Scheitern und Lernen.
 
 Bewegungen sind langsam und bewusst. Ihre Stimme wird tief, klar und zurückhaltend gedacht. Lange Dialoge sollen wiederholte Versuche nicht unterbrechen.
 
@@ -56,6 +75,22 @@ Ihr zentraler Konflikt lautet: Sie schützt die Welt mit einer Macht, die ihr zu
 
 Als Symbolik können die fünf Kronenspitzen für Bewahren, Erinnern, Schützen, Urteilen und Loslassen stehen. Die Spitze des letzten Schwurs ist beschädigt.
 
+## Der verdorbene Yggdrasil — Wendepunkt
+
+**Festgelegt:**
+
+- Ein Teil Yggdrasils **wohnt im Helm** der Königin.
+- Durch ihre lange Wacht hat sich ihr eigentliches Ziel verdreht. Yggdrasil selbst ist dabei **verdorben** worden und **beeinflusst sie**.
+- Beim Wechsel von Phase 1 zu Phase 2 bekommt der Helm Risse, aus denen die Verderbnis dringt. Damit wird sichtbar, was sie die ganze Zeit gelenkt hat. Das Gesicht bleibt noch verborgen.
+- Beim Wechsel von Phase 2 zu Phase 3 zerfällt der Helm. Zum ersten Mal ist ihr Gesicht zu sehen.
+
+**Vorschlag zur Ausgestaltung:**
+
+- Aus den Rissen des Helms dringen schwarze Wurzeln mit magentafarbenen Adern. Sie stehen für die Verderbnis und unterscheiden sich vom reinen eisblau-türkisen Licht ihrer eigenen Magie.
+- Wenn der Helm **zum ersten Mal** reißt, folgt ein kurzer Moment der Erkenntnis, zum Beispiel ein Satz der Königin, der nicht nach ihr klingt, oder ein Kommentar des Helden: „Moment. Das ist gar nicht sie.“ Wenn ihr Gesicht in Phase 3 zum ersten Mal sichtbar wird, folgt ein zweiter solcher Moment. Bei späteren Versuchen bleibt es bei der sichtbaren Verwandlung.
+- Die Frage, wie viel ihres Handelns ihr eigener Wille ist, öffnet neue Zweige der Geschichte: Der Held kann sie von der Verderbnis befreien, sie kann sich selbst lösen, oder die Verderbnis siegt endgültig.
+- Aus dem Wendepunkt ergibt sich auch die Erklärung für „aus dem Bewahren wurde ein Festhalten“: Nicht nur Angst, sondern der verdorbene Baum hat sie dorthin getrieben.
+
 ## Kräfte und Grenzen — Konzeptvorschlag
 
 | Fähigkeit | Ausdruck | Grenze |
@@ -68,7 +103,7 @@ Als Symbolik können die fünf Kronenspitzen für Bewahren, Erinnern, Schützen,
 
 Sie kann Tote nicht wirklich zurückbringen. Erinnerungserscheinungen besitzen kein vollständiges neues Leben. Große Magie lässt die Risse ihres Körpers aufleuchten und Teile der Rüstung zu Holz verhärten. Je stärker sie eingreift, desto enger wird ihre Bindung an den Baum.
 
-Diese Kräfte beschreiben die Figur. Daraus sind noch keine fertigen Angriffe oder Kampfphasen abgeleitet.
+Diese Kräfte beschreiben die Figur und bilden die Grundlage für ihre spielbaren Angriffe. Ihre Kampfwerte bleiben immer gleich. Sie kämpft in drei Phasen mit jeweils eigenen Angriffen, ab Phase 2 zusätzlich mit Flächenschaden. Jeder Phasenwechsel verändert ihr Aussehen und setzt einen magischen Impuls frei, der den Helden sofort töten kann. **Vorschlag:** In Phase 2 leuchten die Risse ihres Körpers auf, in Phase 3 sind Teile der Rüstung zu Wurzelholz verhärtet (siehe [SPIELKONZEPT.md](SPIELKONZEPT.md#phasenwechsel)).
 
 ## Thron, Reich und Gefolge
 
@@ -83,14 +118,14 @@ Ein mögliches Gefolge besteht aus ehemaligen Hütern und schwurgebundenen Ritte
 1. **Charakterporträt:** Frontal und aufrecht unter einem Wurzelbogen; Blick und Rüstung stehen im Mittelpunkt.
 2. **Thronmotiv:** Ruhige Sitzhaltung mit geöffneten Händen auf den Armlehnen. Äste bilden hinter ihr eine zweite Krone.
 3. **Titelmotiv:** Gotische Glasfenster-Komposition mit dem Weltenbaum im Hintergrund. Der Titel steht lesbar in zwei Zeilen: „Dunkle Königin“ / „von Yggdrasil“.
+4. **Spielfigur:** Pixel-Art in Seitenansicht mit Blick nach links, Helm mit Krone, die Sense in der Hand. Aktuelle Entwürfe: [Phase 0/1](../assets/konzept/koenigin-idle-sense-helm-v5.webp) und [Phase 2 mit gerissenem Helm](../assets/konzept/koenigin-p2-helmbruch-v1.webp).
 
-Ein gemeinsames Titelbild kann Arvid klein im Vordergrund und die Königin erhöht auf dem Thron zeigen. Eine leuchtende Wurzel verbindet die beiden Bildbereiche. Arvid erhält dabei keine modernen Gegenstände.
+Ein gemeinsames Titelbild kann den Helden klein im Vordergrund und die Königin erhöht auf dem Thron zeigen. Eine leuchtende Wurzel verbindet die beiden Bildbereiche. Der Held erhält dabei keine modernen Gegenstände.
 
 ## Noch offen
 
-- Rolle der Königin im konkreten Spielablauf: Gegnerin, Gegenüber im Thronsaal oder eine Verbindung beider Rollen.
-- Verbindung zwischen ihrem Reich und Arvids Rückkehr nach dem Tod.
-- Konkrete Angriffe, Phasen, Begegnungen und Schluss.
-- Endgültige Visualisierung: Illustration, Pixel-Art oder eine Kombination.
+- Grafik der Phase 3 (Gesicht, Flügel, verschmolzene Sense).
 
-Die frühere Rettungsgeschichte um Arvids Schwester wird nicht verwendet. Ein Ausgang, in dem die Königin ihre Bindung an Yggdrasil löst, bleibt lediglich eine mögliche erzählerische Richtung.
+Angriffe: [ANGRIFFE.md](ANGRIFFE.md). Gespräche und Enden: [DIALOGE.md](DIALOGE.md). Die Rückkehr des Helden erklärt die Welt bewusst nicht; die Königin lebt ewig und befasst sich nicht mit Vergänglichkeit.
+
+Die frühere Rettungsgeschichte um die Schwester des Helden wird nicht verwendet. Ein Ausgang, in dem die Königin ihre Bindung an Yggdrasil löst, ist einer von mehreren möglichen Zweigen.
