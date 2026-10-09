@@ -45,7 +45,7 @@ Er darf Fortschritte erkennen, ohne einen Sieg zu behaupten: „Bis dahin passt 
 
 ## Herzen und Ausrüstung
 
-Der Held beginnt mit einem Herz und kann im Lauf des Spiels bis zu fünf erreichen. Ein Treffer der Königin kostet ein Herz; der magische Impuls bei ihrem Phasenwechsel tötet ihn sofort. Neue Herzen und bessere Ausrüstung holt er sich über eine Questreihe; in dieser Zeit bleibt er dem Thronsaal länger fern. Einzelheiten stehen in [SPIELKONZEPT.md](SPIELKONZEPT.md#herzen-und-ausrüstung-des-helden).
+Der Held beginnt mit einem Herz und kann im Lauf des Spiels bis zu fünf erreichen. Ein Treffer der Königin kostet ein Herz; der magische Impuls bei ihrem Phasenwechsel tötet ihn sofort. Während ihrer Verwandlung bleibt er stehen und greift nicht an; den Impuls übersteht er erst mit einer Gegenmaßnahme wie Ausweichen, Schildblock oder einem Amulett. Neue Herzen und bessere Ausrüstung holt er sich über eine Questreihe; in dieser Zeit bleibt er dem Thronsaal länger fern. Einzelheiten stehen in [SPIELKONZEPT.md](SPIELKONZEPT.md#herzen-und-ausrüstung-des-helden).
 
 ## Grenzen seines Wissens
 

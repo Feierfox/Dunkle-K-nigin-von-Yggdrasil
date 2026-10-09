@@ -38,20 +38,24 @@ Der Held wird mit jedem Versuch spürbar besser. **Die Werte der Königin bleibe
 
 | Phase | Leiste | Angriffe |
 | --- | --- | --- |
-| 1 | **Rot** | Eigene Angriffe der ersten Phase |
-| 2 | **Orange** | Eigene Angriffe der zweiten Phase, zusätzlich Flächenschaden (AOE) |
-| 3 | **Lila** | Eigene Angriffe der dritten Phase, zusätzlich Flächenschaden (AOE) |
+| 1 | **Rot** | Schwertangriffe (Vorschlag: Richtschlag, Wurzelstoß, Kreisschnitt) |
+| 2 | **Orange** | Magische Angriffe mit Flächenschaden (Vorschlag: Sternschauer, Windklinge, Todesurteil) |
+| 3 | **Lila** | Wurzel- und Erinnerungsangriffe mit Flächenschaden (Vorschlag: Ranken, Erinnerungsriss, Weltgericht) |
 
-- Jede Phase hat **eigene Angriffe**. Die konkreten Angriffe sind noch festzulegen.
+Vor Phase 1 sitzt die Königin auf dem Thron („Phase 0“, ohne Kampf). Aussehen, Angriffe und Animationen beschreibt [VISUAL_KOENIGIN.md](VISUAL_KOENIGIN.md).
+
+- Jede Phase hat **eigene Angriffe**.
 - Ab Phase 2 kommt **Flächenschaden** hinzu: Angriffe, die einen Bereich des Thronsaals treffen und dem Helden weniger Ausweichraum lassen.
+- **Tempo:** In jeder Phase ist der Held mindestens 3 Runden lang leicht zu besiegen. Danach braucht er mindestens 6 weitere Runden, bis er die nächste Phase erreichen kann, je nachdem, wie gut der Spieler die Königin spielt. Frühestens erreicht er Phase 2 in Runde 10 und Phase 3 in Runde 19.
 
 ### Phasenwechsel
 
 - Jeder Phasenwechsel beginnt mit einer **sichtbaren Veränderung der Königin**.
 - Dabei setzt sie einen **magischen Impuls** frei. Trifft er den Helden, stirbt dieser **sofort**, unabhängig von seinen Herzen.
-- Der Held kann lernen, dem Impuls auszuweichen. Gerade dieser Moment eignet sich für Rückkehrkommentare wie „Okay, beim Phasenwechsel muss ich weg.“
+- Der Impuls kommt am **Ende der Verwandlung**. Während der Verwandlung **greift der Held nicht an und bleibt stehen**.
+- Er überlebt den Impuls erst, wenn er eine Gegenmaßnahme gelernt oder erworben hat, zum Beispiel Ausweichen, Schildblock oder ein Amulett aus der Questreihe. Gerade dieser Moment eignet sich für Rückkehrkommentare wie „Okay, beim Phasenwechsel muss ich weg.“
 
-**Vorschlag für die Veränderung:** Die Fähigkeiten in [KOENIGIN.md](KOENIGIN.md) liefern sie bereits: Große Magie lässt die Risse ihres Körpers aufleuchten und Teile der Rüstung zu Holz verhärten. In Phase 2 leuchten die Risse, in Phase 3 sind Teile der Rüstung zu Wurzelholz geworden.
+**Veränderung (Vorschlag):** In Phase 2 leuchten die Risse ihres Körpers türkis und sie schwebt leicht. In Phase 3 sind Teile der Rüstung zu Wurzelholz geworden, und Flügel aus Wurzeln tragen sie.
 
 ## Herzen und Ausrüstung des Helden
 

@@ -12,6 +12,20 @@ Die Dateien hier sind **komprimierte WebP-Kopien** zur Ansicht. Die PNG-Original
 | [konzept/held-idle-hood-v3.webp](konzept/held-idle-hood-v3.webp) | 1024 × 1536, transparent | Held in Ruhepose, Seitenansicht, Blick nach rechts, grüner Kapuzenumhang, Gesicht im Schatten |
 | [konzept/thronsaal-pixel-v2.webp](konzept/thronsaal-pixel-v2.webp) | 1672 × 941, deckend | Thronsaal in fester Seitenansicht: Eingang links, erhöhter leerer Thron rechts, gotische Fenster |
 
+## PSP-Bildkonzept
+
+Die Entwürfe verkleinert auf echte PSP-Auflösung, um Lesbarkeit und Aufteilung zu prüfen. Die Figuren stehen mittig am hinteren Rand des Bodens (Kampflinie Y ≈ 240).
+
+| Datei | Inhalt |
+| --- | --- |
+| [psp/mockup-phase1-runde1.png](konzept/psp/mockup-phase1-runde1.png) (+ `-2x`) | 480 × 272: Phase 1, rote Leiste, Held mit 1 Herz |
+| [psp/mockup-phase2-spaeter.png](konzept/psp/mockup-phase2-spaeter.png) (+ `-2x`) | 480 × 272: Phase 2, orange Leiste, Held mit 3 von 5 Herzen |
+| [psp/koenigin-p1-64x96.png](konzept/psp/koenigin-p1-64x96.png) | Königin automatisch auf 58 × 96 verkleinert, 24 Farben |
+| [psp/held-32x48.png](konzept/psp/held-32x48.png) | Held automatisch auf 37 × 48 verkleinert, 16 Farben |
+| [psp/paletten-phasen.png](konzept/psp/paletten-phasen.png) | Farbpaletten der Phasen 1–3 |
+
+Die verkleinerten Figuren sind automatisch erzeugt und nur ein Test. Echte Sprites müssen von Hand in nativer Größe gezeichnet werden. Im Mockup sind die Phase-2-Veränderungen der Königin noch nicht dargestellt.
+
 ## Ältere Entwürfe
 
 | Datei | Größe | Inhalt |
