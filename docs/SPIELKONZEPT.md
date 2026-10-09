@@ -28,7 +28,19 @@ Texte, Grafiken, Musik und Namen des Referenzspiels werden nicht übernommen.
 5. Beim nächsten Versuch weicht er den Angriffen, die er bereits kennt, besser aus.
 6. Zwischen einzelnen Abschnitten führen Königin und Held Gespräche.
 
-Der Held wird mit jedem Versuch spürbar besser. Wie stark sich die Königin dagegen verändert, ist noch offen (siehe „Offene Entscheidungen“).
+Der Held wird mit jedem Versuch spürbar besser. **Die Werte der Königin bleiben dagegen immer gleich.** Ihre anfängliche Überlegenheit schwindet, weil der Held aufholt, nicht weil sie schwächer wird.
+
+## Die drei Phasen der Königin
+
+**Festgelegt:** Die Königin besitzt **drei Phasen**. Ihre Werte, also Schaden, Tempo und Lebenspunkte, ändern sich dabei nicht.
+
+| Phase | Inhalt |
+| --- | --- |
+| 1 | Noch festzulegen |
+| 2 | Noch festzulegen |
+| 3 | Noch festzulegen |
+
+Was eine neue Phase auslöst und was sich darin ändert, ist noch offen. Ein naheliegender Vorschlag: Jede Phase schaltet neue Angriffe frei, ohne die bisherigen stärker zu machen.
 
 ## Lernen des Helden — Planungsmaßstab
 
@@ -69,9 +81,9 @@ Die Vorgeschichte der Königin in [KOENIGIN.md](KOENIGIN.md) (Hüterin der Erinn
 
 ## Gestaltung der Angriffe — Planungsmaßstab
 
-Die Königin besitzt zu Beginn wenige, wuchtige Angriffe. Später kommen weitere hinzu. Jeder Angriff braucht eine deutlich erkennbare Ankündigung, damit auch der Spieler sieht, wann der Held ausweicht und warum.
+Die Königin besitzt zu Beginn wenige, wuchtige Angriffe. In späteren Phasen kommen weitere hinzu. Jeder Angriff braucht eine deutlich erkennbare Ankündigung, damit auch der Spieler sieht, wann der Held ausweicht und warum.
 
-Anzahl und Art der Angriffe, Phasen und Schwierigkeitswerte sind noch nicht festgelegt.
+Anzahl und Art der Angriffe sowie ihre Verteilung auf die drei Phasen sind noch nicht festgelegt.
 
 ## Darstellung
 
@@ -79,16 +91,16 @@ Anzahl und Art der Angriffe, Phasen und Schwierigkeitswerte sind noch nicht fest
 
 ## Offene Entscheidungen
 
-- Bleiben die Werte und Angriffe der Königin gleich, während der Held stärker wird, oder entwickelt auch sie sich?
+- Was löst einen Phasenwechsel aus, und was ändert sich in jeder der drei Phasen?
 - Wie genau lernt der Held, und wie wird sein Fortschritt sichtbar?
-- Welche Angriffe besitzt die Königin, und wann kommen neue hinzu?
+- Welche Angriffe besitzt die Königin in welcher Phase?
 - Wie viele Gesprächsabschnitte und Enden gibt es?
 - Wie wird die Rückkehr des Helden innerhalb der Welt erklärt?
 - Wie häufig kommentiert der Held, und wie werden Wiederholungen vermieden?
 
 ## Reihenfolge der weiteren Planung
 
-1. Die ersten drei Angriffe der Königin mit Ankündigung und Wirkung beschreiben.
+1. Die drei Phasen festlegen und die Angriffe der ersten Phase mit Ankündigung und Wirkung beschreiben.
 2. Das Lernverhalten des Helden für diese Angriffe festlegen.
 3. Den ersten Gesprächsabschnitt mit zwei bis drei Antwortmöglichkeiten schreiben.
 4. Die Hauptzweige der Geschichte und ihre Enden skizzieren.

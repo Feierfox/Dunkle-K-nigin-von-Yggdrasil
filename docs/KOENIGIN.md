@@ -73,7 +73,7 @@ Als Symbolik können die fünf Kronenspitzen für Bewahren, Erinnern, Schützen,
 
 Sie kann Tote nicht wirklich zurückbringen. Erinnerungserscheinungen besitzen kein vollständiges neues Leben. Große Magie lässt die Risse ihres Körpers aufleuchten und Teile der Rüstung zu Holz verhärten. Je stärker sie eingreift, desto enger wird ihre Bindung an den Baum.
 
-Diese Kräfte beschreiben die Figur und bilden die Grundlage für ihre spielbaren Angriffe. Konkrete Angriffe und Kampfphasen sind noch nicht festgelegt.
+Diese Kräfte beschreiben die Figur und bilden die Grundlage für ihre spielbaren Angriffe. Ihre Kampfwerte bleiben immer gleich. Sie kämpft in drei Phasen; konkrete Angriffe und deren Verteilung auf die Phasen sind noch nicht festgelegt.
 
 ## Thron, Reich und Gefolge
 
@@ -94,7 +94,7 @@ Ein gemeinsames Titelbild kann den Helden klein im Vordergrund und die Königin 
 
 ## Noch offen
 
-- Konkrete Angriffe der Königin und ob sie sich im Lauf des Spiels verändern.
+- Konkrete Angriffe der Königin und ihre Verteilung auf die drei Phasen.
 - Verbindung zwischen ihrem Reich und der Rückkehr des Helden nach dem Tod.
 - Gesprächsabschnitte, Zweige der Geschichte und Enden.
 
