@@ -18,7 +18,7 @@ Nach Niederlagen ist er kurz frustriert, bleibt aber bereit für den nächsten V
 
 Der Held spricht kurz, natürlich und situationsbezogen. Er darf Begriffe verwenden, die ein Spieler beim Üben benutzt: „Timing“, „Combo“, „Phase“, „Muster“ oder „Guide“.
 
-Sein Humor entsteht aus konkreten Fehlschlägen und dem Unterschied zwischen theoretischem Wissen und tatsächlicher Ausführung. Er macht nicht ständig Witze über die Welt und verspottet ihre Atmosphäre nicht.
+Sein Humor entsteht aus konkreten Fehlschlägen und dem Unterschied zwischen theoretischem Wissen und tatsächlicher Ausführung. Er macht nicht ständig Witze über die Welt und verspottet ihre Atmosphäre nicht. **Ausnahme:** Über die umständlichen Quests, mit denen er seine Ausrüstung bekommt, darf er sich lustig machen, bis hin zu einem augenzwinkernden Seitenhieb auf die Spielentwickler (siehe [DIALOGE.md](DIALOGE.md#neue-ausrüstung)). Das bleibt auf diese Kommentare beschränkt.
 
 ### Rückkehr in den Thronsaal
 

@@ -76,6 +76,17 @@ Nach jedem Tod kehrt der Held in den Thronsaal zurück. **Nicht jeder Tod brauch
 | Weltgericht | „Das kann man nicht ausweichen. Das muss man aushalten.“ · „Ohne das Amulett brauch ich hier gar nicht anfangen.“ |
 | Allgemein | „Dritte Phase. Im Guide steht hier nur: ‚Viel Glück.‘“ |
 
+### Neue Ausrüstung
+
+Beim **ersten Tod nach einer Quest** kommentiert der Held seine neue Ausrüstung und die umständliche Quest, mit der er sie bekommen hat. Danach kann eine zweite Zeile gelegentlich wiederkommen.
+
+| Stufe | Ausrüstung | Erster Tod danach | Später gelegentlich |
+| --- | --- | --- | --- |
+| 2 | Tannengrüner Umhang | „Für den Umhang musste ich zwölf Wolfsfelle sammeln. Nur jeder dritte Wolf hatte eins dabei. Wie geht das bei einem *Wolf*?“ | „Neuer Umhang, gleiches Ergebnis.“ |
+| 3 | Smaragdgrüner Umhang | „Den hat mir ein Schneider genäht. Vorher sollte ich seinen Fingerhut aus dem Brunnen holen. Im Brunnen lagen vierzig Fingerhüte.“ | „Der Umhang ist schön. Hilft nur nicht gegen Sensen.“ |
+| 4 | Amulett | „Das Amulett? Ein alter Mann hat mir eine Angel geschenkt. Und dann hatte ein riesiger Fisch das Amulett verschluckt. Welcher Gamedesigner kommt auf sowas?“ | „Das Amulett riecht immer noch nach Fisch.“ |
+| 5 | Legendäres goldenes Schwert | „Legendäres Schwert. Steckte in einem Stein. Der Stein wollte, dass ich ihm vorher drei Fragen beantworte. Eine davon war: ‚Bist du sicher?‘“ | „Goldenes Schwert, und trotzdem tot. Der Schaden steht da nicht dran.“ |
+
 ### Allgemein und ohne klare Ursache
 
 „Okay. Noch mal.“ · „Im Guide sah das deutlich einfacher aus.“ · „Ich hab das Muster verstanden. Meine Hände offenbar noch nicht.“ · „Das war knapp. Also, für sie nicht.“ · „Laut Guide gibt es hier eine Lücke. Der Guide lügt nicht. Meistens.“
