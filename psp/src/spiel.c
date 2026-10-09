@@ -32,7 +32,7 @@ typedef struct {
 typedef struct {
     float x;
     int zustand, tick, herzen, max_herzen, stufe;
-    int unverwundbar, plan_tick, plan_art, plan_angriff;
+    int unverwundbar, plan_tick, plan_art, plan_angriff, plan_richtung, roll_richtung;
     int hieb_getroffen;
     int getroffen[ANG_ANZAHL];    /* Lernen: wie oft dieser Angriff ihn getroffen hat */
     int tode, letzte_ursache, leiche_x, verbrannt, feuer_tick;
@@ -148,7 +148,11 @@ static void held_plant(int angriff)
     case ANG_KREISSCHNITT: ideal = 6; art = H_ROLLT; break;
     default: ideal = 90; art = H_SPRINGT; break;     /* Impuls: Welle erreicht ihn etwa bei Tick 105 */
     }
-    int zu_frueh = (stufe < 3) ? (angriff == ANG_IMPULS ? 30 : 15) : 0;  /* lernend: richtig, aber zu früh */
+    /* lernend (1-2 Mal getroffen): richtige Art, aber zu früh und bei der Rolle in die falsche
+     * Richtung, auf die Königin zu. Ab dem dritten Mal: richtig. */
+    int lernend = stufe < 3;
+    int zu_frueh = lernend ? (angriff == ANG_IMPULS ? 30 : 15) : 0;
+    H.plan_richtung = lernend ? -1 : 1;
     H.plan_tick = ideal - zu_frueh;
     if (H.plan_tick < 0) H.plan_tick = 0;
     H.plan_art = art;
@@ -157,6 +161,7 @@ static void held_plant(int angriff)
 
 static void held_aktion(int art)
 {
+    H.roll_richtung = H.plan_richtung ? H.plan_richtung : 1;
     H.zustand = art;
     H.tick = 0;
     H.plan_tick = -1;
@@ -191,7 +196,7 @@ static void held_schritt(void)
     }
     case H_ROLLT:
         H.tick++;
-        if (H.tick < 6 * TICKS_JE_BILD) H.x += rz * 2.0f;  /* weg von der Königin */
+        if (H.tick < 6 * TICKS_JE_BILD) H.x += rz * H.roll_richtung * 2.0f;  /* 1 = weg von ihr */
         if (H.tick >= 8 * TICKS_JE_BILD) H.zustand = H_KAMPF;
         break;
     case H_SPRINGT:
@@ -262,7 +267,8 @@ static void koenigin_schritt(const Eingabe *e)
         break;
     case K_VERWANDLUNG:
         K.tick++;
-        if (K.tick == 100) { ring_tick = 0; impuls_tick = 1; held_plant(ANG_IMPULS); }
+        if (K.tick == 1) held_plant(ANG_IMPULS);     /* er sieht die Verwandlung und plant */
+        if (K.tick == 100) { ring_tick = 0; impuls_tick = 1; }
         if (K.tick >= 160) {
             K.zustand = K_BEREIT;
             if (H.zustand != H_TOT) {
@@ -320,7 +326,7 @@ void spiel_schritt(const Eingabe *e)
         /* Impulswelle läuft vom Körper der Königin über den Boden */
         if (impuls_tick > 0) {
             ring_tick++;
-            int radius = 10 + ring_tick * 6;
+            int radius = 10 + ring_tick * 26 / 5;   /* passt zur gezeichneten Welle (fx_impuls1_ring) */
             if (abs(radius - abstand()) < 8 && !held_in_der_luft()) held_trifft_treffer(ANG_IMPULS);
             if (ring_tick >= 10 * TICKS_JE_BILD) impuls_tick = 0;
         }
@@ -434,3 +440,10 @@ void spiel_zeichnen(void)
     textbox();
     bild_zeigen();
 }
+
+#ifdef DEMO
+int demo_held_tot(void) { return lage == L_RITUAL; }
+int demo_abstand(void) { return abstand(); }
+int demo_koenigin_x(void) { return K.x; }
+int demo_leiche_x(void) { return H.verbrannt ? 1000 : H.leiche_x; }
+#endif

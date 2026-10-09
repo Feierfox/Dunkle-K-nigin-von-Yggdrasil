@@ -15,6 +15,44 @@ PSP_HEAP_SIZE_KB(-1024);
 
 static volatile int laeuft = 1;
 
+#ifdef DEMO
+/* Nur zum Testen im Emulator: Skript steuert die Königin, Bildschirmfotos als Rohdaten. */
+#include <stdio.h>
+#include <pspgu.h>
+extern int demo_held_tot(void);
+extern int demo_abstand(void);
+extern int demo_koenigin_x(void);
+extern int demo_leiche_x(void);
+static unsigned int demo_eingabe(int t)
+{
+    if (demo_held_tot()) {
+        int d = demo_leiche_x() - demo_koenigin_x();
+        if (d < -20) return PSP_CTRL_LEFT;
+        if (d > 20 && d < 200) return PSP_CTRL_RIGHT;
+        if ((t % 20) == 0) return PSP_CTRL_CROSS;
+        return PSP_CTRL_RIGHT;
+    }
+    if (demo_abstand() > 70) return PSP_CTRL_LEFT;
+    if ((t % 75) == 0) {
+        static const unsigned int a[3] = {PSP_CTRL_SQUARE, PSP_CTRL_TRIANGLE, PSP_CTRL_CIRCLE};
+        return a[(t / 75) % 3];
+    }
+    return 0;
+}
+static void demo_foto(const char *basis, int t)
+{
+    void *top; int breite, format;
+    sceDisplayGetFrameBuf(&top, &breite, &format, PSP_DISPLAY_SETBUF_NEXTFRAME);
+    char pfad[300];
+    snprintf(pfad, sizeof pfad, "%sfoto_%05d.raw", basis, t);
+    FILE *f = fopen(pfad, "wb");
+    if (!f) return;
+    unsigned int *p = (unsigned int *)((unsigned int)top | 0x40000000);  /* ungecacht lesen */
+    for (int y = 0; y < 272; y++) fwrite(p + y * breite, 4, 480, f);
+    fclose(f);
+}
+#endif
+
 static int beenden(int a, int b, void *c)
 {
     (void)a; (void)b; (void)c;
@@ -65,9 +103,18 @@ int main(int argc, char *argv[])
 
     spiel_start();
     unsigned int vorher = 0;
+#ifdef DEMO
+    int demo_t = 0;
+#endif
     while (laeuft) {
         SceCtrlData pad;
         sceCtrlReadBufferPositive(&pad, 1);
+#ifdef DEMO
+        pad.Buttons = demo_eingabe(demo_t);
+        pad.Lx = 128;
+        if (demo_t % 90 == 0) demo_foto(basis, demo_t);
+        if (++demo_t > DEMO) break;
+#endif
         Eingabe e;
         e.gedrueckt = pad.Buttons;
         e.neu = pad.Buttons & ~vorher;
