@@ -117,7 +117,7 @@ Ein mögliches Gefolge besteht aus ehemaligen Hütern und schwurgebundenen Ritte
 1. **Charakterporträt:** Frontal und aufrecht unter einem Wurzelbogen; Blick und Rüstung stehen im Mittelpunkt.
 2. **Thronmotiv:** Ruhige Sitzhaltung mit geöffneten Händen auf den Armlehnen. Äste bilden hinter ihr eine zweite Krone.
 3. **Titelmotiv:** Gotische Glasfenster-Komposition mit dem Weltenbaum im Hintergrund. Der Titel steht lesbar in zwei Zeilen: „Dunkle Königin“ / „von Yggdrasil“.
-4. **Spielfigur:** Pixel-Art in Seitenansicht mit Blick nach links, Helm mit Krone, die Sense in der Hand. Der aktuelle Entwurf [koenigin-idle-schwert-v4](../assets/konzept/koenigin-idle-schwert-v4.webp) zeigt noch Schwert und offenes Gesicht und muss überarbeitet werden (Prompt in [PROMPTS.md](../assets/PROMPTS.md#koenigin-v5--vorschlag-sense-und-helm)).
+4. **Spielfigur:** Pixel-Art in Seitenansicht mit Blick nach links, Helm mit Krone, die Sense in der Hand. Aktuelle Entwürfe: [Phase 0/1](../assets/konzept/koenigin-idle-sense-helm-v5.webp) und [Phase 2 nach dem Helmbruch](../assets/konzept/koenigin-p2-helmbruch-v1.webp).
 
 Ein gemeinsames Titelbild kann den Helden klein im Vordergrund und die Königin erhöht auf dem Thron zeigen. Eine leuchtende Wurzel verbindet die beiden Bildbereiche. Der Held erhält dabei keine modernen Gegenstände.
 

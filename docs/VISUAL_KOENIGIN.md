@@ -2,7 +2,7 @@
 
 Sprite-Spezifikation der Königin für den Pixel-Artist. Grundlage ist ein eingereichter Vorschlag vom 09.10.2026, angepasst an die festgelegten Entscheidungen und an die Grenzen der PSP-1000.
 
-**Verbindlich** sind: das Aussehen nach Entwurf v4 mit **Sense statt Schwert** und **geschlossenem Helm mit Krone**, der Helmbruch beim Wechsel zu Phase 2, die drei Kampfphasen mit den Lebensleisten Rot, Orange und Lila, der magische Impuls bei jedem Phasenwechsel, das Verhalten des Helden während der Verwandlung und das Kampftempo. Alles andere, also Angriffsnamen, Bildzahlen, Paletten der Phasen 2 und 3 und Effekte, ist ein **Vorschlag**.
+**Verbindlich** sind: das Aussehen nach den Entwürfen [v5](../assets/konzept/koenigin-idle-sense-helm-v5.webp) (Phase 0/1, **Sense** und **geschlossener Helm mit Krone**) und [Phase 2](../assets/konzept/koenigin-p2-helmbruch-v1.webp), der Helmbruch beim Wechsel zu Phase 2, die drei Kampfphasen mit den Lebensleisten Rot, Orange und Lila, der magische Impuls bei jedem Phasenwechsel, das Verhalten des Helden während der Verwandlung und das Kampftempo. Alles andere, also Angriffsnamen, Bildzahlen, Paletten der Phasen 2 und 3 und Effekte, ist ein **Vorschlag**.
 
 ## Eckdaten
 
@@ -26,7 +26,7 @@ Ein Bildkonzept in echter PSP-Auflösung liegt in [assets/konzept/psp/](../asset
 | Lebensleiste | – | **Rot** | **Orange** | **Lila** |
 | Zustand | Intro, Dialoge, Warten, Abwesenheit des Helden | Kampf | Kampf | Kampf |
 | Bewegung | Sitzt auf dem Thron | Schreitet, läuft | Gleitet, 5 px über dem Boden | Schwebt, 20 px über dem Boden |
-| Aussehen | Wie Entwurf v4, mit geschlossenem Helm | Wie Phase 0 | **Helm zerbrochen**, Gesicht sichtbar, Risse leuchten türkis, verdorbene Wurzeln aus den Helmresten | Teile der Rüstung zu Wurzelholz, Flügel aus Wurzeln |
+| Aussehen | Wie Entwurf v5 | Wie Phase 0 | **Helm zerbrochen**, Gesicht sichtbar, Risse leuchten türkis, verdorbene Wurzeln aus den Helmresten | Teile der Rüstung zu Wurzelholz, Flügel aus Wurzeln |
 | Sense | In der Hand | In der Hand | Wurzeln umschlingen den Unterarm | Mit dem Arm verschmolzen, Stielwurzeln gehen in die Flügel über |
 | Aura | Keine | Keine | Wenige eisblaue Partikel | Blätter, Licht, Wurzeln im Saal |
 | Angriffe | – | 3 Sensenangriffe | 3 magische Angriffe mit Flächenschaden | 3 Wurzel- und Erinnerungsangriffe mit Flächenschaden |
@@ -288,9 +288,9 @@ Animationen für Enden werden erst festgelegt, wenn die Enden geschrieben sind.
 
 ## Farbpaletten
 
-Grundlage ist der Entwurf [koenigin-idle-schwert-v4](../assets/konzept/koenigin-idle-schwert-v4.webp). Übersicht als Bild: [paletten-phasen.png](../assets/konzept/psp/paletten-phasen.png).
+Grundlage sind die Entwürfe v4 und v5 (gleiche Rüstungs-, Haar- und Mantelfarben). Übersicht als Bild: [paletten-phasen.png](../assets/konzept/psp/paletten-phasen.png).
 
-### Phase 0 und 1 — aus Entwurf v4
+### Phase 0 und 1 — aus den Entwürfen v4 und v5
 
 | Name | Hex | Verwendung |
 | --- | --- | --- |
