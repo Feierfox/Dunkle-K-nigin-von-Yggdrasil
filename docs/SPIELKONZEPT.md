@@ -64,7 +64,8 @@ Vor Phase 1 sitzt die Königin auf dem Thron („Phase 0“, ohne Kampf). Ausseh
 **Festgelegt:**
 
 - Der Held beginnt mit **1 Herz**. Im Lauf des Spiels steigt die Zahl auf **bis zu 5 Herzen**.
-- Neue Herzen und bessere Ausrüstung holt er sich über eine **Questreihe** außerhalb des Thronsaals.
+- Bessere Ausrüstung holt er sich über eine **Questreihe** außerhalb des Thronsaals. **Mit jeder neuen Ausrüstung kommt automatisch ein Herz dazu**, ohne eigenes Ereignis. Die Stufen stehen in [HELD.md](HELD.md#ausrüstungsstufen--sichtbar-an-umhang-und-schwert).
+- **Neue Ausrüstung bedeutet keinen Sieg beim ersten Versuch.** Sie macht ihn widerstandsfähiger, die Muster muss er trotzdem lernen. Das Tempo aus [ANGRIFFE.md](ANGRIFFE.md#lernen-des-helden) gilt weiter.
 - Während er diese Quests erledigt, bleibt er dem Thronsaal länger fern als nach einer gewöhnlichen Niederlage.
 - **Ein Treffer der Königin kostet ein Herz.** Ausnahme: Der magische Impuls beim Phasenwechsel tötet sofort.
 - Sein Fortschritt kommt also aus zwei Quellen: Er lernt die Angriffe der Königin, und er wird durch Ausrüstung und Herzen widerstandsfähiger.
@@ -82,13 +83,23 @@ Damit sieht der Spieler zuerst, dass das Gelernte nicht mehr reicht, und danach,
 
 ### Abwesenheit des Helden
 
-Während der Held auf Quest ist, sieht der Spieler die **Königin allein im Thronsaal**. Dabei geschieht **bewusst nichts**: kein Gegner, kein Dialog, keine Aufgabe. Die Stille ist gewollt und zeigt, wie leer ihre Herrschaft ohne den Herausforderer ist.
+Während der Held auf Quest ist, sieht der Spieler die **Königin allein im Thronsaal**. Dabei geschieht **bewusst nichts**: kein Gegner, kein Dialog, keine Aufgabe, keine Musik. Die Stille ist gewollt und zeigt, wie leer ihre Herrschaft ohne den Herausforderer ist. Der Spieler kann die Königin dabei frei durch den Saal gehen lassen.
 
 Noch offen:
 
-- Wann bricht er zu einer Quest auf, und wie viele Herzen bringt er jeweils mit zurück?
-- Kann der Spieler die Königin in dieser Szene bewegen, und wie lange dauert sie?
-- Welche Ausrüstungsteile gibt es, und wie sieht man sie am Sprite?
+- Ab welcher Runde er zu den Quests 1, 2 und 4 aufbricht. Quest 3, das Amulett, folgt auf das Scheitern im Nebel.
+- Wie lange eine Abwesenheit dauert.
+
+## Nach dem Tod des Helden
+
+**Festgelegt:**
+
+1. Stirbt der Held, wird es **still** (siehe [AUDIO.md](AUDIO.md)).
+2. Der Spieler kann die Königin **gehen lassen**. Sie geht zum Körper des Helden.
+3. Dort wählt der Spieler das **Totenritual**: **✕ Verbrennen**, **○ Umarmen** (später freigeschaltet, danach verbrennen) oder **□ Opfern** durch ein lila Portal (ab dem ersten Helmriss). Einzelheiten und Folgen stehen in [DIALOGE.md](DIALOGE.md#totenritual).
+4. Der Held kehrt zurück, **sobald die Königin wieder Richtung Thron läuft bzw. sich rechts im Saal aufhält**.
+
+**Warum der Held zurückkehren kann, erklärt die Welt nicht genau.** Für die Königin ist es ohne Bedeutung: Sie lebt ewig und hat sich nie mit Vergänglichkeit befasst. Sie kann nicht verstehen, warum jemand an den Ort seines Scheiterns zurückkehrt; genau davon handeln ihre Worte bei seiner Rückkehr.
 
 ## Lernen des Helden — Planungsmaßstab
 
@@ -103,7 +114,7 @@ Die konkrete Umsetzung der Helden-KI ist noch nicht festgelegt.
 
 Der Humor entsteht aus dem Lernprozess des Helden und dem Gegensatz zur würdevollen Königin. Die Welt und die Königin behalten ihre Würde. Kommentare sind kurz und variieren.
 
-Rückkehrkommentare des Helden lassen sich nach diesen Kategorien planen:
+Bei der Rückkehr spricht vorrangig die **Königin** (siehe [DIALOGE.md](DIALOGE.md#rückkehr-des-helden)). Der Held antwortet nur bei einem bestimmten Anlass. Seine Kommentare lassen sich nach diesen Kategorien planen:
 
 | Kategorie | Beispiel | Voraussetzung |
 | --- | --- | --- |
@@ -115,6 +126,8 @@ Rückkehrkommentare des Helden lassen sich nach diesen Kategorien planen:
 | Unklare Niederlage | „Okay. Noch mal.“ | Keine eindeutige Zuordnung |
 
 Die Kategorien sind ein Planungswerkzeug, keine bereits umgesetzte Fehlererkennung.
+
+**Während des Kampfes wird nicht gesprochen.**
 
 ## Verzweigte Geschichte
 
@@ -130,9 +143,7 @@ Die Vorgeschichte der Königin in [KOENIGIN.md](KOENIGIN.md) (Hüterin der Erinn
 
 ## Gestaltung der Angriffe — Planungsmaßstab
 
-Die Königin besitzt zu Beginn wenige, wuchtige Angriffe. In späteren Phasen kommen weitere hinzu. Jeder Angriff braucht eine deutlich erkennbare Ankündigung, damit auch der Spieler sieht, wann der Held ausweicht und warum.
-
-Anzahl und Art der Angriffe sowie ihre Verteilung auf die drei Phasen sind noch nicht festgelegt.
+Jede Phase hat drei eigene Angriffe. **Jeder Angriff hat ein Zeitfenster zum Reagieren.** Der Held weicht mit einer **Ausweichrolle** oder einem **Sprung** aus; **Flächenschaden markiert vorher den Boden**. Alle neun Angriffe mit Signal, Zeitfenster, Treffer und Ausweichart stehen in [ANGRIFFE.md](ANGRIFFE.md).
 
 ## Darstellung
 
@@ -140,18 +151,14 @@ Anzahl und Art der Angriffe sowie ihre Verteilung auf die drei Phasen sind noch 
 
 ## Offene Entscheidungen
 
-- Welche konkreten Angriffe hat jede der drei Phasen?
-- Ablauf der Questreihe des Helden und Dauer seiner Abwesenheit.
-- Wie genau lernt der Held, und wie wird sein Fortschritt sichtbar?
-- Welche Angriffe besitzt die Königin in welcher Phase?
-- Gesprächsabschnitte und Enden: erster Entwurf in [DIALOGE.md](DIALOGE.md) (acht Gespräche, sechs Enden plus ein verborgenes).
-- Wie wird die Rückkehr des Helden innerhalb der Welt erklärt?
-- Wie häufig kommentiert der Held, und wie werden Wiederholungen vermieden?
+- Rundenzahlen für die Quests 1, 2 und 4 und die Dauer der Abwesenheit.
+- Zeitwerte der Angriffe nach ersten Tests (Vorschläge in [ANGRIFFE.md](ANGRIFFE.md)).
+- Grafik für Phase 3, Thronsaal-Varianten, Totenritual und Gehen (siehe [assets/README.md](../assets/README.md)).
+- Technische Umsetzung (siehe [PSP1000.md](PSP1000.md)), Musik und Ton (siehe [AUDIO.md](AUDIO.md)).
 
-## Reihenfolge der weiteren Planung
+## Erledigt
 
-1. Die Angriffe der ersten Phase mit Ankündigung und Wirkung beschreiben.
-2. Das Lernverhalten des Helden für diese Angriffe festlegen.
-3. Den ersten Gesprächsabschnitt mit zwei bis drei Antwortmöglichkeiten schreiben.
-4. Die Hauptzweige der Geschichte und ihre Enden skizzieren.
-5. Danach die technische Umsetzung für die PSP-1000 beginnen ([PSP1000.md](PSP1000.md)).
+- Angriffe aller drei Phasen mit Zeitfenstern: [ANGRIFFE.md](ANGRIFFE.md).
+- Lernverhalten des Helden: [ANGRIFFE.md](ANGRIFFE.md#lernen-des-helden).
+- Gespräche, Totenritual und Enden: [DIALOGE.md](DIALOGE.md) (elf Gespräche, sechs Enden plus ein verborgenes).
+- Rückkehr des Helden: wird in der Welt bewusst nicht erklärt.

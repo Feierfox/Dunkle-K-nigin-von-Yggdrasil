@@ -24,7 +24,9 @@ Das Spiel orientiert sich bewusst an **„The Dark Queen of Mortholme“** (Spie
 - [Die Königin: Gestaltung, Persönlichkeit und erzählerische Vorschläge](docs/KOENIGIN.md)
 - [Der Held: Herausforderer, Spielersprache und Dialoge](docs/HELD.md)
 - [Dialoge: Rückkehrkommentare, Gesprächsabschnitte, Enden](docs/DIALOGE.md) (ein weiteres Ende liegt als Spoiler in `docs/geheim/`)
+- [Angriffe: Signale, Reaktionsfenster, Ausweichen](docs/ANGRIFFE.md)
 - [Visuelles Designdokument der Königin: Phasen, Animationen, Paletten](docs/VISUAL_KOENIGIN.md)
+- [Musik und Ton](docs/AUDIO.md)
 - [PSP-1000-Version: technische Planungsgrundlage](docs/PSP1000.md)
 - [Grafikentwürfe und Prompts](assets/README.md)
 
@@ -34,4 +36,4 @@ Abgestimmte Konzeptgrundlage vom 09.10.2026. Verbindliche Entscheidungen und noc
 
 Verworfen wurden: der Name „Arvid“, die Herkunft des Helden mit seiner Schwester Mara und der Rettungsgeschichte, der Held als Spielfigur sowie Stangenwaffe und Schwert der Königin.
 
-Die Konzeptgrafiken in `assets/konzept/` sind generierte Entwürfe und noch keine fertigen PSP-Sprites. Animationen und Spielcode sind noch nicht ausgearbeitet.
+Die Konzeptgrafiken in `assets/konzept/` sind generierte Entwürfe. Erste Animationen entstehen direkt aus diesen Entwürfen (`tools/cutout/`, Ergebnisse in `assets/sprites/cutout/`); ein Blender-Prototyp liegt in `tools/blender/`. Spielcode gibt es noch nicht.

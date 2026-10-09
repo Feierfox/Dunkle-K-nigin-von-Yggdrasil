@@ -124,8 +124,8 @@ Ein gemeinsames Titelbild kann den Helden klein im Vordergrund und die Königin 
 
 ## Noch offen
 
-- Konkrete Angriffe der Königin in den drei Phasen.
-- Verbindung zwischen ihrem Reich und der Rückkehr des Helden nach dem Tod.
-- Gesprächsabschnitte, Zweige der Geschichte und Enden.
+- Grafik der Phase 3 (Gesicht, Flügel, verschmolzene Sense).
+
+Angriffe: [ANGRIFFE.md](ANGRIFFE.md). Gespräche und Enden: [DIALOGE.md](DIALOGE.md). Die Rückkehr des Helden erklärt die Welt bewusst nicht; die Königin lebt ewig und befasst sich nicht mit Vergänglichkeit.
 
 Die frühere Rettungsgeschichte um die Schwester des Helden wird nicht verwendet. Ein Ausgang, in dem die Königin ihre Bindung an Yggdrasil löst, ist einer von mehreren möglichen Zweigen.

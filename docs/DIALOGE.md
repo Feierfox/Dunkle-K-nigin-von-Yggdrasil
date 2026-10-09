@@ -6,7 +6,8 @@ Entwurf vom 09.10.2026. Alle Texte sind **Vorschläge** auf Grundlage von [SPIEL
 
 - **Die Königin** spricht ruhig, knapp und würdevoll. Sie duzt den Helden. Sie benutzt nie die Spielersprache des Helden.
 - **Der Held** spricht kurz und natürlich, wie jemand, der einen schweren Bosskampf übt: Timing, Muster, Phase, Combo, Guide. Keine modernen Gegenstände.
-- **Die Verderbnis** spricht ab dem ersten Helmriss gelegentlich *durch* die Königin. Ihre Sätze sind kursiv gesetzt und klingen besitzergreifend, nie würdevoll.
+- **Die Verderbnis** spricht ab dem ersten Helmriss gelegentlich *durch* die Königin. Ihre Sätze klingen besitzergreifend, nie würdevoll. **Im Spiel ist sie farblich und an der Schrift erkennbar:** magentafarbener Text (`#ee20fb`) in einer eigenen, kantig-zittrigen Bitmap-Schrift; der Rand der Textbox bekommt dabei Risse. In diesem Dokument sind ihre Sätze kursiv gesetzt.
+- **Während des Kampfes wird nicht gesprochen.** Gesprochen wird nur in Phase 0, bei der Rückkehr des Helden, in Gesprächsabschnitten und beim Totenritual. Verwandlungen und das Zögern beim Weltgericht unterbrechen den Kampf und dürfen einen Satz enthalten.
 - Gespräche sind kurz: höchstens etwa sechs Zeilen bis zur Auswahl. Ein Durchlauf soll in einer Sitzung spielbar bleiben.
 - Der Held kommentiert nur, was er schon erlebt hat, und verrät keine unbekannten Angriffe.
 - Auf der PSP passen etwa 2 Zeilen à 40 Zeichen in die Textbox. Längere Sätze werden auf mehrere Boxen verteilt.
@@ -35,9 +36,27 @@ Dazu kommen Merker wie `riss_gesehen`, `impuls_ueberlebt`, `gesicht_gesehen`, `o
 
 ---
 
-## Rückkehrkommentare des Helden
+## Rückkehr des Helden
 
-Nach jedem Tod kehrt der Held in den Thronsaal zurück. **Nicht jeder Tod braucht einen Kommentar**: Vorschlag ist etwa jeder zweite, nie dieselbe Zeile zweimal hintereinander. Die Auswahl richtet sich nach dem, was ihn zuletzt getötet hat.
+Nach jedem Tod kehrt der Held in den Thronsaal zurück. Die Welt erklärt nicht, warum er das kann. Für die Königin ist das ohne Bedeutung: Sie lebt ewig und hat sich nie mit Vergänglichkeit befasst.
+
+**Festgelegt:** Die Kommentare zur Rückkehr kommen **vorrangig von der Königin**. Sie kann nie wirklich verstehen, warum jemand an den Ort seines Scheiterns zurückkehrt, denn sie selbst kann nicht vergehen.
+
+### Worte der Königin (vorrangig)
+
+Bei etwa zwei von drei Rückkehren spricht die Königin eine Zeile, nie dieselbe zweimal hintereinander. Die Zeilen werden mit der Zeit nachdenklicher.
+
+| Abschnitt | Zeilen |
+| --- | --- |
+| Frühe Rückkehren (bis Runde 5) | „Du bist wieder hier. Hier, wo du gefallen bist.“ · „Ich habe dich verbrannt. Und doch stehst du dort.“ · „Die Toten bleiben, wo sie fallen. Du nicht.“ · „Warum kehrt man an den Ort zurück, an dem man gestorben ist?“ |
+| Mittlere Rückkehren | „Du hast nur ein Leben. Warum gibst du es immer wieder hier aus?“ · „Ich habe alle Zeit der Welt. Du nicht. Und doch hast du es eiliger.“ · „Jedes Mal ein wenig weniger Furcht in deinem Schritt. Ist das, was ihr Lernen nennt?“ · „Kehrt auch die Flut zurück, um wieder zu weichen?“ |
+| Späte Rückkehren (ab Phase 3) | „Ich zähle nicht mehr, wie oft. Ich merke nur, dass ich warte.“ · „Der Ort deines Scheiterns ist dir vertrauter geworden als mir mein Thron.“ · „Vielleicht muss man vergehen können, um so wiederzukommen.“ |
+| Bei hoher Verderbnis (`einfluss ≥ 3`) | *„Wieder er. Wieder mehr für die Wurzeln.“* · *„Er kommt, weil er uns gehört.“* |
+| Bei hohem Vertrauen (`vertrauen ≥ 2`) | „Du bist zurück. Gut.“ · „Ich habe die Stufen gefegt. Ich weiß nicht, warum.“ |
+
+### Antworten des Helden (nur bei Anlass)
+
+Der Held spricht bei der Rückkehr **nur bei einem bestimmten Anlass**: beim ersten Tod durch einen neuen Angriff, nach neuer Ausrüstung, bei den Impulsen und nach dem Totenritual. Dann antwortet er auf die Zeile der Königin oder spricht statt ihr. Die Zeilen unten richten sich nach dem, was ihn zuletzt getötet hat.
 
 ### Phase 1 (rote Leiste)
 
@@ -96,13 +115,21 @@ Beim **ersten Tod nach einer Quest** kommentiert der Held seine neue Ausrüstung
 
 ## Totenritual
 
-Nach jedem Sieg über den Helden liegt sein Körper im Thronsaal. Bevor er zurückkehrt, entscheidet der Spieler, was die Königin mit ihm tut. Die Auswahl erscheint klein am unteren Bildrand. Kommt 5 Sekunden lang keine Eingabe, wählt das Spiel das Feuer.
+Nach jedem Sieg über den Helden liegt sein Körper im Thronsaal, und es ist still (siehe [AUDIO.md](AUDIO.md)).
+
+**Festgelegt:**
+
+1. Der Spieler **steuert die Königin zu Fuß** zum Körper des Helden.
+2. Steht sie bei ihm, erscheinen die verfügbaren Tasten: **✕ Verbrennen**, **○ Umarmen** (danach verbrennen), **□ Opfern** (lila Portal).
+3. Nach dem Ritual geht sie zurück. **Der Held kehrt zurück, sobald die Königin wieder Richtung Thron läuft bzw. sich in der rechten Hälfte des Saals aufhält.**
+
+Solange sie beim Körper steht oder links bleibt, kommt er nicht. Es gibt kein Zeitlimit.
 
 | Möglichkeit | Verfügbar | Ablauf | Wirkung |
 | --- | --- | --- | --- |
-| **[Endboss] Magisches Feuer** | immer | Sie hebt die Hand, eisblaues Feuer verbrennt den Körper. Sie sieht nicht hin. | – |
-| **[Nähe] In den Arm nehmen** | ab G2, solange `vertrauen ≥ 0` | Sie kniet nieder, hebt den Körper auf und hält ihn einen Moment. Dann verbrennt sie ihn in ihren Armen. | vertrauen +1 |
-| **[Verderbnis] Das lila Portal** | ab G5 (erster Helmriss) | Unter dem Körper öffnet sich ein lila Portal. Er fällt hinein, Yggdrasil als Opfer. Die verdorbenen Wurzeln pulsieren. | einfluss +1, opfer +1 |
+| **[Endboss] ✕ Magisches Feuer** | immer | Sie hebt die Hand, eisblaues Feuer verbrennt den Körper. Sie sieht nicht hin. | – |
+| **[Nähe] ○ In den Arm nehmen** | ab G2, solange `vertrauen ≥ 0` | Sie kniet nieder, hebt den Körper auf und hält ihn einen Moment. Dann verbrennt sie ihn in ihren Armen. | vertrauen +1 |
+| **[Verderbnis] □ Das lila Portal** | ab G5 (erster Helmriss) | Unter dem Körper öffnet sich ein lila Portal. Er fällt hinein, Yggdrasil als Opfer. Die verdorbenen Wurzeln pulsieren. | einfluss +1, opfer +1 |
 
 - **Ohne es zu verstehen:** Das Feuer ist ein Ritual aus ihrer Zeit als Hüterin der Erinnerungen. Sie weiß nicht mehr, warum sie es tut. Ihre Hand tut es einfach. Erst wenn sie den Helden in den Arm nimmt, bekommt die Geste eine Bedeutung.
 - **Begrenzung:** Nähe und Verderbnis wirken höchstens einmal zwischen zwei Gesprächsabschnitten. Wer jedes Mal dieselbe Möglichkeit wählt, verändert die Werte also nicht schneller.
@@ -199,6 +226,20 @@ Danach folgt die **Abwesenheit**: Die Königin steht allein im Thronsaal, und es
 
 Ab hier steht im Totenritual das **lila Portal** zur Wahl.
 
+### R2 — Die zweite Rückkehr
+
+**Auslöser:** Rückkehr von der zweiten Quest (Stufe 3, 3 Herzen, smaragdgrüner Umhang), in der Regel nach G5.
+
+> **Königin:** „Du warst länger fort als sonst.“
+> **Held:** „Quest. Ein Schneider, ein Brunnen, vierzig Fingerhüte. Lange Geschichte.“
+> **Königin:** „Draußen vergeht die Zeit. Ich habe davon gehört.“
+
+| | Antwort der Königin | Antwort des Helden | Wirkung |
+| --- | --- | --- | --- |
+| [Endboss] | „Dann vergeude sie nicht hier.“ | „Ist meine Zeit. Ich vergeude sie, wo ich will.“ | vertrauen −1 |
+| [Nähe] | „Wie ist es, wenn sie vergeht?“ | „Eilig. Man will was schaffen, bevor sie rum ist. Deshalb komm ich ja wieder.“ | vertrauen +1 |
+| [Verderbnis] | *„Zeit ist ein Fehler. Wir bereinigen ihn.“* | „Okay. Das war wieder die andere. Die mag keine Uhren.“ | einfluss +1 |
+
 ### G6 — Stand gehalten
 
 **Auslöser:** Der Held überlebt den Impuls zum ersten Mal.
@@ -212,6 +253,23 @@ Ab hier steht im Totenritual das **lila Portal** zur Wahl.
 | [Endboss] | „Einmal. Das Licht hat Geduld.“ | „Ich auch. Mittlerweile.“ | vertrauen −1 |
 | [Nähe] | „Es gab andere vor dir. Ich erinnere mich an jeden.“ | „An jeden? Das muss schwer sein.“ | vertrauen +1 |
 | [Neugier] | „Zeig mir diesen Guide.“ | „Später. Die letzte Seite fehlt eh.“ | guide_gefragt +1 |
+
+### R3 — Das Amulett
+
+**Auslöser:** Rückkehr von der Amulett-Quest (Stufe 4), nachdem er im lila Nebel gestorben ist (siehe [SPIELKONZEPT.md](SPIELKONZEPT.md#die-amulett-quest)).
+
+> **Held:** „Diesmal komm ich durch den Nebel.“
+> **Königin:** „Kein Lebender ist durch diesen Nebel gegangen.“
+> **Held:** „Die hatten auch kein Amulett.“
+> ***Stimme:*** *„Nimm es ihm. Es glänzt wie etwas, das mir gehört hat.“*
+
+| | Antwort der Königin | Antwort des Helden | Wirkung |
+| --- | --- | --- | --- |
+| [Endboss] | „Dann holt dich der Nebel eben langsamer.“ | „Klingt nach einem Plan. Für dich.“ | vertrauen −1 |
+| [Nähe] | „Dieses Gold. Ich habe es schon einmal gesehen.“ | „Echt? Es lag in einem Fisch.“ | vertrauen +1 |
+| [Verderbnis] | *„Gib es her.“* | „Nein. Und jetzt weiß ich, dass es funktioniert.“ | einfluss +1 |
+
+Das Amulett stammt, ohne dass es ausgesprochen wird, aus der Zeit der Hüter, also aus der Zeit vor der Verderbnis. Deshalb schützt es gegen den Nebel, und deshalb kommt es der Königin bekannt vor.
 
 ### G7 — Das Gesicht
 
@@ -227,6 +285,20 @@ Ab hier steht im Totenritual das **lila Portal** zur Wahl.
 | [Endboss] | „Dann sieh gut hin. Es ist das Letzte, was du siehst.“ | „Sagst du jedes Mal.“ | vertrauen −1 |
 | [Nähe] | „Ich bin seit sehr langer Zeit müde.“ | „Dann lass mich das zu Ende bringen. Irgendwie.“ | vertrauen +1 |
 | [Verderbnis] | *„Sie ist, was ich aus ihr gemacht habe.“* | „Nein. Sie ist, was übrig ist. Das ist ein Unterschied.“ | einfluss +1 |
+
+### R4 — Das goldene Schwert
+
+**Auslöser:** Rückkehr von der letzten Quest (Stufe 5, legendäres goldenes Schwert), in Phase 3 und vor G8.
+
+> **Held:** „Letzte Ausrüstung. Legendär.“
+> **Königin:** „Jede Klinge, die je hier lag, war die letzte.“
+> **Held:** „Ja, aber diese ist golden.“
+
+| | Antwort der Königin | Antwort des Helden | Wirkung |
+| --- | --- | --- | --- |
+| [Endboss] | „Ich werde sie zu den anderen legen.“ | „Zu den anderen? Wie viele waren denn… nein, sag's nicht.“ | vertrauen −1 |
+| [Nähe] | „Warum kommst du zurück, wenn du doch sterben kannst?“ | „Gerade deshalb. Wenn es ewig dauern würde, hätte ich keine Eile.“ | vertrauen +1 |
+| [Verderbnis] | *„Gold schmilzt auch.“* | „Das war jetzt eine Drohung an mein Schwert. Notiert.“ | einfluss +1 |
 
 ### G8 — Das Zögern
 
@@ -269,7 +341,5 @@ Es gibt **ein weiteres, verborgenes Ende**. Es steht in [geheim/ENDE_VERBORGEN.m
 
 ## Offen
 
-- Genaue Rundenzahlen für G3 und die weiteren Quests (Herzen 3 bis 5).
-- Gespräche nach der zweiten bis vierten Quest.
-- Verteilung der Rückkehrkommentare auf feste und zufällige Auswahl.
-- Ob die Verderbnis auch mitten im Kampf spricht oder nur in Gesprächen.
+- Genaue Rundenzahlen, ab denen der Held zu den Quests 1, 2 und 4 aufbricht (Quest 3, das Amulett, folgt auf das Scheitern im Nebel).
+- Bitmap-Schriften für Königin, Held und Verderbnis.
