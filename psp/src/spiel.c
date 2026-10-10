@@ -71,6 +71,7 @@ enum { NACH_KAMPF, NACH_ABWESEND, NACH_WELT };
 typedef struct {
     int x, zustand, tick, angriff, phase, blick, verw, phase_tick, welt_benutzt;
     int erholung, erholung_tick;  /* Pause nach einem Angriff; erholung = welcher Angriff (+1) */
+    int geht, geh_weg;            /* geht: in diesem Schritt bewegt; geh_weg: Weg in Blickrichtung */
     int lp[3];
     int ziel[3], ziele;          /* Bodenstellen von Flächenangriffen */
     float geschoss;              /* Lichtsichel oder Erinnerungswelle */
@@ -86,6 +87,8 @@ typedef struct {
     int leiche_spiegel;           /* 1: er blickte nach links, Kopf liegt links */
     int umarm_geht, aufsteh_tick;
     int hieb_pause, konter;       /* konter: 1 Gegenschlag läuft, 2 angebracht */
+    int geht;                     /* in diesem Schritt gegangen (nicht gerollt) */
+    float geh_weg;                /* Weg in Blickrichtung, für das Gehen-Bild */
 } Held;
 
 static Koenigin K;
@@ -180,6 +183,13 @@ static const char *const HELD_RITUAL[4] = {
 /* ------------------------------------------------------------------ Hilfen */
 
 static int dir_zum_held(void) { return H.x < K.x ? -1 : 1; }
+/* wie in koenigin_zeichnen: im Kampf zum Helden, sonst in Gehrichtung */
+static int koenigin_blickt_rechts(void)
+{
+    return (lage == L_ABWESEND || lage == L_RITUAL) ? K.blick > 0 : dir_zum_held() > 0;
+}
+#define GEH_PX 4                  /* Pixel Weg je Gehen-Bild (8 Bilder je Doppelschritt) */
+static int geh_bild(float weg) { int b = (int)(weg / GEH_PX) % 8; return b < 0 ? b + 8 : b; }
 
 static int kopfseite(void) { return H.leiche_spiegel ? -1 : 1; }
 static int koerper_mitte(void) { return H.leiche_x + kopfseite() * TOD_MITTE; }
@@ -324,6 +334,8 @@ static int hieb_schaden(void)
 static void held_schritt(void)
 {
     if (H.unverwundbar > 0) H.unverwundbar--;
+    float alt_x = H.x;
+    int zustand = H.zustand;
     switch (H.zustand) {
     case HZ_KOMMT:
         H.x += 1.2f;
@@ -376,6 +388,9 @@ static void held_schritt(void)
     }
     if (H.x < H_MIN && H.zustand != HZ_KOMMT) H.x = H_MIN;
     if (H.x > H_MAX) H.x = H_MAX;
+    /* Gehen: nur aus eigenem Antrieb (Kommen, Kampf), nicht beim Rollen oder Zurückweichen */
+    H.geht = (zustand == HZ_KOMMT || zustand == HZ_KAMPF) && H.x != alt_x;
+    if (H.geht) H.geh_weg += (H.x > K.x) ? alt_x - H.x : H.x - alt_x;   /* rückwärts, wenn er von ihr weggeht */
 }
 
 /* ------------------------------------------------------------------ Angriffe */
@@ -711,6 +726,7 @@ static void koenigin_schritt(const Eingabe *e)
     if (e->gedrueckt & PSP_CTRL_LEFT || e->stick_x < -60) laufen = -1;
     if (e->gedrueckt & PSP_CTRL_RIGHT || e->stick_x > 60) laufen = 1;
     K.phase_tick++;
+    int alt_x = K.x;
     switch (K.zustand) {
     case KZ_BEREIT:
         /* Erholung nach einem Angriff: Sie steht still und greift nicht an. Beherrscht er den
@@ -761,6 +777,9 @@ static void koenigin_schritt(const Eingabe *e)
         if (K.x > hi) K.x = hi;
     }
 
+    K.geht = K.x != alt_x;
+    if (K.geht) K.geh_weg += (K.x - alt_x) * (koenigin_blickt_rechts() ? 1 : -1);
+
     if (lage == L_KAMPF && K.zustand != KZ_VERWANDLUNG && K.lp[K.phase] <= 0) {
         K.lp[K.phase] = 0;
         if (K.phase == 0) verwandlung_starten(1);
@@ -774,6 +793,8 @@ void spiel_schritt(const Eingabe *e)
     if (e->neu & PSP_CTRL_SELECT) { spiel_start(); return; }
     if (t_tick > 0) t_tick--;
     lage_tick++;
+    K.geht = 0;   /* wird in koenigin_schritt bzw. held_schritt neu gesetzt */
+    H.geht = 0;
 
     switch (lage) {
     case L_ENDE:
@@ -997,8 +1018,7 @@ static void nebel_zeichnen(void)
 
 static void koenigin_zeichnen(void)
 {
-    int spiegel = dir_zum_held() > 0;
-    if (lage == L_ABWESEND || lage == L_RITUAL) spiegel = K.blick > 0;
+    int spiegel = koenigin_blickt_rechts();
     int anim, bild;
     unsigned int f = WEISS;
     int p = K.phase;
@@ -1014,6 +1034,9 @@ static void koenigin_zeichnen(void)
     } else if (p >= 1) {
         anim = Q_P2_IDLE;
         bild = (lage_tick / TPB) % 10;
+    } else if (K.geht) {
+        anim = Q_P1_GEHEN;              /* in Phase 2 und 3 schwebt sie */
+        bild = geh_bild(K.geh_weg);
     } else {
         anim = Q_P1_IDLE;
         bild = (lage_tick / TPB / 2) % 6;
@@ -1073,6 +1096,7 @@ static void held_zeichnen(void)
     }
     if (H.zustand == HZ_WEG) return;
     int a = H_IDLE, b = (lage_tick / TPB / 2) % 6;
+    if (H.geht) { a = H_GEHEN; b = geh_bild(H.geh_weg); }
     switch (H.zustand) {
     case HZ_HIEBT: a = H_HIEB; b = H.tick / TPB; break;
     case HZ_ROLLT: a = H_ROLLE; b = H.tick / TPB; break;

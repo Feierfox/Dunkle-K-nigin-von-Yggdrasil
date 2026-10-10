@@ -43,7 +43,9 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 - Richtschlag, Schwerthieb des Helden und die Umarmung (sie geht selbst an seinen Kopf, legt die Sense ab, kniet, hält ihn, eisblaues Feuer in ihren Armen, steht auf) stammen aus den bewegten Entwürfen in `assets/animationen/`. Die gezeichnete Umarmung gibt es bisher nur in Phase 1; in Phase 2 und 3 hebt sie ihn an, er liegt vor ihr mit dem Kopf an ihrer Brust und verbrennt in ihren Armen. Rituale sind erst möglich, wenn er liegt.
 - **Enden E1–E6** je nach Entscheidungen und Werten, mit Abschlussbild; Select beginnt neu.
 
-**Noch nicht enthalten:** Gehen-Animationen (Figuren gleiten), eigene Phase-3-Grafik, das verborgene Ende, Musik und Ton.
+**Gehen:** Held und Königin (Phase 1) haben eine Gehanimation mit 8 Bildern; das Bild richtet sich nach dem zurückgelegten Weg (4 Pixel je Bild), rückwärts läuft sie rückwärts ab. In Phase 2 und 3 schwebt die Königin.
+
+**Noch nicht enthalten:** eigene Phase-3-Grafik, das verborgene Ende, Musik und Ton.
 
 ## Getestet
 
