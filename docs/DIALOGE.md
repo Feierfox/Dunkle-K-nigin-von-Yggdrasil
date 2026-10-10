@@ -80,7 +80,7 @@ Der Held spricht bei der Rückkehr **nur bei einem bestimmten Anlass**: beim ers
 
 ### Ablauf des Phasenwechsels (Umsetzung)
 
-Leert der Held eine Leiste, hält der Kampf an: Sie wankt und blitzt rot auf, der Saal verdunkelt sich (1 s). Dann folgen Worte: **beim ersten Mal ein Gespräch ohne Auswahl**, sonst ein einzelner Satz. Danach lädt sich um sie eine Lichtsäule auf, der Helm reißt bzw. das Wurzelholz bricht durch (1,5 s). Zuletzt bricht die Welle los, der Impulsring bzw. der Nebel, und **hinter ihrer Front erscheint der Saal der neuen Phase**. Die Welle ist so die „Ladesequenz“. Stirbt der Held an ihr, läuft die Verwandlung trotzdem zu Ende; das Ritual folgt danach.
+Leert der Held eine Leiste, hält der Kampf an: Sie wankt und blitzt rot auf, der Saal verdunkelt sich (1 s). Dann folgen Worte: **beim ersten Mal ein Gespräch ohne Auswahl**, sonst ein einzelner Satz. Danach wächst von ihr aus eine pulsierende Lichtsäule über den ganzen Bildschirm; sie selbst bleibt als dunkle Gestalt in der Mitte, der Helm reißt bzw. das Wurzelholz bricht durch (1,5 s). Hat der Held das Amulett, bleibt um ihn eine Blase mit goldenem Rand frei. Zuletzt bricht die Welle los, der Impulsring bzw. der Nebel, und **hinter ihrer Front erscheint der Saal der neuen Phase**. Die Welle ist so die „Ladesequenz“. Stirbt der Held an ihr, läuft die Verwandlung trotzdem zu Ende; das Ritual folgt danach.
 
 **Erster Wechsel zu Phase 2:**
 > **Königin:** „…Du hast mich getroffen.“
