@@ -1,0 +1,49 @@
+{
+  "status": "design-specification-not-runtime-config",
+  "fps": 12,
+  "groundRoots": {
+    "variants": [
+      "fx_ranke_a",
+      "fx_ranke_b"
+    ],
+    "anchor": {
+      "x": 480,
+      "y": 600
+    },
+    "telegraphTicks": 8,
+    "totalTicks": 28,
+    "activeKeyframes": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "activeStartTick": 8,
+    "activeEndTickExclusive": 21,
+    "retractStartTick": 21,
+    "lastFrameFullyTransparent": true,
+    "spawnCount": {
+      "min": 3,
+      "max": 4
+    },
+    "spawnPattern": "staggered separate marked floor positions",
+    "damageShape": "area at each marked floor position; end damage before retraction"
+  },
+  "worldJudgement": {
+    "queenClip": "p3_atk_weltgericht_v2",
+    "fieldClip": "fx_weltgericht_saal",
+    "chargeTicks": 24,
+    "releaseTicks": 24,
+    "totalTicks": 48,
+    "lethalTick": 24,
+    "target": "entire arena",
+    "unavoidable": true,
+    "instantKill": true,
+    "amuletProtects": false,
+    "jumpProtects": false,
+    "rollProtects": false,
+    "safeZone": null,
+    "storyCancellation": "G8 hesitation cancels release",
+    "fullWhiteFlash": false
+  }
+}

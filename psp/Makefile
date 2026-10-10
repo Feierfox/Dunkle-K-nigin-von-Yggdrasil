@@ -3,7 +3,7 @@
 # Daten:   python ../tools/psp/assets_bauen.py  erzeugt data/ und src/assets_gen.h
 
 TARGET = DunkleKoenigin
-OBJS = src/main.o src/grafik.o src/spiel.o
+OBJS = src/main.o src/grafik.o src/spiel.o src/dialoge.o
 
 INCDIR = src
 CFLAGS = -O2 -G0 -Wall -Wextra -Wno-unused-parameter

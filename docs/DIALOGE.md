@@ -93,7 +93,7 @@ Der Held spricht bei der Rückkehr **nur bei einem bestimmten Anlass**: beim ers
 | --- | --- |
 | Ranken | „Der Boden selbst ist ein Angriff. Fair.“ |
 | Erinnerungsriss | „Ich hab kurz was gesehen. Eine Stadt? Dann war ich tot.“ |
-| Weltgericht | „Das kann man nicht ausweichen. Das muss man aushalten.“ · „Ohne das Amulett brauch ich hier gar nicht anfangen.“ |
+| Weltgericht | „Da hilft kein Amulett. Da hilft nur, dass sie es nicht tut.“ · „Das kann man nicht ausweichen. Und aushalten auch nicht.“ |
 | Allgemein | „Dritte Phase. Im Guide steht hier nur: ‚Viel Glück.‘“ |
 
 ### Neue Ausrüstung
@@ -311,7 +311,7 @@ Das Amulett stammt, ohne dass es ausgesprochen wird, aus der Zeit der Hüter, al
 
 | | Antwort der Königin | Folge |
 | --- | --- | --- |
-| [Endboss] | *Weltgericht entladen.* | vertrauen −2; der Kampf geht weiter |
+| [Endboss] | *Weltgericht entladen.* | vertrauen −2; der Held stirbt, nichts schützt ihn |
 | [Nähe] | „Dann bleib stehen.“ | Weltgericht wird zurückgenommen, der Kampf endet nach Werten (siehe Enden) |
 | [Nähe] | „Nimm sie. Die Krone.“ | Nur wenn `vertrauen ≥ 2`, sonst fehlt diese Zeile: Ende E4 |
 

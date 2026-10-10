@@ -145,6 +145,149 @@ def portal(n=12, w=64, h=24):
     return bilder
 
 
+# --- Effekte für Phase 2 und 3 ---------------------------------------------------
+
+TUERKIS = [(42, 143, 154), (89, 195, 195), (168, 255, 244), (232, 255, 251)]
+MAGENTA = [(58, 6, 64), (150, 20, 170), (238, 32, 251), (255, 190, 255)]
+
+
+def ring_markierung(n=4, w=30, h=10, farben=TUERKIS):
+    """Leuchtender Kreis am Boden (Vorwarnung)."""
+    bilder = []
+    for i in range(n):
+        b = Image.new("RGBA", (w, h))
+        d = ImageDraw.Draw(b)
+        k = 1 + (i % 2)
+        d.ellipse((1, 1, w - 2, h - 2), fill=(*farben[0], 90))
+        d.ellipse((1, 1, w - 2, h - 2), outline=(*farben[k + 1], 255), width=1)
+        bilder.append(b)
+    return bilder
+
+
+def stern(n=4, w=8, h=18):
+    bilder = []
+    for i in range(n):
+        b = Image.new("RGBA", (w, h))
+        d = ImageDraw.Draw(b)
+        for j in range(h - 4):
+            a = int(255 * j / (h - 4))
+            d.point((w // 2, j), fill=(*TUERKIS[2], a))
+        d.rectangle((w // 2 - 2, h - 5, w // 2 + 1, h - 2), fill=(*TUERKIS[3], 255))
+        d.point((w // 2 - 3 + (i % 3), h - 6), fill=(255, 255, 255, 255))
+        bilder.append(b)
+    return bilder
+
+
+def einschlag(n=4, w=28, h=18):
+    bilder = []
+    for i in range(n):
+        b = Image.new("RGBA", (w, h))
+        d = ImageDraw.Draw(b)
+        r = 4 + i * 3
+        a = 255 - i * 50
+        d.ellipse((w / 2 - r, h - 4 - r * 0.6, w / 2 + r, h - 4 + r * 0.3), outline=(*TUERKIS[2], a), width=2)
+        for k in range(6):
+            ang = k / 6 * math.pi + 0.3
+            d.point((w / 2 + math.cos(ang) * r * 1.2, h - 5 - math.sin(ang) * r), fill=(*TUERKIS[3], a))
+        bilder.append(b)
+    return bilder
+
+
+def sichel(n=2, w=40, h=20):
+    """Lichtsichel der Windklinge, fliegt bodennah nach links (wird im Spiel gespiegelt)."""
+    bilder = []
+    for i in range(n):
+        b = Image.new("RGBA", (w, h))
+        d = ImageDraw.Draw(b)
+        d.pieslice((2, 0, w + 14, h * 2 - 2), 180, 270, fill=(*TUERKIS[2], 230))
+        d.pieslice((8 + i * 2, 4, w + 18, h * 2 - 2), 180, 270, fill=(0, 0, 0, 0))
+        d.arc((2, 0, w + 14, h * 2 - 2), 180, 270, fill=(*TUERKIS[3], 255), width=2)
+        bilder.append(b)
+    return bilder
+
+
+def rune(n=4, w=56, h=16):
+    bilder = []
+    for i in range(n):
+        b = Image.new("RGBA", (w, h))
+        d = ImageDraw.Draw(b)
+        hell = MAGENTA[2] if i % 2 else MAGENTA[1]
+        d.ellipse((1, 1, w - 2, h - 2), fill=(*MAGENTA[0], 120))
+        d.ellipse((1, 1, w - 2, h - 2), outline=(*hell, 255), width=2)
+        d.ellipse((10, 4, w - 11, h - 5), outline=(*hell, 200), width=1)
+        for k in range(6):
+            x = 8 + k * (w - 16) / 5
+            d.line((x, h / 2 - 2, x + 2, h / 2 + 2), fill=(*MAGENTA[3], 255))
+        bilder.append(b)
+    return bilder
+
+
+def boden_riss(n=2, w=30, h=8):
+    bilder = []
+    for i in range(n):
+        b = Image.new("RGBA", (w, h))
+        d = ImageDraw.Draw(b)
+        pts = [(1, 4), (7, 2), (12, 5), (18, 3), (23, 6), (28, 4)]
+        d.line(pts, fill=(18, 6, 22, 255), width=4)
+        d.line(pts, fill=(*TUERKIS[1 + i], 255), width=1)
+        bilder.append(b)
+    return bilder
+
+
+def wurzel_aus_dem_boden(n=6, w=16, h=56):
+    bilder = []
+    for i in range(n):
+        b = Image.new("RGBA", (w, h))
+        d = ImageDraw.Draw(b)
+        hoehe = [10, 26, 44, 52, 40, 20][i]
+        for y in range(hoehe):
+            t = y / max(1, hoehe)
+            breite = max(1, round(6 * (1 - t)))
+            x = w / 2 + 2 * math.sin(t * 4)
+            d.line((x - breite, h - 1 - y, x + breite, h - 1 - y), fill=(30, 14, 22, 255))
+            if y % 6 == 3:
+                d.point((x - breite, h - 1 - y), fill=(*TUERKIS[1], 255))
+        bilder.append(b)
+    return bilder
+
+
+def erinnerungswelle(n=4, w=24, h=34):
+    """Welle in Brusthöhe mit flackernden Bildern vergangener Reiche."""
+    bilder = []
+    rnd = random.Random(11)
+    for i in range(n):
+        b = Image.new("RGBA", (w, h))
+        d = ImageDraw.Draw(b)
+        for y in range(h):
+            x = 4 + 4 * math.sin(y / 5 + i)
+            d.line((x, y, x + 10, y), fill=(*TUERKIS[2], 120))
+        for _ in range(10):
+            d.point((rnd.randint(2, w - 3), rnd.randint(2, h - 3)), fill=(*MAGENTA[3], 255))
+        bilder.append(b)
+    return bilder
+
+
+def lichtkugel(n=4, g=26):
+    bilder = []
+    for i in range(n):
+        b = Image.new("RGBA", (g, g))
+        d = ImageDraw.Draw(b)
+        r = 6 + i * 2
+        d.ellipse((g / 2 - r - 2, g / 2 - r - 2, g / 2 + r + 2, g / 2 + r + 2), fill=(*MAGENTA[2], 90))
+        d.ellipse((g / 2 - r, g / 2 - r, g / 2 + r, g / 2 + r), fill=(*TUERKIS[3], 230))
+        d.ellipse((g / 2 - r / 2, g / 2 - r / 2, g / 2 + r / 2, g / 2 + r / 2), fill=(255, 255, 255, 255))
+        bilder.append(b)
+    return bilder
+
+
+def phase23_effekte():
+    for name, bilder in (("fx_kreis", ring_markierung()), ("fx_rune", rune()), ("fx_stern", stern()),
+                         ("fx_einschlag", einschlag()), ("fx_sichel", sichel()), ("fx_riss", boden_riss()),
+                         ("fx_wurzel", wurzel_aus_dem_boden()), ("fx_welle", erinnerungswelle()),
+                         ("fx_kugel", lichtkugel())):
+        speichere_fx(name, bilder)
+
+
 # --- Vorschau-Szenen -------------------------------------------------------------
 
 def saal(datei="thronsaal-p2.png"):
@@ -260,6 +403,7 @@ def szene_portal(tor):
 
 
 def main():
+    phase23_effekte()
     ring = impuls1_ring()
     speichere_fx("fx_impuls1_ring", ring)
     kachel = nebel_kachel()

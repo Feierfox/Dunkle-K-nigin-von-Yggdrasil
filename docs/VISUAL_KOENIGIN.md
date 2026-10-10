@@ -261,13 +261,15 @@ Bild 17–20: Kugel pulsiert, Krone leuchtet maximal
 Bild 21–24: Stille vor der Entladung
 
 Entladung (24 Bilder):
-Bild 1–4:   Hände stoßen nach vorn
-Bild 5–8:   Welle breitet sich aus, Bild hellt kurz auf
-Bild 9–16:  Helligkeit klingt ab, neue Risse im Saal
+Bild 1–4:   Arme stoßen auseinander, gleichzeitige Entladung über den gesamten Saal
+Bild 5–8:   Eisblau-türkises Lichtgitter, Wurzelausbrüche und Trümmer auf beiden Seiten
+Bild 9–16:  Nachbeben, Helligkeit klingt ab, neue Risse im Saal
 Bild 17–24: Sie sinkt 1–2 px ab, Flügel hängen kurz, dann zurück zu p3_idle
 ```
 
-Der Held übersteht das Weltgericht nur mit dem Amulett-Schild, wie den Impuls beim Wechsel zu Phase 3.
+Kein Schutz hält das Weltgericht auf, auch nicht der Amulett-Schild, der beim Impuls zu Phase 3 noch hilft. Der Held übersteht es nur, wenn sie zögert (G8).
+
+Die Inszenierung verwendet eine eigene saalweite Zerstörungsebene und die Entladungsgeste der Königin; sie erscheint als vernichtender, unvermeidbarer Angriff über die gesamte Spielfläche. Keine freie Schutzzone. [Animierte Grafikentwürfe v2 und zwei separate Bodenranken](../assets/animationen/ranken-weltgericht-v2/README.md).
 
 **Helligkeit:** Kein voller weißer Blitz. Die Aufhellung bleibt bei höchstens etwa 50 % Deckkraft und dauert länger als 2 Animationsbilder. Das ist angenehmer und verträglicher für lichtempfindliche Spieler.
 

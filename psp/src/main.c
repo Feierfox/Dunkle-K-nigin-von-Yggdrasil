@@ -19,20 +19,46 @@ static volatile int laeuft = 1;
 /* Nur zum Testen im Emulator: Skript steuert die Königin, Bildschirmfotos als Rohdaten. */
 #include <stdio.h>
 #include <pspgu.h>
+extern int demo_lage(void);
+extern int demo_im_gespraech_wahl(void);
+extern int demo_gespraech_wahl(void);
 extern int demo_held_tot(void);
+extern int demo_ritual_offen(void);
 extern int demo_abstand(void);
 extern int demo_koenigin_x(void);
 extern int demo_leiche_x(void);
+extern int demo_phase(void);
+extern int demo_k_zustand(void);
+extern void demo_zustand(int t);
+/* Lage: 0 Kampf, 1 Ritual, 2 abwesend, 3 Gespräch, 4 Ende */
 static unsigned int demo_eingabe(int t)
 {
+    static int rituale;
+    if (demo_lage() == 3) {
+        if (t % 20) return 0;
+        /* immer die zweite Antwort: der vertrauensvolle Weg */
+        if (demo_im_gespraech_wahl() && demo_gespraech_wahl() != 1) return PSP_CTRL_DOWN;
+        return PSP_CTRL_CROSS;
+    }
+    if (demo_lage() == 2) return (t / 120) % 2 ? PSP_CTRL_LEFT : PSP_CTRL_RIGHT;
     if (demo_held_tot()) {
         int d = demo_leiche_x() - demo_koenigin_x();
-        if (d < -20) return PSP_CTRL_LEFT;
-        if (d > 20 && d < 200) return PSP_CTRL_RIGHT;
-        if ((t % 20) == 0) return PSP_CTRL_CROSS;
-        return PSP_CTRL_RIGHT;
+        if (d > 200) return PSP_CTRL_RIGHT;          /* Ritual vorbei: zurück nach rechts */
+        if (d < -25) return PSP_CTRL_LEFT;
+        if (d > 25) return PSP_CTRL_RIGHT;
+        if (t % 10 || !demo_ritual_offen()) return 0;
+        /* abwechselnd Umarmen und Verbrennen, ab und zu Opfern; wirkt eine Taste
+         * noch nicht (nicht freigeschaltet), folgt beim nächsten Versuch ✕ */
+        static int letzter_t = -100;
+        int nochmal = (t - letzter_t) <= 10;
+        letzter_t = t;
+        if (nochmal) return PSP_CTRL_CROSS;
+        rituale++;
+        if (rituale % 7 == 3) return PSP_CTRL_SQUARE;
+        return (rituale % 2) ? PSP_CTRL_CIRCLE : PSP_CTRL_CROSS;
     }
     if (demo_abstand() > 70) return PSP_CTRL_LEFT;
+    if (demo_phase() == 2) return PSP_CTRL_LTRIGGER | PSP_CTRL_RTRIGGER;   /* Weltgericht, sobald bereit */
     if ((t % 75) == 0) {
         static const unsigned int a[3] = {PSP_CTRL_SQUARE, PSP_CTRL_TRIANGLE, PSP_CTRL_CIRCLE};
         return a[(t / 75) % 3];
@@ -112,7 +138,11 @@ int main(int argc, char *argv[])
 #ifdef DEMO
         pad.Buttons = demo_eingabe(demo_t);
         pad.Lx = 128;
-        if (demo_t % 90 == 0) demo_foto(basis, demo_t);
+        if (demo_t % 90 == 0) demo_zustand(demo_t);
+        /* zusätzliche Fotos während der Verwandlung 2 (Nebel) und in Phase 3 */
+        if (demo_t % 90 == 0 || (demo_phase() >= 1 && demo_k_zustand() == 2 && demo_t % 15 == 0) ||
+            (demo_phase() == 2 && demo_t % 30 == 0))
+            demo_foto(basis, demo_t);
         if (++demo_t > DEMO) break;
 #endif
         Eingabe e;

@@ -13,26 +13,50 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 
 ## Steuerung
 
-| Taste | Wirkung |
+| Taste | Phase 1 | Phase 2 | Phase 3 |
+| --- | --- | --- | --- |
+| □ | Richtschlag | Sternschauer | Wurzelranken |
+| △ | Sensenzug | Windklinge | Erinnerungsriss |
+| ○ | Kreisschnitt | Todesurteil | – |
+| L + R | – | – | Weltgericht (einmal je Versuch, nach 20 Sekunden; tötet immer, nur das Zögern in G8 rettet den Helden) |
+
+| Taste | Außerhalb des Kampfes |
 | --- | --- |
 | ← → / Analog-Stick | Königin gehen |
-| □ | Richtschlag |
-| △ | Sensenzug |
-| ○ | Kreisschnitt |
-| ✕ | Totenritual: Verbrennen (beim Körper des Helden) |
+| ✕ | Gespräch weiter, Antwort bestätigen; beim Körper: Verbrennen |
+| ↑ ↓ | Antwort wählen |
+| ○ | beim Körper: Umarmen (nach G2, solange das Vertrauen nicht negativ ist) |
+| □ | beim Körper: Opfern durch das lila Portal (nach G5) |
 | Select | Neustart |
 | Home | Beenden |
 
 ## Inhalt der Testszene
 
-- Thronsaal, Königin mit Ruhepose und drei Angriffen (Trefferzonen nach `docs/ANGRIFFE.md`), drei Lebensleisten.
-- Held mit Lern-KI: weicht einem Angriff erst aus, nachdem er davon getroffen wurde; zuerst zu früh, ab dem dritten Mal richtig (Rolle bzw. Sprung).
-- Tod, Stille, die Königin geht zum Körper, ✕ verbrennt ihn mit eisblauem Feuer, der Held kehrt zurück, sobald sie wieder rechts im Saal steht.
-- Rückkehrworte der Königin und erste Kommentare des Helden.
-- Nach dem 5. und 11. Tod eine Quest: Abwesenheit (es geschieht nichts), danach neue Umhangfarbe (Palettentausch) und ein Herz mehr.
-- Rote Leiste leer: Verwandlung mit Ringwelle; der Held lernt, darüberzuspringen. Phase 2 selbst folgt später.
+- Thronsaal in drei Fassungen (Phase 3 noch als dunkler Platzhalter), drei gestapelte Lebensleisten (rot, orange, lila), nur im aktiven Kampf sichtbar.
+- **Drei Phasen** mit je eigenen Angriffen und Effekten nach `docs/ANGRIFFE.md`; Flächenangriffe markieren zuerst den Boden. Bis die eigenen Phase-3-Bilder vorliegen, nutzt Phase 3 die Phase-2-Figur mit lila Tönung.
+- **Impuls 1** (rot → orange): Ringwelle, der Held lernt darüberzuspringen. **Impuls 2** (orange → lila): lila Nebel flutet den Saal; nur das Amulett hält mit seinem goldenen Schild eine Lücke um den Helden frei.
+- Held mit Lern-KI: ohne Erfahrung keine Reaktion, nach ein bis zwei Treffern die falsche Ausweichart, ab dem dritten die richtige (Rolle oder Sprung).
+- **Ausrüstung über Quests**: Umhang (5. Tod), zweiter Umhang (11. Tod), Amulett (nach dem ersten Tod im Nebel), goldenes Schwert (nach drei Toden in Phase 3). Jede Stufe bringt ein Herz mehr und eine neue Umhangfarbe.
+- **Gespräche mit Auswahl** G1–G8 und R2–R4 aus `docs/DIALOGE.md`: zwei bis drei Antworten, die erste ist immer die Rolle des Endbosses. Die Antworten verändern Vertrauen, Einfluss der Verderbnis und Guide-Wissen. Zeilen der Verderbnis erscheinen magenta in einer eigenen Schrift. Im Kampf wird nicht gesprochen, nur Verwandlungen und das Zögern beim Weltgericht (G8) unterbrechen ihn.
+- **Totenritual**: Stille, die Königin geht zum Körper; ✕ Verbrennen, ○ Umarmen, □ Opfern. Der Held kehrt zurück, sobald sie wieder rechts im Saal steht; die Rückkehrworte spricht vor allem die Königin.
+- Richtschlag, Schwerthieb des Helden und die Umarmung (sie kniet, hält ihn, eisblaues Feuer in ihren Armen) stammen aus den bewegten Entwürfen in `assets/animationen/`. Die gezeichnete Umarmung gibt es bisher nur in Phase 1; stirbt der Held in Phase 2 oder 3, hält sie ihn wie zuvor.
+- **Enden E1–E6** je nach Entscheidungen und Werten, mit Abschlussbild; Select beginnt neu.
 
-**Noch nicht enthalten:** Gehen-Animationen (Figuren gleiten), Phase 2 und 3, Umarmen und Opfern, Gespräche mit Auswahl, Musik und Ton.
+**Noch nicht enthalten:** Gehen-Animationen (Figuren gleiten), eigene Phase-3-Grafik, das verborgene Ende, Musik und Ton.
+
+## Getestet
+
+Im Emulator PPSSPP (ohne Oberfläche) mit einer Demo-Variante, in der ein Skript die Königin steuert (`-DDEMO=<Schritte>`, siehe `src/main.c`; im Demo-Lauf sind die Leisten kürzer). Zehn Minuten Spielzeit: 20 Tode des Helden, alle drei Rituale, drei Quests bis zum Amulett, die Gespräche G1–G8 sowie R2 und R3, beide Impulse, Phase 3 mit dem Zögern beim Weltgericht (G8) und das Ende „Befreiung“ laufen ohne Absturz durch. Bildschirmfotos aus dem Emulator:
+
+![Gespräch mit Auswahl](bilder/emulator-gespraech-auswahl.png)
+![Nebel und Amulett-Schild](bilder/emulator-nebel-amulett-schild.png)
+![Phase 3](bilder/emulator-phase3.png)
+![Ende](bilder/emulator-ende-befreiung.png)
+![Kampf](bilder/emulator-kampf-lernender-held.png)
+![Ritual](bilder/emulator-ritual-feuer.png)
+![Rückkehr nach der Quest](bilder/emulator-rueckkehr-nach-quest.png)
+
+Auf einer echten PSP-1000 ist die Szene noch nicht getestet.
 
 ## Bauen
 

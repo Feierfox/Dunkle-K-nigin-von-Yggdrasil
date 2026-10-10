@@ -13,7 +13,7 @@
 static unsigned int __attribute__((aligned(16))) befehle[262144];
 
 Textur TEX_GRUPPE[G_ANZAHL];
-static Textur tex_saal, tex_schrift;
+static Textur tex_saal, tex_schrift, tex_schrift_v;
 static int schrift_cp[256];
 static int schrift_anzahl;
 
@@ -81,6 +81,8 @@ int grafik_start(const char *basis)
     if (textur_laden(&tex_saal, pfad) != 0) return -2;
     snprintf(pfad, sizeof pfad, "%sdata/schrift.bin", basis);
     if (textur_laden(&tex_schrift, pfad) != 0) return -3;
+    snprintf(pfad, sizeof pfad, "%sdata/schrift_verderbnis.bin", basis);
+    if (textur_laden(&tex_schrift_v, pfad) != 0) return -4;
 
     const char *z = SCHRIFT_ZEICHEN;
     schrift_anzahl = 0;
@@ -190,13 +192,47 @@ void rechteck(int x, int y, int w, int h, unsigned int farbe)
     sceGuDrawArray(GU_SPRITES, GU_COLOR_8888 | GU_VERTEX_16BIT | GU_TRANSFORM_2D, 2, 0, vt);
 }
 
-void hintergrund_zeichnen(void)
+void hintergrund_zeichnen(int phase)
 {
-    zeichne(&tex_saal, 0, 0, 0, 0, BILD_B, BILD_H, 0, 0, 0, 0xFFFFFFFF);
+    if (phase < 0) phase = 0;
+    if (phase >= tex_saal.seiten) phase = tex_saal.seiten - 1;
+    zeichne(&tex_saal, phase, 0, 0, 0, BILD_B, BILD_H, 0, 0, 0, 0xFFFFFFFF);
 }
 
-int text(const char *s, int x, int y, unsigned int farbe)
+int zeichen_anzahl(const char *s)
 {
+    int n = 0;
+    for (; *s; s++) if ((*s & 0xC0) != 0x80) n++;
+    return n;
+}
+
+int umbrechen(const char *s, int max_zeichen, const char **start, int *laenge, int max_zeilen)
+{
+    int zeilen = 0;
+    while (*s && zeilen < max_zeilen) {
+        const char *p = s, *letztes_leer = 0;
+        int n = 0;
+        while (*p && n < max_zeichen) {
+            if (*p == ' ') letztes_leer = p;
+            p++;
+            while ((*p & 0xC0) == 0x80) p++;
+            n++;
+        }
+        if (*p && letztes_leer) p = letztes_leer;   /* am letzten Leerzeichen umbrechen */
+        start[zeilen] = s;
+        laenge[zeilen] = (int)(p - s);
+        zeilen++;
+        s = p;
+        while (*s == ' ') s++;
+    }
+    return zeilen;
+}
+
+int text(const char *s, int x, int y, unsigned int farbe) { return text_stil(s, x, y, farbe, 0); }
+
+int text_stil(const char *s, int x, int y, unsigned int farbe, int stil)
+{
+    const Textur *t = stil ? &tex_schrift_v : &tex_schrift;
     int x0 = x;
     while (*s) {
         int cp = naechstes_zeichen(&s);
@@ -206,7 +242,7 @@ int text(const char *s, int x, int y, unsigned int farbe)
         if (cp != ' ') {
             int u = (i % SCHRIFT_JE_ZEILE) * SCHRIFT_ZW;
             int v = (i / SCHRIFT_JE_ZEILE) * SCHRIFT_ZH;
-            zeichne(&tex_schrift, 0, 0, u, v, SCHRIFT_ZW, SCHRIFT_ZH, x, y, 0, farbe);
+            zeichne(t, 0, 0, u, v, SCHRIFT_ZW, SCHRIFT_ZH, x, y, 0, farbe);
         }
         x += SCHRIFT_ZW;
     }

@@ -1,0 +1,172 @@
+{
+  "name": "p3_atk_ranken",
+  "status": "keyframe-animation-draft",
+  "productionReady": false,
+  "fps": 12,
+  "loop": false,
+  "keyframeCount": 8,
+  "totalTicks": 28,
+  "sheet": "sheet.png",
+  "frames": [
+    {
+      "index": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 443,
+        "h": 443
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 720
+      },
+      "durationTicks": 3,
+      "anchor": {
+        "x": 480,
+        "y": 600
+      }
+    },
+    {
+      "index": 1,
+      "sourceRect": {
+        "x": 443,
+        "y": 0,
+        "w": 444,
+        "h": 443
+      },
+      "frame": {
+        "x": 960,
+        "y": 0,
+        "w": 960,
+        "h": 720
+      },
+      "durationTicks": 4,
+      "anchor": {
+        "x": 480,
+        "y": 600
+      }
+    },
+    {
+      "index": 2,
+      "sourceRect": {
+        "x": 887,
+        "y": 0,
+        "w": 443,
+        "h": 443
+      },
+      "frame": {
+        "x": 1920,
+        "y": 0,
+        "w": 960,
+        "h": 720
+      },
+      "durationTicks": 4,
+      "anchor": {
+        "x": 480,
+        "y": 600
+      }
+    },
+    {
+      "index": 3,
+      "sourceRect": {
+        "x": 1330,
+        "y": 0,
+        "w": 444,
+        "h": 443
+      },
+      "frame": {
+        "x": 2880,
+        "y": 0,
+        "w": 960,
+        "h": 720
+      },
+      "durationTicks": 3,
+      "anchor": {
+        "x": 480,
+        "y": 600
+      }
+    },
+    {
+      "index": 4,
+      "sourceRect": {
+        "x": 0,
+        "y": 443,
+        "w": 445,
+        "h": 444
+      },
+      "frame": {
+        "x": 0,
+        "y": 720,
+        "w": 960,
+        "h": 720
+      },
+      "durationTicks": 4,
+      "anchor": {
+        "x": 480,
+        "y": 600
+      }
+    },
+    {
+      "index": 5,
+      "sourceRect": {
+        "x": 445,
+        "y": 443,
+        "w": 489,
+        "h": 444
+      },
+      "frame": {
+        "x": 960,
+        "y": 720,
+        "w": 960,
+        "h": 720
+      },
+      "durationTicks": 4,
+      "anchor": {
+        "x": 480,
+        "y": 600
+      }
+    },
+    {
+      "index": 6,
+      "sourceRect": {
+        "x": 934,
+        "y": 443,
+        "w": 396,
+        "h": 444
+      },
+      "frame": {
+        "x": 1920,
+        "y": 720,
+        "w": 960,
+        "h": 720
+      },
+      "durationTicks": 3,
+      "anchor": {
+        "x": 480,
+        "y": 600
+      }
+    },
+    {
+      "index": 7,
+      "sourceRect": {
+        "x": 1330,
+        "y": 443,
+        "w": 444,
+        "h": 444
+      },
+      "frame": {
+        "x": 2880,
+        "y": 720,
+        "w": 960,
+        "h": 720
+      },
+      "durationTicks": 3,
+      "anchor": {
+        "x": 480,
+        "y": 600
+      }
+    }
+  ]
+}

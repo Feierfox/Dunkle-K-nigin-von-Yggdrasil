@@ -1,0 +1,182 @@
+[
+  {
+    "name": "held_sprung",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 180578,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        446,
+        887,
+        1332,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 8
+  },
+  {
+    "name": "held_rolle",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 128754,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 8
+  },
+  {
+    "name": "held_amulett_schild",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 286792,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 22
+  },
+  {
+    "name": "p3_atk_ranken",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 449544,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        445,
+        934,
+        1330,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 28
+  },
+  {
+    "name": "p3_atk_erinnerungsriss",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 360859,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        447,
+        968,
+        1331,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 18
+  },
+  {
+    "name": "p3_atk_weltgericht",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 336234,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 48
+  }
+]

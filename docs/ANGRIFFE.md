@@ -24,7 +24,7 @@ Alle Zeiten in **Animationsbildern zu 12 Bildern pro Sekunde** (1 Bild ≈ 83 ms
 | 2 | Todesurteil | ○ | Rune erscheint unter dem Helden | 10 Bilder (0,83 s) | ganze Runenfläche | Rolle aus der Rune |
 | 3 | Ranken | □ | Risse im Boden leuchten nacheinander | je 8 Bilder (0,67 s) | an den Rissen, nacheinander | Rolle über freie Stellen |
 | 3 | Erinnerungsriss | △ | Riss in der Luft öffnet sich | 6 Bilder (0,5 s) | Welle in Brusthöhe über den Saal | Rolle unter der Welle |
-| 3 | Weltgericht | L + R | Saal verdunkelt sich, Lichtkugel wächst | 24 Bilder (2 s) | ganzer Saal | nur Amulett-Schild |
+| 3 | Weltgericht | L + R | Saal verdunkelt sich, Lichtkugel wächst | 24 Bilder (2 s) | ganzer Saal | kein Schutz, nur das Zögern (G8) |
 
 Die Tasten sind ein Vorschlag auf Grundlage von [PSP1000.md](PSP1000.md). In jeder Phase liegen die drei Angriffe auf denselben Tasten, damit der Spieler nicht umlernen muss.
 
@@ -90,6 +90,7 @@ Lernkurve: Nah dran bleiben ist tödlich. Richtig ist die Rolle aus der Reichwei
 
 - **Signal:** 3–4 Risse im Boden leuchten **nacheinander** auf, jeweils 8 Bilder vor dem Durchbruch.
 - **Treffer:** An jedem Riss bricht eine Wurzel senkrecht aus dem Boden.
+- **Grafik-Assets:** Zwei unabhängig platzierbare Varianten: hohe Dornenranke und breite Hakenranke. Beide brechen aus ihrer Bodenstelle hervor, halten die aktive Schadensfläche kurz und ziehen sich anschließend vollständig in dieselbe Stelle zurück. Beim Rückzug endet die Schadensphase; das Schlussbild ist transparent. Entwürfe: [Bodenranken v2](../assets/animationen/ranken-weltgericht-v2/README.md).
 - **Ausweichen:** Rolle über die Stellen, die schon durchgebrochen sind oder noch nicht leuchten. Der Rhythmus muss gelernt werden.
 
 ### Erinnerungsriss (△)
@@ -102,7 +103,8 @@ Lernkurve: Nah dran bleiben ist tödlich. Richtig ist die Rolle aus der Reichwei
 
 - **Signal:** Der Saal verdunkelt sich, die Flügel öffnen sich maximal, eine Lichtkugel wächst (24 Bilder).
 - **Treffer:** Der ganze Saal.
-- **Ausweichen:** Nicht möglich. Nur der **Amulett-Schild** schützt.
+- **Inszenierung:** Die Entladung erfasst gleichzeitig beide Seiten sowie die ganze Höhe des Saals. Wurzeln brechen an mehreren Stellen hervor, ein eisblau-türkises Lichtgitter durchzieht den Raum, Steintrümmer und Nachbeben folgen. Keine kleine, ausweichbare Sichelwelle und keine freie Schutzzone. Königin und saalweiter Effekt sind getrennte Assets; ihre Entladung beginnt nach denselben 24 Aufladebildern. [Weltgericht v2](../assets/animationen/ranken-weltgericht-v2/README.md).
+- **Ausweichen:** Nicht möglich. Auch der Amulett-Schild hält es nicht auf; der Held stirbt, sobald es entladen wird. Seine einzige Chance ist, dass sie zögert (G8).
 - **Abklingzeit:** einmal pro Versuch, frühestens 20 Sekunden nach Beginn von Phase 3. Ab Runde 25 kann hier das Zögern (G8) eintreten.
 
 ## Phasenwechsel-Impulse

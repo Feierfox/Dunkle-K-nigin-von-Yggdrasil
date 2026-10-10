@@ -33,10 +33,12 @@ def anker_verformen(pad, breite_ziel, quelle_w, mitte_x, fuss_y):
     return ((pad + mitte_x) / s, (pad + fuss_y) / s)
 
 
-# Ankerpunkt je Animation = Fußpunkt unter der Körpermitte im Bild (Sprite-Pixel)
+# Ankerpunkt je Animation = Fußpunkt unter der Körpermitte im Bild (Sprite-Pixel).
+# None: Anker aus dem JSON der Animation ("anker", z. B. von tools/cutout/entwuerfe.py).
 K_IDLE = anker_verformen(64, 72, 1024, 560, 1490)
 K_P2 = anker_verformen(96, 72, 1024, 560, 1490)
 K_ATK = ((820 + 560) / 16, (2048 - 1536 - 32 + 1490) / 16)
+K_ATK_P2 = K_ATK  # die Schwebehöhe ist im Bild enthalten
 H_IDLE = anker_verformen(48, 40, 1024, 500, 1422)
 H_AKT = ((300 + 500) / 28, (2240 - 1422 - 56 + 1422) / 28)
 
@@ -44,26 +46,42 @@ GRUPPEN = {
     "koenigin": [
         ("Q_P1_IDLE", "koenigin_p1_idle", K_IDLE),
         ("Q_P2_IDLE", "koenigin_p2_idle", K_P2),
-        ("Q_RICHTSCHLAG", "koenigin_p1_atk_richtschlag", K_ATK),
+        ("Q_RICHTSCHLAG", "koenigin_p1_atk_richtschlag", None),
         ("Q_SENSENZUG", "koenigin_p1_atk_sensenzug", K_ATK),
         ("Q_KREISSCHNITT", "koenigin_p1_atk_kreisschnitt", K_ATK),
+        ("Q_STERNSCHAUER", "koenigin_p2_atk_sternschauer", K_ATK_P2),
+        ("Q_WINDKLINGE", "koenigin_p2_atk_windklinge", K_ATK_P2),
+        ("Q_TODESURTEIL", "koenigin_p2_atk_todesurteil", K_ATK_P2),
+        ("Q_UMARMUNG", "koenigin_p1_umarmung", None),
     ],
     "held": [
         ("H_IDLE", "held_idle", H_IDLE),
         ("H_SPRUNG", "held_sprung", H_AKT),
         ("H_ROLLE", "held_rolle", H_AKT),
-        ("H_HIEB", "held_atk_hieb", H_AKT),
+        ("H_HIEB", "held_atk_hieb", None),
         ("H_TREFFER", "held_treffer", H_AKT),
         ("H_TOD", "held_tod", H_AKT),
     ],
     "fx": [
         ("FX_RING", ("fx_impuls1_ring", 480, 48), (240, 38)),
         ("FX_FEUER", ("fx_feuer_eisblau", 40, 48), (20, 47)),
+        ("FX_PORTAL", ("fx_portal", 64, 24), (32, 12)),
+        ("FX_KREIS", ("fx_kreis", 30, 10), (15, 5)),
+        ("FX_RUNE", ("fx_rune", 56, 16), (28, 8)),
+        ("FX_STERN", ("fx_stern", 8, 18), (4, 17)),
+        ("FX_EINSCHLAG", ("fx_einschlag", 28, 18), (14, 17)),
+        ("FX_SICHEL", ("fx_sichel", 40, 20), (20, 19)),
+        ("FX_RISS", ("fx_riss", 30, 8), (15, 4)),
+        ("FX_WURZEL", ("fx_wurzel", 16, 56), (8, 55)),
+        ("FX_WELLE", ("fx_welle", 24, 34), (12, 34)),
+        ("FX_KUGEL", ("fx_kugel", 26, 26), (13, 13)),
+        ("FX_NEBEL", ("fx_nebel_kachel", 64, 64), (0, 0)),
     ],
 }
 
 
 def bilder_laden(quelle):
+    meta = {}
     if isinstance(quelle, tuple):
         name, fw, fh = quelle
         bogen = Image.open(os.path.join(FX, name + ".png")).convert("RGBA")
@@ -71,7 +89,7 @@ def bilder_laden(quelle):
         bogen = Image.open(os.path.join(CUT, quelle + ".png")).convert("RGBA")
         meta = json.load(open(os.path.join(CUT, quelle + ".json"), encoding="utf-8"))
         fw, fh = meta["frame_w"], meta["frame_h"]
-    return [bogen.crop((i * fw, 0, i * fw + fw, fh)) for i in range(bogen.width // fw)]
+    return [bogen.crop((i * fw, 0, i * fw + fw, fh)) for i in range(bogen.width // fw)], meta
 
 
 def packe(stuecke):
@@ -160,8 +178,9 @@ def schreibe_bin(name, cluts, seiten):
 
 def gruppe_bauen(gname, eintraege, gid, anim_tab, frame_tab):
     stuecke, info = [], []
-    for enum, quelle, (ax, ay) in eintraege:
-        bilder = bilder_laden(quelle)
+    for enum, quelle, anker in eintraege:
+        bilder, meta = bilder_laden(quelle)
+        ax, ay = anker if anker else meta["anker"]
         erstes = len(info)
         for b in bilder:
             bb = b.getbbox() or (0, 0, 1, 1)
@@ -189,20 +208,28 @@ def gruppe_bauen(gname, eintraege, gid, anim_tab, frame_tab):
 
 
 def hintergrund():
-    im = Image.open(os.path.join(KONZEPT, "thronsaal-pixel-v2.webp")).convert("RGB").resize((480, 272), Image.Resampling.BOX)
-    seite = Image.new("RGBA", (512, 512))
-    seite.paste(im.convert("RGBA"), (0, 0))
-    clut, idx = quantisiere([seite])
-    # Hintergrund ist deckend: Index 0 nur außerhalb des Bildes
-    schreibe_bin("saal", [clut], [(512, 512, idx[0])])
+    """Drei Seiten: Thronsaal Phase 1, 2 (türkise Fackeln) und 3 (Platzhalter, dunkler)."""
+    p1 = Image.open(os.path.join(KONZEPT, "thronsaal-pixel-v2.webp")).convert("RGB").resize((480, 272), Image.Resampling.BOX)
+    p2 = Image.open(os.path.join(KONZEPT, "psp", "thronsaal-p2.png")).convert("RGB")
+    p3 = Image.open(os.path.join(KONZEPT, "psp", "thronsaal-p3.png")).convert("RGB")
+    seiten = []
+    for im in (p1, p2, p3):
+        seite = Image.new("RGBA", (512, 512))
+        seite.paste(im.convert("RGBA"), (0, 0))
+        seiten.append(seite)
+    clut, idx = quantisiere(seiten)
+    schreibe_bin("saal", [clut], [(512, 512, d) for d in idx])
 
 
-ZEICHEN = [chr(c) for c in range(32, 127)] + list("ÄÖÜäöüß„“‚‘…–’□△○✕←→")
+ZEICHEN = [chr(c) for c in range(32, 127)] + list("ÄÖÜäöüß„“‚‘…–’□△○✕←→↑↓▶")
 
 
-def schrift():
-    """Bitmap-Schrift ohne Kantenglättung, 6 x 11 Pixel je Zeichen."""
-    pfad = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
+def schrift(name="schrift", datei="DejaVuSansMono.ttf"):
+    """Bitmap-Schrift ohne Kantenglättung, 6 x 11 Pixel je Zeichen.
+
+    "schrift" für Königin und Held, "schrift_verderbnis" schräg für die Stimme der Verderbnis.
+    """
+    pfad = "/usr/share/fonts/truetype/dejavu/" + datei
     font = ImageFont.truetype(pfad, 10) if os.path.exists(pfad) else ImageFont.load_default()
     zw, zh, je_zeile = 6, 11, 42
     zeilen = (len(ZEICHEN) + je_zeile - 1) // je_zeile
@@ -218,7 +245,7 @@ def schrift():
     for y in range(seite.height):
         for x in range(seite.width):
             daten[y * seite.width + x] = 1 if a[x, y] >= 128 else 0
-    schreibe_bin("schrift", [clut], [(seite.width, seite.height, bytes(daten))])
+    schreibe_bin(name, [clut], [(seite.width, seite.height, bytes(daten))])
     return zw, zh, je_zeile
 
 
@@ -230,6 +257,7 @@ def main():
         seitenzahl[g] = gruppe_bauen(g, GRUPPEN[g], gid, anim_tab, frame_tab)
     hintergrund()
     zw, zh, je_zeile = schrift()
+    schrift("schrift_verderbnis", "DejaVuSansMono-BoldOblique.ttf")
     os.makedirs(os.path.dirname(OUT_H), exist_ok=True)
     with open(OUT_H, "w", encoding="utf-8") as f:
         f.write("/* Erzeugt von tools/psp/assets_bauen.py - nicht von Hand ändern. */\n#pragma once\n\n")
