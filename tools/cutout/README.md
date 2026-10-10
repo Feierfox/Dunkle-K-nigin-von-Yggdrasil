@@ -43,6 +43,7 @@ python tools/cutout/effekte.py     # Effekte und Vorschau-Szenen
 python tools/cutout/entwuerfe.py   # Sprites aus den bewegten Imagegen-Entwürfen
 python tools/cutout/gehen.py       # Gehen von Held und Königin (Phase 1)
 python tools/cutout/diener.py      # Untertan für die Eröffnung
+python tools/cutout/portraits.py   # Porträts für die Dialogbox
 ```
 
 `entwuerfe.py` liest die Entwürfe aus `assets/animationen/entwuerfe-2026-10-10/` (Sheet und `animation.json`). Jede Animation wird um einen festen Faktor verkleinert, sodass die Figur so hoch ist wie in den Ruheposen (Königin 91 px, Held 44 px). Danach folgen harte Transparenz, eine gemeinsame Palette mit 32 Farben und der Zuschnitt auf das gemeinsame Rechteck. Fußpunkt (`anker`) und Haltezeiten (`dauer`) stehen im JSON; `tools/psp/assets_bauen.py` übernimmt den Anker von dort. Die Palette entsteht per Median-Cut mit k-means-Nachbesserung; ohne diese wurden kleine Farbflächen falsch (braune Stiefel und Hautton des Helden rosa).

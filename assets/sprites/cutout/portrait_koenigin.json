@@ -1,0 +1,19 @@
+{
+ "name": "portrait_koenigin",
+ "frame_w": 48,
+ "frame_h": 48,
+ "fps": 12,
+ "anker": [
+  0,
+  0
+ ],
+ "quelle": "portraits.py",
+ "frames": [
+  {
+   "x": 0,
+   "y": 0,
+   "w": 48,
+   "h": 48
+  }
+ ]
+}
