@@ -148,7 +148,7 @@ static const Wahl patchw[] = {
 static const Zeile introz[] = {
     {SP_DIENER, "„Herrin … verzeiht, dass ich es wage, Euren Thronsaal zu betreten.“"},
     {SP_DIENER, "„Ein Fremder ist durch das Wurzeltor gekommen. Grüne Kapuze, blanke Klinge.“"},
-    {SP_DIENER, "„Er fragt nach Euch, Herrin. Er sagt … er habe einen Guide.“"},
+    {SP_DIENER, "„Er tötet unsere Soldaten und kommt immer wieder.“"},
     {K, "„Dann lass ihn kommen.“"},
     {SP_DIENER, "„Ich – ich halte ihn auf, Herrin! Für Euch! Ich …“"},
 };
