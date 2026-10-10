@@ -13,7 +13,7 @@
 static unsigned int __attribute__((aligned(16))) befehle[262144];
 
 Textur TEX_GRUPPE[G_ANZAHL];
-static Textur tex_saal, tex_schrift, tex_schrift_v;
+static Textur tex_saal, tex_schrift, tex_schrift_v, tex_titel, tex_menue;
 static int schrift_cp[256];
 static int schrift_anzahl;
 
@@ -85,6 +85,10 @@ int grafik_start(const char *basis)
     if (textur_laden(&tex_schrift, pfad) != 0) return -3;
     snprintf(pfad, sizeof pfad, "%sdata/schrift_verderbnis.bin", basis);
     if (textur_laden(&tex_schrift_v, pfad) != 0) return -4;
+    snprintf(pfad, sizeof pfad, "%sdata/titel.bin", basis);
+    if (textur_laden(&tex_titel, pfad) != 0) return -5;
+    snprintf(pfad, sizeof pfad, "%sdata/menue.bin", basis);
+    if (textur_laden(&tex_menue, pfad) != 0) return -6;
 
     const char *z = SCHRIFT_ZEICHEN;
     schrift_anzahl = 0;
@@ -200,6 +204,24 @@ void hintergrund_zeichnen(int phase)
     if (phase >= tex_saal.seiten) phase = tex_saal.seiten - 1;
     zeichne(&tex_saal, phase, 0, 0, 0, BILD_B, BILD_H, 0, 0, 0, 0xFFFFFFFF);
 }
+
+void titel_zeichnen(void)
+{
+    zeichne(&tex_titel, 0, 0, 0, 0, BILD_B, BILD_H, 0, 0, 0, 0xFFFFFFFF);
+}
+
+void menue_zeichnen(void)
+{
+    zeichne(&tex_menue, 0, 0, 0, 0, BILD_B, BILD_H, 0, 0, 0, 0xFFFFFFFF);
+}
+
+void menue_text(int mt, int x, int y, unsigned int farbe)
+{
+    const short *r = MENUE_TEXT[mt];
+    zeichne(&tex_menue, 0, 0, r[0], r[1], r[2], r[3], x, y, 0, farbe);
+}
+
+int menue_text_breite(int mt) { return MENUE_TEXT[mt][2]; }
 
 int zeichen_anzahl(const char *s)
 {

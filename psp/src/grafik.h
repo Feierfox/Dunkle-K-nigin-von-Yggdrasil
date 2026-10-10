@@ -28,6 +28,12 @@ void zeichne_anim(int anim, int bild, int ax, int ay, int spiegeln, int clut, un
 void rechteck(int x, int y, int w, int h, unsigned int farbe);
 /* Thronsaal als Hintergrund: 0 = Phase 1, 1 = Phase 2, 2 = Phase 3. */
 void hintergrund_zeichnen(int phase);
+/* Titelbild (data/titel.bin) als Hintergrund des Hauptmenüs. */
+void titel_zeichnen(void);
+/* Hauptmenü (data/menue.bin): Hintergrund mit der Königin und vorgefertigte Menütexte (MT_...). */
+void menue_zeichnen(void);
+void menue_text(int mt, int x, int y, unsigned int farbe);
+int menue_text_breite(int mt);
 /* UTF-8-Text; gibt die gezeichnete Breite zurück. stil 1 = Schrift der Verderbnis. */
 int text(const char *s, int x, int y, unsigned int farbe);
 int text_stil(const char *s, int x, int y, unsigned int farbe, int stil);

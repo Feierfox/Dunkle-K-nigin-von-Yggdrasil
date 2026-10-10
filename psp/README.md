@@ -11,6 +11,10 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
   ms0:/PSP/GAME/DunkleKoenigin/data/*.bin
   ```
 
+## Hauptmenü
+
+Nach dem Start erscheint der Titel „The Dark Queen of Yggdrasil“ (Bild aus dem PSP-Menü) mit „Start drücken“. Start oder ✕ öffnet das Hauptmenü: links die Königin, rechts **Spiel starten**, **Optionen** (zeigt die Steuerung) und **Credits**; ↑ ↓ wählen, ✕ bestätigen, ○ zurück. Im Spiel führt Select zurück ins Hauptmenü. Die Menütexte sind in Bronze vorgerendert (Constantia Fett, Wortanfänge größer wie im Titelschriftzug) und liegen mit dem Hintergrund in `data/menue.bin`, das Titelbild in `data/titel.bin`; beide erzeugt `tools/psp/assets_bauen.py`.
+
 ## Steuerung
 
 | Taste | Phase 1 | Phase 2 | Phase 3 |
@@ -27,7 +31,7 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 | ↑ ↓ | Antwort wählen |
 | ○ | beim Körper: Umarmen (nach G2, solange das Vertrauen nicht negativ ist) |
 | □ | beim Körper: Opfern durch das lila Portal (nach G5) |
-| Select | Neustart |
+| Select | zurück ins Hauptmenü |
 | Home | Beenden |
 
 ## Inhalt der Testszene

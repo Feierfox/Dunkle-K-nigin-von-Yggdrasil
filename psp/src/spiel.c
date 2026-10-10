@@ -64,7 +64,7 @@ static const AngriffDef ANG[ANG_N] = {
 
 enum { KZ_BEREIT, KZ_ANGRIFF, KZ_VERWANDLUNG };
 enum { HZ_KOMMT, HZ_KAMPF, HZ_HIEBT, HZ_ROLLT, HZ_SPRINGT, HZ_GETROFFEN, HZ_TOT, HZ_WEG };
-enum { L_KAMPF, L_RITUAL, L_ABWESEND, L_GESPRAECH, L_ENDE };
+enum { L_KAMPF, L_RITUAL, L_ABWESEND, L_GESPRAECH, L_ENDE, L_TITEL };
 enum { R_NICHTS, R_FEUER, R_UMARMEN, R_PORTAL, R_FERTIG };
 enum { NACH_KAMPF, NACH_ABWESEND, NACH_WELT };
 
@@ -106,6 +106,11 @@ static int erster_tod_impuls1;
 static const char *t_zeile[2];
 static int t_sprecher[2];
 static int t_tick;
+
+/* Hauptmenü */
+enum { M_NEU, M_OPTIONEN, M_CREDITS, M_ANZAHL };
+enum { S_TITEL, S_MENUE, S_OPTIONEN, S_CREDITS };
+static int m_wahl, m_schirm;
 
 /* Gespräch */
 static int g_nr, g_schritt, g_wahl, g_antwort, g_nach;
@@ -717,7 +722,7 @@ void spiel_start(void)
     vertrauen = 0; einfluss = 2; guide = 0; opfer = 0; umarmt = 0; wirkung_frei = 1;
     quest = 0; zurueck_von_quest = 0; erster_tod_impuls1 = 0; ende_nr = 0; ring_aktiv = 0;
     sage("□ △ ○ Angriffe (Phase 3: □ △, L+R Weltgericht)  ← → gehen", SP_ERZAEHLER,
-         "Nach dem Tod: ✕ Verbrennen, später ○ Umarmen, □ Opfern. Select: Neustart", SP_ERZAEHLER);
+         "Nach dem Tod: ✕ Verbrennen, später ○ Umarmen, □ Opfern. Select: Hauptmenü", SP_ERZAEHLER);
 }
 
 static void koenigin_schritt(const Eingabe *e)
@@ -788,9 +793,44 @@ static void koenigin_schritt(const Eingabe *e)
     }
 }
 
+void spiel_titel(void)
+{
+    lage = L_TITEL;
+    lage_tick = 0;
+    m_wahl = M_NEU;
+    m_schirm = S_TITEL;
+    t_tick = 0;
+}
+
+/* Bildschirme vor dem Spiel: Titel ("Start drücken"), Hauptmenü, Optionen, Credits */
+static void titel_schritt(const Eingabe *e)
+{
+    if (lage_tick < 30) return;   /* kurzes Einblenden, bevor etwas reagiert */
+    int weiter = e->neu & (PSP_CTRL_CROSS | PSP_CTRL_START);
+    int zurueck = e->neu & PSP_CTRL_CIRCLE;
+    switch (m_schirm) {
+    case S_TITEL:
+        if (weiter) { m_schirm = S_MENUE; m_wahl = M_NEU; }
+        break;
+    case S_MENUE:
+        if (e->neu & PSP_CTRL_UP) m_wahl = (m_wahl + M_ANZAHL - 1) % M_ANZAHL;
+        if (e->neu & PSP_CTRL_DOWN) m_wahl = (m_wahl + 1) % M_ANZAHL;
+        if (zurueck) m_schirm = S_TITEL;
+        else if (weiter) {
+            if (m_wahl == M_NEU) spiel_start();
+            else m_schirm = m_wahl == M_OPTIONEN ? S_OPTIONEN : S_CREDITS;
+        }
+        break;
+    default:
+        if (weiter || zurueck) m_schirm = S_MENUE;
+        break;
+    }
+}
+
 void spiel_schritt(const Eingabe *e)
 {
-    if (e->neu & PSP_CTRL_SELECT) { spiel_start(); return; }
+    if (lage == L_TITEL) { lage_tick++; titel_schritt(e); return; }
+    if (e->neu & PSP_CTRL_SELECT) { spiel_titel(); return; }
     if (t_tick > 0) t_tick--;
     lage_tick++;
     K.geht = 0;   /* wird in koenigin_schritt bzw. held_schritt neu gesetzt */
@@ -927,7 +967,7 @@ static void ende_zeichnen(void)
     for (int i = 0; i < 4 && e->zeilen[i]; i++)
         text(e->zeilen[i], (BILD_B - zeichen_anzahl(e->zeilen[i]) * SCHRIFT_ZW) / 2, 110 + i * 14,
              e->zeilen[i][0] == (char)0xE2 ? FARBE_H : WEISS);
-    text("Select: neu beginnen", (BILD_B - 20 * SCHRIFT_ZW) / 2, 200, 0xFF808080);
+    text("Select: Hauptmenü", (BILD_B - 17 * SCHRIFT_ZW) / 2, 200, 0xFF808080);
 }
 
 static void effekte_zeichnen(void)
@@ -1107,8 +1147,73 @@ static void held_zeichnen(void)
     zeichne_anim(a, b, (int)H.x, BODEN, spiegel, clut, f);
 }
 
+static void tafel(const char *const *zeilen, int n, int ueberschrift)
+{
+    rechteck(236, 20, 236, 232, 0xC0080406);
+    rechteck(236, 251, 236, 1, 0xFF6E4E5A);
+    menue_text(ueberschrift, 354 - menue_text_breite(ueberschrift) / 2, 26, WEISS);
+    for (int i = 0; i < n; i++) text(zeilen[i], 246, 70 + i * 16, zeilen[i][0] == ' ' ? 0xFF9A8C94 : WEISS);
+    text("✕ / ○ zurück", 246, 234, 0xFF808080);
+}
+
+static void titel_bild(void)
+{
+    if (m_schirm == S_TITEL) {
+        titel_zeichnen();
+        /* "Start drücken" blinkt langsam */
+        if (lage_tick >= 30 && (lage_tick / 40) % 3 != 2)
+            menue_text(MT_START, (BILD_B - menue_text_breite(MT_START)) / 2, 239, WEISS);
+    } else {
+        menue_zeichnen();
+    }
+    if (m_schirm == S_MENUE) {
+        static const int TEXT[M_ANZAHL][2] = {
+            {MT_SPIEL, MT_SPIEL_AKTIV}, {MT_OPTIONEN, MT_OPTIONEN_AKTIV}, {MT_CREDITS, MT_CREDITS_AKTIV}};
+        for (int i = 0; i < M_ANZAHL; i++) {
+            int mt = TEXT[i][i == m_wahl];
+            menue_text(mt, 354 - menue_text_breite(mt) / 2, 84 + i * 40, WEISS);
+        }
+        text("✕ wählen   ○ zurück", 296, 250, 0xFF808080);
+    } else if (m_schirm == S_OPTIONEN) {
+        static const char *const z[] = {
+            "Steuerung",
+            "□ △ ○   Angriffe",
+            "        (in jeder Phase andere)",
+            "L + R   Weltgericht (Phase 3)",
+            "← →     Gehen",
+            "✕       Weiter, Antwort bestätigen",
+            "↑ ↓     Antwort wählen",
+            "Beim Toten: ✕ Verbrennen,",
+            "        später weitere Rituale",
+            "Select  zurück zum Hauptmenü",
+        };
+        tafel(z, 10, MT_OPTIONEN_AKTIV);
+    } else if (m_schirm == S_CREDITS) {
+        static const char *const z[] = {
+            "Ein Spiel von Feierfox",
+            "",
+            "Menümusik: The Final Battle",
+            "        von skrjablin (CC0)",
+            "        opengameart.org",
+            "Schrift im Spiel: DejaVu Sans Mono",
+            "Programmierung mit Claude Code",
+            "Werkzeuge: PSPSDK, PPSSPP,",
+            "        Blender, Pillow",
+        };
+        tafel(z, 9, MT_CREDITS_AKTIV);
+    }
+    /* Einblenden aus Schwarz */
+    if (lage_tick < 45) rechteck(0, 0, BILD_B, BILD_H, ((unsigned int)(255 - lage_tick * 255 / 45) << 24));
+}
+
 void spiel_zeichnen(void)
 {
+    if (lage == L_TITEL) {
+        bild_beginnen(0xFF000000);
+        titel_bild();
+        bild_zeigen();
+        return;
+    }
     bild_beginnen(0xFF180A0E);
     hintergrund_zeichnen(K.phase);
     if (ring_aktiv) zeichne_anim(FX_RING, ring_tick / TPB, K.x, BODEN + 10, 0, 0, WEISS);
