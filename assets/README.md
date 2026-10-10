@@ -6,6 +6,10 @@ Die Dateien hier sind **komprimierte WebP-Kopien** zur Ansicht. Die PNG-Original
 
 ## Aktuelle Entwürfe
 
+### PSP-Menü
+
+[Titel-Wallpaper](menu/thronsaal-title-v1/README.md) · [Königin-Vorschau mit Musik](menu/koenigin-preview-v1/index.html). Der Thronsaal trägt den Titel **The Dark Queen of Yggdrasil**; das 16-Sekunden-Menüvideo zeigt die Königin mit Helmkrone, violetten Augen und Glühnebel. ICON1.PMF und SND0.AT3 sind in EBOOT.PBP eingebunden, strukturell und per Decoder geprüft; ein echter PSP-XMB-Test steht aus. Die Originalmusik von skrjablin ist CC0.
+
 ### Audio: technisch geprüfte SFX-Entwürfe
 
 [Elf Mischungen und Quellen](audio/audit-v1/README.md) · [Hörvergleich mit Master und PSP-Mono](audio/audit-v1/index.html) · [CC0-Originalquellen](audio/audit-v1/LICENSES.md). Schritte, Waffen, Ranken und Weltgericht wurden aus dokumentierten CC0-Aufnahmen gestaltet. 267 Dateien technisch untersucht; zwölf ausgewählte Originale, 48-kHz-Master, 22,05-kHz-Mono-Fassungen und Prüfberichte enthalten. **Hörfreigabe und AA-Endqualität stehen aus.**

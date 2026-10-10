@@ -1,0 +1,18 @@
+{
+  "music": "The Final Battle",
+  "author": "skrjablin",
+  "license": "CC0-1.0",
+  "source": "https://opengameart.org/content/the-final-battle",
+  "download": "https://opengameart.org/sites/default/files/the_final_battle.ogg",
+  "originalSHA256": "401fa62b9ed9bb2eea5821bdbe245e3eb991a89ecd1509c3742f7b5393b0df1c",
+  "excerptStartSeconds": 0,
+  "excerptSeconds": 16,
+  "edits": "0.35s fade-in; 1.4s fade-out; 65% gain",
+  "preview": "720x408, H.264/AAC, 16s",
+  "xmbVideo": "144x80 PSMF/H.264",
+  "xmbMusic": "ATRAC3, 44.1 kHz stereo",
+  "combinedXmbBytes": 393104,
+  "toolkitSource": "https://github.com/TotalKommando/psp-media-toolkit",
+  "toolkitCommit": "3e4825e60823fb9364284030e8baffea542ea546",
+  "pspHardwareTested": false
+}

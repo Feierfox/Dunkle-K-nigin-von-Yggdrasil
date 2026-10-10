@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/TotalKommando/psp-media-toolkit",
+  "commit": "3e4825e60823fb9364284030e8baffea542ea546",
+  "license": "MIT",
+  "localModification": "Fixed 12-frame GOP instead of up to 48 frames, to keep PTS stamp gaps below 0.7 seconds for this preview."
+}

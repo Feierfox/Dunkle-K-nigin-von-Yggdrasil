@@ -1,0 +1,18 @@
+{
+  "title": "The Dark Queen of Yggdrasil",
+  "PIC1": [
+    480,
+    272
+  ],
+  "ICON0": [
+    144,
+    80
+  ],
+  "xmbHardwareTested": false,
+  "videoEmbedded": true,
+  "musicEmbedded": true,
+  "combinedMediaBytes": 393104,
+  "pbpMenuUpdated": true,
+  "gamePayloadUnchanged": true,
+  "gamePayloadSHA256": "0e01d144ddb1616c4049004ff0f127cf049c346ad0c0c3fd6d477da80fef9085"
+}
