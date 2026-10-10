@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
     int fehler = grafik_start(basis);
     if (fehler != 0) {
         pspDebugScreenInit();
-        pspDebugScreenPrintf("Daten nicht gefunden (Fehler %d).\n", fehler);
+        pspDebugScreenPrintf("Daten nicht gefunden oder beschaedigt (Fehler %d).\n", fehler);
         pspDebugScreenPrintf("Der Ordner data/ muss neben der EBOOT.PBP liegen.\n");
         pspDebugScreenPrintf("Basis: %s\n", basis);
         sceKernelSleepThread();
