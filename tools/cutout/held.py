@@ -4,7 +4,7 @@
     held_rolle      8 Bilder  Ausweichrolle auf der Stelle; die Engine bewegt ihn dabei vorwärts
     held_atk_hieb_alt 8 Bilder  Schwerthieb, Schwert mit Hand ausgeschnitten (ersetzt durch entwuerfe.py)
     held_treffer    4 Bilder  Treffer: Aufblitzen und Zurückweichen
-    held_tod        8 Bilder  Tod: kippt nach hinten, letztes Bild ist der liegende Körper
+    held_tod_alt    8 Bilder  Tod: kippt nach hinten (ersetzt durch entwuerfe.py)
 
     python tools/cutout/held.py
 """
@@ -148,7 +148,7 @@ def main():
     # Tod: kippt nach hinten (nach links, gegen den Uhrzeigersinn) um die Füße
     fuss = (520, FUESSE_Y)
     tod = [0, 8, 24, 45, 68, 84, 90, 90]
-    speichere("held_tod", [ganz(bild, winkel=w, pivot=fuss, dx=-round(w / 90 * 6 * m)) for w in tod], palette)
+    speichere("held_tod_alt", [ganz(bild, winkel=w, pivot=fuss, dx=-round(w / 90 * 6 * m)) for w in tod], palette)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,22 @@
+{
+ "name": "koenigin_p1_umarmung_stehend",
+ "frame_w": 56,
+ "frame_h": 92,
+ "fps": 12,
+ "anker": [
+  18,
+  91
+ ],
+ "dauer": [
+  8
+ ],
+ "quelle": "koenigin_p1_umarmung",
+ "frames": [
+  {
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 92
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "name": "koenigin_sense_boden",
+ "frame_w": 91,
+ "frame_h": 28,
+ "fps": 12,
+ "anker": [
+  9,
+  27
+ ],
+ "dauer": [
+  1
+ ],
+ "quelle": "koenigin-idle-sense-helm-v5",
+ "frames": [
+  {
+   "x": 0,
+   "y": 0,
+   "w": 91,
+   "h": 28
+  }
+ ]
+}

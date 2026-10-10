@@ -11,6 +11,9 @@ Ausgabe in `assets/sprites/cutout/`: Sprite-Streifen (`.png`), Bildpositionen (`
 | `held_idle` | held-idle-hood-v3 | 6 |
 | `koenigin_p1_atk_richtschlag` | Imagegen-Entwurf p1_atk_richtschlag (`entwuerfe.py`) | 10, 107 × 96 |
 | `koenigin_p1_umarmung` | Imagegen-Entwurf p1_ritual_umarmung_feuer (`entwuerfe.py`), Held liegt im Bild | 8, 116 × 93 |
+| `koenigin_p1_umarmung_umhang` | dto., nur der grüne Umhang des Helden, wird mit den Farbtabellen der Ausrüstungsstufe darübergezeichnet | 8 |
+| `koenigin_p1_umarmung_stehend` | dto., erstes Bild ohne den Helden: Aufstehen nach dem Ritual | 1 |
+| `koenigin_sense_boden` | koenigin-idle-sense-helm-v5, Sense flach am Boden (während der Umarmung abgelegt) | 1, 91 × 28 |
 | `koenigin_p1_atk_richtschlag_alt` | koenigin-idle-sense-helm-v5, Cut-out (`angriffe.py`), nicht mehr im Spiel | 10, 128 × 128 |
 | `koenigin_p1_atk_sensenzug` | dto. | 14, 128 × 128 |
 | `koenigin_p1_atk_kreisschnitt` | dto., Körper in der Drehung kurz gespiegelt | 14, 128 × 128 |
@@ -22,7 +25,9 @@ Ausgabe in `assets/sprites/cutout/`: Sprite-Streifen (`.png`), Bildpositionen (`
 | `held_atk_hieb` | Imagegen-Entwurf held_atk_hieb (`entwuerfe.py`) | 8, 76 × 54 |
 | `held_atk_hieb_alt` | held-idle-hood-v3, Schwert mit Hand ausgeschnitten (`held.py`), nicht mehr im Spiel | 8, 64 × 80 |
 | `held_treffer` | dto., weißes Aufblitzen | 4, 64 × 80 |
-| `held_tod` | dto., letztes Bild ist der liegende Körper | 8, 64 × 80 |
+| `held_tod` | held-idle-hood-v3 (`entwuerfe.py`): sackt nach vorn zur Königin hin zusammen; die letzten Bilder sind genau der liegende Körper aus dem ersten Umarmungsbild | 8, 74 × 47 |
+| `held_schwert_boden` | held-idle-hood-v3, Schwert flach am Boden (rutscht ihm im 3. Tod-Bild aus der Hand) | 1, 37 × 7 |
+| `held_tod_alt` | held-idle-hood-v3 (`held.py`), kippt nach hinten, am Bildrand abgeschnitten, nicht mehr im Spiel | 8, 64 × 80 |
 
 ```
 pip install pillow numpy
@@ -35,7 +40,9 @@ python tools/cutout/effekte.py     # Effekte und Vorschau-Szenen
 python tools/cutout/entwuerfe.py   # Sprites aus den bewegten Imagegen-Entwürfen
 ```
 
-`entwuerfe.py` liest die Entwürfe aus `assets/animationen/entwuerfe-2026-10-10/` (Sheet und `animation.json`). Jede Animation wird um einen festen Faktor verkleinert, sodass die Figur so hoch ist wie in den Ruheposen (Königin 91 px, Held 44 px). Danach folgen harte Transparenz, eine gemeinsame Palette mit 32 Farben und der Zuschnitt auf das gemeinsame Rechteck. Fußpunkt (`anker`) und Haltezeiten (`dauer`) stehen im JSON; `tools/psp/assets_bauen.py` übernimmt den Anker von dort.
+`entwuerfe.py` liest die Entwürfe aus `assets/animationen/entwuerfe-2026-10-10/` (Sheet und `animation.json`). Jede Animation wird um einen festen Faktor verkleinert, sodass die Figur so hoch ist wie in den Ruheposen (Königin 91 px, Held 44 px). Danach folgen harte Transparenz, eine gemeinsame Palette mit 32 Farben und der Zuschnitt auf das gemeinsame Rechteck. Fußpunkt (`anker`) und Haltezeiten (`dauer`) stehen im JSON; `tools/psp/assets_bauen.py` übernimmt den Anker von dort. Die Palette entsteht per Median-Cut mit k-means-Nachbesserung; ohne diese wurden kleine Farbflächen falsch (braune Stiefel und Hautton des Helden rosa).
+
+Damit Tod und Umarmung nahtlos ineinandergehen, schneidet `entwuerfe.py` den liegenden Helden aus dem ersten Umarmungsbild aus (an der Berührstelle mit dem Stiefel der Königin nach Farbe getrennt) und verwendet genau diese Pixel als letzte Bilder von `held_tod`. Der Abstand vom Fußpunkt des Toten zum Kniepunkt der Königin (`UMARM_ABSTAND`), die Körpermitte (`TOD_MITTE`) und das Bild, ab dem das Schwert am Boden liegt (`TOD_SCHWERT_BILD`), stehen unter `konstanten` im JSON. `assets_bauen.py` schreibt sie als `#define` nach `psp/src/assets_gen.h`.
 
 `angriffe.py` schneidet Sense, Hand und Unterarm aus dem Entwurf aus, füllt die verdeckte Stelle am Körper mit den angrenzenden Rüstungsfarben und dreht das Teil je Bild um den Ellbogen. Der Arm hebt sich beim Ausholen zusätzlich an.
 

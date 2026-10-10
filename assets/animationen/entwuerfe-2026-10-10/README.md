@@ -30,8 +30,13 @@ Die endgültige Fassung benötigt eine sorgfältige Überarbeitung bei den Zielg
 
 ## PSP-Sprites daraus
 
-`tools/cutout/entwuerfe.py` macht daraus Sprites in `assets/sprites/cutout/` (`koenigin_p1_atk_richtschlag`, `held_atk_hieb`, `koenigin_p1_umarmung`). Sie ersetzen die alten Cut-out-Fassungen in der PSP-Testszene. Die Sprites sind automatisch verkleinert (32 Farben), nicht von Hand nachgezeichnet. Offen bleiben:
+`tools/cutout/entwuerfe.py` macht daraus Sprites in `assets/sprites/cutout/` (`koenigin_p1_atk_richtschlag`, `held_atk_hieb`, `koenigin_p1_umarmung` mit Umhang-Ebene und Aufstehbild) und baut die Tod-Animation des Helden so, dass sie genau in das erste Umarmungsbild übergeht. Sie ersetzen die alten Cut-out-Fassungen in der PSP-Testszene. Die Sprites sind automatisch verkleinert (32 Farben), nicht von Hand nachgezeichnet.
 
+Ablauf im Spiel: Der Held sackt nach vorn zur Königin hin zusammen, sein Schwert rutscht ihm aus der Hand und bleibt liegen. Auf ○ geht die Königin selbst an seinen Kopf, legt die Sense hinter sich ab und kniet nieder. Der liegende Körper ist dabei Pixel für Pixel derselbe wie im ersten Umarmungsbild. Nach dem Feuer steht sie ohne Sense auf und nimmt sie danach wieder auf.
+
+Offen bleiben:
+
+- Stehen und Knien wechseln ohne Zwischenbild (in beide Richtungen ein Bildwechsel). Die Sense wechselt dabei in einem Bild zwischen Hand und Boden.
+- Der Held ist im Umarmungsentwurf etwa 25 % größer als der stehende Held im Spiel. Die Tod-Animation vergrößert ihn beim Fallen schrittweise, damit der Unterschied nicht springt.
+- Die Königin ist in der Umarmung etwas dunkler schattiert als in der Ruhepose (Unterschied der Entwürfe).
 - Die Größe der Figur schwankt leicht zwischen den Bildern (Held im Schwerthieb: 45 px im ersten, 43 px im letzten Bild). Der Maßstab ist pro Animation gemittelt.
-- Die Umarmung ist mit 116 × 93 breiter als die geplanten 96 × 96, weil der liegende Held mit im Bild ist. Sein Umhang wechselt dort nicht die Farbe mit der Ausrüstungsstufe.
-- Der liegende Körper aus `held_tod` ist kleiner als der Held in der Umarmung; beim Start der Umarmung wirkt er dadurch plötzlich größer.
