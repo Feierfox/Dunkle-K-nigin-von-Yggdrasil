@@ -167,8 +167,8 @@ static const char *const HELD_ERSTER_TOD[ANG_N] = {
     "„Der Boden selbst ist ein Angriff. Fair.“",
     "„Ich hab kurz was gesehen. Eine Stadt? Dann war ich tot.“",
     "„Da hilft kein Amulett. Da hilft nur, dass sie es nicht tut.“",
-    "„Ich hab nichts gemacht. Ich hab nur *gewartet*.“",
-    "„Ich bin gesprungen. Drüberspringen geht hier nicht. Da ist kein Drüber.“",
+    "„Ich hab nichts gemacht. Ich hab nur gewartet.“",
+    "„Ich bin gesprungen. Geht hier nicht. Da ist kein Drüber.“",
 };
 static const char *const HELD_RITUAL[4] = {
     0,
@@ -392,11 +392,11 @@ static void angriff_starten(int a)
     switch (a) {
     case A_RICHT: ideal = 12; break;
     case A_SENSE: ideal = 15; break;
-    case A_KREIS: ideal = 6; break;
+    case A_KREIS: ideal = 16; break;   /* Rolle schützt über das ganze Trefferfenster, auch an der Wand */
     case A_STERN: ideal = 25; break;
     case A_WIND: ideal = 25 + d / 5 - 20; break;
     case A_URTEIL: ideal = 15; break;
-    case A_RANKEN: ideal = 20; break;
+    case A_RANKEN: ideal = 45; break;  /* Rolle schützt bei der ersten Stelle; die zweite liegt zur Königin hin */
     case A_RISS: ideal = 30 + d / 5 - 15; break;
     case A_WELT: K.welt_benutzt = 1; break;
     }
@@ -667,9 +667,11 @@ static void ritual_schritt(const Eingabe *e)
         H.ritual = H.ritual_tick;
         if (quest) {
             int q = quest;
+            /* Er ist fort: Sonst würde während G3 das Ritual noch einmal gezeichnet */
+            H.zustand = HZ_WEG;
             if (q == 1) gespraech_starten(G_G3, NACH_ABWESEND);
             else {
-                if (q == 3) sage("„Okay. Springen reicht nicht mehr. Ich brauch was, das mich *schützt*.“", SP_HELD,
+                if (q == 3) sage("„Okay. Springen reicht nicht mehr. Ich brauch was, das mich schützt.“", SP_HELD,
                                  "„Bin bald zurück. Also, relativ bald.“", SP_HELD);
                 abwesenheit_starten();
             }

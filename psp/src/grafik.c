@@ -41,17 +41,19 @@ int textur_laden(Textur *t, const char *pfad)
     if (fread(kopf, 1, 8, f) != 8 || memcmp(kopf, "DKAT", 4) != 0) { fclose(f); return -2; }
     t->seiten = le16(kopf + 4);
     t->cluts = le16(kopf + 6);
-    if (t->seiten > 8) { fclose(f); return -3; }
+    if (t->seiten < 1 || t->seiten > 8 || t->cluts < 1) { fclose(f); return -3; }
+    /* Abgeschnittene Dateien (z. B. unvollständig kopiert) melden, statt Datenmüll zu zeigen */
     t->clut = memalign(16, t->cluts * 256 * 4);
-    fread(t->clut, 4, t->cluts * 256, f);
+    if (!t->clut || fread(t->clut, 4, t->cluts * 256, f) != (size_t)(t->cluts * 256)) { fclose(f); return -4; }
     for (int s = 0; s < t->seiten; s++) {
         unsigned char wh[4];
-        fread(wh, 1, 4, f);
+        if (fread(wh, 1, 4, f) != 4) { fclose(f); return -5; }
         t->breite[s] = le16(wh);
         t->hoehe[s] = le16(wh + 2);
+        if (t->breite[s] < 1 || t->breite[s] > 512 || t->hoehe[s] < 1 || t->hoehe[s] > 512) { fclose(f); return -6; }
         int n = t->breite[s] * t->hoehe[s];
         t->pixel[s] = memalign(16, n);
-        fread(t->pixel[s], 1, n, f);
+        if (!t->pixel[s] || fread(t->pixel[s], 1, n, f) != (size_t)n) { fclose(f); return -7; }
     }
     fclose(f);
     sceKernelDcacheWritebackAll();
