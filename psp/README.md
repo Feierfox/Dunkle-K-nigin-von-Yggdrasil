@@ -71,6 +71,7 @@ Im Emulator PPSSPP (ohne Oberfläche) mit einer Demo-Variante, in der ein Skript
 
 - `DATA.PSP` im EBOOT ist ein PRX (ELF-Typ 0xFFA0, Ladeadresse 0, mit Relokationen). Das vorige EBOOT war ein Programm mit fester Adresse (ELF-Typ 2, 0x08804000).
 - Erholungslücke: Nach jedem Angriff steht die Königin still. Bei einem Angriff, den er noch nicht beherrscht, genau 40 Schritte, ohne Gegenschlag. Bei einem beherrschten Angriff schlug er in allen 12 Fällen zu und traf; die Lücke endete erst nach seinem Hieb (40 bis 104 Schritte, nie bis zur Grenze von 150).
+- Eine Verwandlung beendet die Erholung. Vorher lief sie nach der Verwandlung weiter, wenn sein Gegenschlag die Leiste geleert hatte, und die Königin stand danach bis zu 40 Schritte still. Geprüft an 13 Verwandlungen mit laufender Erholung: Danach war sie jedes Mal beendet, und die Königin griff sofort wieder an.
 - Durchbruch: Der Schaden seines Hiebs steigt mit den Versuchen ohne neue Phase von 4 über 6, 8 und 10 auf 12 und fällt mit einer neuen Phase wieder auf 4.
 - „Der Patch“ kommt genau einmal, zu Beginn des Durchbruchs. „Niemand flickt, was ich zerbrochen habe. Geh.“ führt sofort zu E1 „Ewige Königin“. Die beiden anderen Antworten setzen den Kampf fort (die Verderbnis-Antwort erhöht den Einfluss um 1); diese Läufe enden später mit E5 bzw. E3.
 
