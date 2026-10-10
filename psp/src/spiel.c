@@ -33,7 +33,7 @@
 /* Angriffe und Impulse */
 enum { A_RICHT, A_SENSE, A_KREIS, A_STERN, A_WIND, A_URTEIL, A_RANKEN, A_RISS, A_WELT, A_IMPULS1, A_IMPULS2, ANG_N };
 /* womit der Held einem Angriff entgeht */
-enum { SCHUTZ_ROLLE, SCHUTZ_SPRUNG, SCHUTZ_AMULETT };
+enum { SCHUTZ_ROLLE, SCHUTZ_SPRUNG, SCHUTZ_AMULETT, SCHUTZ_KEINER };
 enum { AKT_KEINE, AKT_ROLLE, AKT_SPRUNG };
 
 typedef struct { int anim, dauer, schutz, richtig; } AngriffDef;
@@ -46,7 +46,7 @@ static const AngriffDef ANG[ANG_N] = {
     {Q_TODESURTEIL, 12 * TPB, SCHUTZ_ROLLE, AKT_ROLLE},
     {Q_STERNSCHAUER, 90, SCHUTZ_ROLLE, AKT_ROLLE},     /* Ranken */
     {Q_TODESURTEIL, 30 + 100, SCHUTZ_ROLLE, AKT_ROLLE}, /* Erinnerungsriss */
-    {Q_STERNSCHAUER, 150, SCHUTZ_AMULETT, AKT_KEINE},   /* Weltgericht */
+    {Q_STERNSCHAUER, 150, SCHUTZ_KEINER, AKT_KEINE},    /* Weltgericht: nur das Zögern (G8) rettet ihn */
     {0, 0, SCHUTZ_SPRUNG, AKT_SPRUNG},                   /* Impuls 1 */
     {0, 0, SCHUTZ_AMULETT, AKT_KEINE},                   /* Impuls 2 */
 };
@@ -150,7 +150,7 @@ static const char *const HELD_ERSTER_TOD[ANG_N] = {
     "„Wenn eine Rune unter mir leuchtet, bleib ich nicht stehen. Notiert.“",
     "„Der Boden selbst ist ein Angriff. Fair.“",
     "„Ich hab kurz was gesehen. Eine Stadt? Dann war ich tot.“",
-    "„Das kann man nicht ausweichen. Das muss man aushalten.“",
+    "„Da hilft kein Amulett. Da hilft nur, dass sie es nicht tut.“",
     "„Ich hab nichts gemacht. Ich hab nur *gewartet*.“",
     "„Ich bin gesprungen. Drüberspringen geht hier nicht. Da ist kein Drüber.“",
 };
@@ -816,9 +816,6 @@ static void effekte_zeichnen(void)
         rechteck(0, 0, BILD_B, BILD_H, ((unsigned int)dunkel << 24) | 0x00100408);
         if (t < 120) zeichne_anim(FX_KUGEL, b % 4, K.x, BODEN - 110, 0, 0, WEISS);
         if (t >= 120 && t < 132) rechteck(0, 0, BILD_B, BILD_H, 0x80FFFFFF);   /* höchstens 50 % Helligkeit */
-        if (t >= 118 && hat_amulett()) {
-            rechteck((int)H.x - 26, BODEN - 64, 52, 2, 0xFF7ED9F6);
-        }
         break;
     }
     }

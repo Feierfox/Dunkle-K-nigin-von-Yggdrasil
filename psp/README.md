@@ -18,7 +18,7 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 | □ | Richtschlag | Sternschauer | Wurzelranken |
 | △ | Sensenzug | Windklinge | Erinnerungsriss |
 | ○ | Kreisschnitt | Todesurteil | – |
-| L + R | – | – | Weltgericht (einmal je Versuch, nach 20 Sekunden) |
+| L + R | – | – | Weltgericht (einmal je Versuch, nach 20 Sekunden; tötet immer, nur das Zögern in G8 rettet den Helden) |
 
 | Taste | Außerhalb des Kampfes |
 | --- | --- |

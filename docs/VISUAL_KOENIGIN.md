@@ -267,7 +267,7 @@ Bild 9–16:  Helligkeit klingt ab, neue Risse im Saal
 Bild 17–24: Sie sinkt 1–2 px ab, Flügel hängen kurz, dann zurück zu p3_idle
 ```
 
-Der Held übersteht das Weltgericht nur mit dem Amulett-Schild, wie den Impuls beim Wechsel zu Phase 3.
+Kein Schutz hält das Weltgericht auf, auch nicht der Amulett-Schild, der beim Impuls zu Phase 3 noch hilft. Der Held übersteht es nur, wenn sie zögert (G8).
 
 **Helligkeit:** Kein voller weißer Blitz. Die Aufhellung bleibt bei höchstens etwa 50 % Deckkraft und dauert länger als 2 Animationsbilder. Das ist angenehmer und verträglicher für lichtempfindliche Spieler.
 
