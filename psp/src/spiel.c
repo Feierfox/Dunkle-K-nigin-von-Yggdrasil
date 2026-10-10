@@ -177,6 +177,11 @@ static int kopfseite(void) { return H.leiche_spiegel ? -1 : 1; }
 static int koerper_mitte(void) { return H.leiche_x + kopfseite() * TOD_MITTE; }
 static int kniepunkt(void) { return H.leiche_x + kopfseite() * UMARM_ABSTAND; }
 
+#define TOD_LIEGT_BILD 6  /* ab diesem Bild von held_tod liegt er (genau die Pose aus der Umarmung) */
+#define ARM_HEBEN 20      /* Phase 2/3: Ticks, bis er in ihren Armen liegt */
+#define ARM_HOEHE 24      /* so hoch hält sie ihn (Pixel über dem Boden) */
+#define ARM_ABSTAND 4     /* sein Kopf liegt so weit vor ihrer Mitte */
+
 /* Die gezeichnete Umarmung gibt es bisher nur für Phase 1; in Phase 2 und 3 hält sie ihn wie bisher.
  * Zuerst geht sie selbst an seinen Kopf (umarm_geht), dann kniet sie. */
 static int umarm_anim(void)
@@ -199,6 +204,12 @@ static int umarm_bild(void)
         if (t < 0) return i;
     }
     return 7;
+}
+/* Rituale erst, wenn er liegt: sonst würde er mitten im Fallen angehoben bzw. ersetzt */
+static int ritual_moeglich(void)
+{
+    return lage == L_RITUAL && H.ritual == R_NICHTS && H.tick / TPB >= TOD_LIEGT_BILD
+        && abs(K.x - koerper_mitte()) < 45;
 }
 static int abstand(void) { int d = (int)H.x - K.x; return d < 0 ? -d : d; }
 static int in_der_luft(void)
@@ -571,8 +582,7 @@ static void rueckkehr(void)
 
 static void ritual_schritt(const Eingabe *e)
 {
-    int nah = abs(K.x - koerper_mitte()) < 45;
-    if (H.ritual == R_NICHTS && nah) {
+    if (ritual_moeglich()) {
         int umarmen = erledigt[G_G2] && vertrauen >= 0;
         int portal = erledigt[G_G5];
         if (e->neu & PSP_CTRL_CROSS) { H.ritual = R_FEUER; H.ritual_tick = 0; }
@@ -961,7 +971,7 @@ static void held_zeichnen(void)
     int clut = H.stufe;
     if (H.zustand == HZ_TOT) {
         int r = H.ritual, t = H.ritual_tick;
-        int x = H.leiche_x, y = BODEN, fx = koerper_mitte();
+        int x = H.leiche_x, y = BODEN, fx = koerper_mitte(), fy = BODEN + 2;
         unsigned int f = WEISS;
         spiegel = H.leiche_spiegel;   /* die Lage des Körpers bleibt, auch wenn sie vorbeigeht */
         /* Das Schwert bleibt liegen, bis er verbrannt ist (bei der Umarmung: bis er zerfällt) */
@@ -971,19 +981,31 @@ static void held_zeichnen(void)
             if (schwert) zeichne_anim(H_SCHWERT_BODEN, 0, H.leiche_x, BODEN, spiegel, clut, f);
             return;
         }
-        if (r == R_UMARMEN && !H.umarm_geht && t < 90) { x = K.x + dir_zum_held() * 4; y = BODEN - 14; }   /* in ihren Armen */
+        if (r == R_UMARMEN && !H.umarm_geht) {
+            /* Phase 2/3: Sie hebt ihn in ARM_HEBEN Ticks an. Er liegt vor ihr, den Kopf an ihrer
+             * Brust, und brennt in ihren Armen. */
+            int d = K.blick > 0 ? 1 : -1;
+            int heben = t < ARM_HEBEN ? t : ARM_HEBEN;
+            int arm = K.x + d * (ARM_ABSTAND + TOD_MITTE);   /* Körpermitte in ihren Armen */
+            int mitte = koerper_mitte() + (arm - koerper_mitte()) * heben / ARM_HEBEN;
+            spiegel = d > 0;                                  /* Kopf zu ihr */
+            x = mitte + d * TOD_MITTE;
+            y = BODEN - ARM_HOEHE * heben / ARM_HEBEN;
+            fx = mitte;
+            fy = y + 2;
+        }
         if (r == R_PORTAL) {
             int a = 255 - t * 4;
             if (a < 0) a = 0;
             f = ((unsigned int)a << 24) | 0x00FFFFFF;
             y = BODEN + t / 6;
         }
-        if (r == R_UMARMEN && !H.umarm_geht && t < 90) fx = x;
-        if (schwert) zeichne_anim(H_SCHWERT_BODEN, 0, H.leiche_x, y, spiegel, clut, f);
+        /* Das Schwert bleibt am Boden, wo er gefallen ist (beim Portal sinkt es mit ihm) */
+        if (schwert) zeichne_anim(H_SCHWERT_BODEN, 0, H.leiche_x, r == R_PORTAL ? y : BODEN, H.leiche_spiegel, clut, f);
         if (r != R_FERTIG && !(r == R_FEUER && t > 60) && !(r == R_UMARMEN && t > 140))
             zeichne_anim(H_TOD, H.tick / TPB, x, y, spiegel, clut, f);
         if (r == R_FEUER || (r == R_UMARMEN && !H.umarm_geht && t >= 90))
-            zeichne_anim(FX_FEUER, (t / TPB) % 8, fx, BODEN + 2, 0, 0, WEISS);
+            zeichne_anim(FX_FEUER, (t / TPB) % 8, fx, fy, 0, 0, WEISS);
         if (r == R_PORTAL) zeichne_anim(FX_PORTAL, t / TPB, koerper_mitte(), BODEN, 0, 0, WEISS);
         return;
     }
@@ -1009,7 +1031,7 @@ void spiel_zeichnen(void)
     effekte_zeichnen();
     nebel_zeichnen();
     hud();
-    if (lage == L_RITUAL && H.ritual == R_NICHTS && abs(K.x - koerper_mitte()) < 45) {
+    if (ritual_moeglich()) {
         char hilfe[96];
         strcpy(hilfe, "✕ Verbrennen");
         if (erledigt[G_G2] && vertrauen >= 0) strcat(hilfe, "  ○ Umarmen");
@@ -1032,7 +1054,7 @@ int demo_im_gespraech_wahl(void)
 }
 int demo_gespraech_wahl(void) { return g_wahl; }
 int demo_held_tot(void) { return lage == L_RITUAL; }
-int demo_ritual_offen(void) { return H.ritual == R_NICHTS; }
+int demo_ritual_offen(void) { return ritual_moeglich(); }
 int demo_abstand(void) { return abstand(); }
 int demo_koenigin_x(void) { return K.x; }
 int demo_leiche_x(void) { return H.ritual == R_FERTIG ? 1000 : koerper_mitte(); }
