@@ -55,9 +55,11 @@ GRUPPEN = {
         ("Q_UMARMUNG", "koenigin_p1_umarmung", None),
         ("Q_SENSE_BODEN", "koenigin_sense_boden", None),
         ("Q_AUFSTEHEN", "koenigin_p1_umarmung_stehend", None),
+        ("Q_P1_GEHEN", "koenigin_p1_gehen", K_ATK),
     ],
     "held": [
         ("H_IDLE", "held_idle", H_IDLE),
+        ("H_GEHEN", "held_gehen", H_AKT),
         ("H_SPRUNG", "held_sprung", H_AKT),
         ("H_ROLLE", "held_rolle", H_AKT),
         ("H_HIEB", "held_atk_hieb", None),
