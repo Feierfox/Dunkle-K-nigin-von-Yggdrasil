@@ -20,7 +20,7 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 | △ | Sensenzug |
 | ○ | Kreisschnitt |
 | ✕ | Totenritual: Verbrennen (beim Körper des Helden) |
-| ○ | Totenritual: Umarmen, sie verbrennt ihn in ihren Armen (beim Körper des Helden) |
+| ○ | Totenritual: Umarmen (beim Körper des Helden). Sie geht selbst an seinen Kopf, kniet nieder und verbrennt ihn in ihren Armen |
 | Select | Neustart |
 | Home | Beenden |
 
@@ -28,7 +28,7 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 
 - Thronsaal, Königin mit Ruhepose und drei Angriffen (Trefferzonen nach `docs/ANGRIFFE.md`), drei Lebensleisten.
 - Held mit Lern-KI: weicht einem Angriff erst aus, nachdem er davon getroffen wurde; zuerst zu früh, ab dem dritten Mal richtig (Rolle bzw. Sprung).
-- Tod, Stille, die Königin geht zum Körper, ✕ verbrennt ihn mit eisblauem Feuer, ○ nimmt ihn in den Arm (kniet, hält ihn, eisblaues Feuer in ihren Armen). Der Held kehrt zurück, sobald sie wieder rechts im Saal steht. In der Testszene ist die Umarmung immer verfügbar (im Spiel erst ab G2, siehe `docs/DIALOGE.md`).
+- Tod: Der Held sackt nach vorn zur Königin hin zusammen, das Schwert bleibt neben ihm liegen. Stille, die Königin geht zum Körper (beim Ritual bis an den Saalrand), ✕ verbrennt ihn mit eisblauem Feuer, ○ nimmt ihn in den Arm (sie legt die Sense ab, kniet, hält ihn, eisblaues Feuer in ihren Armen, steht auf). Der Held kehrt zurück, sobald sie wieder rechts im Saal steht. In der Testszene ist die Umarmung immer verfügbar (im Spiel erst ab G2, siehe `docs/DIALOGE.md`).
 - Richtschlag, Schwerthieb und Umarmung stammen aus den bewegten Entwürfen in `assets/animationen/`.
 - Rückkehrworte der Königin und erste Kommentare des Helden.
 - Nach dem 5. und 11. Tod eine Quest: Abwesenheit (es geschieht nichts), danach neue Umhangfarbe (Palettentausch) und ein Herz mehr.

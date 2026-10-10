@@ -30,8 +30,9 @@ static unsigned int demo_eingabe(int t)
         int d = demo_leiche_x() - demo_koenigin_x();
         if (d < -20) return PSP_CTRL_LEFT;
         if (d > 20 && d < 200) return PSP_CTRL_RIGHT;
+        if (d >= 200) return PSP_CTRL_RIGHT;   /* nach dem Ritual zurück nach rechts */
         if ((t % 20) == 0) return (demo_tode() % 2) ? PSP_CTRL_CIRCLE : PSP_CTRL_CROSS;  /* abwechselnd */
-        return PSP_CTRL_RIGHT;
+        return 0;
     }
     if (demo_abstand() > 70) return PSP_CTRL_LEFT;
     if ((t % 75) == 0) {

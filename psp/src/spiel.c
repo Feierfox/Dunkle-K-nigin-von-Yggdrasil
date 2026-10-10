@@ -16,8 +16,9 @@
 #define H_MAX 440
 #define LEISTE 60                /* Lebenspunkte je Leiste */
 #define HIEB_SCHADEN 4
-#define TOD_MITTE 18             /* Mitte des liegenden Körpers (held_tod) neben dem Anker */
-#define UMARM_MITTE 23           /* Mitte des Helden in koenigin_p1_umarmung, links vom Anker */
+/* Aus assets_gen.h (tools/cutout/entwuerfe.py): UMARM_ABSTAND = Kniepunkt der Königin vom
+ * Fußpunkt des Toten, TOD_MITTE = Mitte des liegenden Körpers, TOD_SCHWERT_BILD = ab diesem
+ * Bild liegt das Schwert am Boden. Der Körper liegt mit dem Kopf in Blickrichtung. */
 
 /* Umarmung: Haltezeit je Bild in 12tel Sekunden (animation.json des Entwurfs) */
 static const int UMARM_DAUER[8] = {3, 3, 3, 4, 8, 8, 6, 8};
@@ -32,6 +33,7 @@ typedef struct {
     int x, zustand, tick, angriff, phase;
     int lp[3];                    /* drei Leisten: rot, orange, lila */
     int getroffen_in_schwung;
+    int blick;                    /* außerhalb des Kampfs: 1 = nach rechts (gespiegelt) */
 } Koenigin;
 
 typedef struct {
@@ -41,7 +43,8 @@ typedef struct {
     int hieb_getroffen;
     int getroffen[ANG_ANZAHL];    /* Lernen: wie oft dieser Angriff ihn getroffen hat */
     int tode, letzte_ursache, leiche_x, verbrannt, feuer_tick;
-    int umarm_tick, umarmungen, zuletzt_umarmt;
+    int leiche_spiegel;           /* 1: er blickte nach links, Kopf liegt links */
+    int umarm_geht, umarm_tick, aufsteh_tick, umarmungen, zuletzt_umarmt;
 } Held;
 
 static Koenigin K;
@@ -111,9 +114,14 @@ static int held_in_der_luft(void)
     return b >= 2 && b <= 6;
 }
 
+static int kopfseite(void) { return H.leiche_spiegel ? -1 : 1; }
+static int koerper_mitte(void) { return H.leiche_x + kopfseite() * TOD_MITTE; }
+static int kniepunkt(void) { return H.leiche_x + kopfseite() * UMARM_ABSTAND; }
+
 static int ritual_moeglich(void)
 {
-    return !H.verbrannt && H.feuer_tick == 0 && H.umarm_tick == 0 && abs(K.x - H.leiche_x) < 40;
+    return !H.verbrannt && H.feuer_tick == 0 && !H.umarm_geht && H.umarm_tick == 0
+        && abs(K.x - koerper_mitte()) < 45;
 }
 
 static int umarm_ende(void)
@@ -149,9 +157,13 @@ static void held_trifft_treffer(int ursache)
         H.tick = 0;
         H.tode++;
         H.leiche_x = (int)H.x;
+        H.leiche_spiegel = H.x > K.x;   /* fällt nach vorn, zur Königin hin */
+        K.blick = H.leiche_spiegel;     /* sie blickt noch zu ihm */
         H.verbrannt = 0;
         H.feuer_tick = 0;
+        H.umarm_geht = 0;
         H.umarm_tick = 0;
+        H.aufsteh_tick = 0;
         H.zuletzt_umarmt = 0;
         lage = L_RITUAL;
         lage_tick = 0;
@@ -275,8 +287,22 @@ static void koenigin_schritt(const Eingabe *e)
     if (e->gedrueckt & PSP_CTRL_RIGHT || e->stick_x > 60) laufen = 1;
 
     switch (K.zustand) {
-    case K_BEREIT:
-        if (H.umarm_tick == 0) K.x += laufen;   /* während der Umarmung kniet sie */
+    case K_BEREIT: {
+        int alt = K.x;
+        if (H.umarm_geht) {
+            /* Sie geht selbst zu ihm, bis sie an seinem Kopf steht */
+            int d = kniepunkt() - K.x;
+            K.x += (d > 0) - (d < 0);
+            if (K.x == kniepunkt()) { H.umarm_geht = 0; H.umarm_tick = 1; }
+            K.blick = H.leiche_spiegel;         /* sie blickt zu ihm */
+        } else if (H.umarm_tick == 0 && H.aufsteh_tick == 0) {
+            K.x += laufen;                      /* während der Umarmung kniet sie */
+            if (laufen) K.blick = laufen > 0;
+            /* Saalgrenzen: nur nicht weiter hinaus (der Kniepunkt darf außerhalb liegen).
+             * Beim Ritual bis an den Rand, damit sie jeden Körper erreicht. */
+            int kmin = lage == L_RITUAL ? H_MIN : K_MIN, kmax = lage == L_RITUAL ? H_MAX : K_MAX;
+            if ((K.x < kmin && K.x < alt) || (K.x > kmax && K.x > alt)) K.x = alt;
+        }
         if (lage == L_KAMPF && H.zustand != H_KOMMT && H.zustand != H_WEG) {
             int neu = -1;
             if (e->neu & PSP_CTRL_SQUARE) neu = ANG_RICHTSCHLAG;
@@ -290,6 +316,7 @@ static void koenigin_schritt(const Eingabe *e)
             }
         }
         break;
+    }
     case K_ANGRIFF:
         K.tick++;
         angriff_pruefen();
@@ -310,9 +337,6 @@ static void koenigin_schritt(const Eingabe *e)
         }
         break;
     }
-    if (K.x < K_MIN) K.x = K_MIN;
-    if (K.x > K_MAX) K.x = K_MAX;
-
     /* Leiste leer: Verwandlung mit Impuls */
     if (K.zustand != K_VERWANDLUNG && K.phase == 0 && K.lp[0] <= 0 && lage == L_KAMPF) {
         K.lp[0] = 0;
@@ -366,21 +390,20 @@ void spiel_schritt(const Eingabe *e)
         /* Königin geht zum Körper; ✕ verbrennt ihn, ○ nimmt ihn in den Arm und verbrennt ihn dort */
         if (ritual_moeglich() && (e->neu & PSP_CTRL_CROSS))
             H.feuer_tick = 1;
-        else if (ritual_moeglich() && (e->neu & PSP_CTRL_CIRCLE)) {
-            /* Sie kniet rechts neben ihm: Körper der Animation auf den liegenden Körper setzen */
-            int mitte = H.leiche_x + (H.leiche_x > K.x ? TOD_MITTE : -TOD_MITTE);
-            K.x = mitte + UMARM_MITTE;
-            H.umarm_tick = 1;
-        }
+        else if (ritual_moeglich() && (e->neu & PSP_CTRL_CIRCLE))
+            H.umarm_geht = 1;                  /* sie geht zu seinem Kopf, dann kniet sie */
         if (H.feuer_tick > 0 && ++H.feuer_tick > 90) { H.verbrannt = 1; H.feuer_tick = 0; }
+        /* Nach der Umarmung steht sie auf; erst danach nimmt sie die Sense wieder auf */
+        if (H.aufsteh_tick > 0 && ++H.aufsteh_tick > 8 * TICKS_JE_BILD) H.aufsteh_tick = 0;
         if (H.umarm_tick > 0 && ++H.umarm_tick > umarm_ende()) {
             H.umarm_tick = 0;
+            H.aufsteh_tick = 1;
             H.verbrannt = 1;
             H.zuletzt_umarmt = 1;
             if (++H.umarmungen == 1) sage("„…Du bist leichter, als ich dachte.“", KOENIGIN_TEXT, NULL, 0);
         }
         /* Held kehrt zurück, sobald sie wieder rechts im Saal ist */
-        if (H.verbrannt && K.x > 300) {
+        if (H.verbrannt && H.aufsteh_tick == 0 && K.x > 300) {
             if (H.tode == 5 || H.tode == 11) {   /* Quest: Abwesenheit, danach neue Ausrüstung */
                 lage = L_ABWESEND;
                 lage_tick = 0;
@@ -455,17 +478,28 @@ void spiel_zeichnen(void)
     if (K.zustand == K_ANGRIFF) { k_anim = ANGRIFF_ANIM[K.angriff]; k_bild = K.tick / TICKS_JE_BILD; }
     else if (K.phase >= 1 || K.zustand == K_VERWANDLUNG) { k_anim = Q_P2_IDLE; k_bild = (lage_tick / TICKS_JE_BILD) % 10; }
     else { k_anim = Q_P1_IDLE; k_bild = (lage_tick / TICKS_JE_BILD / 2) % 6; }
-    if (lage == L_ABWESEND || lage == L_RITUAL) k_spiegel = 0;
+    /* Außerhalb des Kampfs blickt sie in die Richtung, in die sie zuletzt gegangen ist.
+     * Beim Umarmen zu ihm: Liegt sein Kopf links, steht sie rechts und blickt nach links. */
+    if (lage == L_ABWESEND || lage == L_RITUAL) k_spiegel = K.blick;
     if (H.umarm_tick > 0) { k_anim = Q_UMARMUNG; k_bild = umarm_bild(); }
+    if (H.aufsteh_tick > 0) { k_anim = Q_AUFSTEHEN; k_bild = 0; }
 
     /* Held */
     int h_spiegel = H.x > K.x;
     int clut = H.stufe;
     if (H.zustand == H_TOT) {
-        if (!H.verbrannt && H.umarm_tick == 0) zeichne_anim(H_TOD, H.tick / TICKS_JE_BILD, H.leiche_x, BODEN, h_spiegel, clut, 0xFFFFFFFF);
-        if (H.feuer_tick > 0) zeichne_anim(FX_FEUER, (H.feuer_tick / TICKS_JE_BILD) % 8, H.leiche_x, BODEN + 2, 0, 0, 0xFFFFFFFF);
+        int ls = H.leiche_spiegel;
+        /* Das Schwert bleibt liegen, bis er verbrannt ist (bei der Umarmung: bis er zerfällt) */
+        if (!H.verbrannt && H.tick / TICKS_JE_BILD >= TOD_SCHWERT_BILD && !(H.umarm_tick > 0 && umarm_bild() == 7))
+            zeichne_anim(H_SCHWERT_BODEN, 0, H.leiche_x, BODEN, ls, clut, 0xFFFFFFFF);
+        if (!H.verbrannt && H.umarm_tick == 0) zeichne_anim(H_TOD, H.tick / TICKS_JE_BILD, H.leiche_x, BODEN, ls, clut, 0xFFFFFFFF);
+        if (H.feuer_tick > 0) zeichne_anim(FX_FEUER, (H.feuer_tick / TICKS_JE_BILD) % 8, koerper_mitte(), BODEN + 2, 0, 0, 0xFFFFFFFF);
     }
+    if (H.umarm_tick > 0 || H.aufsteh_tick > 0)
+        zeichne_anim(Q_SENSE_BODEN, 0, K.x, BODEN, k_spiegel, 0, 0xFFFFFFFF);  /* abgelegt */
     zeichne_anim(k_anim, k_bild, K.x, BODEN, k_spiegel, 0, 0xFFFFFFFF);
+    /* Umhang des Helden in der Umarmung mit der Farbtabelle seiner Ausrüstungsstufe */
+    if (H.umarm_tick > 0) zeichne_anim(H_UMARMUNG_UMHANG, k_bild, K.x, BODEN, k_spiegel, clut, 0xFFFFFFFF);
     if (H.zustand != H_TOT && H.zustand != H_WEG) {
         int a = H_IDLE, b = (lage_tick / TICKS_JE_BILD / 2) % 6;
         switch (H.zustand) {
@@ -480,7 +514,7 @@ void spiel_zeichnen(void)
     ring();
     hud();
     if (lage == L_RITUAL && ritual_moeglich())
-        text("✕ Verbrennen  ○ Umarmen", H.leiche_x - 69, BODEN - 70, WEISS);
+        text("✕ Verbrennen  ○ Umarmen", koerper_mitte() - 69, BODEN - 70, WEISS);
     textbox();
     bild_zeigen();
 }
@@ -489,6 +523,6 @@ void spiel_zeichnen(void)
 int demo_held_tot(void) { return lage == L_RITUAL; }
 int demo_abstand(void) { return abstand(); }
 int demo_koenigin_x(void) { return K.x; }
-int demo_leiche_x(void) { return H.verbrannt ? 1000 : H.leiche_x; }
+int demo_leiche_x(void) { return H.verbrannt ? 1000 : koerper_mitte(); }
 int demo_tode(void) { return H.tode; }
 #endif
