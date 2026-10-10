@@ -1177,14 +1177,64 @@ static void verwandlung_hintergrund(void)
     }
     int dunkel = t < V_REDE ? t * 120 / V_REDE : t < V_WELLE ? 120 : 120 - (t - V_WELLE) * 2;
     if (dunkel > 0) rechteck(0, 0, BILD_B, BILD_H, ((unsigned int)dunkel << 24) | 0x00100408);
-    if (t >= V_REDE && t < V_WELLE) {
-        /* Lichtsäule um sie, pulsierend und wachsend */
-        int a = 40 + ((t / 4) % 2) * 30 + (t - V_REDE) / 2;
-        int b = 24 + (t - V_REDE) / 3;
-        unsigned int farbe = K.verw == 1 ? 0x00F0A060 : 0x00E040C0;   /* Türkis bzw. Lila (ABGR) */
-        rechteck(K.x - b / 2, 0, b, BODEN + 6, ((unsigned int)a << 24) | farbe);
-        zeichne_anim(FX_KUGEL, (t / TPB) % 4, K.x, BODEN - 70, 0, 0, WEISS);
+}
+
+/* Licht über dem ganzen Bild, in Streifen von 4 Pixeln; mit Amulett bleibt um den Helden
+ * eine Blase mit goldenem Rand frei (wie beim Nebel). */
+static void licht_flaeche(int x0, int x1, unsigned int farbe)
+{
+    if (x0 < 0) x0 = 0;
+    if (x1 > BILD_B) x1 = BILD_B;
+    if (x1 <= x0) return;
+    int blase = hat_amulett() && H.zustand != HZ_TOT && H.zustand != HZ_WEG;
+    static const int SPRUNG[8] = {0, 0, 6, 14, 18, 14, 6, 0};   /* Höhe je Bild (held.py) */
+    int hy = BODEN - 28;
+    if (H.zustand == HZ_SPRINGT) hy -= SPRUNG[(H.tick / TPB) & 7];   /* die Blase springt mit */
+    int hx = (int)H.x;
+    for (int y = 0; y < BILD_H; y += 4) {
+        int dy = y + 2 - hy;
+        if (blase && dy > -40 && dy < 40) {
+            int halb = (int)(32 * __builtin_sqrtf(1.0f - (float)(dy * dy) / (40.0f * 40.0f)));
+            int l = hx - halb, r = hx + halb;
+            if (l > x0) rechteck(x0, y, (l < x1 ? l : x1) - x0, 4, farbe);
+            if (r < x1) rechteck(r > x0 ? r : x0, y, x1 - (r > x0 ? r : x0), 4, farbe);
+            rechteck(l - 2, y, 2, 4, 0xFF7ED9F6);   /* goldener Rand der Blase */
+            rechteck(r, y, 2, 4, 0xFF7ED9F6);
+        } else {
+            rechteck(x0, y, x1 - x0, 4, farbe);
+        }
     }
+}
+
+static int k_silhouette;   /* Königin als dunkle Gestalt im Licht zeichnen */
+static void koenigin_zeichnen(void);
+
+/* Beim Aufladen wächst eine pulsierende Lichtsäule von ihr aus über den ganzen Bildschirm;
+ * beim Losbrechen der Welle blendet sie kurz grell auf. Sie selbst bleibt dunkel in der Mitte. */
+static void verwandlung_licht(void)
+{
+    if (K.zustand != KZ_VERWANDLUNG) return;
+    int t = K.tick;
+    if (t < V_REDE || t >= V_WELLE + 24) return;
+    unsigned int farbe = K.verw == 1 ? 0x00FFF0B0 : 0x00E070FF;   /* Türkisweiß bzw. Magenta (ABGR) */
+    int a, b;
+    if (t < V_WELLE) {
+        int p = (t - V_REDE) * 256 / (V_WELLE - V_REDE);           /* 0 .. 256 */
+        b = 24 + (BILD_B * 2 - 24) * p / 256 * p / 256;           /* wächst immer schneller */
+        a = 50 + p * 130 / 256 + ((t / 4) % 2) * 30;               /* pulsierend heller */
+    } else {
+        b = BILD_B * 2;
+        a = 230 - (t - V_WELLE) * 9;                               /* greller Blitz, dann aus */
+    }
+    if (a > 240) a = 240;
+    /* weicher Rand: zwei schwächere Säume außen */
+    licht_flaeche(K.x - b / 2 - 24, K.x + b / 2 + 24, ((unsigned int)(a / 4) << 24) | farbe);
+    licht_flaeche(K.x - b / 2 - 10, K.x + b / 2 + 10, ((unsigned int)(a / 3) << 24) | farbe);
+    licht_flaeche(K.x - b / 2, K.x + b / 2, ((unsigned int)(a * 2 / 3) << 24) | farbe);
+    k_silhouette = 1;
+    koenigin_zeichnen();
+    k_silhouette = 0;
+    if (t < V_WELLE) zeichne_anim(FX_KUGEL, (t / TPB) % 4, K.x, BODEN - 70, 0, 0, WEISS);
 }
 
 static void koenigin_zeichnen(void)
@@ -1222,6 +1272,10 @@ static void koenigin_zeichnen(void)
     if (H.aufsteh_tick) { anim = Q_AUFSTEHEN; bild = 0; }
     if (p == 2) f = P3_FARBE;
     if (umarm_anim() || H.aufsteh_tick) zeichne_anim(Q_SENSE_BODEN, 0, K.x, BODEN, spiegel, 0, f);   /* abgelegt */
+    if (k_silhouette) {   /* nur die Gestalt, dunkel gegen das Licht */
+        zeichne_anim(anim, bild, K.x + wanken, BODEN, spiegel, 0, 0xFF301018);
+        return;
+    }
     zeichne_anim(anim, bild, K.x + wanken, BODEN, spiegel, 0, f);
     /* Umhang des Helden in der Umarmung mit der Farbtabelle seiner Ausrüstungsstufe */
     if (umarm_anim()) zeichne_anim(H_UMARMUNG_UMHANG, bild, K.x, BODEN, spiegel, H.stufe, f);
@@ -1379,6 +1433,7 @@ void spiel_zeichnen(void)
     diener_zeichnen();
     held_zeichnen();
     effekte_zeichnen();
+    verwandlung_licht();
     nebel_zeichnen();
     hud();
     if (ritual_moeglich()) {
