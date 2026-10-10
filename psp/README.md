@@ -78,6 +78,15 @@ Im Emulator PPSSPP (ohne Oberfläche) mit einer Demo-Variante, in der ein Skript
 ![Der Patch](bilder/emulator-patch-auswahl.png)
 ![E1 nach dem Patch](bilder/emulator-ende-e1-patch.png)
 
+**Korrekturen aus der Code-Prüfung (Stand cfb60f7)** im Emulator PPSSPPHeadless (Testkopie mit festen Szenarien und Protokoll, nicht im Repository):
+
+- Rechter Rand: Die Königin steht bei x 380, der Held rechts von ihr und beherrscht Kreisschnitt und Wurzelranken (je 3 Treffer). Je 20 Angriffe, einmal dort, wo er von selbst steht (x 418–420), einmal direkt an der Wand (x 440). Mit den neuen Ausweichzeitpunkten (Kreisschnitt 16, Ranken 45) wird er in keinem Fall getroffen. Gegenprobe mit den alten Werten (6 und 20): An der Wand trafen beide Angriffe 20 von 20 Mal, der Kreisschnitt auch bei x 418.
+- G3 nach dem 5. Tod: Mit allen drei Ritualen (Feuer, Umarmung, Portal) wird während G3 nichts mehr vom Ritual gezeichnet. Gegenprobe mit dem vorigen Stand: Dort erschienen Körper, Schwert, Feuer, Portal bzw. Umarmungspose erneut (obere Reihe). Danach Abwesenheit, Rückkehr und G4 wie vorgesehen.
+- Abgeschnittene `data/held.bin` (0, 6, 2000, 5130 und 60000 Byte, also im Kopf, in den Farbtabellen, im Seitenkopf und in den Bildpunkten): Jedes Mal erscheint die Fehlermeldung, kein Absturz. Die Meldung zeigt dabei immer „Fehler -1“, weil `grafik_start` jeden Fehler beim Laden einer Sprite-Gruppe so meldet.
+
+![G3 vorher und nachher](bilder/emulator-g3-ohne-ritual.png)
+![Beschädigte Datei](bilder/emulator-datei-beschaedigt.png)
+
 Auf einer echten PSP-1000 ist die Szene noch nicht getestet.
 
 ## Bauen
