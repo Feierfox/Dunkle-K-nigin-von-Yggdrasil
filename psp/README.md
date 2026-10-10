@@ -67,6 +67,16 @@ Im Emulator PPSSPP (ohne Oberfläche) mit einer Demo-Variante, in der ein Skript
 ![Umarmung Phase 1](bilder/emulator-umarmung-phase1.png)
 ![Umarmung Phase 3](bilder/emulator-umarmung-phase3.png)
 
+**Helden-KI und „Der Patch“ (Stand 1bfa37c, PRX-Build)** im Emulator PPSSPPHeadless, drei Demo-Läufe mit je einer festen Antwort auf „Der Patch“ (Testkopie mit Protokoll, nicht im Repository):
+
+- `DATA.PSP` im EBOOT ist ein PRX (ELF-Typ 0xFFA0, Ladeadresse 0, mit Relokationen). Das vorige EBOOT war ein Programm mit fester Adresse (ELF-Typ 2, 0x08804000).
+- Erholungslücke: Nach jedem Angriff steht die Königin still. Bei einem Angriff, den er noch nicht beherrscht, genau 40 Schritte, ohne Gegenschlag. Bei einem beherrschten Angriff schlug er in allen 12 Fällen zu und traf; die Lücke endete erst nach seinem Hieb (40 bis 104 Schritte, nie bis zur Grenze von 150).
+- Durchbruch: Der Schaden seines Hiebs steigt mit den Versuchen ohne neue Phase von 4 über 6, 8 und 10 auf 12 und fällt mit einer neuen Phase wieder auf 4.
+- „Der Patch“ kommt genau einmal, zu Beginn des Durchbruchs. „Niemand flickt, was ich zerbrochen habe. Geh.“ führt sofort zu E1 „Ewige Königin“. Die beiden anderen Antworten setzen den Kampf fort (die Verderbnis-Antwort erhöht den Einfluss um 1); diese Läufe enden später mit E5 bzw. E3.
+
+![Der Patch](bilder/emulator-patch-auswahl.png)
+![E1 nach dem Patch](bilder/emulator-ende-e1-patch.png)
+
 Auf einer echten PSP-1000 ist die Szene noch nicht getestet.
 
 ## Bauen
@@ -76,6 +86,8 @@ python tools/psp/assets_bauen.py      # data/*.bin und src/assets_gen.h aus den 
 export PSPDEV=/pfad/zu/pspdev PATH=$PSPDEV/bin:$PATH
 cd psp && make
 ```
+
+Das Makefile baut ein verschiebbares Programm (`BUILD_PRX = 1`): `DATA.PSP` im EBOOT ist dann ein PRX statt eines Programms mit fester Adresse 0x08804000, das auf der PSP-1000 mit Custom Firmware nicht startet.
 
 Die Toolchain gibt es fertig unter https://github.com/pspdev/pspdev/releases.
 
