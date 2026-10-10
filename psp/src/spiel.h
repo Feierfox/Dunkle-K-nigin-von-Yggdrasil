@@ -8,5 +8,7 @@ typedef struct {
 } Eingabe;
 
 void spiel_start(void);
+/* Titelbildschirm mit Hauptmenü */
+void spiel_titel(void);
 void spiel_schritt(const Eingabe *e);
 void spiel_zeichnen(void);

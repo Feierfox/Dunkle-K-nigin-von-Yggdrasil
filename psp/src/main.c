@@ -127,7 +127,11 @@ int main(int argc, char *argv[])
     sceCtrlSetSamplingCycle(0);
     sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
 
-    spiel_start();
+#ifdef DEMO
+    spiel_start();   /* Demo-Lauf ohne Hauptmenü */
+#else
+    spiel_titel();
+#endif
     unsigned int vorher = 0;
 #ifdef DEMO
     int demo_t = 0;

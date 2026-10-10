@@ -289,3 +289,15 @@ static const Bild BILDER[] = {
 #define SCHRIFT_JE_ZEILE 42
 /* Zeichenvorrat der Schrift als UTF-8, Index = Position */
 static const char SCHRIFT_ZEICHEN[] = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ÄÖÜäöüß„“‚‘…–’□△○✕←→↑↓▶";
+
+/* Menütexte auf der Seite data/menue.bin (u, v, w, h) */
+enum { MT_START, MT_SPIEL, MT_SPIEL_AKTIV, MT_OPTIONEN, MT_OPTIONEN_AKTIV, MT_CREDITS, MT_CREDITS_AKTIV, MT_ANZAHL };
+static const short MENUE_TEXT[][4] = {
+    {0, 280, 183, 36}, /* MT_START */
+    {183, 280, 164, 36}, /* MT_SPIEL */
+    {347, 280, 164, 36}, /* MT_SPIEL_AKTIV */
+    {0, 316, 122, 36}, /* MT_OPTIONEN */
+    {122, 316, 122, 36}, /* MT_OPTIONEN_AKTIV */
+    {244, 316, 98, 36}, /* MT_CREDITS */
+    {342, 316, 98, 36}, /* MT_CREDITS_AKTIV */
+};

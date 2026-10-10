@@ -228,6 +228,106 @@ def hintergrund():
     schreibe_bin("saal", [clut], [(512, 512, d) for d in idx])
 
 
+def titel():
+    """Titelbildschirm: das Bild aus dem PSP-Menü (psp/PIC1.PNG), eigene Farbtabelle."""
+    bild = Image.open(os.path.join(REPO, "psp", "PIC1.PNG")).convert("RGB").resize((480, 272), Image.Resampling.BOX)
+    seite = Image.new("RGBA", (512, 512))
+    seite.paste(bild.convert("RGBA"), (0, 0))
+    clut, idx = quantisiere([seite])
+    schreibe_bin("titel", [clut], [(512, 512, d) for d in idx])
+
+
+# Menütexte in der Art des Titelschriftzugs: Großbuchstaben, Anfangsbuchstaben größer,
+# Bronzeverlauf mit dunkler Kontur. (Name, Text, aktiv)
+MENUE_TEXTE = [
+    ("START", "Start drücken", False),
+    ("SPIEL", "Spiel starten", False), ("SPIEL_AKTIV", "Spiel starten", True),
+    ("OPTIONEN", "Optionen", False), ("OPTIONEN_AKTIV", "Optionen", True),
+    ("CREDITS", "Credits", False), ("CREDITS_AKTIV", "Credits", True),
+]
+MENUE_SCHRIFT = "C:/Windows/Fonts/constanb.ttf"
+
+
+def _menue_text(text, aktiv, gross=26, klein=20):
+    from PIL import ImageDraw, ImageFilter, ImageFont
+    fg = ImageFont.truetype(MENUE_SCHRIFT, gross)
+    fk = ImageFont.truetype(MENUE_SCHRIFT, klein)
+    # Wortanfänge groß, Rest als kleinere Großbuchstaben (wie "THE DARK QUEEN")
+    teile = []
+    for wi, wort in enumerate(text.split(" ")):
+        if wi:
+            teile.append((" ", fk))
+        teile.append((wort[0].upper(), fg))
+        if len(wort) > 1:
+            teile.append((wort[1:].upper(), fk))
+    breite = sum(round(f.getlength(t)) for t, f in teile) + 8
+    hoehe = gross + 10
+    maske = Image.new("L", (breite, hoehe), 0)
+    d = ImageDraw.Draw(maske)
+    x = 4
+    grund = 4 + fg.getmetrics()[0]
+    for t, f in teile:
+        d.text((x, grund - f.getmetrics()[0]), t, font=f, fill=255)
+        x += round(f.getlength(t))
+    # Bronzeverlauf von hell (oben) nach dunkel (unten)
+    oben, unten = ((255, 236, 180), (176, 112, 52)) if aktiv else ((214, 182, 128), (120, 78, 40))
+    verlauf = Image.new("RGB", (1, hoehe))
+    for y in range(hoehe):
+        t = min(1.0, max(0.0, (y - 6) / (hoehe - 12)))
+        verlauf.putpixel((0, y), tuple(round(oben[i] + (unten[i] - oben[i]) * t) for i in range(3)))
+    verlauf = verlauf.resize((breite, hoehe))
+    kontur = maske.filter(ImageFilter.MaxFilter(3))
+    bild = Image.new("RGBA", (breite, hoehe), (0, 0, 0, 0))
+    if aktiv:   # leichtes Leuchten hinter dem gewählten Punkt
+        glanz = maske.filter(ImageFilter.MaxFilter(7)).filter(ImageFilter.GaussianBlur(2))
+        bild.paste(Image.new("RGBA", bild.size, (190, 120, 255, 255)), (0, 0), glanz.point(lambda a: int(a * 0.55)))
+    bild.paste(Image.new("RGBA", bild.size, (24, 12, 8, 255)), (0, 0), kontur)
+    bild.paste(verlauf.convert("RGBA"), (0, 0), maske)
+    return bild
+
+
+def menue():
+    """Menüseite: Hintergrund mit der Königin links (oben) und die Menütexte darunter."""
+    from PIL import ImageDraw, ImageFilter
+    seite = Image.new("RGBA", (512, 512))
+    hg = Image.new("RGB", (480, 272), (10, 7, 14))
+    # weicher violetter Schein hinter ihr
+    schein = Image.new("L", (480, 272), 0)
+    ImageDraw.Draw(schein).ellipse((-40, -20, 300, 300), fill=120)
+    schein = schein.filter(ImageFilter.GaussianBlur(40))
+    hg.paste(Image.new("RGB", hg.size, (60, 26, 84)), (0, 0), schein)
+    koenigin = Image.open(os.path.join(REPO, "assets", "menu", "koenigin-preview-v1",
+                                       "koenigin-helm-lila-v1.png")).convert("RGB")
+    koenigin = koenigin.crop((140, 0, 900, 910)).resize((227, 272), Image.Resampling.LANCZOS)
+    # nach rechts und unten ins Dunkle auslaufen lassen
+    blende = Image.new("L", koenigin.size, 255)
+    bp = blende.load()
+    for x in range(koenigin.width):
+        for y in range(koenigin.height):
+            a = 1.0
+            if x > 150:
+                a *= max(0.0, 1 - (x - 150) / 77)
+            if y > 220:
+                a *= max(0.0, 1 - (y - 220) / 52)
+            bp[x, y] = round(255 * a)
+    hg.paste(koenigin, (8, 0), blende)
+    seite.paste(hg.convert("RGBA"), (0, 0))
+    rechtecke = []
+    x, y, zeile = 0, 280, 0
+    for name, text, aktiv in MENUE_TEXTE:
+        t = _menue_text(text, aktiv)
+        if x + t.width > 512:
+            x, y = 0, y + zeile
+            zeile = 0
+        seite.alpha_composite(t, (x, y))
+        rechtecke.append((name, x, y, t.width, t.height))
+        x += t.width
+        zeile = max(zeile, t.height)
+    clut, idx = quantisiere([seite])
+    schreibe_bin("menue", [clut], [(512, 512, idx[0])])
+    return rechtecke
+
+
 ZEICHEN = [chr(c) for c in range(32, 127)] + list("ÄÖÜäöüß„“‚‘…–’□△○✕←→↑↓▶")
 
 
@@ -263,6 +363,8 @@ def main():
     for gid, g in enumerate(gruppen):
         seitenzahl[g] = gruppe_bauen(g, GRUPPEN[g], gid, anim_tab, frame_tab, konstanten)
     hintergrund()
+    titel()
+    menue_rechtecke = menue()
     zw, zh, je_zeile = schrift()
     schrift("schrift_verderbnis", "DejaVuSansMono-BoldOblique.ttf")
     os.makedirs(os.path.dirname(OUT_H), exist_ok=True)
@@ -288,6 +390,12 @@ def main():
         f.write("/* Zeichenvorrat der Schrift als UTF-8, Index = Position */\n")
         zeichen_c = "".join(ZEICHEN).replace("\\", "\\\\").replace('"', '\\"')
         f.write(f'static const char SCHRIFT_ZEICHEN[] = "{zeichen_c}";\n')
+        f.write("\n/* Menütexte auf der Seite data/menue.bin (u, v, w, h) */\n")
+        f.write("enum { " + ", ".join(f"MT_{n}" for n, *_ in menue_rechtecke) + ", MT_ANZAHL };\n")
+        f.write("static const short MENUE_TEXT[][4] = {\n")
+        for n, x, y, w, h in menue_rechtecke:
+            f.write(f"    {{{x}, {y}, {w}, {h}}}, /* MT_{n} */\n")
+        f.write("};\n")
     print("Gruppen:", {g: seitenzahl[g] for g in gruppen}, "Bilder:", len(frame_tab))
 
 
