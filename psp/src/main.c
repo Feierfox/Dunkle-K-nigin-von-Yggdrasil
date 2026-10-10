@@ -23,13 +23,14 @@ extern int demo_held_tot(void);
 extern int demo_abstand(void);
 extern int demo_koenigin_x(void);
 extern int demo_leiche_x(void);
+extern int demo_tode(void);
 static unsigned int demo_eingabe(int t)
 {
     if (demo_held_tot()) {
         int d = demo_leiche_x() - demo_koenigin_x();
         if (d < -20) return PSP_CTRL_LEFT;
         if (d > 20 && d < 200) return PSP_CTRL_RIGHT;
-        if ((t % 20) == 0) return PSP_CTRL_CROSS;
+        if ((t % 20) == 0) return (demo_tode() % 2) ? PSP_CTRL_CIRCLE : PSP_CTRL_CROSS;  /* abwechselnd */
         return PSP_CTRL_RIGHT;
     }
     if (demo_abstand() > 70) return PSP_CTRL_LEFT;

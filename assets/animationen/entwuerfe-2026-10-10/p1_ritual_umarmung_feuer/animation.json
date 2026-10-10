@@ -1,0 +1,187 @@
+{
+  "name": "p1_ritual_umarmung_feuer",
+  "status": "concept-animation-draft",
+  "fps": 12,
+  "loop": false,
+  "previewLoops": true,
+  "image": "sheet.webp",
+  "canvas": {
+    "w": 720,
+    "h": 600
+  },
+  "anchor": {
+    "x": 360,
+    "y": 520
+  },
+  "frames": [
+    {
+      "index": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 451,
+        "h": 443
+      },
+      "sourceAnchor": {
+        "x": 300,
+        "y": 438
+      },
+      "durationTicks": 3,
+      "durationMs": 250,
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 1,
+      "sourceRect": {
+        "x": 451,
+        "y": 0,
+        "w": 436,
+        "h": 443
+      },
+      "sourceAnchor": {
+        "x": 720,
+        "y": 438
+      },
+      "durationTicks": 3,
+      "durationMs": 250,
+      "frame": {
+        "x": 720,
+        "y": 0,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 2,
+      "sourceRect": {
+        "x": 887,
+        "y": 0,
+        "w": 443,
+        "h": 443
+      },
+      "sourceAnchor": {
+        "x": 1140,
+        "y": 438
+      },
+      "durationTicks": 3,
+      "durationMs": 250,
+      "frame": {
+        "x": 1440,
+        "y": 0,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 3,
+      "sourceRect": {
+        "x": 1330,
+        "y": 0,
+        "w": 444,
+        "h": 443
+      },
+      "sourceAnchor": {
+        "x": 1570,
+        "y": 438
+      },
+      "durationTicks": 4,
+      "durationMs": 333,
+      "frame": {
+        "x": 2160,
+        "y": 0,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 4,
+      "sourceRect": {
+        "x": 0,
+        "y": 443,
+        "w": 443,
+        "h": 444
+      },
+      "sourceAnchor": {
+        "x": 240,
+        "y": 832
+      },
+      "durationTicks": 8,
+      "durationMs": 667,
+      "frame": {
+        "x": 0,
+        "y": 600,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 5,
+      "sourceRect": {
+        "x": 443,
+        "y": 443,
+        "w": 444,
+        "h": 444
+      },
+      "sourceAnchor": {
+        "x": 680,
+        "y": 832
+      },
+      "durationTicks": 8,
+      "durationMs": 667,
+      "frame": {
+        "x": 720,
+        "y": 600,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 6,
+      "sourceRect": {
+        "x": 887,
+        "y": 443,
+        "w": 443,
+        "h": 444
+      },
+      "sourceAnchor": {
+        "x": 1120,
+        "y": 832
+      },
+      "durationTicks": 6,
+      "durationMs": 500,
+      "frame": {
+        "x": 1440,
+        "y": 600,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 7,
+      "sourceRect": {
+        "x": 1330,
+        "y": 443,
+        "w": 444,
+        "h": 444
+      },
+      "sourceAnchor": {
+        "x": 1580,
+        "y": 832
+      },
+      "durationTicks": 8,
+      "durationMs": 667,
+      "frame": {
+        "x": 2160,
+        "y": 600,
+        "w": 720,
+        "h": 600
+      }
+    }
+  ],
+  "productionReady": false
+}

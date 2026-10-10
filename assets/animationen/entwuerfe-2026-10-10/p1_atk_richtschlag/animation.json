@@ -1,0 +1,229 @@
+{
+  "name": "p1_atk_richtschlag",
+  "status": "concept-animation-draft",
+  "fps": 12,
+  "loop": false,
+  "previewLoops": true,
+  "image": "sheet.webp",
+  "canvas": {
+    "w": 720,
+    "h": 600
+  },
+  "anchor": {
+    "x": 360,
+    "y": 520
+  },
+  "frames": [
+    {
+      "index": 0,
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 397,
+        "h": 396
+      },
+      "sourceAnchor": {
+        "x": 210,
+        "y": 390
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 1,
+      "sourceRect": {
+        "x": 397,
+        "y": 0,
+        "w": 414,
+        "h": 396
+      },
+      "sourceAnchor": {
+        "x": 650,
+        "y": 390
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 720,
+        "y": 0,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 2,
+      "sourceRect": {
+        "x": 811,
+        "y": 0,
+        "w": 379,
+        "h": 396
+      },
+      "sourceAnchor": {
+        "x": 1010,
+        "y": 390
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 1440,
+        "y": 0,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 3,
+      "sourceRect": {
+        "x": 1190,
+        "y": 0,
+        "w": 396,
+        "h": 396
+      },
+      "sourceAnchor": {
+        "x": 1390,
+        "y": 390
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 2160,
+        "y": 0,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 4,
+      "sourceRect": {
+        "x": 1586,
+        "y": 0,
+        "w": 397,
+        "h": 396
+      },
+      "sourceAnchor": {
+        "x": 1800,
+        "y": 390
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 2880,
+        "y": 0,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 5,
+      "sourceRect": {
+        "x": 0,
+        "y": 396,
+        "w": 397,
+        "h": 397
+      },
+      "sourceAnchor": {
+        "x": 215,
+        "y": 754
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 0,
+        "y": 600,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 6,
+      "sourceRect": {
+        "x": 397,
+        "y": 396,
+        "w": 409,
+        "h": 397
+      },
+      "sourceAnchor": {
+        "x": 625,
+        "y": 754
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 720,
+        "y": 600,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 7,
+      "sourceRect": {
+        "x": 806,
+        "y": 396,
+        "w": 388,
+        "h": 397
+      },
+      "sourceAnchor": {
+        "x": 1030,
+        "y": 754
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 1440,
+        "y": 600,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 8,
+      "sourceRect": {
+        "x": 1194,
+        "y": 396,
+        "w": 392,
+        "h": 397
+      },
+      "sourceAnchor": {
+        "x": 1410,
+        "y": 754
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 2160,
+        "y": 600,
+        "w": 720,
+        "h": 600
+      }
+    },
+    {
+      "index": 9,
+      "sourceRect": {
+        "x": 1586,
+        "y": 396,
+        "w": 397,
+        "h": 397
+      },
+      "sourceAnchor": {
+        "x": 1820,
+        "y": 754
+      },
+      "durationTicks": 1,
+      "durationMs": 83,
+      "frame": {
+        "x": 2880,
+        "y": 600,
+        "w": 720,
+        "h": 600
+      }
+    }
+  ],
+  "productionReady": false
+}

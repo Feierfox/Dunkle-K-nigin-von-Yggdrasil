@@ -33,7 +33,8 @@ def anker_verformen(pad, breite_ziel, quelle_w, mitte_x, fuss_y):
     return ((pad + mitte_x) / s, (pad + fuss_y) / s)
 
 
-# Ankerpunkt je Animation = Fußpunkt unter der Körpermitte im Bild (Sprite-Pixel)
+# Ankerpunkt je Animation = Fußpunkt unter der Körpermitte im Bild (Sprite-Pixel).
+# None: Anker aus dem JSON der Animation ("anker", z. B. von tools/cutout/entwuerfe.py).
 K_IDLE = anker_verformen(64, 72, 1024, 560, 1490)
 K_P2 = anker_verformen(96, 72, 1024, 560, 1490)
 K_ATK = ((820 + 560) / 16, (2048 - 1536 - 32 + 1490) / 16)
@@ -44,15 +45,16 @@ GRUPPEN = {
     "koenigin": [
         ("Q_P1_IDLE", "koenigin_p1_idle", K_IDLE),
         ("Q_P2_IDLE", "koenigin_p2_idle", K_P2),
-        ("Q_RICHTSCHLAG", "koenigin_p1_atk_richtschlag", K_ATK),
+        ("Q_RICHTSCHLAG", "koenigin_p1_atk_richtschlag", None),
         ("Q_SENSENZUG", "koenigin_p1_atk_sensenzug", K_ATK),
         ("Q_KREISSCHNITT", "koenigin_p1_atk_kreisschnitt", K_ATK),
+        ("Q_UMARMUNG", "koenigin_p1_umarmung", None),
     ],
     "held": [
         ("H_IDLE", "held_idle", H_IDLE),
         ("H_SPRUNG", "held_sprung", H_AKT),
         ("H_ROLLE", "held_rolle", H_AKT),
-        ("H_HIEB", "held_atk_hieb", H_AKT),
+        ("H_HIEB", "held_atk_hieb", None),
         ("H_TREFFER", "held_treffer", H_AKT),
         ("H_TOD", "held_tod", H_AKT),
     ],
@@ -64,6 +66,7 @@ GRUPPEN = {
 
 
 def bilder_laden(quelle):
+    meta = {}
     if isinstance(quelle, tuple):
         name, fw, fh = quelle
         bogen = Image.open(os.path.join(FX, name + ".png")).convert("RGBA")
@@ -71,7 +74,7 @@ def bilder_laden(quelle):
         bogen = Image.open(os.path.join(CUT, quelle + ".png")).convert("RGBA")
         meta = json.load(open(os.path.join(CUT, quelle + ".json"), encoding="utf-8"))
         fw, fh = meta["frame_w"], meta["frame_h"]
-    return [bogen.crop((i * fw, 0, i * fw + fw, fh)) for i in range(bogen.width // fw)]
+    return [bogen.crop((i * fw, 0, i * fw + fw, fh)) for i in range(bogen.width // fw)], meta
 
 
 def packe(stuecke):
@@ -160,8 +163,9 @@ def schreibe_bin(name, cluts, seiten):
 
 def gruppe_bauen(gname, eintraege, gid, anim_tab, frame_tab):
     stuecke, info = [], []
-    for enum, quelle, (ax, ay) in eintraege:
-        bilder = bilder_laden(quelle)
+    for enum, quelle, anker in eintraege:
+        bilder, meta = bilder_laden(quelle)
+        ax, ay = anker if anker else meta["anker"]
         erstes = len(info)
         for b in bilder:
             bb = b.getbbox() or (0, 0, 1, 1)

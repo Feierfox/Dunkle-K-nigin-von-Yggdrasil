@@ -2,7 +2,7 @@
 
     held_sprung     8 Bilder  Sprung (über bodennahe Angriffe und den ersten Impuls)
     held_rolle      8 Bilder  Ausweichrolle auf der Stelle; die Engine bewegt ihn dabei vorwärts
-    held_atk_hieb   8 Bilder  Schwerthieb, Schwert mit Hand ausgeschnitten
+    held_atk_hieb_alt 8 Bilder  Schwerthieb, Schwert mit Hand ausgeschnitten (ersetzt durch entwuerfe.py)
     held_treffer    4 Bilder  Treffer: Aufblitzen und Zurückweichen
     held_tod        8 Bilder  Tod: kippt nach hinten, letztes Bild ist der liegende Körper
 
@@ -139,7 +139,7 @@ def main():
             (30, 40, 10, 140, -60), (5, 46, 20, 150, -20), (-15, 20, 10, 70, 0), (0, 0, 0, 0, 0)]
     A.MASSSTAB = MASSSTAB
     bilder = [A.bild_zusammensetzen(lw, ursprung(bild), koerper, teil, HAND, p) for p in hieb]
-    speichere("held_atk_hieb", bilder, palette)
+    speichere("held_atk_hieb_alt", bilder, palette)
 
     # Treffer: weißes Aufblitzen, Zurückweichen nach links
     treffer = [(-1 * m, 0.7), (-3 * m, 0.25), (-2 * m, 0.0), (0, 0.0)]

@@ -32,6 +32,10 @@ Die Entwürfe verkleinert auf echte PSP-Auflösung, um Lesbarkeit und Aufteilung
 
 Die verkleinerten Figuren sind automatisch erzeugt und nur ein Test. Echte Sprites müssen von Hand in nativer Größe gezeichnet werden. Das Phase-2-Mockup zeigt die Königin mit gerissenem Helm, 5 px schwebend. **Erkenntnis:** Bei 96 px Höhe gehen die feinen türkisen Risse und die magentafarbenen Adern beim automatischen Verkleinern fast verloren. Im nativen Sprite müssen sie als wenige, kräftige Linien gezeichnet werden.
 
+## Bewegte Entwürfe
+
+Animationsentwürfe vom 10.10.2026 (Imagegen): Richtschlag der Königin, Schwerthieb des Helden und die Umarmung beim Totenritual. Siehe [animationen/entwuerfe-2026-10-10/README.md](animationen/entwuerfe-2026-10-10/README.md). Daraus erzeugte PSP-Sprites: `tools/cutout/entwuerfe.py`.
+
 ## Ältere Entwürfe
 
 | Datei | Größe | Inhalt |

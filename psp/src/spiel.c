@@ -16,6 +16,11 @@
 #define H_MAX 440
 #define LEISTE 60                /* Lebenspunkte je Leiste */
 #define HIEB_SCHADEN 4
+#define TOD_MITTE 18             /* Mitte des liegenden Körpers (held_tod) neben dem Anker */
+#define UMARM_MITTE 23           /* Mitte des Helden in koenigin_p1_umarmung, links vom Anker */
+
+/* Umarmung: Haltezeit je Bild in 12tel Sekunden (animation.json des Entwurfs) */
+static const int UMARM_DAUER[8] = {3, 3, 3, 4, 8, 8, 6, 8};
 
 enum { ANG_RICHTSCHLAG, ANG_SENSENZUG, ANG_KREISSCHNITT, ANG_IMPULS, ANG_ANZAHL };
 
@@ -36,6 +41,7 @@ typedef struct {
     int hieb_getroffen;
     int getroffen[ANG_ANZAHL];    /* Lernen: wie oft dieser Angriff ihn getroffen hat */
     int tode, letzte_ursache, leiche_x, verbrannt, feuer_tick;
+    int umarm_tick, umarmungen, zuletzt_umarmt;
 } Held;
 
 static Koenigin K;
@@ -91,7 +97,7 @@ void spiel_start(void)
     lage = L_KAMPF;
     runde = 1;
     sage("Testszene: □ Richtschlag  △ Sensenzug  ○ Kreisschnitt  ← → gehen", WEISS,
-         "Nach dem Tod des Helden: zu ihm gehen, ✕ Verbrennen. Select: Neustart.", WEISS);
+         "Nach dem Tod: zu ihm gehen, ✕ Verbrennen, ○ Umarmen. Select: Neustart.", WEISS);
 }
 
 /* ---------------------------------------------------------------- Hilfen */
@@ -103,6 +109,28 @@ static int held_in_der_luft(void)
     if (H.zustand != H_SPRINGT) return 0;
     int b = H.tick / TICKS_JE_BILD;
     return b >= 2 && b <= 6;
+}
+
+static int ritual_moeglich(void)
+{
+    return !H.verbrannt && H.feuer_tick == 0 && H.umarm_tick == 0 && abs(K.x - H.leiche_x) < 40;
+}
+
+static int umarm_ende(void)
+{
+    int t = 0;
+    for (int i = 0; i < 8; i++) t += UMARM_DAUER[i] * TICKS_JE_BILD;
+    return t;
+}
+
+static int umarm_bild(void)
+{
+    int t = H.umarm_tick;
+    for (int i = 0; i < 8; i++) {
+        t -= UMARM_DAUER[i] * TICKS_JE_BILD;
+        if (t < 0) return i;
+    }
+    return 7;
 }
 
 static void held_trifft_treffer(int ursache)
@@ -123,6 +151,8 @@ static void held_trifft_treffer(int ursache)
         H.leiche_x = (int)H.x;
         H.verbrannt = 0;
         H.feuer_tick = 0;
+        H.umarm_tick = 0;
+        H.zuletzt_umarmt = 0;
         lage = L_RITUAL;
         lage_tick = 0;
         K.zustand = K_BEREIT;
@@ -246,7 +276,7 @@ static void koenigin_schritt(const Eingabe *e)
 
     switch (K.zustand) {
     case K_BEREIT:
-        K.x += laufen;
+        if (H.umarm_tick == 0) K.x += laufen;   /* während der Umarmung kniet sie */
         if (lage == L_KAMPF && H.zustand != H_KOMMT && H.zustand != H_WEG) {
             int neu = -1;
             if (e->neu & PSP_CTRL_SQUARE) neu = ANG_RICHTSCHLAG;
@@ -305,6 +335,7 @@ static void rueckkehr(void)
     const char *zeile = (runde <= 5) ? WORTE_FRUEH[zuf(4)] : WORTE_MITTE[zuf(4)];
     const char *held = NULL;
     if (H.getroffen[H.letzte_ursache] == 1) held = HELD_ERSTER_TOD[H.letzte_ursache];
+    if (H.zuletzt_umarmt && H.umarmungen == 1) held = "„Ich hab geträumt, dass mich jemand festhält. Komisch.“";
     if (zuf(3) != 0 || held) sage(zeile, KOENIGIN_TEXT, held ? held : "", HELD_TEXT);
 }
 
@@ -332,10 +363,22 @@ void spiel_schritt(const Eingabe *e)
         }
     } else if (lage == L_RITUAL) {
         held_schritt();
-        /* Königin geht zum Körper; ✕ verbrennt ihn */
-        if (!H.verbrannt && H.feuer_tick == 0 && abs(K.x - H.leiche_x) < 40 && (e->neu & PSP_CTRL_CROSS))
+        /* Königin geht zum Körper; ✕ verbrennt ihn, ○ nimmt ihn in den Arm und verbrennt ihn dort */
+        if (ritual_moeglich() && (e->neu & PSP_CTRL_CROSS))
             H.feuer_tick = 1;
+        else if (ritual_moeglich() && (e->neu & PSP_CTRL_CIRCLE)) {
+            /* Sie kniet rechts neben ihm: Körper der Animation auf den liegenden Körper setzen */
+            int mitte = H.leiche_x + (H.leiche_x > K.x ? TOD_MITTE : -TOD_MITTE);
+            K.x = mitte + UMARM_MITTE;
+            H.umarm_tick = 1;
+        }
         if (H.feuer_tick > 0 && ++H.feuer_tick > 90) { H.verbrannt = 1; H.feuer_tick = 0; }
+        if (H.umarm_tick > 0 && ++H.umarm_tick > umarm_ende()) {
+            H.umarm_tick = 0;
+            H.verbrannt = 1;
+            H.zuletzt_umarmt = 1;
+            if (++H.umarmungen == 1) sage("„…Du bist leichter, als ich dachte.“", KOENIGIN_TEXT, NULL, 0);
+        }
         /* Held kehrt zurück, sobald sie wieder rechts im Saal ist */
         if (H.verbrannt && K.x > 300) {
             if (H.tode == 5 || H.tode == 11) {   /* Quest: Abwesenheit, danach neue Ausrüstung */
@@ -413,12 +456,13 @@ void spiel_zeichnen(void)
     else if (K.phase >= 1 || K.zustand == K_VERWANDLUNG) { k_anim = Q_P2_IDLE; k_bild = (lage_tick / TICKS_JE_BILD) % 10; }
     else { k_anim = Q_P1_IDLE; k_bild = (lage_tick / TICKS_JE_BILD / 2) % 6; }
     if (lage == L_ABWESEND || lage == L_RITUAL) k_spiegel = 0;
+    if (H.umarm_tick > 0) { k_anim = Q_UMARMUNG; k_bild = umarm_bild(); }
 
     /* Held */
     int h_spiegel = H.x > K.x;
     int clut = H.stufe;
     if (H.zustand == H_TOT) {
-        if (!H.verbrannt) zeichne_anim(H_TOD, H.tick / TICKS_JE_BILD, H.leiche_x, BODEN, h_spiegel, clut, 0xFFFFFFFF);
+        if (!H.verbrannt && H.umarm_tick == 0) zeichne_anim(H_TOD, H.tick / TICKS_JE_BILD, H.leiche_x, BODEN, h_spiegel, clut, 0xFFFFFFFF);
         if (H.feuer_tick > 0) zeichne_anim(FX_FEUER, (H.feuer_tick / TICKS_JE_BILD) % 8, H.leiche_x, BODEN + 2, 0, 0, 0xFFFFFFFF);
     }
     zeichne_anim(k_anim, k_bild, K.x, BODEN, k_spiegel, 0, 0xFFFFFFFF);
@@ -435,8 +479,8 @@ void spiel_zeichnen(void)
     }
     ring();
     hud();
-    if (lage == L_RITUAL && !H.verbrannt && H.feuer_tick == 0 && abs(K.x - H.leiche_x) < 40)
-        text("✕ Verbrennen", H.leiche_x - 36, BODEN - 70, WEISS);
+    if (lage == L_RITUAL && ritual_moeglich())
+        text("✕ Verbrennen  ○ Umarmen", H.leiche_x - 69, BODEN - 70, WEISS);
     textbox();
     bild_zeigen();
 }
@@ -446,4 +490,5 @@ int demo_held_tot(void) { return lage == L_RITUAL; }
 int demo_abstand(void) { return abstand(); }
 int demo_koenigin_x(void) { return K.x; }
 int demo_leiche_x(void) { return H.verbrannt ? 1000 : H.leiche_x; }
+int demo_tode(void) { return H.tode; }
 #endif

@@ -20,6 +20,7 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 | △ | Sensenzug |
 | ○ | Kreisschnitt |
 | ✕ | Totenritual: Verbrennen (beim Körper des Helden) |
+| ○ | Totenritual: Umarmen, sie verbrennt ihn in ihren Armen (beim Körper des Helden) |
 | Select | Neustart |
 | Home | Beenden |
 
@@ -27,12 +28,13 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 
 - Thronsaal, Königin mit Ruhepose und drei Angriffen (Trefferzonen nach `docs/ANGRIFFE.md`), drei Lebensleisten.
 - Held mit Lern-KI: weicht einem Angriff erst aus, nachdem er davon getroffen wurde; zuerst zu früh, ab dem dritten Mal richtig (Rolle bzw. Sprung).
-- Tod, Stille, die Königin geht zum Körper, ✕ verbrennt ihn mit eisblauem Feuer, der Held kehrt zurück, sobald sie wieder rechts im Saal steht.
+- Tod, Stille, die Königin geht zum Körper, ✕ verbrennt ihn mit eisblauem Feuer, ○ nimmt ihn in den Arm (kniet, hält ihn, eisblaues Feuer in ihren Armen). Der Held kehrt zurück, sobald sie wieder rechts im Saal steht. In der Testszene ist die Umarmung immer verfügbar (im Spiel erst ab G2, siehe `docs/DIALOGE.md`).
+- Richtschlag, Schwerthieb und Umarmung stammen aus den bewegten Entwürfen in `assets/animationen/`.
 - Rückkehrworte der Königin und erste Kommentare des Helden.
 - Nach dem 5. und 11. Tod eine Quest: Abwesenheit (es geschieht nichts), danach neue Umhangfarbe (Palettentausch) und ein Herz mehr.
 - Rote Leiste leer: Verwandlung mit Ringwelle; der Held lernt, darüberzuspringen. Phase 2 selbst folgt später.
 
-**Noch nicht enthalten:** Gehen-Animationen (Figuren gleiten), Phase 2 und 3, Umarmen und Opfern, Gespräche mit Auswahl, Musik und Ton.
+**Noch nicht enthalten:** Gehen-Animationen (Figuren gleiten), Phase 2 und 3, Opfern, Gespräche mit Auswahl, Musik und Ton.
 
 ## Bauen
 
