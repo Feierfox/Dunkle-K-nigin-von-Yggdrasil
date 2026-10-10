@@ -6,6 +6,14 @@ Die Dateien hier sind **komprimierte WebP-Kopien** zur Ansicht. Die PNG-Original
 
 ## Aktuelle Entwürfe
 
+### Neue Animationsentwürfe: Held und Königin Stufe 3
+
+[Paket und Hinweise](animationen/held-und-stufe3-v1/README.md) · [HTML-Vorschau mit Pause und Einzelbild-Regler](animationen/held-und-stufe3-v1/index.html)
+
+Sechs Sequenzen mit je acht Schlüsselbildern: Held **Sprung, Ausweichrolle, Amulett-Schild**; Königin Stufe 3 **Ranken, Erinnerungsriss, Weltgericht**. Enthalten sind transparente PNG-Sheets, Einzelbilder, GIF-Vorschauen, JSON-Zeiten und die Imagegen-Prompts. Die längeren Angriffe halten Schlüsselbilder auf einer Zeitbasis von 12 Ticks/s; sie besitzen noch nicht alle vorgeschlagenen Zwischenbilder. Große Arbeitsauflösung, wechselnde Details und noch nicht getrennte Flügel/Effekte: **keine fertigen PSP-Sprites**.
+
+### Figuren und Thronsaal
+
 | Datei | Größe | Inhalt |
 | --- | --- | --- |
 | [konzept/koenigin-idle-sense-helm-v5.webp](konzept/koenigin-idle-sense-helm-v5.webp) | 1024 × 1536, transparent | **Königin Phase 0/1:** Ruhepose, Blick nach links, geschlossener Helm mit Kronen-Ästen, Sense aus Wurzelholz |
