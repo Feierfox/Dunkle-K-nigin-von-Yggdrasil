@@ -26,9 +26,14 @@ void zeichne(const Textur *t, int seite, int clut, int u, int v, int w, int h,
 void zeichne_anim(int anim, int bild, int ax, int ay, int spiegeln, int clut, unsigned int farbe);
 /* Gefülltes Rechteck, farbe ABGR mit Alpha. */
 void rechteck(int x, int y, int w, int h, unsigned int farbe);
-/* Thronsaal als Hintergrund. */
-void hintergrund_zeichnen(void);
-/* UTF-8-Text; gibt die gezeichnete Breite zurück. */
+/* Thronsaal als Hintergrund: 0 = Phase 1, 1 = Phase 2, 2 = Phase 3. */
+void hintergrund_zeichnen(int phase);
+/* UTF-8-Text; gibt die gezeichnete Breite zurück. stil 1 = Schrift der Verderbnis. */
 int text(const char *s, int x, int y, unsigned int farbe);
+int text_stil(const char *s, int x, int y, unsigned int farbe, int stil);
+/* Anzahl Zeichen (nicht Bytes) eines UTF-8-Textes. */
+int zeichen_anzahl(const char *s);
+/* Zeilenumbruch an Leerzeichen: schreibt bis zu max_zeilen Anfangspositionen und Längen (Bytes). */
+int umbrechen(const char *s, int max_zeichen, const char **start, int *laenge, int max_zeilen);
 
 extern Textur TEX_GRUPPE[];

@@ -215,8 +215,59 @@ def kreisschnitt():
     speichere("koenigin_p1_atk_kreisschnitt", bilder, palette, quelle)
 
 
+# --- Phase 2 ------------------------------------------------------------------
+# Entwurf koenigin-p2-helmbruch-v1: gleicher Aufbau wie v5, Sense links vom Körper
+SENSE_ARM_P2 = [
+    [(0, 0), (395, 0), (395, 1536), (0, 1536)],
+    [(395, 0), (445, 0), (445, 300), (395, 300)],
+    [(370, 690), (440, 690), (445, 775), (370, 775)],
+]
+ELLBOGEN_P2 = (440, 735)
+
+
+def _vorbereiten_p2():
+    quelle = "koenigin-p2-helmbruch-v1.webp"
+    bild = lade(quelle)
+    koerper, teil = zerlege(bild, SENSE_ARM_P2, [SENSE_ARM_P2[2]])
+    palette = palette_von(bild, (bild.width // MASSSTAB, bild.height // MASSSTAB))
+    leinwand = (2048, 2048)
+    # 5 Sprite-Pixel höher: sie schwebt in Phase 2
+    ursprung = (820, leinwand[1] - bild.height - 32 - 5 * MASSSTAB)
+    return quelle, koerper, teil, palette, leinwand, ursprung
+
+
+def _p2(name, posen):
+    quelle, koerper, teil, palette, leinwand, ursprung = _vorbereiten_p2()
+    bilder = [bild_zusammensetzen(leinwand, ursprung, koerper, teil, ELLBOGEN_P2, p) for p in posen]
+    speichere(name, bilder, palette, quelle)
+
+
+def sternschauer():
+    """Beide Arme heben die Sense über den Kopf, Licht sammelt sich; die Geschosse zeichnet das Spiel."""
+    _p2("koenigin_p2_atk_sternschauer", [
+        (0, 0, 0, 0, 0), (-12, 0, -4, 20, -90), (-22, 0, -8, 40, -180), (-28, 0, -10, 50, -230),
+        (-30, 0, -12, 50, -240), (-30, 0, -14, 50, -244), (-30, 0, -12, 50, -240), (-30, 0, -10, 50, -236),
+        (-24, 0, -6, 40, -180), (-14, 0, -2, 20, -100), (-6, 0, 0, 8, -40), (0, 0, 0, 0, 0)])
+
+
+def windklinge():
+    """Waagerechtes Ausholen, dann ein schneller Hieb nach vorn; die Lichtsichel zeichnet das Spiel."""
+    _p2("koenigin_p2_atk_windklinge", [
+        (0, 0, 0, 0, 0), (-25, 6, 0, 40, -60), (-45, 10, -2, 70, -110), (-50, 12, -2, 80, -120),
+        (40, -16, 4, -60, 20), (80, -22, 6, -90, 70), (85, -22, 6, -90, 80),
+        (55, -12, 4, -50, 50), (25, -6, 2, -20, 20), (0, 0, 0, 0, 0)])
+
+
+def todesurteil():
+    """Zeigen (Rune erscheint), dann fährt die Sense nach unten."""
+    _p2("koenigin_p2_atk_todesurteil", [
+        (0, 0, 0, 0, 0), (10, -4, 0, -20, -20), (14, -6, 0, -30, -30), (14, -6, 0, -30, -30),
+        (-40, 8, -10, 60, -200), (-48, 10, -12, 70, -220), (58, -14, 10, -40, 40), (74, -18, 16, -55, 60),
+        (68, -16, 14, -50, 50), (34, -8, 6, -20, 20), (12, -2, 0, -5, 5), (0, 0, 0, 0, 0)])
+
+
 if __name__ == "__main__":
     import sys
-    nur = sys.argv[1:] or ["richtschlag", "sensenzug", "kreisschnitt"]
+    nur = sys.argv[1:] or ["richtschlag", "sensenzug", "kreisschnitt", "sternschauer", "windklinge", "todesurteil"]
     for name in nur:
         globals()[name]()
