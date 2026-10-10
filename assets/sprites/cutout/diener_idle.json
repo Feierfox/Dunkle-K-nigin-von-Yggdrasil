@@ -1,0 +1,15 @@
+{
+ "name": "diener_idle",
+ "frame_w": 64,
+ "frame_h": 80,
+ "fps": 12,
+ "quelle": "held-idle-hood-v3.webp",
+ "frames": [
+  {
+   "x": 0,
+   "y": 0,
+   "w": 64,
+   "h": 80
+  }
+ ]
+}

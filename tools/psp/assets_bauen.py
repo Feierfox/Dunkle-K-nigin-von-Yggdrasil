@@ -60,6 +60,10 @@ GRUPPEN = {
     "held": [
         ("H_IDLE", "held_idle", H_IDLE),
         ("H_GEHEN", "held_gehen", H_AKT),
+        ("D_IDLE", "diener_idle", H_AKT),
+        ("D_GEHEN", "diener_gehen", H_AKT),
+        ("D_KNIEN", "diener_knien", H_AKT),
+        ("D_TOD", "diener_tod", H_AKT),
         ("H_SPRUNG", "held_sprung", H_AKT),
         ("H_ROLLE", "held_rolle", H_AKT),
         ("H_HIEB", "held_atk_hieb", None),

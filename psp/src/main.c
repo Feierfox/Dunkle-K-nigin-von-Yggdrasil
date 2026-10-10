@@ -30,7 +30,7 @@ extern int demo_leiche_x(void);
 extern int demo_phase(void);
 extern int demo_k_zustand(void);
 extern void demo_zustand(int t);
-/* Lage: 0 Kampf, 1 Ritual, 2 abwesend, 3 Gespräch, 4 Ende */
+/* Lage: 0 Kampf, 1 Ritual, 2 abwesend, 3 Gespräch, 4 Ende, 5 Titel, 6 Eröffnung */
 static unsigned int demo_eingabe(int t)
 {
     static int rituale;

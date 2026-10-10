@@ -144,6 +144,15 @@ static const Wahl patchw[] = {
     {V, "„Er ist zerbrochen. Lass ihn liegen.“", "„Und jetzt redet die andere. Gut, ich bleib. Aus Trotz.“", 0, 1, 0, 0, 0},
 };
 
+/* Eröffnung: Ein Untertan warnt die Königin vor dem Helden und stellt sich ihm in den Weg. */
+static const Zeile introz[] = {
+    {SP_DIENER, "„Herrin … verzeiht, dass ich es wage, Euren Thronsaal zu betreten.“"},
+    {SP_DIENER, "„Ein Fremder ist durch das Wurzeltor gekommen. Grüne Kapuze, blanke Klinge.“"},
+    {SP_DIENER, "„Er fragt nach Euch, Herrin. Er sagt … er habe einen Guide.“"},
+    {K, "„Dann lass ihn kommen.“"},
+    {SP_DIENER, "„Ich – ich halte ihn auf, Herrin! Für Euch! Ich …“"},
+};
+
 const Gespraech GESPRAECH[GESPRAECHE] = {
     {"G1 Die erste Audienz", g1z, N(g1z), g1w, N(g1w)},
     {"G2 Beharrlichkeit", g2z, N(g2z), g2w, N(g2w)},
@@ -157,6 +166,7 @@ const Gespraech GESPRAECH[GESPRAECHE] = {
     {"R4 Das goldene Schwert", r4z, N(r4z), r4w, N(r4w)},
     {"G8 Das Zögern", g8z, N(g8z), g8w, N(g8w)},
     {"P Der Patch", patchz, N(patchz), patchw, N(patchw)},
+    {"Eröffnung", introz, N(introz), 0, 0},
 };
 
 const Ende ENDEN[7] = {

@@ -64,9 +64,9 @@ static const AngriffDef ANG[ANG_N] = {
 
 enum { KZ_BEREIT, KZ_ANGRIFF, KZ_VERWANDLUNG };
 enum { HZ_KOMMT, HZ_KAMPF, HZ_HIEBT, HZ_ROLLT, HZ_SPRINGT, HZ_GETROFFEN, HZ_TOT, HZ_WEG };
-enum { L_KAMPF, L_RITUAL, L_ABWESEND, L_GESPRAECH, L_ENDE, L_TITEL };
+enum { L_KAMPF, L_RITUAL, L_ABWESEND, L_GESPRAECH, L_ENDE, L_TITEL, L_INTRO };
 enum { R_NICHTS, R_FEUER, R_UMARMEN, R_PORTAL, R_FERTIG };
-enum { NACH_KAMPF, NACH_ABWESEND, NACH_WELT };
+enum { NACH_KAMPF, NACH_ABWESEND, NACH_WELT, NACH_INTRO };
 
 typedef struct {
     int x, zustand, tick, angriff, phase, blick, verw, phase_tick, welt_benutzt;
@@ -107,6 +107,13 @@ static const char *t_zeile[2];
 static int t_sprecher[2];
 static int t_tick;
 
+/* Eröffnung: der Untertan */
+enum { DZ_KOMMT, DZ_KNIET, DZ_STEHT, DZ_TOT, DZ_FORT };
+#define D_ZIEL_X 236              /* hier verneigt er sich vor der Königin */
+static struct { float x; int zustand, tick; } D;
+static const char *const STEUERUNG_1 = "□ △ ○ Angriffe (Phase 3: □ △, L+R Weltgericht)  ← → gehen";
+static const char *const STEUERUNG_2 = "Nach dem Tod: ✕ Verbrennen, später ○ Umarmen, □ Opfern. Select: Menü";
+
 /* Hauptmenü */
 enum { M_NEU, M_OPTIONEN, M_CREDITS, M_ANZAHL };
 enum { S_TITEL, S_MENUE, S_OPTIONEN, S_CREDITS };
@@ -121,12 +128,14 @@ static int zuf(int n) { zufall = zufall * 1103515245u + 12345u; return (zufall >
 #define FARBE_H 0xFFB8F0C8
 #define FARBE_V 0xFFFB20EE        /* Magenta #ee20fb (ABGR) */
 #define FARBE_E 0xFFB0A8A8
+#define FARBE_D 0xFFD8C0C8        /* Untertan: fahles Lila */
 #define WEISS 0xFFFFFFFF
 #define P3_FARBE 0xFFF8A8E8       /* Platzhalter Phase 3: lila eingefärbt */
 
 static unsigned int farbe_von(int sp)
 {
-    return sp == SP_KOENIGIN ? FARBE_K : sp == SP_HELD ? FARBE_H : sp == SP_VERDERBNIS ? FARBE_V : FARBE_E;
+    return sp == SP_KOENIGIN ? FARBE_K : sp == SP_HELD ? FARBE_H : sp == SP_VERDERBNIS ? FARBE_V :
+           sp == SP_DIENER ? FARBE_D : FARBE_E;
 }
 
 static void sage(const char *a, int sa, const char *b, int sb)
@@ -568,6 +577,8 @@ static void abwesenheit_starten(void)
 static void gespraech_ende(void)
 {
     const Gespraech *g = &GESPRAECH[g_nr];
+    if (g_nach == NACH_INTRO) { lage = L_INTRO; D.zustand = DZ_STEHT; D.tick = 0; return; }
+    if (g_nr == G_G1) sage(STEUERUNG_1, SP_ERZAEHLER, STEUERUNG_2, SP_ERZAEHLER);   /* jetzt beginnt der Kampf */
     const Wahl *w = &g->wahl[g_wahl];
     if (w->ende == 9) { ende_setzen(ende_nach_werten()); return; }
     if (w->ende) { ende_setzen(w->ende); return; }
@@ -583,6 +594,7 @@ static void gespraech_schritt(const Eingabe *e)
         if (e->neu & PSP_CTRL_CROSS) g_schritt++;
         return;
     }
+    if (g->anzahl_wahl == 0) { gespraech_ende(); return; }
     if (!g_antwort) {
         int n = g->anzahl_wahl;
         if (e->neu & PSP_CTRL_DOWN) do { g_wahl = (g_wahl + 1) % n; } while (!wahl_erlaubt(&g->wahl[g_wahl]));
@@ -713,16 +725,61 @@ void spiel_start(void)
     K.blick = -1;
     K.lp[0] = K.lp[1] = K.lp[2] = LEISTE;
     H.x = -20;
-    H.zustand = HZ_KOMMT;
+    H.zustand = HZ_WEG;          /* er kommt erst nach dem Untertan */
     H.herzen = 1;
-    lage = L_KAMPF;
+    lage = L_INTRO;
+    lage_tick = 0;
+    D.x = -20; D.zustand = DZ_KOMMT; D.tick = 0;
     runde = 1;
     max_phase = 0;
     seit_fortschritt = 0;
     vertrauen = 0; einfluss = 2; guide = 0; opfer = 0; umarmt = 0; wirkung_frei = 1;
     quest = 0; zurueck_von_quest = 0; erster_tod_impuls1 = 0; ende_nr = 0; ring_aktiv = 0;
-    sage("□ △ ○ Angriffe (Phase 3: □ △, L+R Weltgericht)  ← → gehen", SP_ERZAEHLER,
-         "Nach dem Tod: ✕ Verbrennen, später ○ Umarmen, □ Opfern. Select: Hauptmenü", SP_ERZAEHLER);
+    t_tick = 0;
+}
+
+static void intro_ende(void)
+{
+    lage = L_KAMPF;
+    H.zustand = HZ_KOMMT;   /* steht schon im Saal: im nächsten Schritt Kampf und Gespräch G1 */
+    if (D.zustand != DZ_TOT) D.zustand = DZ_FORT;
+}
+
+/* Der Untertan kommt, verneigt sich und warnt sie (Gespräch), dann kommt der Held und erschlägt ihn. */
+static void intro_schritt(const Eingabe *e)
+{
+    if (e->neu & PSP_CTRL_START) { H.x = H.x < 60 ? 60 : H.x; intro_ende(); return; }   /* überspringen */
+    D.tick++;
+    switch (D.zustand) {
+    case DZ_KOMMT:
+        D.x += 1.4f;
+        if (D.x >= D_ZIEL_X) { D.x = D_ZIEL_X; D.zustand = DZ_KNIET; D.tick = 0; }
+        break;
+    case DZ_KNIET:
+        if (D.tick == 50) gespraech_starten(G_INTRO, NACH_INTRO);
+        break;
+    case DZ_STEHT:
+        /* Er richtet sich auf und wendet sich dem Eingang zu; der Held tritt ein */
+        if (H.zustand == HZ_WEG && D.tick > 20) { H.zustand = HZ_KOMMT; H.x = -20; }
+        if (H.zustand == HZ_KOMMT) {
+            float alt = H.x;
+            H.x += 1.6f;
+            H.geht = 1;
+            H.geh_weg += H.x - alt;
+            if (H.x >= D.x - 36) { H.zustand = HZ_HIEBT; H.tick = 0; }
+        } else if (H.zustand == HZ_HIEBT) {
+            H.tick++;
+            if (H.tick == 4 * TPB) { D.zustand = DZ_TOT; D.tick = 0; }
+        }
+        break;
+    case DZ_TOT:
+        if (H.zustand == HZ_HIEBT && ++H.tick >= 8 * TPB) {
+            H.zustand = HZ_KAMPF;
+            sage("„Tutorial-Gegner. Erledigt.“", SP_HELD, "", SP_HELD);
+        }
+        if (D.tick >= 110) intro_ende();
+        break;
+    }
 }
 
 static void koenigin_schritt(const Eingabe *e)
@@ -795,6 +852,7 @@ static void koenigin_schritt(const Eingabe *e)
 
 void spiel_titel(void)
 {
+    D.zustand = DZ_FORT;
     lage = L_TITEL;
     lage_tick = 0;
     m_wahl = M_NEU;
@@ -833,11 +891,15 @@ void spiel_schritt(const Eingabe *e)
     if (e->neu & PSP_CTRL_SELECT) { spiel_titel(); return; }
     if (t_tick > 0) t_tick--;
     lage_tick++;
+    if (D.zustand == DZ_TOT && lage != L_INTRO && lage != L_GESPRAECH && ++D.tick > 400) D.zustand = DZ_FORT;
     K.geht = 0;   /* wird in koenigin_schritt bzw. held_schritt neu gesetzt */
     H.geht = 0;
 
     switch (lage) {
     case L_ENDE:
+        return;
+    case L_INTRO:
+        intro_schritt(e);
         return;
     case L_GESPRAECH:
         gespraech_schritt(e);
@@ -895,7 +957,7 @@ static void hud(void)
         rechteck(x, y, w * lp / LEISTE, h, farbe[p]);
         for (int i = 0; i < 3; i++) rechteck(x + w + 8 + i * 9, y + 1, 6, 6, i >= p ? farbe[i] : 0xFF403038);
     }
-    if (lage != L_ABWESEND)
+    if (lage != L_ABWESEND && lage != L_INTRO && H.zustand != HZ_WEG)
         for (int i = 0; i < H.stufe + 1; i++) herz(10 + i * 10, 254, i < H.herzen && H.zustand != HZ_TOT);
 }
 
@@ -1090,6 +1152,26 @@ static void koenigin_zeichnen(void)
     if (umarm_anim()) zeichne_anim(H_UMARMUNG_UMHANG, bild, K.x, BODEN, spiegel, H.stufe, f);
 }
 
+static void diener_zeichnen(void)
+{
+    if (D.zustand == DZ_FORT) return;
+    int x = (int)D.x, anim = D_IDLE, bild = 0, spiegel = 0;
+    unsigned int f = WEISS;
+    switch (D.zustand) {
+    case DZ_KOMMT: anim = D_GEHEN; bild = ((int)(D.x / GEH_PX) % 8 + 8) % 8; break;
+    case DZ_KNIET: anim = D_KNIEN; bild = D.tick / (2 * TPB); break;
+    case DZ_STEHT:
+        if (D.tick < 4 * 2 * TPB) { anim = D_KNIEN; bild = 3 - D.tick / (2 * TPB); }   /* richtet sich auf */
+        spiegel = D.tick > 16;                                                      /* wendet sich um */
+        break;
+    case DZ_TOT:
+        anim = D_TOD; bild = D.tick / TPB; spiegel = 1;
+        if (lage != L_INTRO && D.tick > 300) f = ((unsigned int)(255 - (D.tick - 300) * 255 / 100) << 24) | 0x00FFFFFF;
+        break;
+    }
+    zeichne_anim(anim, bild, x, BODEN, spiegel, 0, f);
+}
+
 static void held_zeichnen(void)
 {
     int spiegel = H.x > K.x;
@@ -1218,6 +1300,7 @@ void spiel_zeichnen(void)
     hintergrund_zeichnen(K.phase);
     if (ring_aktiv) zeichne_anim(FX_RING, ring_tick / TPB, K.x, BODEN + 10, 0, 0, WEISS);
     koenigin_zeichnen();
+    diener_zeichnen();
     held_zeichnen();
     effekte_zeichnen();
     nebel_zeichnen();

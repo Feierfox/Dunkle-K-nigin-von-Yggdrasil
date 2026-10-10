@@ -29,6 +29,7 @@ Ausgabe in `assets/sprites/cutout/`: Sprite-Streifen (`.png`), Bildpositionen (`
 | `held_schwert_boden` | held-idle-hood-v3, Schwert flach am Boden (rutscht ihm im 3. Tod-Bild aus der Hand) | 1, 37 × 7 |
 | `held_gehen` | held-idle-hood-v3 (`gehen.py`): Beine ausgeschnitten und geschert, Körper wippt | 8, 64 × 80 |
 | `koenigin_p1_gehen` | koenigin-idle-sense-helm-v5 (`gehen.py`): schwerer Schritt, Beine unter dem Mantel geschert | 8, 128 × 128 |
+| `diener_idle`, `diener_gehen`, `diener_knien`, `diener_tod` | held-idle-hood-v3 (`diener.py`): Untertan der Eröffnung, ohne Schwert, grauviolett umgefärbt, kleiner und gebeugt | 1, 8, 4, 8; 64 × 80 |
 | `held_tod_alt` | held-idle-hood-v3 (`held.py`), kippt nach hinten, am Bildrand abgeschnitten, nicht mehr im Spiel | 8, 64 × 80 |
 
 ```
@@ -41,6 +42,7 @@ python tools/cutout/held.py        # Bewegungen des Helden
 python tools/cutout/effekte.py     # Effekte und Vorschau-Szenen
 python tools/cutout/entwuerfe.py   # Sprites aus den bewegten Imagegen-Entwürfen
 python tools/cutout/gehen.py       # Gehen von Held und Königin (Phase 1)
+python tools/cutout/diener.py      # Untertan für die Eröffnung
 ```
 
 `entwuerfe.py` liest die Entwürfe aus `assets/animationen/entwuerfe-2026-10-10/` (Sheet und `animation.json`). Jede Animation wird um einen festen Faktor verkleinert, sodass die Figur so hoch ist wie in den Ruheposen (Königin 91 px, Held 44 px). Danach folgen harte Transparenz, eine gemeinsame Palette mit 32 Farben und der Zuschnitt auf das gemeinsame Rechteck. Fußpunkt (`anker`) und Haltezeiten (`dauer`) stehen im JSON; `tools/psp/assets_bauen.py` übernimmt den Anker von dort. Die Palette entsteht per Median-Cut mit k-means-Nachbesserung; ohne diese wurden kleine Farbflächen falsch (braune Stiefel und Hautton des Helden rosa).
