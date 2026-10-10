@@ -22,6 +22,7 @@
 #define ERHOLUNG 40              /* Pause der Königin nach jedem Angriff (Logikschritte) */
 #define ERHOLUNG_MAX 150         /* längste Pause, falls er seinen Gegenschlag nicht anbringt */
 #define HIEB_PAUSE 40            /* Abstand zwischen zwei gewöhnlichen Hieben des Helden */
+#define RUECKKEHR_STILLE 240     /* nach dem Ritual mindestens 4 s Stille, bevor er zurückkehrt */
 /* Aus assets_gen.h (tools/cutout/entwuerfe.py): UMARM_ABSTAND = Kniepunkt der Königin vom
  * Fußpunkt des Toten, TOD_MITTE = Mitte des liegenden Körpers, TOD_SCHWERT_BILD = ab diesem
  * Bild liegt das Schwert am Boden. Der Körper liegt mit dem Kopf in Blickrichtung. */
@@ -88,6 +89,7 @@ typedef struct {
     int umarm_geht, aufsteh_tick;
     int hieb_pause, konter;       /* konter: 1 Gegenschlag läuft, 2 angebracht */
     int geht;                     /* in diesem Schritt gegangen (nicht gerollt) */
+    int stille;                   /* Schritte seit dem Ende des Rituals */
     float geh_weg;                /* Weg in Blickrichtung, für das Gehen-Bild */
 } Held;
 
@@ -692,10 +694,12 @@ static void ritual_schritt(const Eingabe *e)
             if (umarm_anim()) H.aufsteh_tick = 1;
             H.ritual_tick = H.ritual;   /* merkt sich die Art für den Rückkehrkommentar */
             H.ritual = R_FERTIG;
+            H.stille = 0;
         }
     }
     /* Der Held kehrt zurück, sobald sie wieder rechts im Saal ist */
-    if (H.ritual == R_FERTIG && H.aufsteh_tick == 0 && K.x > 300) {
+    if (H.ritual == R_FERTIG) H.stille++;
+    if (H.ritual == R_FERTIG && H.aufsteh_tick == 0 && K.x > 300 && H.stille >= RUECKKEHR_STILLE) {
         H.ritual = H.ritual_tick;
         if (quest) {
             int q = quest;
@@ -962,21 +966,43 @@ static void hud(void)
 }
 
 /* Text mit Zeilenumbruch in einer Box oben mittig */
-static int zeilen_zeichnen(const char *s, int sprecher, int y, int auswahl)
+/* Text mit Zeilenumbruch im Bereich x0 .. x0 + breite: zentriert oder (auswahl) linksbündig */
+static int zeilen_bereich(const char *s, int sprecher, int y, int x0, int breite, int auswahl)
 {
     const char *st[3];
     int ln[3];
-    int n = umbrechen(s, 72, st, ln, 3);
+    int n = umbrechen(s, breite / SCHRIFT_ZW, st, ln, 3);
     char puffer[200];
     for (int i = 0; i < n; i++) {
         int l = ln[i] < 199 ? ln[i] : 199;
         memcpy(puffer, st[i], l);
         puffer[l] = 0;
         int b = zeichen_anzahl(puffer) * SCHRIFT_ZW;
-        int x = auswahl ? 30 : (BILD_B - b) / 2;
+        int x = auswahl ? x0 : x0 + (breite - b) / 2;
         text_stil(puffer, x, y + i * 12, farbe_von(sprecher), sprecher == SP_VERDERBNIS);
     }
     return n;
+}
+
+static int zeilen_zeichnen(const char *s, int sprecher, int y, int auswahl)
+{
+    return auswahl ? zeilen_bereich(s, sprecher, y, 30, 432, 1) : zeilen_bereich(s, sprecher, y, 24, 432, 0);
+}
+
+/* Porträt der sprechenden Figur links in der Dialogbox (48 x 48) */
+static void portrait(int sprecher, int x, int y)
+{
+    int anim, clut = 0;
+    unsigned int f = WEISS;
+    switch (sprecher) {
+    case SP_KOENIGIN: anim = Q_PORTRAIT; break;
+    case SP_VERDERBNIS: anim = Q_PORTRAIT; f = 0xFFFF60F0; break;   /* magenta eingefärbt */
+    case SP_HELD: anim = H_PORTRAIT; clut = H.stufe; break;
+    case SP_DIENER: anim = D_PORTRAIT; break;
+    default: return;
+    }
+    rechteck(x - 2, y - 2, 52, 52, sprecher == SP_VERDERBNIS ? 0xFFFB20EE : 0xFF6E4E5A);
+    zeichne_anim(anim, 0, x, y, 0, clut, f);
 }
 
 static void textbox(void)
@@ -994,26 +1020,29 @@ static void gespraech_zeichnen(void)
     const Gespraech *g = &GESPRAECH[g_nr];
     rechteck(8, 24, 464, 68, 0xD8100608);
     rechteck(8, 91, 464, 1, 0xFF6E4E5A);
+    /* links das Porträt, rechts daneben der Text */
     if (g_schritt < g->anzahl_zeilen) {
         const Zeile *z = &g->zeilen[g_schritt];
-        zeilen_zeichnen(z->text, z->sprecher, 30, 0);
+        portrait(z->sprecher, 16, 32);
+        zeilen_bereich(z->text, z->sprecher, 34, 72, 384, 0);
         text("✕", 458, 78, 0xFF808080);
         return;
     }
     if (!g_antwort) {
+        portrait(g->wahl[g_wahl].sprecher, 16, 32);
         int y = 30;
         for (int i = 0; i < g->anzahl_wahl; i++) {
             const Wahl *w = &g->wahl[i];
             if (!wahl_erlaubt(w)) continue;
-            if (i == g_wahl) text("▶", 16, y, WEISS);
-            int sp = w->sprecher;
-            int n = zeilen_zeichnen(w->satz, sp, y, 1);
-            if (i != g_wahl) rechteck(28, y - 1, 440, n * 12 + 1, 0x70100608);   /* nicht gewählte abdunkeln */
+            if (i == g_wahl) text("▶", 72, y, WEISS);
+            int n = zeilen_bereich(w->satz, w->sprecher, y, 86, 378, 1);
+            if (i != g_wahl) rechteck(84, y - 1, 384, n * 12 + 1, 0x70100608);   /* nicht gewählte abdunkeln */
             y += n * 12 + 4;
         }
         return;
     }
-    zeilen_zeichnen(g->wahl[g_wahl].antwort, SP_HELD, 30, 0);
+    portrait(SP_HELD, 16, 32);
+    zeilen_bereich(g->wahl[g_wahl].antwort, SP_HELD, 34, 72, 384, 0);
     text("✕", 458, 78, 0xFF808080);
 }
 
@@ -1244,7 +1273,7 @@ static void titel_bild(void)
         titel_zeichnen();
         /* "Start drücken" blinkt langsam */
         if (lage_tick >= 30 && (lage_tick / 40) % 3 != 2)
-            menue_text(MT_START, (BILD_B - menue_text_breite(MT_START)) / 2, 239, WEISS);
+            menue_text(MT_START, (BILD_B - menue_text_breite(MT_START)) / 2, 236, WEISS);
     } else {
         menue_zeichnen();
     }

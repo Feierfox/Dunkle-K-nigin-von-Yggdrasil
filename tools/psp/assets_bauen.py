@@ -56,6 +56,7 @@ GRUPPEN = {
         ("Q_SENSE_BODEN", "koenigin_sense_boden", None),
         ("Q_AUFSTEHEN", "koenigin_p1_umarmung_stehend", None),
         ("Q_P1_GEHEN", "koenigin_p1_gehen", K_ATK),
+        ("Q_PORTRAIT", "portrait_koenigin", None),
     ],
     "held": [
         ("H_IDLE", "held_idle", H_IDLE),
@@ -64,6 +65,8 @@ GRUPPEN = {
         ("D_GEHEN", "diener_gehen", H_AKT),
         ("D_KNIEN", "diener_knien", H_AKT),
         ("D_TOD", "diener_tod", H_AKT),
+        ("H_PORTRAIT", "portrait_held", None),   # Farbtabellen der Stufe wirken auch hier
+        ("D_PORTRAIT", "portrait_diener", None),
         ("H_SPRUNG", "held_sprung", H_AKT),
         ("H_ROLLE", "held_rolle", H_AKT),
         ("H_HIEB", "held_atk_hieb", None),
@@ -232,9 +235,20 @@ def hintergrund():
     schreibe_bin("saal", [clut], [(512, 512, d) for d in idx])
 
 
+TITEL_HOCH = 30
+
+
 def titel():
     """Titelbildschirm: das Bild aus dem PSP-Menü (psp/PIC1.PNG), eigene Farbtabelle."""
     bild = Image.open(os.path.join(REPO, "psp", "PIC1.PNG")).convert("RGB").resize((480, 272), Image.Resampling.BOX)
+    # 30 Pixel nach oben, damit "Start drücken" mit Abstand unter dem Schriftzug Platz hat;
+    # unten den Boden gespiegelt und abgedunkelt verlängern
+    hoch = TITEL_HOCH
+    neu = Image.new("RGB", (480, 272))
+    neu.paste(bild.crop((0, hoch, 480, 272)), (0, 0))
+    boden = bild.crop((0, 272 - hoch, 480, 272)).transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+    neu.paste(boden.point(lambda v: int(v * 0.7)), (0, 272 - hoch))
+    bild = neu
     seite = Image.new("RGBA", (512, 512))
     seite.paste(bild.convert("RGBA"), (0, 0))
     clut, idx = quantisiere([seite])

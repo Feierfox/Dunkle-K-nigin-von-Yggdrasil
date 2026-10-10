@@ -19,6 +19,12 @@ Nach dem Start erscheint der Titel „The Dark Queen of Yggdrasil“ (Bild aus d
 
 Nach „Spiel starten“ kommt zuerst ein Untertan, verneigt sich vor der Königin und warnt sie vor dem Helden; der Held tritt ein und erschlägt ihn (Texte in `docs/DIALOGE.md`, Abschnitt Eröffnung). Start überspringt die Szene. Die Steuerungshinweise erscheinen danach, nach dem ersten Gespräch.
 
+## Dialogbox
+
+Links in der Dialogbox steht ein Porträt der sprechenden Figur (48 × 48, `tools/cutout/portraits.py`): Königin (Helm mit Astkrone), Verderbnis (dasselbe Porträt magenta, magentafarbener Rahmen), Held (in der Umhangfarbe seiner Ausrüstungsstufe) und Untertan. Bei der Auswahl zeigt es die Stimme der gewählten Antwort.
+
+Nach dem Totenritual bleibt es mindestens 4 Sekunden still, bevor der Held zurückkehrt (`RUECKKEHR_STILLE`), auch wenn die Königin schon rechts im Saal steht.
+
 ## Steuerung
 
 | Taste | Phase 1 | Phase 2 | Phase 3 |
