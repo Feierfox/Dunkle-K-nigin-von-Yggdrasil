@@ -1,0 +1,16 @@
+== ICON1.PMF  (260096 bytes / 254.0 KB) ==
+PSMF0014 streamSize=0x3f000 firstTS=90000 lastTS=1531440 (16.02s) streams=1
+stream entry: e0002050000000000000000009050000  (P-STD 2050, 144x80)
+packs=126 PES={'BF': 40, 'E0': 126, 'BE': 40}
+AUs=480 (IDR=40) ES=201915 bytes, AU size min/max=26/4996
+lastTS grid check: header=1531440 expected=1531440 OK
+SPS: profile=77 level=21 ref=1 size=(144, 80) full_range=1 fps=29.970 HRD=600000/600000 bits
+PPS: cabac=1
+BF index packets: 40 chunks, sizes OK (cover 480/480 AUs)
+PTS stamps=40 maxGap=0.400s (must be <0.7s)
+size budget: 254.0 KB OK
+
+ATRAC decode: OK
+PBP embedded resources: byte-identical
+Combined media bytes: 393104
+Real PSP hardware test: not performed
