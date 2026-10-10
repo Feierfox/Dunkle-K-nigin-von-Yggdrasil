@@ -151,6 +151,20 @@ Beim ersten Mal nach jeder Möglichkeit ersetzt eine dieser Zeilen den normalen 
 
 ---
 
+## Eröffnung
+
+**Ablauf:** Beim Spielbeginn tritt zuerst ein Untertan der Königin ein: gebeugt, in fahl-violetter Kutte, ohne Waffe. Er verneigt sich tief vor ihr und warnt sie, demütig und unterwürfig. Danach richtet er sich auf und stellt sich dem Helden in den Weg, der ihn mit einem Hieb erschlägt. Erst dann beginnt G1, und danach erscheinen die Steuerungshinweise. Start überspringt die Szene.
+
+> **Untertan:** „Herrin … verzeiht, dass ich es wage, Euren Thronsaal zu betreten.“
+> **Untertan:** „Ein Fremder ist durch das Wurzeltor gekommen. Grüne Kapuze, blanke Klinge.“
+> **Untertan:** „Er fragt nach Euch, Herrin. Er sagt … er habe einen Guide.“
+> **Königin:** „Dann lass ihn kommen.“
+> **Untertan:** „Ich – ich halte ihn auf, Herrin! Für Euch! Ich …“
+> *Der Held tritt ein und erschlägt ihn.*
+> **Held:** „Tutorial-Gegner. Erledigt.“
+
+Keine Auswahl: Die Szene stellt Königin, Held und seine Spielersprache vor. Die Figur des Untertans entsteht in `tools/cutout/diener.py` aus dem Helden-Entwurf (Schwert entfernt, umgefärbt, kleiner und gebeugt).
+
 ## Gesprächsabschnitte
 
 Jeder Abschnitt läuft einmal pro Durchlauf. Der Spieler wählt als Königin.

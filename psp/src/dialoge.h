@@ -1,7 +1,7 @@
 /* Gespräche mit Auswahl und Enden, Texte aus docs/DIALOGE.md. */
 #pragma once
 
-enum { SP_KOENIGIN, SP_HELD, SP_VERDERBNIS, SP_ERZAEHLER };
+enum { SP_KOENIGIN, SP_HELD, SP_VERDERBNIS, SP_ERZAEHLER, SP_DIENER };
 
 typedef struct {
     unsigned char sprecher;
@@ -22,10 +22,10 @@ typedef struct {
     const Zeile *zeilen;
     int anzahl_zeilen;
     const Wahl *wahl;
-    int anzahl_wahl;
+    int anzahl_wahl;            /* 0: nur Zeilen, keine Auswahl (Eröffnung) */
 } Gespraech;
 
-enum { G_G1, G_G2, G_G3, G_G4, G_G5, G_R2, G_G6, G_R3, G_G7, G_R4, G_G8, G_PATCH, GESPRAECHE };
+enum { G_G1, G_G2, G_G3, G_G4, G_G5, G_R2, G_G6, G_R3, G_G7, G_R4, G_G8, G_PATCH, G_INTRO, GESPRAECHE };
 
 extern const Gespraech GESPRAECH[GESPRAECHE];
 
