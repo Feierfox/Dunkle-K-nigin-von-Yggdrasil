@@ -1,0 +1,22 @@
+{
+ "name": "held_schwert_boden",
+ "frame_w": 37,
+ "frame_h": 7,
+ "fps": 12,
+ "anker": [
+  33,
+  6
+ ],
+ "dauer": [
+  1
+ ],
+ "quelle": "held-idle-hood-v3.webp",
+ "frames": [
+  {
+   "x": 0,
+   "y": 0,
+   "w": 37,
+   "h": 7
+  }
+ ]
+}

@@ -53,6 +53,8 @@ GRUPPEN = {
         ("Q_WINDKLINGE", "koenigin_p2_atk_windklinge", K_ATK_P2),
         ("Q_TODESURTEIL", "koenigin_p2_atk_todesurteil", K_ATK_P2),
         ("Q_UMARMUNG", "koenigin_p1_umarmung", None),
+        ("Q_SENSE_BODEN", "koenigin_sense_boden", None),
+        ("Q_AUFSTEHEN", "koenigin_p1_umarmung_stehend", None),
     ],
     "held": [
         ("H_IDLE", "held_idle", H_IDLE),
@@ -60,7 +62,9 @@ GRUPPEN = {
         ("H_ROLLE", "held_rolle", H_AKT),
         ("H_HIEB", "held_atk_hieb", None),
         ("H_TREFFER", "held_treffer", H_AKT),
-        ("H_TOD", "held_tod", H_AKT),
+        ("H_TOD", "held_tod", None),
+        ("H_SCHWERT_BODEN", "held_schwert_boden", None),
+        ("H_UMARMUNG_UMHANG", "koenigin_p1_umarmung_umhang", None),  # Farbtabellen der Stufen
     ],
     "fx": [
         ("FX_RING", ("fx_impuls1_ring", 480, 48), (240, 38)),
@@ -176,10 +180,11 @@ def schreibe_bin(name, cluts, seiten):
             f.write(daten)
 
 
-def gruppe_bauen(gname, eintraege, gid, anim_tab, frame_tab):
+def gruppe_bauen(gname, eintraege, gid, anim_tab, frame_tab, konstanten):
     stuecke, info = [], []
     for enum, quelle, anker in eintraege:
         bilder, meta = bilder_laden(quelle)
+        konstanten.update(meta.get("konstanten", {}))
         ax, ay = anker if anker else meta["anker"]
         erstes = len(info)
         for b in bilder:
@@ -250,11 +255,11 @@ def schrift(name="schrift", datei="DejaVuSansMono.ttf"):
 
 
 def main():
-    anim_tab, frame_tab = [], []
+    anim_tab, frame_tab, konstanten = [], [], {}
     gruppen = list(GRUPPEN)
     seitenzahl = {}
     for gid, g in enumerate(gruppen):
-        seitenzahl[g] = gruppe_bauen(g, GRUPPEN[g], gid, anim_tab, frame_tab)
+        seitenzahl[g] = gruppe_bauen(g, GRUPPEN[g], gid, anim_tab, frame_tab, konstanten)
     hintergrund()
     zw, zh, je_zeile = schrift()
     schrift("schrift_verderbnis", "DejaVuSansMono-BoldOblique.ttf")
@@ -273,6 +278,10 @@ def main():
         for t in frame_tab:
             f.write("    {%d, %d, %d, %d, %d, %d, %d, %d},\n" % t)
         f.write("};\n\n")
+        f.write("/* Maße aus den Sprites (\"konstanten\" im JSON) */\n")
+        for k, v in sorted(konstanten.items()):
+            f.write(f"#define {k} {v}\n")
+        f.write("\n")
         f.write(f"#define SCHRIFT_ZW {zw}\n#define SCHRIFT_ZH {zh}\n#define SCHRIFT_JE_ZEILE {je_zeile}\n")
         f.write("/* Zeichenvorrat der Schrift als UTF-8, Index = Position */\n")
         zeichen_c = "".join(ZEICHEN).replace("\\", "\\\\").replace('"', '\\"')

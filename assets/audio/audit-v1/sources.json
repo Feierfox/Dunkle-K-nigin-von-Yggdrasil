@@ -1,0 +1,77 @@
+[
+  {
+    "name": "textures",
+    "page": "https://opengameart.org/content/medieval-sound-effects-weapon-textures",
+    "author": "Ben Jaszczak & Brian Nelson",
+    "license": "CC0-1.0",
+    "checked": "2026-10-10",
+    "downloads": [
+      {
+        "url": "https://opengameart.org/sites/default/files/medieval_sfx_textures_1_of_2.7z",
+        "filename": "medieval_sfx_textures_1_of_2.7z",
+        "bytes": 89924031,
+        "sha256": "b5e2b2c86d811d983d15dbf8453df6a25275a2a0dc4e88e0dc5e1cb3046fd4ae"
+      }
+    ]
+  },
+  {
+    "name": "apparel",
+    "page": "https://opengameart.org/content/fantasy-weapons-and-apparel-sfx-library",
+    "author": "Vehicle / Jan Schupke",
+    "license": "CC0-1.0",
+    "checked": "2026-10-10",
+    "downloads": [
+      {
+        "url": "https://opengameart.org/sites/default/files/weapons-apparel.zip",
+        "filename": "weapons-apparel.zip",
+        "bytes": 12608099,
+        "sha256": "81cc6317f21b68f8e7f2b23a5a0f5f33c301c39ee41347307eec02201be989e5"
+      }
+    ]
+  },
+  {
+    "name": "rpg",
+    "page": "https://opengameart.org/node/86018",
+    "author": "rubberduck",
+    "license": "CC0-1.0",
+    "checked": "2026-10-10",
+    "downloads": [
+      {
+        "url": "https://opengameart.org/sites/default/files/80-CC0-RPG-SFX_0.zip",
+        "filename": "80-CC0-RPG-SFX_0.zip",
+        "bytes": 1845114,
+        "sha256": "1c2f06ff4e8563b5b8b745b23cf213c1474142a69bb82bd8f5e10d9b3f7a7bbd"
+      }
+    ]
+  },
+  {
+    "name": "wood",
+    "page": "https://opengameart.org/content/35-wooden-crackshitsdestructions",
+    "author": "Independent.nu",
+    "license": "CC0-1.0",
+    "checked": "2026-10-10",
+    "downloads": [
+      {
+        "url": "https://opengameart.org/sites/default/files/independent_nu_ljudbank-wood_crack_hit_destruction.7z",
+        "filename": "independent_nu_ljudbank-wood_crack_hit_destruction.7z",
+        "bytes": 3855318,
+        "sha256": "2f9723be0147c32ea07db8ef7406229fb8f1a6ce8feabdf0dbf2dc5ee2aacd1a"
+      }
+    ]
+  },
+  {
+    "name": "rumble",
+    "page": "https://opengameart.org/content/rumble-fx",
+    "author": "cinameng",
+    "license": "CC0-1.0",
+    "checked": "2026-10-10",
+    "downloads": [
+      {
+        "url": "https://opengameart.org/sites/default/files/rumble.wav",
+        "filename": "rumble.wav",
+        "bytes": 5051498,
+        "sha256": "c20cd36c670fe8291bc38271f47135599c00f8d88bc25af48abf2c5e58774e4a"
+      }
+    ]
+  }
+]
