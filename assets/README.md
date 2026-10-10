@@ -8,6 +8,8 @@ Die Dateien hier sind **komprimierte WebP-Kopien** zur Ansicht. Die PNG-Original
 
 ### Neue Animationsentwürfe: Held und Königin Stufe 3
 
+**Ergänzung v2:** [Zwei Bodenranken und verstärktes Weltgericht](animationen/ranken-weltgericht-v2/README.md) · [Vorschau](animationen/ranken-weltgericht-v2/index.html). Unabhängige Dornen- und Hakenranke mit Hervorbrechen und Rückzug; neue Entladung der Königin und separate saalweite Zerstörungsebene. Als Grafikentwürfe gekennzeichnet, noch keine fertigen PSP-Sprites.
+
 [Paket und Hinweise](animationen/held-und-stufe3-v1/README.md) · [HTML-Vorschau mit Pause und Einzelbild-Regler](animationen/held-und-stufe3-v1/index.html)
 
 Sechs Sequenzen mit je acht Schlüsselbildern: Held **Sprung, Ausweichrolle, Amulett-Schild**; Königin Stufe 3 **Ranken, Erinnerungsriss, Weltgericht**. Enthalten sind transparente PNG-Sheets, Einzelbilder, GIF-Vorschauen, JSON-Zeiten und die Imagegen-Prompts. Die längeren Angriffe halten Schlüsselbilder auf einer Zeitbasis von 12 Ticks/s; sie besitzen noch nicht alle vorgeschlagenen Zwischenbilder. Große Arbeitsauflösung, wechselnde Details und noch nicht getrennte Flügel/Effekte: **keine fertigen PSP-Sprites**.

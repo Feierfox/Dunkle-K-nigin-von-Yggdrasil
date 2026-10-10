@@ -1,0 +1,122 @@
+[
+  {
+    "name": "fx_ranke_a",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 93430,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 28
+  },
+  {
+    "name": "fx_ranke_b",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 124716,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 28
+  },
+  {
+    "name": "p3_atk_weltgericht_v2",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 371876,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        429,
+        888,
+        1342,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 48
+  },
+  {
+    "name": "fx_weltgericht_saal",
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "uniqueRGBAColors": 365468,
+    "cuts": [
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ],
+      [
+        0,
+        443,
+        887,
+        1330,
+        1774
+      ]
+    ],
+    "keyframes": 8,
+    "totalTicks": 48
+  }
+]

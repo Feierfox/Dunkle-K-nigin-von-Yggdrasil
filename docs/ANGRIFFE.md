@@ -90,6 +90,7 @@ Lernkurve: Nah dran bleiben ist tödlich. Richtig ist die Rolle aus der Reichwei
 
 - **Signal:** 3–4 Risse im Boden leuchten **nacheinander** auf, jeweils 8 Bilder vor dem Durchbruch.
 - **Treffer:** An jedem Riss bricht eine Wurzel senkrecht aus dem Boden.
+- **Grafik-Assets:** Zwei unabhängig platzierbare Varianten: hohe Dornenranke und breite Hakenranke. Beide brechen aus ihrer Bodenstelle hervor, halten die aktive Schadensfläche kurz und ziehen sich anschließend vollständig in dieselbe Stelle zurück. Beim Rückzug endet die Schadensphase; das Schlussbild ist transparent. Entwürfe: [Bodenranken v2](../assets/animationen/ranken-weltgericht-v2/README.md).
 - **Ausweichen:** Rolle über die Stellen, die schon durchgebrochen sind oder noch nicht leuchten. Der Rhythmus muss gelernt werden.
 
 ### Erinnerungsriss (△)
@@ -102,6 +103,7 @@ Lernkurve: Nah dran bleiben ist tödlich. Richtig ist die Rolle aus der Reichwei
 
 - **Signal:** Der Saal verdunkelt sich, die Flügel öffnen sich maximal, eine Lichtkugel wächst (24 Bilder).
 - **Treffer:** Der ganze Saal.
+- **Inszenierung:** Die Entladung erfasst gleichzeitig beide Seiten sowie die ganze Höhe des Saals. Wurzeln brechen an mehreren Stellen hervor, ein eisblau-türkises Lichtgitter durchzieht den Raum, Steintrümmer und Nachbeben folgen. Keine kleine, ausweichbare Sichelwelle und keine freie Schutzzone. Königin und saalweiter Effekt sind getrennte Assets; ihre Entladung beginnt nach denselben 24 Aufladebildern. [Weltgericht v2](../assets/animationen/ranken-weltgericht-v2/README.md).
 - **Ausweichen:** Nicht möglich. Auch der Amulett-Schild hält es nicht auf; der Held stirbt, sobald es entladen wird. Seine einzige Chance ist, dass sie zögert (G8).
 - **Abklingzeit:** einmal pro Versuch, frühestens 20 Sekunden nach Beginn von Phase 3. Ab Runde 25 kann hier das Zögern (G8) eintreten.
 
