@@ -124,4 +124,6 @@ Der Held lernt für jeden Angriff einzeln. **Vorschlag** (passt zu [PSP1000.md](
 | Lernend (3–5 Mal) | Reagiert richtig, aber mit falschem Timing, meist zu früh |
 | Sicher (ab 6 Mal) | Weicht im richtigen Bild aus und nutzt die Erholungslücke für einen Gegenangriff |
 
+**Umsetzung (10.10.2026):** Getroffen 0 Mal: keine Reaktion; 1–2 Mal: falsche Ausweichart; ab 3 Mal: richtige Ausweichart im richtigen Bild. Nach jedem Angriff hat die Königin eine **Erholungslücke** von 40 Logikschritten (etwa 0,7 s), in der sie still steht. Beherrscht er den Angriff (ab 3 Mal getroffen), eilt er heran und schlägt in dieser Lücke immer zu; die Lücke endet erst nach seinem Hieb, höchstens nach 2,5 s. Gewöhnliche Hiebe kommen in festem Abstand statt zufällig. Steckt er 9 Versuche ohne neue Phase fest, wird sein Hieb stufenweise stärker (4, 6, 8, 10, höchstens 12 Schaden je Treffer bei 60 je Leiste).
+
 Daraus ergibt sich das festgelegte Tempo: in jeder Phase mindestens 3 Runden leicht zu besiegen, danach mindestens 6 weitere bis zur nächsten Phase. **Neue Ausrüstung macht ihn widerstandsfähiger, aber nicht sofort siegreich**: Er hält mehr Treffer aus, muss die Muster aber trotzdem lernen.

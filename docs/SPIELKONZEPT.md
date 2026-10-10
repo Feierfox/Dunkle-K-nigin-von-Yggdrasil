@@ -108,7 +108,13 @@ Noch offen:
 - Sein Fortschritt muss für den Spieler sichtbar sein: Ausweichen, das vorher nicht gelang, neue Ausrüstung oder ein veränderter Kampfstil.
 - Sein Lernen bleibt nachvollziehbar und berechenbar. Es soll kein Zufall sein, wenn er einem Angriff ausweicht.
 
-Die konkrete Umsetzung der Helden-KI ist noch nicht festgelegt.
+**Festgelegt (10.10.2026): echtes Lernen, garantierter Fortschritt.**
+
+- **Vollständiges Wissen, schrittweise freigeschaltet.** Die KI kennt zu jedem Angriff die richtige Ausweichart und das richtige Bild. Der Lernstand bestimmt nur, wie viel davon sie anwendet (siehe [ANGRIFFE.md](ANGRIFFE.md#lernen-des-helden)). Kein Zufall beim Ausweichen und beim Zuschlagen.
+- **Erholungslücke.** Nach jedem Angriff steht die Königin kurz still (etwa 0,7 s) und kann nicht angreifen. Beherrscht der Held den Angriff sicher, bringt er in dieser Lücke immer einen Gegenschlag an; die Lücke endet erst danach. Pausenlose Angriffe halten ihn also nicht für immer auf, gutes Spiel macht ihn nur langsamer.
+- **Durchbruch.** Erreicht er 9 Versuche lang keine neue Phase, findet er ihre Lücke: Ab dem 10. Versuch wird sein Hieb stufenweise stärker (bis zum Dreifachen). Eine neue Phase setzt den Zähler zurück.
+- **Gescriptet** sind nur die dramaturgischen Schlüsselstellen: Impulse, Amulett, Weltgericht und das Zögern (G8).
+- **Aufgeben gibt es nur über das Gespräch „Der Patch“** ([DIALOGE.md](DIALOGE.md#p--der-patch)): Beim Durchbruch hält der Held die Mechanik für fehlerhaft und will auf einen Patch warten. Wählt die Königin die Endboss-Antwort, geht er, und das Spiel endet mit E1. Sie hält das für Schwäche; dass er ein Spieler ist, ahnt sie nicht.
 
 ## Ton und Dialogplanung
 
