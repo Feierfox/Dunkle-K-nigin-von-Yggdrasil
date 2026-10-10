@@ -40,7 +40,7 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 - **Gespräche mit Auswahl** G1–G8 und R2–R4 aus `docs/DIALOGE.md`: zwei bis drei Antworten, die erste ist immer die Rolle des Endbosses. Die Antworten verändern Vertrauen, Einfluss der Verderbnis und Guide-Wissen. Zeilen der Verderbnis erscheinen magenta in einer eigenen Schrift. Im Kampf wird nicht gesprochen, nur Verwandlungen und das Zögern beim Weltgericht (G8) unterbrechen ihn.
 - **Totenritual**: Stille, die Königin geht zum Körper; ✕ Verbrennen, ○ Umarmen, □ Opfern. Der Held kehrt zurück, sobald sie wieder rechts im Saal steht; die Rückkehrworte spricht vor allem die Königin.
 - Tod: Der Held sackt nach vorn zur Königin hin zusammen, das Schwert bleibt neben ihm liegen; der Körper behält seine Lage, auch wenn sie vorbeigeht.
-- Richtschlag, Schwerthieb des Helden und die Umarmung (sie geht selbst an seinen Kopf, legt die Sense ab, kniet, hält ihn, eisblaues Feuer in ihren Armen, steht auf) stammen aus den bewegten Entwürfen in `assets/animationen/`. Die gezeichnete Umarmung gibt es bisher nur in Phase 1; stirbt der Held in Phase 2 oder 3, hält sie ihn wie zuvor.
+- Richtschlag, Schwerthieb des Helden und die Umarmung (sie geht selbst an seinen Kopf, legt die Sense ab, kniet, hält ihn, eisblaues Feuer in ihren Armen, steht auf) stammen aus den bewegten Entwürfen in `assets/animationen/`. Die gezeichnete Umarmung gibt es bisher nur in Phase 1; in Phase 2 und 3 hebt sie ihn an, er liegt vor ihr mit dem Kopf an ihrer Brust und verbrennt in ihren Armen. Rituale sind erst möglich, wenn er liegt.
 - **Enden E1–E6** je nach Entscheidungen und Werten, mit Abschlussbild; Select beginnt neu.
 
 **Noch nicht enthalten:** Gehen-Animationen (Figuren gleiten), eigene Phase-3-Grafik, das verborgene Ende, Musik und Ton.
@@ -60,7 +60,8 @@ Im Emulator PPSSPP (ohne Oberfläche) mit einer Demo-Variante, in der ein Skript
 **Totenritual nach dem Merge (Stand c00fb67)** im Emulator PPSSPPHeadless (aus dem Quellcode gebaut, `-DHEADLESS=ON -DHEADLESS_CROSS=ON`) mit drei Demo-Läufen von je elf Minuten. In einer Testkopie, die nicht im Repository liegt, fotografiert die Demo während jeder Umarmung alle zehn Bilder und schreibt den Ritual-Zustand mit. Zwei Varianten erzwingen zusätzlich, dass der Held rechts von der Königin stirbt bzw. jeder Versuch in Phase 3 beginnt.
 
 - Phase 1: acht Umarmungen, vier davon gespiegelt (Held rechts von ihr). Jedes Mal geht sie selbst an seinen Kopf, kniet am Kniepunkt (43 Ticks Umarmung), steht ohne Sense auf (8 Ticks) und nimmt sie danach wieder; das Schwert liegt bis zum Zerfall daneben. Auch ein Körper bei x = 56 am linken Saalrand ist erreichbar.
-- Phase 2 und 3: die bisherige Darstellung (sie hebt ihn an, dann brennt er am Boden), ohne Gehen und Knien, auch gespiegelt.
+- Phase 2 und 3: ohne Gehen und Knien. Sie hebt ihn über 20 Ticks an, er liegt vor ihr mit dem Kopf an ihrer Brust und verbrennt in ihren Armen; das Schwert bleibt am Boden. Vorher ragte der neue, längere Körper dabei hinter ihr heraus und fiel zum Verbrennen an seine alte Stelle zurück. Auch gespiegelt geprüft.
+- Rituale starten erst, wenn der Held liegt (Tod-Bild 7). Vorher konnte ○ mitten im Fallen gedrückt werden; dann wurde er im Fallen angehoben bzw. in Phase 1 abrupt durch die liegende Pose ersetzt.
 - Alle drei Läufe enden ohne Absturz mit einem Ende.
 
 ![Umarmung Phase 1](bilder/emulator-umarmung-phase1.png)
