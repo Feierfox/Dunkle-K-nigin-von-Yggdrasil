@@ -1,5 +1,6 @@
 # Dunkle Königin von Yggdrasil - PSP-1000
-# Bauen:   make            (pspdev-Toolchain im PATH, psp-config muss gefunden werden)
+# Bauen:   make PSPSDK=C:/pspsdk/psp/sdk "CC=psp-gcc -std=gnu99" EBOOT.PBP   (C:/pspsdk/bin im PATH)
+#          Mit diesem PSPSDK läuft das Spiel auf der PSP-1000; der pspdev-Build brach mit 80010002 ab.
 # Daten:   python ../tools/psp/assets_bauen.py  erzeugt data/ und src/assets_gen.h
 
 TARGET = DunkleKoenigin
@@ -15,7 +16,6 @@ LIBS = -lpspgu -lpspctrl -lpspdisplay -lm
 # Verschiebbares Programm (PRX): Mit fester Adresse (0x08804000) bricht der Start auf
 # der PSP-1000 mit Custom Firmware ab (Fehler 800200D9, Speicher belegt).
 BUILD_PRX = 1
-PSP_FW_VERSION = 500
 
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = The Dark Queen of Yggdrasil

@@ -11,7 +11,7 @@
 
 PSP_MODULE_INFO("DunkleKoenigin", 0, 0, 1);
 PSP_MAIN_THREAD_ATTR(THREAD_ATTR_USER | THREAD_ATTR_VFPU);
-PSP_HEAP_SIZE_KB(-1024);
+PSP_HEAP_SIZE_KB(12 * 1024);   /* fest wie bei Ludus Lanista; mit -1024 startete die PSP-1000 nicht (80010002) */
 
 static volatile int laeuft = 1;
 
