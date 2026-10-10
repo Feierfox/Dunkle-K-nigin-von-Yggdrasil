@@ -131,6 +131,19 @@ static const Wahl g8w[] = {
     {K, "„Nimm sie. Die Krone.“", NULL, 0, 0, 0, 1, 4},
 };
 
+/* Der Held steckt fest und hält die Mechanik für fehlerhaft; die Königin hält das für Schwäche. */
+static const Zeile patchz[] = {
+    {H, "„Okay. Das ist verbuggt. Die Hitbox ist eindeutig kaputt.“"},
+    {H, "„Ich warte auf den Patch. Mit dem Fix spiel ich weiter.“"},
+    {K, "„Ein Patch?“"},
+    {H, "„Ein Fix. Irgendwann flickt das jemand.“"},
+};
+static const Wahl patchw[] = {
+    {K, "„Niemand flickt, was ich zerbrochen habe. Geh.“", "„Ja, ja. Bis zum Patch.“", 0, 0, 0, 0, 1},
+    {K, "„Dann flicke es selbst.“", "„…Workaround. Okay. Einer geht noch.“", 0, 0, 0, 0, 0},
+    {V, "„Er ist zerbrochen. Lass ihn liegen.“", "„Und jetzt redet die andere. Gut, ich bleib. Aus Trotz.“", 0, 1, 0, 0, 0},
+};
+
 const Gespraech GESPRAECH[GESPRAECHE] = {
     {"G1 Die erste Audienz", g1z, N(g1z), g1w, N(g1w)},
     {"G2 Beharrlichkeit", g2z, N(g2z), g2w, N(g2w)},
@@ -143,12 +156,14 @@ const Gespraech GESPRAECH[GESPRAECHE] = {
     {"G7 Das Gesicht", g7z, N(g7z), g7w, N(g7w)},
     {"R4 Das goldene Schwert", r4z, N(r4z), r4w, N(r4w)},
     {"G8 Das Zögern", g8z, N(g8z), g8w, N(g8w)},
+    {"P Der Patch", patchz, N(patchz), patchw, N(patchw)},
 };
 
 const Ende ENDEN[7] = {
     {0, {0}},
-    {"Ewige Königin", {"Der Held kehrt nicht mehr zurück.", "Sie setzt sich auf den Thron.",
-                       "Die Halle bleibt still, wie in der Abwesenheit.", "Nur diesmal für immer."}},
+    {"Ewige Königin", {"Der Held kehrt nicht mehr zurück. Er ist zerbrochen,",
+                       "glaubt sie. Sie setzt sich auf den Thron.",
+                       "Die Halle bleibt still, wie in der Abwesenheit.", "Nur diesmal für immer. Kein Patch kommt."}},
     {"Die Wurzel herrscht", {"Das letzte Opfer fällt, und das Portal schließt sich nicht mehr.",
                              "Die Verderbnis spricht jetzt allein.", "Wurzeln brechen aus der Halle in die Welt.",
                              "„Okay. Dafür gibt es keinen Guide.“"}},

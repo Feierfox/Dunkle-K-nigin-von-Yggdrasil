@@ -19,6 +19,9 @@
 #define H_MIN 40
 #define H_MAX 440
 #define HIEB_SCHADEN 4
+#define ERHOLUNG 40              /* Pause der Königin nach jedem Angriff (Logikschritte) */
+#define ERHOLUNG_MAX 150         /* längste Pause, falls er seinen Gegenschlag nicht anbringt */
+#define HIEB_PAUSE 40            /* Abstand zwischen zwei gewöhnlichen Hieben des Helden */
 /* Aus assets_gen.h (tools/cutout/entwuerfe.py): UMARM_ABSTAND = Kniepunkt der Königin vom
  * Fußpunkt des Toten, TOD_MITTE = Mitte des liegenden Körpers, TOD_SCHWERT_BILD = ab diesem
  * Bild liegt das Schwert am Boden. Der Körper liegt mit dem Kopf in Blickrichtung. */
@@ -30,10 +33,12 @@ static const int UMARM_DAUER[8] = {3, 3, 3, 4, 8, 8, 6, 8};
 #define LEISTE 12                /* im Demo-Lauf kürzer, damit alle Phasen vorkommen */
 #define G8_AB_RUNDE 3
 #define WELT_AB_TICK 120
+#define DURCHBRUCH_AB 3
 #else
 #define LEISTE 60
 #define G8_AB_RUNDE 25
 #define WELT_AB_TICK (20 * 60)
+#define DURCHBRUCH_AB 9          /* Versuche ohne neue Phase, ab denen sein Hieb stärker wird */
 #endif
 
 /* Angriffe und Impulse */
@@ -65,6 +70,7 @@ enum { NACH_KAMPF, NACH_ABWESEND, NACH_WELT };
 
 typedef struct {
     int x, zustand, tick, angriff, phase, blick, verw, phase_tick, welt_benutzt;
+    int erholung, erholung_tick;  /* Pause nach einem Angriff; erholung = welcher Angriff (+1) */
     int lp[3];
     int ziel[3], ziele;          /* Bodenstellen von Flächenangriffen */
     float geschoss;              /* Lichtsichel oder Erinnerungswelle */
@@ -79,11 +85,13 @@ typedef struct {
     int tode, tode_p3, ursache, leiche_x, ritual, ritual_tick;
     int leiche_spiegel;           /* 1: er blickte nach links, Kopf liegt links */
     int umarm_geht, aufsteh_tick;
+    int hieb_pause, konter;       /* konter: 1 Gegenschlag läuft, 2 angebracht */
 } Held;
 
 static Koenigin K;
 static Held H;
 static int lage, lage_tick, runde, max_phase, ring_tick, ring_aktiv, ende_nr;
+static int seit_fortschritt;     /* Versuche, seit er zuletzt eine neue Phase erreicht hat */
 static int vertrauen, einfluss, guide, opfer, umarmt, wirkung_frei;
 static int erledigt[GESPRAECHE];
 static int erst_ritual[4];
@@ -294,6 +302,25 @@ static void held_handelt(int art)
 
 static void held_angekommen(void);
 
+/* Ein Angriff, den er sicher beherrscht (ab dem dritten Treffer), lässt ihm in ihrer Erholung
+ * immer einen Gegenschlag: Die Pause endet erst, wenn sein Hieb vorbei ist. So kann sie ihn
+ * nicht mit pausenlosen Angriffen für immer aufhalten (docs/ANGRIFFE.md, Erholungslücke). */
+static int konter_offen(void)
+{
+    if (!K.erholung || H.konter == 2) return 0;
+    int a = K.erholung - 1;
+    return ANG[a].richtig != AKT_KEINE && H.getroffen[a] >= 3;
+}
+
+/* Steckt er lange ohne neue Phase fest, findet er ihre Lücke: Sein Hieb wird stufenweise stärker. */
+static int hieb_schaden(void)
+{
+    int stufe = seit_fortschritt - DURCHBRUCH_AB;
+    if (stufe < 0) stufe = 0;
+    if (stufe > 4) stufe = 4;
+    return HIEB_SCHADEN + stufe * 2;
+}
+
 static void held_schritt(void)
 {
     if (H.unverwundbar > 0) H.unverwundbar--;
@@ -305,9 +332,15 @@ static void held_schritt(void)
     case HZ_KAMPF: {
         if (K.zustand == KZ_VERWANDLUNG) break;   /* während der Verwandlung bleibt er stehen */
         int d = abstand();
-        if (d > 40) H.x += (H.x < K.x) ? 1.0f : -1.0f;
+        int konter = konter_offen();
+        if (H.hieb_pause > 0) H.hieb_pause--;
+        if (d > 40) H.x += ((H.x < K.x) ? 1.0f : -1.0f) * (konter ? 2.5f : 1.0f);   /* zum Gegenschlag eilt er */
         else if (d < 30) H.x -= (H.x < K.x) ? 0.8f : -0.8f;
-        else if (K.zustand == KZ_BEREIT && zuf(40) == 0) { H.zustand = HZ_HIEBT; H.tick = 0; H.hieb_getroffen = 0; }
+        else if (K.zustand == KZ_BEREIT && (konter || H.hieb_pause == 0)) {
+            H.zustand = HZ_HIEBT; H.tick = 0; H.hieb_getroffen = 0;
+            H.hieb_pause = HIEB_PAUSE;
+            if (konter) H.konter = 1;
+        }
         break;
     }
     case HZ_HIEBT: {
@@ -315,9 +348,12 @@ static void held_schritt(void)
         int b = H.tick / TPB;
         if ((b == 4 || b == 5) && !H.hieb_getroffen && abstand() <= 48 && K.zustand != KZ_VERWANDLUNG) {
             H.hieb_getroffen = 1;
-            K.lp[K.phase] -= HIEB_SCHADEN;
+            K.lp[K.phase] -= hieb_schaden();
         }
-        if (H.tick >= 8 * TPB) H.zustand = HZ_KAMPF;
+        if (H.tick >= 8 * TPB) {
+            H.zustand = HZ_KAMPF;
+            if (H.konter == 1) H.konter = 2;
+        }
         break;
     }
     case HZ_ROLLT:
@@ -422,7 +458,13 @@ static void angriff_schritt(void)
         if (t == 120) treffer(A_WELT);
         break;
     }
-    if (t >= ANG[K.angriff].dauer) { K.zustand = KZ_BEREIT; K.geschoss_aktiv = 0; }
+    if (t >= ANG[K.angriff].dauer) {
+        K.zustand = KZ_BEREIT;
+        K.geschoss_aktiv = 0;
+        K.erholung = K.angriff + 1;
+        K.erholung_tick = 0;
+        H.konter = 0;
+    }
 }
 
 /* ------------------------------------------------------------------ Verwandlung */
@@ -451,7 +493,7 @@ static void verwandlung_schritt(void)
             K.zustand = KZ_BEREIT;
             K.phase = 1;
             K.phase_tick = 0;
-            if (max_phase < 1) max_phase = 1;
+            if (max_phase < 1) { max_phase = 1; seit_fortschritt = 0; }
             if (!erledigt[G_G6]) gespraech_starten(G_G6, NACH_KAMPF);
         }
     } else {
@@ -461,7 +503,7 @@ static void verwandlung_schritt(void)
             K.phase = 2;
             K.phase_tick = 0;
             K.welt_benutzt = 0;
-            if (max_phase < 2) max_phase = 2;
+            if (max_phase < 2) { max_phase = 2; seit_fortschritt = 0; }
             if (!erledigt[G_G7]) gespraech_starten(G_G7, NACH_KAMPF);
         }
     }
@@ -547,11 +589,17 @@ static void held_angekommen(void)
     }
     if (erster_tod_impuls1 && !erledigt[G_G5]) { gespraech_starten(G_G5, NACH_KAMPF); return; }
     if (H.tode == 3 && !erledigt[G_G2]) { gespraech_starten(G_G2, NACH_KAMPF); return; }
+    /* Er steckt fest und gibt der Mechanik die Schuld; die Endboss-Antwort führt zu E1 */
+    if (seit_fortschritt > DURCHBRUCH_AB && !erledigt[G_PATCH]) { gespraech_starten(G_PATCH, NACH_KAMPF); return; }
 }
 
 static void rueckkehr(void)
 {
     runde++;
+    seit_fortschritt++;
+    K.erholung = 0;
+    H.konter = 0;
+    H.hieb_pause = 0;
     H.zustand = HZ_KOMMT;
     H.x = -20;
     H.herzen = H.stufe + 1;
@@ -614,7 +662,6 @@ static void ritual_schritt(const Eingabe *e)
     /* Der Held kehrt zurück, sobald sie wieder rechts im Saal ist */
     if (H.ritual == R_FERTIG && H.aufsteh_tick == 0 && K.x > 300) {
         H.ritual = H.ritual_tick;
-        if ((vertrauen <= -2 && erledigt[G_G7]) || (H.tode >= 40 && max_phase < 2)) { ende_setzen(1); return; }
         if (quest) {
             int q = quest;
             if (q == 1) gespraech_starten(G_G3, NACH_ABWESEND);
@@ -646,6 +693,7 @@ void spiel_start(void)
     lage = L_KAMPF;
     runde = 1;
     max_phase = 0;
+    seit_fortschritt = 0;
     vertrauen = 0; einfluss = 2; guide = 0; opfer = 0; umarmt = 0; wirkung_frei = 1;
     quest = 0; zurueck_von_quest = 0; erster_tod_impuls1 = 0; ende_nr = 0; ring_aktiv = 0;
     sage("□ △ ○ Angriffe (Phase 3: □ △, L+R Weltgericht)  ← → gehen", SP_ERZAEHLER,
@@ -660,6 +708,15 @@ static void koenigin_schritt(const Eingabe *e)
     K.phase_tick++;
     switch (K.zustand) {
     case KZ_BEREIT:
+        /* Erholung nach einem Angriff: Sie steht still und greift nicht an. Beherrscht er den
+         * Angriff sicher, dauert sie, bis sein Gegenschlag vorbei ist (höchstens ERHOLUNG_MAX). */
+        if (K.erholung) {
+            int lebt = H.zustand != HZ_TOT && H.zustand != HZ_WEG && H.zustand != HZ_KOMMT;
+            int halten = lebt && konter_offen();
+            if (lage != L_KAMPF || ++K.erholung_tick >= ERHOLUNG_MAX || (K.erholung_tick >= ERHOLUNG && !halten))
+                K.erholung = 0;
+        }
+        if (K.erholung) laufen = 0;
         if (H.zustand == HZ_TOT && H.umarm_geht) {
             /* Sie geht selbst zu ihm, bis sie an seinem Kopf steht */
             int d = kniepunkt() - K.x;
@@ -671,7 +728,7 @@ static void koenigin_schritt(const Eingabe *e)
         K.x += laufen;
         if (H.zustand == HZ_TOT && H.umarm_geht) K.blick = H.leiche_spiegel ? 1 : -1;   /* sie blickt zu ihm */
         else if (laufen) K.blick = laufen;
-        if (lage == L_KAMPF && H.zustand != HZ_KOMMT && H.zustand != HZ_WEG && H.zustand != HZ_TOT) {
+        if (lage == L_KAMPF && !K.erholung && H.zustand != HZ_KOMMT && H.zustand != HZ_WEG && H.zustand != HZ_TOT) {
             int a = -1;
             static const int TASTE_ANGRIFF[3][3] = {
                 {A_RICHT, A_SENSE, A_KREIS}, {A_STERN, A_WIND, A_URTEIL}, {A_RANKEN, A_RISS, -1}};

@@ -315,6 +315,21 @@ Das Amulett stammt, ohne dass es ausgesprochen wird, aus der Zeit der Hüter, al
 | [Nähe] | „Dann bleib stehen.“ | Weltgericht wird zurückgenommen, der Kampf endet nach Werten (siehe Enden) |
 | [Nähe] | „Nimm sie. Die Krone.“ | Nur wenn `vertrauen ≥ 2`, sonst fehlt diese Zeile: Ende E4 |
 
+### P — Der Patch
+
+**Auslöser:** Der Held erreicht 9 Versuche lang keine neue Phase; Gespräch bei seiner nächsten Rückkehr, einmal pro Durchlauf. Ab diesem Versuch beginnt sein Durchbruch (siehe [SPIELKONZEPT.md](SPIELKONZEPT.md#lernen-des-helden--planungsmaßstab)). Er ist ein Spieler, der an einer Stelle ständig scheitert und die Schuld bei der Mechanik sucht. Die Königin weiß nicht, dass es ein Spiel ist; sie versteht nur, dass er aufgeben will.
+
+> **Held:** „Okay. Das ist verbuggt. Die Hitbox ist eindeutig kaputt.“
+> **Held:** „Ich warte auf den Patch. Mit dem Fix spiel ich weiter.“
+> **Königin:** „Ein Patch?“
+> **Held:** „Ein Fix. Irgendwann flickt das jemand.“
+
+| | Antwort der Königin | Antwort des Helden | Folge |
+| --- | --- | --- | --- |
+| [Endboss] | „Niemand flickt, was ich zerbrochen habe. Geh.“ | „Ja, ja. Bis zum Patch.“ | Ende E1 |
+| [Nähe] | „Dann flicke es selbst.“ | „…Workaround. Okay. Einer geht noch.“ | er bleibt |
+| [Verderbnis] | *„Er ist zerbrochen. Lass ihn liegen.“* | „Und jetzt redet die andere. Gut, ich bleib. Aus Trotz.“ | einfluss +1, er bleibt |
+
 ---
 
 ## Enden
@@ -323,7 +338,7 @@ Ein Durchlauf endet, sobald der Held die Königin besiegt oder eine Bedingung un
 
 | Ende | Weg | Bedingung | Inhalt |
 | --- | --- | --- | --- |
-| **E1 Ewige Königin** | Endboss | `vertrauen ≤ −2` nach G7, oder 40 Tode ohne Phase 3 | Der Held kehrt nicht mehr zurück. Sie verbrennt seinen letzten Körper und setzt sich auf den Thron. Die Halle bleibt still, wie in der Abwesenheit, nur diesmal für immer. |
+| **E1 Ewige Königin** | Endboss | Im Gespräch „Der Patch“ die Endboss-Antwort | Der Held geht, um auf einen Patch zu warten, und kehrt nicht mehr zurück. Sie hält ihn für zerbrochen und setzt sich auf den Thron. Die Halle bleibt still, wie in der Abwesenheit, nur diesmal für immer. Der Patch kommt nie. |
 | **E2 Die Wurzel herrscht** | Verderbnis | `einfluss = 5` und `opfer ≥ 3` | Das letzte Opfer fällt durch das Portal, und das Portal schließt sich nicht mehr. Die Verderbnis übernimmt ganz, die Königin spricht nur noch kursiv. Wurzeln brechen aus der Halle in die Welt. Der Held, ein letztes Mal: „Okay. Dafür gibt es keinen Guide.“ |
 | **E3 Befreiung** | Nähe | Held besiegt sie in Phase 3, `vertrauen ≥ 2`, `einfluss ≤ 2` | Sein letzter Schlag trifft nicht sie, sondern die verdorbenen Äste der Krone. Sie lebt, bleibt aber an den Baum gebunden. Diesmal aus eigenem Willen. |
 | **E4 Loslösung** | Nähe | Bei G8 „Nimm sie. Die Krone.“ | Sie löst ihre Bindung an Yggdrasil selbst und reicht dem Helden die Krone, damit er sie zerbricht. Die Erinnerungen der Wurzeln strömen frei. Sie verlässt die Halle durch den Eingang, zum ersten Mal. |
