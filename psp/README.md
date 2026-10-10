@@ -93,13 +93,11 @@ Auf einer echten PSP-1000 ist die Szene noch nicht getestet.
 
 ```
 python tools/psp/assets_bauen.py      # data/*.bin und src/assets_gen.h aus den Sprites
-export PSPDEV=/pfad/zu/pspdev PATH=$PSPDEV/bin:$PATH
-cd psp && make
+cd psp
+make PSPSDK=C:/pspsdk/psp/sdk "CC=psp-gcc -std=gnu99" EBOOT.PBP   # C:/pspsdk/bin im PATH
 ```
 
-Das Makefile baut ein verschiebbares Programm (`BUILD_PRX = 1`): `DATA.PSP` im EBOOT ist dann ein PRX statt eines Programms mit fester Adresse 0x08804000, das auf der PSP-1000 mit Custom Firmware nicht startet.
-
-Die Toolchain gibt es fertig unter https://github.com/pspdev/pspdev/releases.
+Gebaut wird mit dem PSPSDK in `C:\pspsdk` (gcc 4.3.5), mit dem auch Ludus Lanista auf der PSP-1000 läuft. Das Makefile baut ein verschiebbares Programm (`BUILD_PRX = 1`), ohne `PSP_FW_VERSION`, und `main.c` fordert einen festen Heap von 12 MB an. Mit `PSP_HEAP_SIZE_KB(-1024)` und `PSP_FW_VERSION = 500` brach der Start auf der PSP-1000 mit 80010002 ab (10.10.2026). `CFLAGS` nicht auf der Kommandozeile überschreiben, sonst fehlen die Include-Pfade des SDK.
 
 ## Datenformat
 
