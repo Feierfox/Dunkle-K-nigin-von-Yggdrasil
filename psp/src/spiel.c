@@ -474,6 +474,9 @@ static void verwandlung_starten(int v)
     K.zustand = KZ_VERWANDLUNG;
     K.verw = v;
     K.tick = 0;
+    /* Die Verwandlung beendet ihre Erholung; danach greift sie ohne Pause wieder an */
+    K.erholung = 0;
+    H.konter = 0;
     H.plan_art = AKT_KEINE;
     if (v == 1) held_plant(A_IMPULS1, 90);
 }
