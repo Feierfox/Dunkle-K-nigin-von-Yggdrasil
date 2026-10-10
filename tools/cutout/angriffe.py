@@ -155,7 +155,7 @@ def richtschlag():
         (8, -2, 0, 0, 0),           # 10
     ]
     bilder = [bild_zusammensetzen(leinwand, ursprung, koerper, teil, ELLBOGEN, p) for p in posen]
-    speichere("koenigin_p1_atk_richtschlag", bilder, palette, quelle)
+    speichere("koenigin_p1_atk_richtschlag_alt", bilder, palette, quelle)
 
 
 def _vorbereiten():

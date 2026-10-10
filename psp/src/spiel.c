@@ -19,6 +19,11 @@
 #define H_MIN 40
 #define H_MAX 440
 #define HIEB_SCHADEN 4
+#define TOD_MITTE 18             /* Mitte des liegenden Körpers (held_tod) neben dem Anker */
+#define UMARM_MITTE 23           /* Mitte des Helden in koenigin_p1_umarmung, links vom Anker */
+
+/* Umarmung: Haltezeit je Bild in 12tel Sekunden (animation.json des Entwurfs) */
+static const int UMARM_DAUER[8] = {3, 3, 3, 4, 8, 8, 6, 8};
 
 #ifdef DEMO
 #define LEISTE 12                /* im Demo-Lauf kürzer, damit alle Phasen vorkommen */
@@ -164,6 +169,26 @@ static const char *const HELD_RITUAL[4] = {
 /* ------------------------------------------------------------------ Hilfen */
 
 static int dir_zum_held(void) { return H.x < K.x ? -1 : 1; }
+
+/* Die gezeichnete Umarmung gibt es bisher nur für Phase 1; in Phase 2 und 3 hält sie ihn wie bisher. */
+static int umarm_anim(void) { return H.zustand == HZ_TOT && H.ritual == R_UMARMEN && K.phase == 0; }
+
+static int umarm_ende(void)
+{
+    int t = 0;
+    for (int i = 0; i < 8; i++) t += UMARM_DAUER[i] * TPB;
+    return t;
+}
+
+static int umarm_bild(void)
+{
+    int t = H.ritual_tick;
+    for (int i = 0; i < 8; i++) {
+        t -= UMARM_DAUER[i] * TPB;
+        if (t < 0) return i;
+    }
+    return 7;
+}
 static int abstand(void) { int d = (int)H.x - K.x; return d < 0 ? -d : d; }
 static int in_der_luft(void)
 {
@@ -538,6 +563,12 @@ static void ritual_schritt(const Eingabe *e)
         if (e->neu & PSP_CTRL_CROSS) { H.ritual = R_FEUER; H.ritual_tick = 0; }
         else if (umarmen && (e->neu & PSP_CTRL_CIRCLE)) {
             H.ritual = R_UMARMEN; H.ritual_tick = 0; umarmt++;
+            if (K.phase == 0) {
+                /* Sie kniet rechts neben ihm: Körper der Animation auf den liegenden Körper setzen */
+                int mitte = H.leiche_x + (H.leiche_x > K.x ? TOD_MITTE : -TOD_MITTE);
+                K.x = mitte + UMARM_MITTE;
+                K.blick = -1;
+            }
             if (wirkung_frei) { vertrauen = klemme(vertrauen + 1, -3, 3); wirkung_frei = 0; }
             if (!erst_ritual[R_UMARMEN]) sage("„…Du bist leichter, als ich dachte.“", SP_KOENIGIN, "", SP_HELD);
         } else if (portal && (e->neu & PSP_CTRL_SQUARE)) {
@@ -550,7 +581,7 @@ static void ritual_schritt(const Eingabe *e)
     }
     if (H.ritual > R_NICHTS && H.ritual < R_FERTIG) {
         H.ritual_tick++;
-        int dauer = H.ritual == R_UMARMEN ? 150 : H.ritual == R_PORTAL ? 12 * TPB + 20 : 90;
+        int dauer = H.ritual == R_UMARMEN ? (K.phase == 0 ? umarm_ende() : 150) : H.ritual == R_PORTAL ? 12 * TPB + 20 : 90;
         if (H.ritual_tick >= dauer) {
             if (H.ritual == R_PORTAL && einfluss >= 5 && opfer >= 3) { ende_setzen(2); return; }
             H.ritual_tick = H.ritual;   /* merkt sich die Art für den Rückkehrkommentar */
@@ -606,6 +637,7 @@ static void koenigin_schritt(const Eingabe *e)
     K.phase_tick++;
     switch (K.zustand) {
     case KZ_BEREIT:
+        if (umarm_anim()) laufen = 0;   /* während der Umarmung kniet sie */
         K.x += laufen;
         if (laufen) K.blick = laufen;
         if (lage == L_KAMPF && H.zustand != HZ_KOMMT && H.zustand != HZ_WEG && H.zustand != HZ_TOT) {
@@ -890,6 +922,7 @@ static void koenigin_zeichnen(void)
         anim = Q_P1_IDLE;
         bild = (lage_tick / TPB / 2) % 6;
     }
+    if (umarm_anim()) { anim = Q_UMARMUNG; bild = umarm_bild(); spiegel = 0; }
     if (p == 2) f = P3_FARBE;
     zeichne_anim(anim, bild, K.x, BODEN, spiegel, 0, f);
 }
@@ -902,6 +935,7 @@ static void held_zeichnen(void)
         int r = H.ritual, t = H.ritual_tick;
         int x = H.leiche_x, y = BODEN;
         unsigned int f = WEISS;
+        if (umarm_anim()) return;   /* Held und Feuer sind Teil der Umarmungs-Animation */
         if (r == R_UMARMEN && t < 90) { x = K.x + dir_zum_held() * 4; y = BODEN - 14; }   /* in ihren Armen */
         if (r == R_PORTAL) {
             int a = 255 - t * 4;

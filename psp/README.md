@@ -39,6 +39,7 @@ Erste spielbare Testszene in C mit dem PSPSDK (pspdev), 60 Bilder pro Sekunde.
 - **Ausrüstung über Quests**: Umhang (5. Tod), zweiter Umhang (11. Tod), Amulett (nach dem ersten Tod im Nebel), goldenes Schwert (nach drei Toden in Phase 3). Jede Stufe bringt ein Herz mehr und eine neue Umhangfarbe.
 - **Gespräche mit Auswahl** G1–G8 und R2–R4 aus `docs/DIALOGE.md`: zwei bis drei Antworten, die erste ist immer die Rolle des Endbosses. Die Antworten verändern Vertrauen, Einfluss der Verderbnis und Guide-Wissen. Zeilen der Verderbnis erscheinen magenta in einer eigenen Schrift. Im Kampf wird nicht gesprochen, nur Verwandlungen und das Zögern beim Weltgericht (G8) unterbrechen ihn.
 - **Totenritual**: Stille, die Königin geht zum Körper; ✕ Verbrennen, ○ Umarmen, □ Opfern. Der Held kehrt zurück, sobald sie wieder rechts im Saal steht; die Rückkehrworte spricht vor allem die Königin.
+- Richtschlag, Schwerthieb des Helden und die Umarmung (sie kniet, hält ihn, eisblaues Feuer in ihren Armen) stammen aus den bewegten Entwürfen in `assets/animationen/`. Die gezeichnete Umarmung gibt es bisher nur in Phase 1; stirbt der Held in Phase 2 oder 3, hält sie ihn wie zuvor.
 - **Enden E1–E6** je nach Entscheidungen und Werten, mit Abschlussbild; Select beginnt neu.
 
 **Noch nicht enthalten:** Gehen-Animationen (Figuren gleiten), eigene Phase-3-Grafik, das verborgene Ende, Musik und Ton.
