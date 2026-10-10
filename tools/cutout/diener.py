@@ -1,7 +1,8 @@
 """Der Untertan der Königin für die Eröffnungsszene, aus dem Helden-Entwurf abgeleitet.
 
-Schwert entfernt (wie beim Hieb-Zuschnitt), Umhang von Grün in ein fahles
-Grauviolett umgefärbt, etwas kleiner und nach vorn gebeugt.
+Damit er sich deutlich vom Helden unterscheidet: Schwert entfernt, kleiner und
+viel breiter (schwer, mit Bauch), nach vorn gebeugt, Kutte in Burgunderrot
+(Livree des Hofs), watschelnder Gang.
 
     diener_idle   1 Bild   gebeugt stehend
     diener_gehen  8 Bilder  Beine wie bei held_gehen
@@ -22,22 +23,37 @@ import angriffe as A  # noqa: E402
 import gehen as GH  # noqa: E402
 import held as HD  # noqa: E402
 
-GROESSE = 0.88    # kleiner als der Held
-BEUGE = -7        # Grad nach vorn gebeugt (er blickt nach rechts)
+BREITE = 1.18     # breiter als der Held ...
+HOEHE = 0.8       # ... und kleiner: schwer und gedrungen
+BEUGE = -9        # Grad nach vorn gebeugt (er blickt nach rechts)
+BAUCH = (470, 930, 260, 0.32)   # Mitte x/y, Radius, Stärke der Wölbung
 
 
 def umfaerben(bild):
-    """Grüner Umhang -> fahles Grauviolett, Leder etwas dunkler."""
+    """Grüner Umhang -> Burgunderrot, Leder etwas dunkler."""
     a = np.array(bild).astype(np.float32)
     r, g, b = a[..., 0], a[..., 1], a[..., 2]
     gruen = (g > r + 8) & (g >= b) & (a[..., 3] > 0)
     hell = 0.3 * r + 0.59 * g + 0.11 * b
-    a[gruen, 0] = hell[gruen] * 0.86 + 6
-    a[gruen, 1] = hell[gruen] * 0.74
-    a[gruen, 2] = hell[gruen] * 0.98 + 14
+    a[gruen, 0] = hell[gruen] * 1.25 + 28
+    a[gruen, 1] = hell[gruen] * 0.34
+    a[gruen, 2] = hell[gruen] * 0.42 + 6
     braun = (r > g + 10) & (g > b) & ~gruen
     a[braun, :3] *= 0.8
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA")
+
+
+def bauch(bild):
+    """Wölbung um den Bauch: Pixel nahe der Mitte werden nach außen gezogen."""
+    from verformen import verforme
+    a = np.array(bild).astype(np.float32)
+    h, w, _ = a.shape
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    cx, cy, rad, st = BAUCH
+    g = np.exp(-((xx - cx) ** 2 + (yy - cy) ** 2) / (rad * rad))
+    dx = (xx - cx) * st * g + 40 * g     # etwas mehr nach vorn
+    dy = (yy - cy) * st * 0.5 * g
+    return Image.fromarray(np.clip(verforme(a, dx, dy), 0, 255).astype(np.uint8), "RGBA")
 
 
 HUEFTE = (470, 1040)   # Drehpunkt für die Verneigung
@@ -61,13 +77,13 @@ def verneigen(bild, winkel):
 def pose(b, winkel=0.0, dy=0, sx=1.0, sy=1.0, weiss=0.0, pivot=None):
     fuss = (520, HD.FUESSE_Y)
     return HD.ganz(b, winkel=BEUGE + winkel, pivot=pivot or fuss, dy=dy,
-                   sx=GROESSE * sx, sy=GROESSE * sy, weiss=weiss)
+                   sx=BREITE * sx, sy=HOEHE * sy, weiss=weiss)
 
 
 def main():
     bild = A.lade(HD.QUELLE)
     koerper, _schwert = HD.zerlege_held(bild)
-    koerper = umfaerben(koerper)
+    koerper = bauch(umfaerben(koerper))
     palette = A.palette_von(koerper, (koerper.width // HD.MASSSTAB, koerper.height // HD.MASSSTAB))
     m = HD.MASSSTAB
 
@@ -76,12 +92,12 @@ def main():
     a = np.array(koerper)
     r, g, b = (a[..., i].astype(int) for i in range(3))
     sat, mx = GH._saettigung(a)
-    umhang = (sat < 0.35) & (b > r) & (b > g) & (mx > 0.15)   # umgefärbter Umhang
+    umhang = (r > g + 30) & (r > b + 20) & (sat > 0.45)       # umgefärbte Kutte
     ist_bein = ~umhang
     boxen = [(130, 1110, 320, 1440), (440, 1090, 720, 1430)]
     luecke = GH._rechteck(a.shape, (120, 1080, 730, 1440))
     k, beine = GH.zerlege_beine(koerper, boxen, ist_bein, luecke)
-    bilder = GH.zyklus(k, beine, 1110, 1420, schritt=2.6 * m, hub=1.0 * m, wippen=0.8 * m)
+    bilder = GH.zyklus(k, beine, 1110, 1420, schritt=1.8 * m, hub=0.7 * m, wippen=1.4 * m)   # kurze Schritte, wippt stark
     HD.speichere("diener_gehen", [pose(bb, dy=dy) for bb, dy in bilder], palette)
 
     # tiefe Verneigung: Oberkörper ab der Hüfte nach vorn, dabei leicht in die Knie

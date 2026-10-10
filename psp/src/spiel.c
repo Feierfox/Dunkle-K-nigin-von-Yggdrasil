@@ -22,7 +22,14 @@
 #define ERHOLUNG 40              /* Pause der Königin nach jedem Angriff (Logikschritte) */
 #define ERHOLUNG_MAX 150         /* längste Pause, falls er seinen Gegenschlag nicht anbringt */
 #define HIEB_PAUSE 40            /* Abstand zwischen zwei gewöhnlichen Hieben des Helden */
-#define RUECKKEHR_STILLE 240     /* nach dem Ritual mindestens 4 s Stille, bevor er zurückkehrt */
+#define RUECKKEHR_STILLE 480     /* nach dem Ritual mindestens 8 s Stille, bevor er zurückkehrt */
+/* Phasenwechsel: Schock (sie wankt, der Saal verdunkelt sich), Worte, Aufladen, dann die
+ * Welle (Phase 2: Impulsring, Phase 3: Nebel), hinter deren Front der verwandelte Saal erscheint. */
+#define V_REDE 60                /* Worte: beim ersten Mal Gespräch, später ein Satz */
+#define V_RISS 110               /* Helm reißt (Phase 2) bzw. Wurzelholz (Phase 3) */
+#define V_WELLE 150              /* Impulsring bzw. Nebel brechen los */
+#define V_ENDE1 240
+#define V_ENDE2 250
 /* Aus assets_gen.h (tools/cutout/entwuerfe.py): UMARM_ABSTAND = Kniepunkt der Königin vom
  * Fußpunkt des Toten, TOD_MITTE = Mitte des liegenden Körpers, TOD_SCHWERT_BILD = ab diesem
  * Bild liegt das Schwert am Boden. Der Körper liegt mit dem Kopf in Blickrichtung. */
@@ -189,6 +196,10 @@ static const char *const HELD_ERSTER_TOD[ANG_N] = {
     "„Ich hab nichts gemacht. Ich hab nur gewartet.“",
     "„Ich bin gesprungen. Geht hier nicht. Da ist kein Drüber.“",
 };
+static const char *const VERW_WORTE[2][2] = {
+    {"„Noch einmal. Du zwingst mich noch einmal dazu.“", "„Weiche. Oder vergehe.“"},
+    {"„Der Nebel kennt dich schon.“", "„Sieh hin. Dann geh.“"},
+};
 static const char *const HELD_RITUAL[4] = {
     0,
     "„Ich riech nach Rauch. Das ist neu.“",
@@ -242,7 +253,7 @@ static int umarm_bild(void)
 /* Rituale erst, wenn er liegt: sonst würde er mitten im Fallen angehoben bzw. ersetzt */
 static int ritual_moeglich(void)
 {
-    return lage == L_RITUAL && H.ritual == R_NICHTS && H.tick / TPB >= TOD_LIEGT_BILD
+    return lage == L_RITUAL && H.ritual == R_NICHTS && H.tick / TPB >= TOD_LIEGT_BILD && K.zustand != KZ_VERWANDLUNG
         && abs(K.x - koerper_mitte()) < 45;
 }
 static int abstand(void) { int d = (int)H.x - K.x; return d < 0 ? -d : d; }
@@ -277,9 +288,11 @@ static void held_stirbt(void)
     H.ritual_tick = 0;
     lage = L_RITUAL;
     lage_tick = 0;
-    K.zustand = KZ_BEREIT;
     K.geschoss_aktiv = 0;
-    ring_aktiv = 0;
+    if (K.zustand != KZ_VERWANDLUNG) {   /* eine Verwandlung läuft zu Ende, auch wenn er tot ist */
+        K.zustand = KZ_BEREIT;
+        ring_aktiv = 0;
+    }
     /* Quest nach diesem Tod? */
     if (H.ursache == A_IMPULS2 && H.stufe < 3) quest = 3;           /* Amulett */
     else if (H.tode == 5 && H.stufe == 0) quest = 1;
@@ -509,37 +522,42 @@ static void verwandlung_starten(int v)
     K.erholung = 0;
     H.konter = 0;
     H.plan_art = AKT_KEINE;
-    if (v == 1) held_plant(A_IMPULS1, 90);
+    if (v == 1) held_plant(A_IMPULS1, V_WELLE - 10);   /* der Ring erreicht ihn etwa 5 Schritte nach V_WELLE */
+}
+
+/* Nach der Welle: verwandelt, auch wenn er gestorben ist (dann beginnt das Ritual danach) */
+static void verwandlung_fertig(int phase)
+{
+    K.zustand = KZ_BEREIT;
+    K.phase = phase;
+    K.phase_tick = 0;
+    if (phase == 2) K.welt_benutzt = 0;
+    if (lage != L_KAMPF) return;
+    if (max_phase < phase) { max_phase = phase; seit_fortschritt = 0; }
+    int g = phase == 1 ? G_G6 : G_G7;
+    if (!erledigt[g]) gespraech_starten(g, NACH_KAMPF);
 }
 
 static void verwandlung_schritt(void)
 {
     int t = ++K.tick;
+    if (t == V_REDE) {
+        int g = K.verw == 1 ? G_VERW1 : G_VERW2;
+        if (!erledigt[g] && lage == L_KAMPF) { gespraech_starten(g, NACH_KAMPF); return; }
+        sage(VERW_WORTE[K.verw - 1][zuf(2)], einfluss >= 3 ? SP_VERDERBNIS : SP_KOENIGIN, "", SP_HELD);
+    }
     if (K.verw == 1) {
-        if (t == 100) { ring_aktiv = 1; ring_tick = 0; }
+        if (t == V_WELLE) { ring_aktiv = 1; ring_tick = 0; }
         if (ring_aktiv) {
             ring_tick++;
             int radius = 10 + ring_tick * 26 / 5;
             if (abs(radius - abstand()) < 8) treffer(A_IMPULS1);
             if (ring_tick >= 10 * TPB) ring_aktiv = 0;
         }
-        if (t >= 160 && lage == L_KAMPF) {
-            K.zustand = KZ_BEREIT;
-            K.phase = 1;
-            K.phase_tick = 0;
-            if (max_phase < 1) { max_phase = 1; seit_fortschritt = 0; }
-            if (!erledigt[G_G6]) gespraech_starten(G_G6, NACH_KAMPF);
-        }
+        if (t >= V_ENDE1) verwandlung_fertig(1);
     } else {
-        if (t == 170) treffer(A_IMPULS2);
-        if (t >= 200 && lage == L_KAMPF) {
-            K.zustand = KZ_BEREIT;
-            K.phase = 2;
-            K.phase_tick = 0;
-            K.welt_benutzt = 0;
-            if (max_phase < 2) { max_phase = 2; seit_fortschritt = 0; }
-            if (!erledigt[G_G7]) gespraech_starten(G_G7, NACH_KAMPF);
-        }
+        if (t == V_WELLE + 50) treffer(A_IMPULS2);   /* der Nebel hat ihn erreicht */
+        if (t >= V_ENDE2) verwandlung_fertig(2);
     }
 }
 
@@ -581,6 +599,7 @@ static void gespraech_ende(void)
     const Gespraech *g = &GESPRAECH[g_nr];
     if (g_nach == NACH_INTRO) { lage = L_INTRO; D.zustand = DZ_STEHT; D.tick = 0; return; }
     if (g_nr == G_G1) sage(STEUERUNG_1, SP_ERZAEHLER, STEUERUNG_2, SP_ERZAEHLER);   /* jetzt beginnt der Kampf */
+    if (g->anzahl_wahl == 0) { lage = L_KAMPF; return; }
     const Wahl *w = &g->wahl[g_wahl];
     if (w->ende == 9) { ende_setzen(ende_nach_werten()); return; }
     if (w->ende) { ende_setzen(w->ende); return; }
@@ -1123,9 +1142,9 @@ static void nebel_streifen(int xa, int xb, int y, int t)
 
 static void nebel_zeichnen(void)
 {
-    if (K.zustand != KZ_VERWANDLUNG || K.verw != 2 || K.tick < 120) return;
+    if (K.zustand != KZ_VERWANDLUNG || K.verw != 2 || K.tick < V_WELLE) return;
     int t = K.tick;
-    int r = (t - 120) * 10;              /* Nebel rollt von der Königin heran */
+    int r = (t - V_WELLE) * 10;          /* Nebel rollt von der Königin heran */
     int schild = hat_amulett() && H.zustand != HZ_TOT;
     int hx = (int)H.x, hy = BODEN - 28;
     int x0 = K.x - r, x1 = K.x + r;
@@ -1147,10 +1166,31 @@ static void nebel_zeichnen(void)
     }
 }
 
+/* Phasenwechsel im Hintergrund: Der Saal verdunkelt sich, um sie lädt sich Licht auf, und
+ * hinter der Front der Welle erscheint der Saal der neuen Phase. */
+static void verwandlung_hintergrund(void)
+{
+    int t = K.tick, neu = K.verw;
+    if (t >= V_WELLE) {
+        int r = (t - V_WELLE) * (K.verw == 1 ? 8 : 10);
+        hintergrund_ausschnitt(neu, K.x - r, K.x + r);
+    }
+    int dunkel = t < V_REDE ? t * 120 / V_REDE : t < V_WELLE ? 120 : 120 - (t - V_WELLE) * 2;
+    if (dunkel > 0) rechteck(0, 0, BILD_B, BILD_H, ((unsigned int)dunkel << 24) | 0x00100408);
+    if (t >= V_REDE && t < V_WELLE) {
+        /* Lichtsäule um sie, pulsierend und wachsend */
+        int a = 40 + ((t / 4) % 2) * 30 + (t - V_REDE) / 2;
+        int b = 24 + (t - V_REDE) / 3;
+        unsigned int farbe = K.verw == 1 ? 0x00F0A060 : 0x00E040C0;   /* Türkis bzw. Lila (ABGR) */
+        rechteck(K.x - b / 2, 0, b, BODEN + 6, ((unsigned int)a << 24) | farbe);
+        zeichne_anim(FX_KUGEL, (t / TPB) % 4, K.x, BODEN - 70, 0, 0, WEISS);
+    }
+}
+
 static void koenigin_zeichnen(void)
 {
     int spiegel = koenigin_blickt_rechts();
-    int anim, bild;
+    int anim, bild, wanken = 0;
     unsigned int f = WEISS;
     int p = K.phase;
     if (K.zustand == KZ_ANGRIFF) {
@@ -1158,10 +1198,16 @@ static void koenigin_zeichnen(void)
         bild = K.tick / TPB;
         if (K.angriff == A_WELT) bild = K.tick < 120 ? (K.tick / TPB < 5 ? K.tick / TPB : 5) : 6 + (K.tick - 120) / TPB;
     } else if (K.zustand == KZ_VERWANDLUNG) {
-        anim = (K.verw == 1 && K.tick < 60) ? Q_P1_IDLE : Q_P2_IDLE;
-        bild = (lage_tick / TPB) % 10;
-        if (K.verw == 1 && K.tick >= 40 && K.tick < 60 && (K.tick / 3) % 2) f = 0xFFFF80FF;   /* Helm reißt */
-        if (K.verw == 2 && K.tick >= 60) f = P3_FARBE;
+        int t = K.tick;
+        anim = (K.verw == 1 && t < V_WELLE) ? Q_P1_IDLE : Q_P2_IDLE;
+        bild = anim == Q_P1_IDLE ? (lage_tick / TPB / 2) % 6 : (lage_tick / TPB) % 10;
+        if (t < V_REDE) {                                       /* getroffen: sie wankt */
+            wanken = (t / 3) % 2 ? 2 : -2;
+            if (t < 12 && (t / 2) % 2) f = 0xFF6060FF;          /* rot aufblitzen */
+        }
+        if (t >= V_RISS && t < V_WELLE && (t / 3) % 2)
+            f = K.verw == 1 ? 0xFFFF80FF : P3_FARBE;            /* Helm reißt bzw. Wurzelholz bricht durch */
+        if (K.verw == 2 && t >= V_WELLE) f = P3_FARBE;
     } else if (p >= 1) {
         anim = Q_P2_IDLE;
         bild = (lage_tick / TPB) % 10;
@@ -1176,7 +1222,7 @@ static void koenigin_zeichnen(void)
     if (H.aufsteh_tick) { anim = Q_AUFSTEHEN; bild = 0; }
     if (p == 2) f = P3_FARBE;
     if (umarm_anim() || H.aufsteh_tick) zeichne_anim(Q_SENSE_BODEN, 0, K.x, BODEN, spiegel, 0, f);   /* abgelegt */
-    zeichne_anim(anim, bild, K.x, BODEN, spiegel, 0, f);
+    zeichne_anim(anim, bild, K.x + wanken, BODEN, spiegel, 0, f);
     /* Umhang des Helden in der Umarmung mit der Farbtabelle seiner Ausrüstungsstufe */
     if (umarm_anim()) zeichne_anim(H_UMARMUNG_UMHANG, bild, K.x, BODEN, spiegel, H.stufe, f);
 }
@@ -1327,6 +1373,7 @@ void spiel_zeichnen(void)
     }
     bild_beginnen(0xFF180A0E);
     hintergrund_zeichnen(K.phase);
+    if (K.zustand == KZ_VERWANDLUNG) verwandlung_hintergrund();
     if (ring_aktiv) zeichne_anim(FX_RING, ring_tick / TPB, K.x, BODEN + 10, 0, 0, WEISS);
     koenigin_zeichnen();
     diener_zeichnen();

@@ -23,7 +23,11 @@ Nach „Spiel starten“ kommt zuerst ein Untertan, verneigt sich vor der König
 
 Links in der Dialogbox steht ein Porträt der sprechenden Figur (48 × 48, `tools/cutout/portraits.py`): Königin (Helm mit Astkrone), Verderbnis (dasselbe Porträt magenta, magentafarbener Rahmen), Held (in der Umhangfarbe seiner Ausrüstungsstufe) und Untertan. Bei der Auswahl zeigt es die Stimme der gewählten Antwort.
 
-Nach dem Totenritual bleibt es mindestens 4 Sekunden still, bevor der Held zurückkehrt (`RUECKKEHR_STILLE`), auch wenn die Königin schon rechts im Saal steht.
+Nach dem Totenritual bleibt es mindestens 8 Sekunden still, bevor der Held zurückkehrt (`RUECKKEHR_STILLE`), auch wenn die Königin schon rechts im Saal steht.
+
+## Phasenwechsel
+
+Leert der Held eine Leiste, hält der Kampf an: Wanken, Verdunkeln, Worte (beim ersten Mal ein Gespräch), Aufladen mit Lichtsäule, dann die Welle (Impulsring bzw. Nebel), hinter deren Front der Saal der neuen Phase erscheint. Etwa 4 Sekunden plus Gespräch. Texte in `docs/DIALOGE.md`, Abschnitt „Ablauf des Phasenwechsels“.
 
 ## Steuerung
 

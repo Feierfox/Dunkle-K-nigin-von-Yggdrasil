@@ -153,6 +153,20 @@ static const Zeile introz[] = {
     {SP_DIENER, "„Ich – ich halte ihn auf, Herrin! Für Euch! Ich …“"},
 };
 
+/* Erster Phasenwechsel: Sie wurde getroffen; zum ersten Mal spricht die Verderbnis durch sie. */
+static const Zeile verw1z[] = {
+    {K, "„…Du hast mich getroffen.“"},
+    {K, "„Seit Jahrhunderten hat mich niemand getroffen.“"},
+    {V, "„Genug. Er gehört den Wurzeln.“"},
+    {H, "„Moment. Das war gar nicht sie.“"},
+};
+/* Erster Wechsel zu Phase 3: Der Helm hält nicht mehr. */
+static const Zeile verw2z[] = {
+    {K, "„Der Helm … er hält nicht mehr.“"},
+    {V, "„Dann zeig ihm, was darunter ist. Und dann lösch ihn aus.“"},
+    {H, "„Okay. Der Nebel da. Der ist neu.“"},
+};
+
 const Gespraech GESPRAECH[GESPRAECHE] = {
     {"G1 Die erste Audienz", g1z, N(g1z), g1w, N(g1w)},
     {"G2 Beharrlichkeit", g2z, N(g2z), g2w, N(g2w)},
@@ -167,6 +181,8 @@ const Gespraech GESPRAECH[GESPRAECHE] = {
     {"G8 Das Zögern", g8z, N(g8z), g8w, N(g8w)},
     {"P Der Patch", patchz, N(patchz), patchw, N(patchw)},
     {"Eröffnung", introz, N(introz), 0, 0},
+    {"Phasenwechsel 1", verw1z, N(verw1z), 0, 0},
+    {"Phasenwechsel 2", verw2z, N(verw2z), 0, 0},
 };
 
 const Ende ENDEN[7] = {
