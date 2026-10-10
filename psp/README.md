@@ -57,6 +57,15 @@ Im Emulator PPSSPP (ohne Oberfläche) mit einer Demo-Variante, in der ein Skript
 ![Ritual](bilder/emulator-ritual-feuer.png)
 ![Rückkehr nach der Quest](bilder/emulator-rueckkehr-nach-quest.png)
 
+**Totenritual nach dem Merge (Stand c00fb67)** im Emulator PPSSPPHeadless (aus dem Quellcode gebaut, `-DHEADLESS=ON -DHEADLESS_CROSS=ON`) mit drei Demo-Läufen von je elf Minuten. In einer Testkopie, die nicht im Repository liegt, fotografiert die Demo während jeder Umarmung alle zehn Bilder und schreibt den Ritual-Zustand mit. Zwei Varianten erzwingen zusätzlich, dass der Held rechts von der Königin stirbt bzw. jeder Versuch in Phase 3 beginnt.
+
+- Phase 1: acht Umarmungen, vier davon gespiegelt (Held rechts von ihr). Jedes Mal geht sie selbst an seinen Kopf, kniet am Kniepunkt (43 Ticks Umarmung), steht ohne Sense auf (8 Ticks) und nimmt sie danach wieder; das Schwert liegt bis zum Zerfall daneben. Auch ein Körper bei x = 56 am linken Saalrand ist erreichbar.
+- Phase 2 und 3: die bisherige Darstellung (sie hebt ihn an, dann brennt er am Boden), ohne Gehen und Knien, auch gespiegelt.
+- Alle drei Läufe enden ohne Absturz mit einem Ende.
+
+![Umarmung Phase 1](bilder/emulator-umarmung-phase1.png)
+![Umarmung Phase 3](bilder/emulator-umarmung-phase3.png)
+
 Auf einer echten PSP-1000 ist die Szene noch nicht getestet.
 
 ## Bauen
