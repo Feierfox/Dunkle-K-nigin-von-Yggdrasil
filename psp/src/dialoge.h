@@ -25,7 +25,7 @@ typedef struct {
     int anzahl_wahl;            /* 0: nur Zeilen, keine Auswahl (Eröffnung) */
 } Gespraech;
 
-enum { G_G1, G_G2, G_G3, G_G4, G_G5, G_R2, G_G6, G_R3, G_G7, G_R4, G_G8, G_PATCH, G_INTRO, GESPRAECHE };
+enum { G_G1, G_G2, G_G3, G_G4, G_G5, G_R2, G_G6, G_R3, G_G7, G_R4, G_G8, G_PATCH, G_INTRO, G_VERW1, G_VERW2, GESPRAECHE };
 
 extern const Gespraech GESPRAECH[GESPRAECHE];
 

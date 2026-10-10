@@ -78,6 +78,23 @@ Der Held spricht bei der Rückkehr **nur bei einem bestimmten Anlass**: beim ers
 | Aufbruch zur Amulett-Quest (direkt danach) | „Okay. Springen reicht nicht mehr. Ich brauch was, das mich *schützt*. Bin bald zurück. Also, relativ bald.“ |
 | Erstes Mal mit Amulett-Schild überlebt | „Okay, das Amulett kann *das*? Gold steht mir.“ |
 
+### Ablauf des Phasenwechsels (Umsetzung)
+
+Leert der Held eine Leiste, hält der Kampf an: Sie wankt und blitzt rot auf, der Saal verdunkelt sich (1 s). Dann folgen Worte: **beim ersten Mal ein Gespräch ohne Auswahl**, sonst ein einzelner Satz. Danach lädt sich um sie eine Lichtsäule auf, der Helm reißt bzw. das Wurzelholz bricht durch (1,5 s). Zuletzt bricht die Welle los, der Impulsring bzw. der Nebel, und **hinter ihrer Front erscheint der Saal der neuen Phase**. Die Welle ist so die „Ladesequenz“. Stirbt der Held an ihr, läuft die Verwandlung trotzdem zu Ende; das Ritual folgt danach.
+
+**Erster Wechsel zu Phase 2:**
+> **Königin:** „…Du hast mich getroffen.“
+> **Königin:** „Seit Jahrhunderten hat mich niemand getroffen.“
+> ***Stimme:*** *„Genug. Er gehört den Wurzeln.“*
+> **Held:** „Moment. Das war gar nicht sie.“
+
+**Erster Wechsel zu Phase 3:**
+> **Königin:** „Der Helm … er hält nicht mehr.“
+> ***Stimme:*** *„Dann zeig ihm, was darunter ist. Und dann lösch ihn aus.“*
+> **Held:** „Okay. Der Nebel da. Der ist neu.“
+
+**Spätere Wechsel** (ein Satz, bei Einfluss ab 3 von der Verderbnis gesprochen): „Noch einmal. Du zwingst mich noch einmal dazu.“ · „Weiche. Oder vergehe.“ (Phase 2) · „Der Nebel kennt dich schon.“ · „Sieh hin. Dann geh.“ (Phase 3)
+
 ### Phase 2 (orange Leiste)
 
 | Anlass | Zeilen |
@@ -153,7 +170,7 @@ Beim ersten Mal nach jeder Möglichkeit ersetzt eine dieser Zeilen den normalen 
 
 ## Eröffnung
 
-**Ablauf:** Beim Spielbeginn tritt zuerst ein Untertan der Königin ein: gebeugt, in fahl-violetter Kutte, ohne Waffe. Er verneigt sich tief vor ihr und warnt sie, demütig und unterwürfig. Danach richtet er sich auf und stellt sich dem Helden in den Weg, der ihn mit einem Hieb erschlägt. Erst dann beginnt G1, und danach erscheinen die Steuerungshinweise. Start überspringt die Szene.
+**Ablauf:** Beim Spielbeginn tritt zuerst ein Untertan der Königin ein: klein, schwer und gedrungen, gebeugt, in burgunderroter Kutte (Livree des Hofs), ohne Waffe. Er verneigt sich tief vor ihr und warnt sie, demütig und unterwürfig. Danach richtet er sich auf und stellt sich dem Helden in den Weg, der ihn mit einem Hieb erschlägt. Erst dann beginnt G1, und danach erscheinen die Steuerungshinweise. Start überspringt die Szene.
 
 > **Untertan:** „Herrin … verzeiht, dass ich es wage, Euren Thronsaal zu betreten.“
 > **Untertan:** „Ein Fremder ist durch das Wurzeltor gekommen. Grüne Kapuze, blanke Klinge.“
@@ -163,7 +180,7 @@ Beim ersten Mal nach jeder Möglichkeit ersetzt eine dieser Zeilen den normalen 
 > *Der Held tritt ein und erschlägt ihn.*
 > **Held:** „Tutorial-Gegner. Erledigt.“
 
-Keine Auswahl: Die Szene stellt Königin, Held und seine Spielersprache vor. Die Figur des Untertans entsteht in `tools/cutout/diener.py` aus dem Helden-Entwurf (Schwert entfernt, umgefärbt, kleiner und gebeugt).
+Keine Auswahl: Die Szene stellt Königin, Held und seine Spielersprache vor. Die Figur des Untertans entsteht in `tools/cutout/diener.py` aus dem Helden-Entwurf (Schwert entfernt, kleiner und breiter mit Bauch, gebeugt, burgunderrot, watschelnder Gang).
 
 ## Gesprächsabschnitte
 

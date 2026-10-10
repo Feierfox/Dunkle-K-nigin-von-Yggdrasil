@@ -28,6 +28,8 @@ void zeichne_anim(int anim, int bild, int ax, int ay, int spiegeln, int clut, un
 void rechteck(int x, int y, int w, int h, unsigned int farbe);
 /* Thronsaal als Hintergrund: 0 = Phase 1, 1 = Phase 2, 2 = Phase 3. */
 void hintergrund_zeichnen(int phase);
+/* Nur die Spalten x0 .. x1 des Thronsaals einer Phase (Übergang hinter der Magiewelle). */
+void hintergrund_ausschnitt(int phase, int x0, int x1);
 /* Titelbild (data/titel.bin) als Hintergrund des Hauptmenüs. */
 void titel_zeichnen(void);
 /* Hauptmenü (data/menue.bin): Hintergrund mit der Königin und vorgefertigte Menütexte (MT_...). */

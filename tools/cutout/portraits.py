@@ -4,7 +4,7 @@
                        die Verderbnis nutzt dasselbe Bild magenta eingefärbt (im Spiel)
     portrait_held      Kapuze, Riemen und Arm (held-idle-hood-v3); im Spiel mit den
                        Farbtabellen seiner Ausrüstungsstufe
-    portrait_diener    dasselbe, grauviolett umgefärbt und gespiegelt
+    portrait_diener    dasselbe, burgunderrot, mit Bauch, gespiegelt
 
     python tools/cutout/portraits.py
 """
@@ -45,7 +45,7 @@ def main():
     portrait("portrait_koenigin", koenigin, (330, 0, 730, 400))
     held = A.lade("held-idle-hood-v3.webp")
     portrait("portrait_held", held, (220, 200, 680, 660))
-    portrait("portrait_diener", DN.umfaerben(held), (220, 200, 680, 660), spiegeln=True)
+    portrait("portrait_diener", DN.bauch(DN.umfaerben(held)), (200, 220, 700, 720), spiegeln=True)
 
 
 if __name__ == "__main__":

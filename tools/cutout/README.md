@@ -29,7 +29,7 @@ Ausgabe in `assets/sprites/cutout/`: Sprite-Streifen (`.png`), Bildpositionen (`
 | `held_schwert_boden` | held-idle-hood-v3, Schwert flach am Boden (rutscht ihm im 3. Tod-Bild aus der Hand) | 1, 37 × 7 |
 | `held_gehen` | held-idle-hood-v3 (`gehen.py`): Beine ausgeschnitten und geschert, Körper wippt | 8, 64 × 80 |
 | `koenigin_p1_gehen` | koenigin-idle-sense-helm-v5 (`gehen.py`): schwerer Schritt, Beine unter dem Mantel geschert | 8, 128 × 128 |
-| `diener_idle`, `diener_gehen`, `diener_knien`, `diener_tod` | held-idle-hood-v3 (`diener.py`): Untertan der Eröffnung, ohne Schwert, grauviolett umgefärbt, kleiner und gebeugt | 1, 8, 4, 8; 64 × 80 |
+| `diener_idle`, `diener_gehen`, `diener_knien`, `diener_tod` | held-idle-hood-v3 (`diener.py`): Untertan der Eröffnung, ohne Schwert, burgunderrot, klein, breit mit Bauch, gebeugt | 1, 8, 4, 8; 64 × 80 |
 | `held_tod_alt` | held-idle-hood-v3 (`held.py`), kippt nach hinten, am Bildrand abgeschnitten, nicht mehr im Spiel | 8, 64 × 80 |
 
 ```

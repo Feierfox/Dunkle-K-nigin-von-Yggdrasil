@@ -223,6 +223,16 @@ void menue_text(int mt, int x, int y, unsigned int farbe)
 
 int menue_text_breite(int mt) { return MENUE_TEXT[mt][2]; }
 
+void hintergrund_ausschnitt(int phase, int x0, int x1)
+{
+    if (phase < 0) phase = 0;
+    if (phase >= tex_saal.seiten) phase = tex_saal.seiten - 1;
+    if (x0 < 0) x0 = 0;
+    if (x1 > BILD_B) x1 = BILD_B;
+    if (x1 <= x0) return;
+    zeichne(&tex_saal, phase, 0, x0, 0, x1 - x0, BILD_H, x0, 0, 0, 0xFFFFFFFF);
+}
+
 int zeichen_anzahl(const char *s)
 {
     int n = 0;
